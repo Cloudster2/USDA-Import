@@ -1,0 +1,8 @@
+{
+	"name": "ReatDairyProduction",
+	"properties": {
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
