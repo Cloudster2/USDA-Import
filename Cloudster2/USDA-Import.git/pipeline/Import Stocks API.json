@@ -37,69 +37,6 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['domaincat_desc']"
-								},
-								"sink": {
-									"name": "DomainCat",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['prodn_practice_desc']"
-								},
-								"sink": {
-									"name": "ProdPract",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['commodity_desc']"
-								},
-								"sink": {
-									"name": "Commodity",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['unit_desc']"
-								},
-								"sink": {
-									"name": "Unit",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['region_desc']"
-								},
-								"sink": {
-									"name": "Region",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['year']"
-								},
-								"sink": {
-									"name": "Year",
-									"type": "Int32"
-								}
-							},
-							{
-								"source": {
-									"path": "['util_practice_desc']"
-								},
-								"sink": {
-									"name": "UtilPract",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "['week_ending']"
 								},
 								"sink": {
@@ -109,10 +46,19 @@
 							},
 							{
 								"source": {
-									"path": "['group_desc']"
+									"path": "['year']"
 								},
 								"sink": {
-									"name": "GRP",
+									"name": "Year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['util_practice_desc']"
+								},
+								"sink": {
+									"name": "UtilPract",
 									"type": "String"
 								}
 							},
@@ -127,19 +73,10 @@
 							},
 							{
 								"source": {
-									"path": "['reference_period_desc']"
+									"path": "['group_desc']"
 								},
 								"sink": {
-									"name": "Period",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['statisticcat_desc']"
-								},
-								"sink": {
-									"name": "Category",
+									"name": "GRP",
 									"type": "String"
 								}
 							},
@@ -154,20 +91,29 @@
 							},
 							{
 								"source": {
-									"path": "['domain_desc']"
+									"path": "['statisticcat_desc']"
 								},
 								"sink": {
-									"name": "Domain",
+									"name": "Category",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['state_ansi']"
+									"path": "['reference_period_desc']"
 								},
 								"sink": {
-									"name": "StateAnsi",
-									"type": "Int32"
+									"name": "Period",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Value']"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -190,11 +136,65 @@
 							},
 							{
 								"source": {
-									"path": "['Value']"
+									"path": "['domain_desc']"
 								},
 								"sink": {
-									"name": "Value",
-									"type": "Decimal"
+									"name": "Domain",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['state_ansi']"
+								},
+								"sink": {
+									"name": "StateAnsi",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['commodity_desc']"
+								},
+								"sink": {
+									"name": "Commodity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['prodn_practice_desc']"
+								},
+								"sink": {
+									"name": "ProdPract",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['domaincat_desc']"
+								},
+								"sink": {
+									"name": "DomainCat",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['unit_desc']"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['region_desc']"
+								},
+								"sink": {
+									"name": "Region",
+									"type": "String"
 								}
 							}
 						],
