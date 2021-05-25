@@ -11,158 +11,114 @@
 			{
 				"name": "USDAId",
 				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"precision": 10
 			},
 			{
 				"name": "GRP",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "GRPID",
 				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"precision": 10
 			},
 			{
 				"name": "Commodity",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "CommodityID",
 				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"precision": 10
 			},
 			{
 				"name": "UtilPract",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "Class",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "ProdPract",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "Category",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "CatID",
 				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"precision": 10
 			},
 			{
 				"name": "Unit",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "UnitID",
 				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"precision": 10
 			},
 			{
 				"name": "Domain",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "DomainCat",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "ItemConcat",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "StateAnsi",
-				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "GeoID",
 				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"precision": 10
 			},
 			{
 				"name": "Region",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "State",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "WeekEnding",
-				"type": "date",
-				"precision": 10,
-				"scale": 0
+				"type": "date"
 			},
 			{
 				"name": "WeekEndingString",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "Year",
-				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "Frequency",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "FreqID",
 				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"precision": 10
 			},
 			{
 				"name": "Period",
-				"type": "varchar",
-				"precision": 0,
-				"scale": 0
+				"type": "varchar"
 			},
 			{
 				"name": "PeriodID",
 				"type": "int",
-				"precision": 10,
-				"scale": 0
+				"precision": 10
 			},
 			{
 				"name": "Value",
