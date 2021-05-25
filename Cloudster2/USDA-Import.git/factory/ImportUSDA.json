@@ -1,0 +1,9 @@
+{
+	"name": "ImportUSDA",
+	"location": "westus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "3348e173-9efb-461e-becd-fe6e1adfd9ce",
+		"tenantId": "929763a8-8234-4f87-a2fe-6f39fd6c4c3b"
+	}
+}
