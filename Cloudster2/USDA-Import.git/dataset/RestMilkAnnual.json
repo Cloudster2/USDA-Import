@@ -1,0 +1,13 @@
+{
+	"name": "RestMilkAnnual",
+	"properties": {
+		"description": "Last 10 years milk prod",
+		"linkedServiceName": {
+			"referenceName": "RestMilk Annual",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
