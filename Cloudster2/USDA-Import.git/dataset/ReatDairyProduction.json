@@ -1,6 +1,10 @@
 {
 	"name": "ReatDairyProduction",
 	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestDairyProduction",
+			"type": "LinkedServiceReference"
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"schema": []
