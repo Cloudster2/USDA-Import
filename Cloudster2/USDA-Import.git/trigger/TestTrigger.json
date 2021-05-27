@@ -1,0 +1,25 @@
+{
+	"name": "TestTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Trigger Testing Pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2021-05-27T15:30:00",
+				"endTime": "2021-05-27T22:30:00",
+				"timeZone": "Mountain Standard Time"
+			}
+		}
+	}
+}
