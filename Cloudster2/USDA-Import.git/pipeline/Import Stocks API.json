@@ -210,13 +210,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_2kc",
+						"referenceName": "USDAStocksAPI",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_2kc",
+						"referenceName": "DataFactoryTable",
 						"type": "DatasetReference"
 					}
 				]
@@ -423,13 +423,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ReatDairyProduction",
+						"referenceName": "DairyProductionAPI",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_2kc",
+						"referenceName": "DataFactoryTable",
 						"type": "DatasetReference"
 					}
 				]
@@ -637,13 +637,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "RestMilkAnnual",
+						"referenceName": "MilkAnnualAPI",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_2kc",
+						"referenceName": "DataFactoryTable",
 						"type": "DatasetReference"
 					}
 				]

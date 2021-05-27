@@ -1,5 +1,5 @@
 {
-	"name": "RestMilkAnnual",
+	"name": "MilkAnnualAPI",
 	"properties": {
 		"description": "Last 10 years milk prod",
 		"linkedServiceName": {

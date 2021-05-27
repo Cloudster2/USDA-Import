@@ -1,5 +1,5 @@
 {
-	"name": "DestinationDataset_2kc",
+	"name": "DataFactoryTable",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "SaraDB connection",

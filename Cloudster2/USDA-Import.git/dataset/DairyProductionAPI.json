@@ -1,5 +1,5 @@
 {
-	"name": "ReatDairyProduction",
+	"name": "DairyProductionAPI",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "RestDairyProduction",
