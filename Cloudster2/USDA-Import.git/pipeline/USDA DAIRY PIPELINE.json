@@ -1,5 +1,5 @@
 {
-	"name": "Import Stocks API",
+	"name": "USDA DAIRY PIPELINE",
 	"properties": {
 		"description": "Import dairy stocks using rest api",
 		"activities": [
@@ -438,14 +438,7 @@
 				"name": "CopyMilkAnnualProduction",
 				"description": "Last 10 years of milk prod",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Dairy Transformations",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -680,7 +673,14 @@
 				"name": "Work Table Transfer",
 				"description": "Transfer data to workDairy table",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "ID Updates",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1004,8 +1004,11 @@
 					"secureInput": false
 				},
 				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[USDA].[DairyProcedure]"
+				},
 				"linkedServiceName": {
-					"referenceName": "WorkDairy",
+					"referenceName": "SaraDB connection",
 					"type": "LinkedServiceReference"
 				}
 			},
