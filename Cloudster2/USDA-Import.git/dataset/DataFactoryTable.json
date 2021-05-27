@@ -1,0 +1,141 @@
+{
+	"name": "DataFactoryTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SaraDB connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "USDAId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GRP",
+				"type": "varchar"
+			},
+			{
+				"name": "GRPID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Commodity",
+				"type": "varchar"
+			},
+			{
+				"name": "CommodityID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UtilPract",
+				"type": "varchar"
+			},
+			{
+				"name": "Class",
+				"type": "varchar"
+			},
+			{
+				"name": "ProdPract",
+				"type": "varchar"
+			},
+			{
+				"name": "Category",
+				"type": "varchar"
+			},
+			{
+				"name": "CatID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Unit",
+				"type": "varchar"
+			},
+			{
+				"name": "UnitID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Domain",
+				"type": "varchar"
+			},
+			{
+				"name": "DomainCat",
+				"type": "varchar"
+			},
+			{
+				"name": "ItemConcat",
+				"type": "varchar"
+			},
+			{
+				"name": "StateAnsi",
+				"type": "varchar"
+			},
+			{
+				"name": "GeoID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "State",
+				"type": "varchar"
+			},
+			{
+				"name": "WeekEnding",
+				"type": "date"
+			},
+			{
+				"name": "WeekEndingString",
+				"type": "varchar"
+			},
+			{
+				"name": "Year",
+				"type": "varchar"
+			},
+			{
+				"name": "Frequency",
+				"type": "varchar"
+			},
+			{
+				"name": "FreqID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Period",
+				"type": "varchar"
+			},
+			{
+				"name": "PeriodID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "NormValue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "USDA",
+			"table": "USDADataFactory"
+		}
+	}
+}

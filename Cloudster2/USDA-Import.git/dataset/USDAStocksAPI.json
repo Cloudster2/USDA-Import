@@ -1,0 +1,12 @@
+{
+	"name": "USDAStocksAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "USDAStocks",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
