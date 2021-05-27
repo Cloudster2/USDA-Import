@@ -1,0 +1,139 @@
+{
+	"name": "USDAData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "usdadata",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "USDAId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GRP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GRPID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Commodity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CommodityID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UtilPract",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Class",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProdPract",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CatID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Unit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UnitID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Domain",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DomainCat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemConcat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StateAnsi",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "GeoID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Region",
+				"type": "nvarchar"
+			},
+			{
+				"name": "State",
+				"type": "nvarchar"
+			},
+			{
+				"name": "WeekEnding",
+				"type": "date"
+			},
+			{
+				"name": "Year",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Frequency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FreqID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PeriodID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "NormValue",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "USDA",
+			"table": "USDAData"
+		}
+	}
+}
