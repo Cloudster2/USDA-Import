@@ -1,0 +1,98 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ImportUSDA"
+		},
+		"SaraDB connection_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SaraDB connection'"
+		},
+		"TestTriggerConnection_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'TestTriggerConnection'"
+		},
+		"WorkDairy_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'WorkDairy'"
+		},
+		"usdadata_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'usdadata'"
+		},
+		"NumberOfCowsAPI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78&commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2016&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
+		},
+		"RestDairyProduction_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2016"
+		},
+		"RestMilk Annual_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78&commodity_desc=MILK&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL&freq_desc=ANNUAL&year__LE=2015&year__GE=2010"
+		},
+		"USDAStocks_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2016&freq_desc=POINT IN TIME"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "ImportUSDA_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"SaraDB connection_connectionString": {
+						"value": "[parameters('SaraDB connection_connectionString')]"
+					},
+					"TestTriggerConnection_connectionString": {
+						"value": "[parameters('TestTriggerConnection_connectionString')]"
+					},
+					"WorkDairy_connectionString": {
+						"value": "[parameters('WorkDairy_connectionString')]"
+					},
+					"usdadata_connectionString": {
+						"value": "[parameters('usdadata_connectionString')]"
+					},
+					"NumberOfCowsAPI_properties_typeProperties_url": {
+						"value": "[parameters('NumberOfCowsAPI_properties_typeProperties_url')]"
+					},
+					"RestDairyProduction_properties_typeProperties_url": {
+						"value": "[parameters('RestDairyProduction_properties_typeProperties_url')]"
+					},
+					"RestMilk Annual_properties_typeProperties_url": {
+						"value": "[parameters('RestMilk Annual_properties_typeProperties_url')]"
+					},
+					"USDAStocks_properties_typeProperties_url": {
+						"value": "[parameters('USDAStocks_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
