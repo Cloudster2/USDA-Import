@@ -1,0 +1,12 @@
+{
+	"name": "testingtriggers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SaraDB connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}
