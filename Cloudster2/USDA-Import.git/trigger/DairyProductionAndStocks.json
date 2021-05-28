@@ -1,0 +1,34 @@
+{
+	"name": "DairyProductionAndStocks",
+	"properties": {
+		"description": "June 4th",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "USDA DAIRY PIPELINE",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 30,
+				"startTime": "2021-06-04T13:15:00",
+				"endTime": "2021-06-04T14:13:00",
+				"timeZone": "Mountain Standard Time",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						13
+					]
+				}
+			}
+		}
+	}
+}
