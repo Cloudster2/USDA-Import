@@ -1,0 +1,12 @@
+{
+	"name": "MilkProductionAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Milk ProductionAPI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
