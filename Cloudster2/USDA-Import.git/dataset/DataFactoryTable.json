@@ -74,6 +74,11 @@
 				"type": "varchar"
 			},
 			{
+				"name": "StateAnsiInt",
+				"type": "int",
+				"precision": 10
+			},
+			{
 				"name": "StateAnsi",
 				"type": "varchar"
 			},
@@ -100,7 +105,8 @@
 			},
 			{
 				"name": "Year",
-				"type": "varchar"
+				"type": "int",
+				"precision": 10
 			},
 			{
 				"name": "Frequency",
@@ -121,10 +127,14 @@
 				"precision": 10
 			},
 			{
-				"name": "Value",
+				"name": "ValueDec",
 				"type": "decimal",
 				"precision": 18,
-				"scale": 2
+				"scale": 0
+			},
+			{
+				"name": "Value",
+				"type": "varchar"
 			},
 			{
 				"name": "NormValue",
