@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/apro_mt_pwgtm?sinceTimePeriod=2020M06&groupedIndicators=1&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1",
+			"url": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/apro_mt_pwgtm?sinceTimePeriod=2020M06&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
