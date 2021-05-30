@@ -1,0 +1,12 @@
+{
+	"name": "EuroStatsSlaughter",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/apro_mt_pwgtm?precision=1&lastTimePeriod=32&unit=THS_HD&meat=B1200",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
