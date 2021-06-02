@@ -1,0 +1,12 @@
+{
+	"name": "NumCowsAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CowInventoryRest",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
