@@ -1,0 +1,12 @@
+{
+	"name": "MilkPerCowAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MilkPerCowAPI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
