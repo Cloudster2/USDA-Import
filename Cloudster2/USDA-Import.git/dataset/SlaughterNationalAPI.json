@@ -1,0 +1,12 @@
+{
+	"name": "SlaughterNationalAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SlaughterNationalImport",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
