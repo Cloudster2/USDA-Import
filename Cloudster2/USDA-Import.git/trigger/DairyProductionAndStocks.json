@@ -18,7 +18,7 @@
 				"frequency": "Day",
 				"interval": 30,
 				"startTime": "2021-06-05T13:15:00",
-				"endTime": "2021-06-04T14:13:00",
+				"endTime": "2021-06-05T14:13:00",
 				"timeZone": "Mountain Standard Time",
 				"schedule": {
 					"minutes": [
