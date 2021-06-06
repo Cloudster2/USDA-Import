@@ -6183,46 +6183,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DairyProductionAndStocks')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "June 4th",
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "USDA DAIRY PIPELINE",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 30,
-						"startTime": "2021-06-06T13:15:00",
-						"endTime": "2021-06-06T18:13:00",
-						"timeZone": "Mountain Standard Time",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								13
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/USDA DAIRY PIPELINE')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/MilkProductionInventory')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -6292,6 +6252,49 @@
 						"schedule": {
 							"weekDays": [
 								"Thursday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Slaughter Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/slaughter test trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "test running",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Slaughter Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Month",
+						"interval": 1,
+						"startTime": "2021-06-07T06:30:00Z",
+						"endTime": "2021-06-08T23:32:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								30
+							],
+							"hours": [
+								6
+							],
+							"monthDays": [
+								7
 							]
 						}
 					}
