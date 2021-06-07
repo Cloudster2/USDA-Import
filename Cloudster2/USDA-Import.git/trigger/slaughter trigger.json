@@ -1,0 +1,24 @@
+{
+	"name": "slaughter trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Slaughter Pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 10,
+				"startTime": "2021-06-07T08:01:00",
+				"timeZone": "Mountain Standard Time"
+			}
+		}
+	}
+}
