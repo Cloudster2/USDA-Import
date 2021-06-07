@@ -13,47 +13,6 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/MilkProductionInventory')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Milk Production, Inventory Cows, Production per cow",
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "MilkProductionCowInventory",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2021-06-03T13:00:00",
-						"endTime": "2021-06-03T18:09:00",
-						"timeZone": "Mountain Standard Time",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								13
-							],
-							"weekDays": [
-								"Thursday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/slaughter trigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -65,8 +24,7 @@
 						"pipelineReference": {
 							"referenceName": "Slaughter Pipeline",
 							"type": "PipelineReference"
-						},
-						"parameters": {}
+						}
 					}
 				],
 				"type": "ScheduleTrigger",
