@@ -1,0 +1,12 @@
+{
+	"name": "ColdStorageAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ColdStorageAPI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
