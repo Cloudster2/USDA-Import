@@ -1,0 +1,19 @@
+{
+	"name": "GatsAPI",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://apps.fas.usda.gov/OpenData/api/gats/commodities",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"X-API-Key": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
+		}
+	}
+}
