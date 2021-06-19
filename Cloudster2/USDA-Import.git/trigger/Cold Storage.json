@@ -1,0 +1,24 @@
+{
+	"name": "Cold Storage",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Cold Storage Pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2021-06-19T13:20:00",
+				"timeZone": "Mountain Standard Time"
+			}
+		}
+	}
+}
