@@ -35,6 +35,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
 		},
+		"ColdStorageAPI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=CHEESE&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2016&freq_desc=POINT IN TIME"
+		},
 		"CowInventoryRest_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2016&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
@@ -50,6 +54,10 @@
 		"EuroStatsSlaughter_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/unicode/en/apro_mt_pwgtm?sinceTimePeriod=2018M06&groupedIndicators=1&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1"
+		},
+		"GatsAPI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://apps.fas.usda.gov/OpenData/api/gats/commodities"
 		},
 		"HttpServer1_properties_typeProperties_url": {
 			"type": "string",
@@ -129,11 +137,8 @@
 					"TestTriggerConnection_connectionString": {
 						"value": "[parameters('TestTriggerConnection_connectionString')]"
 					},
-					"WorkDairy_connectionString": {
-						"value": "[parameters('WorkDairy_connectionString')]"
-					},
-					"usdadata_connectionString": {
-						"value": "[parameters('usdadata_connectionString')]"
+					"ColdStorageAPI_properties_typeProperties_url": {
+						"value": "[parameters('ColdStorageAPI_properties_typeProperties_url')]"
 					},
 					"CowInventoryRest_properties_typeProperties_url": {
 						"value": "[parameters('CowInventoryRest_properties_typeProperties_url')]"
@@ -146,6 +151,9 @@
 					},
 					"EuroStatsSlaughter_properties_typeProperties_url": {
 						"value": "[parameters('EuroStatsSlaughter_properties_typeProperties_url')]"
+					},
+					"GatsAPI_properties_typeProperties_url": {
+						"value": "[parameters('GatsAPI_properties_typeProperties_url')]"
 					},
 					"HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
@@ -191,6 +199,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"WorkDairy_connectionString": {
+						"value": "[parameters('WorkDairy_connectionString')]"
+					},
+					"usdadata_connectionString": {
+						"value": "[parameters('usdadata_connectionString')]"
 					}
 				}
 			},
