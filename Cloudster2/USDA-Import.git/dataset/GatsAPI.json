@@ -1,0 +1,12 @@
+{
+	"name": "GatsAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GatsAPI",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

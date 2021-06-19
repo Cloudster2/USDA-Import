@@ -1,0 +1,16 @@
+{
+	"name": "GatsData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SaraDB connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GatsImportTest"
+		}
+	}
+}
