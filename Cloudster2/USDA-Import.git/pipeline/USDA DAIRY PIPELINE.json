@@ -675,7 +675,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "ID Updates",
+						"activity": "ice cream save",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -697,7 +697,7 @@
 					},
 					"sink": {
 						"type": "SqlServerSink",
-						"preCopyScript": "truncate table usda.workDairyProd"
+						"preCopyScript": "\ntruncate table usda.workDairyProd"
 					},
 					"enableStaging": false,
 					"translator": {
@@ -1040,7 +1040,7 @@
 					},
 					"sink": {
 						"type": "SqlServerSink",
-						"preCopyScript": "update usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekending <> ''\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\n\n"
+						"preCopyScript": "update usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekending <> ''\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\ntruncate table usda.usdadata\n\n\n\n\n"
 					},
 					"enableStaging": false,
 					"translator": {
@@ -1274,6 +1274,33 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "ice cream save",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "ID Updates",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[USDA].[IceCreamSave]"
+				},
+				"linkedServiceName": {
+					"referenceName": "SaraDB connection",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
