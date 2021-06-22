@@ -239,7 +239,7 @@
 							},
 							"sink": {
 								"type": "SqlServerSink",
-								"preCopyScript": "\tselect * into usda.TempDairy from USDA.workdairyprod\n\tdelete from usda.TempDairy where commodityid in (6,8) and catid = 41\ntruncate table usda.workDairyProd"
+								"preCopyScript": "\tselect * into usda.TempDairy from USDA.workdairyprod\n\tdelete from usda.TempDairy where commodityid in (6,8) and catid = 41\ntruncate table usda.wo rkDairyProd"
 							},
 							"enableStaging": false,
 							"translator": {
@@ -4985,7 +4985,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "ID Updates",
+								"activity": "ice cream save",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -5007,7 +5007,7 @@
 							},
 							"sink": {
 								"type": "SqlServerSink",
-								"preCopyScript": "truncate table usda.workDairyProd"
+								"preCopyScript": "\ntruncate table usda.workDairyProd"
 							},
 							"enableStaging": false,
 							"translator": {
@@ -5352,7 +5352,7 @@
 							},
 							"sink": {
 								"type": "SqlServerSink",
-								"preCopyScript": "update usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekending <> ''\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\n\n"
+								"preCopyScript": "update usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekending <> ''\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\ntruncate table usda.usdadata\n\n\n\n\n"
 							},
 							"enableStaging": false,
 							"translator": {
@@ -5588,11 +5588,87 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "ice cream save",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "ID Updates",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[USDA].[IceCreamSave]"
+						},
+						"linkedServiceName": {
+							"referenceName": "SaraDB connection",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"annotations": []
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Daily Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Slaughter Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Dairy Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Slaughter Pipeline",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Dairy Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "USDA DAIRY PIPELINE",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Slaughter Pipeline')]",
+				"[concat(variables('factoryId'), '/pipelines/USDA DAIRY PIPELINE')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/MilkProductionInventory')]",
@@ -5684,7 +5760,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -5699,7 +5775,7 @@
 					"recurrence": {
 						"frequency": "Hour",
 						"interval": 1,
-						"startTime": "2021-06-22T12:17:00",
+						"startTime": "2021-06-22T12:30:00",
 						"endTime": "2021-06-22T14:01:00",
 						"timeZone": "Mountain Standard Time"
 					}
@@ -5707,6 +5783,37 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/Cold Storage Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/just once')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "USDA DAIRY PIPELINE",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-06-22T13:30:00",
+						"endTime": "2021-06-23T17:21:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/USDA DAIRY PIPELINE')]"
 			]
 		},
 		{
