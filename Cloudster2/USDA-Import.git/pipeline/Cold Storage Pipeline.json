@@ -58,7 +58,7 @@
 					},
 					"sink": {
 						"type": "SqlServerSink",
-						"preCopyScript": "\tselect * into usda.TempDairy from USDA.workdairyprod\n\tdelete from usda.TempDairy where commodityid in (6,8) and catid = 41\ntruncate table usda.workDairyProd"
+						"preCopyScript": "\tselect * into usda.TempDairy from USDA.workdairyprod\n\tdelete from usda.TempDairy where commodityid in (6,8) and catid = 41\ntruncate table usda.wo rkDairyProd"
 					},
 					"enableStaging": false,
 					"translator": {
