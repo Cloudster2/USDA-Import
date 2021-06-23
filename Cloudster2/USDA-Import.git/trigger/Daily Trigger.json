@@ -16,8 +16,8 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2021-06-23T09:00:00",
-				"timeZone": "Romance Standard Time"
+				"startTime": "2021-06-23T13:30:00",
+				"timeZone": "Mountain Standard Time"
 			}
 		}
 	}
