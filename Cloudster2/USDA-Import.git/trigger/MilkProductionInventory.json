@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Milk Production, Inventory Cows, Production per cow",
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
