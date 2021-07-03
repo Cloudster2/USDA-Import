@@ -1267,7 +1267,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[USDA].[DairyProcedure]"
+					"storedProcedureName": "[USDA].[DairyProcedureIceCream]"
 				},
 				"linkedServiceName": {
 					"referenceName": "SaraDB connection",
