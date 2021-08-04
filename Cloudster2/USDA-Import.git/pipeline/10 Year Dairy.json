@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy 10 year Dairy Stocks",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -13,10 +13,420 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [
+					{
+						"name": "Destination",
+						"value": "USDA.USDADataFactory"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"preCopyScript": "truncate table usda.USDADataFactory\n",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['week_ending']"
+								},
+								"sink": {
+									"name": "WeekEndingString",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['year']"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['util_practice_desc']"
+								},
+								"sink": {
+									"name": "UtilPract",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['class_desc']"
+								},
+								"sink": {
+									"name": "Class",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['group_desc']"
+								},
+								"sink": {
+									"name": "GRP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['short_desc']"
+								},
+								"sink": {
+									"name": "ItemConcat",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['statisticcat_desc']"
+								},
+								"sink": {
+									"name": "Category",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['reference_period_desc']"
+								},
+								"sink": {
+									"name": "Period",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Value']"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['state_name']"
+								},
+								"sink": {
+									"name": "State",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['freq_desc']"
+								},
+								"sink": {
+									"name": "Frequency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['domain_desc']"
+								},
+								"sink": {
+									"name": "Domain",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['state_ansi']"
+								},
+								"sink": {
+									"name": "StateAnsi",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['commodity_desc']"
+								},
+								"sink": {
+									"name": "Commodity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['prodn_practice_desc']"
+								},
+								"sink": {
+									"name": "ProdPract",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['domaincat_desc']"
+								},
+								"sink": {
+									"name": "DomainCat",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['unit_desc']"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['region_desc']"
+								},
+								"sink": {
+									"name": "Region",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['data']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "10YearStocks",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DataFactoryTable",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Copy 10 Year Dairy Prod",
+				"description": "dairy production api\n",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Copy 10 year Dairy Stocks",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"enableStaging": false
-				}
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['prodn_practice_desc']"
+								},
+								"sink": {
+									"name": "ProdPract",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['state_ansi']"
+								},
+								"sink": {
+									"name": "StateAnsi",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['domain_desc']"
+								},
+								"sink": {
+									"name": "Domain",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['util_practice_desc']"
+								},
+								"sink": {
+									"name": "UtilPract",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['commodity_desc']"
+								},
+								"sink": {
+									"name": "Commodity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['group_desc']"
+								},
+								"sink": {
+									"name": "GRP",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['unit_desc']"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['year']"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['freq_desc']"
+								},
+								"sink": {
+									"name": "Frequency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['statisticcat_desc']"
+								},
+								"sink": {
+									"name": "Category",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['short_desc']"
+								},
+								"sink": {
+									"name": "ItemConcat",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['reference_period_desc']"
+								},
+								"sink": {
+									"name": "Period",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['class_desc']"
+								},
+								"sink": {
+									"name": "Class",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['region_desc']"
+								},
+								"sink": {
+									"name": "Region",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['state_name']"
+								},
+								"sink": {
+									"name": "State",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['domaincat_desc']"
+								},
+								"sink": {
+									"name": "DomainCat",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['week_ending']"
+								},
+								"sink": {
+									"name": "WeekEndingString",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Value']"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['data']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "10YearDairyProd",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DataFactoryTable",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []

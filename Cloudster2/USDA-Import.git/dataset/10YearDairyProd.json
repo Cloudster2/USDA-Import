@@ -1,8 +1,8 @@
 {
-	"name": "USDAStocksAPI",
+	"name": "10YearDairyProd",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "10YearDairyStocks",
+			"referenceName": "10YearDairyProd",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
