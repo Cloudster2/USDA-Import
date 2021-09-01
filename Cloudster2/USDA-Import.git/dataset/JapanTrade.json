@@ -8,8 +8,10 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
+			"sheetName": "Japan",
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "Japan Trade.xlsx",
 				"container": "trade-data-container"
 			},
 			"firstRowAsHeader": true
