@@ -62,7 +62,7 @@
 		],
 		"typeProperties": {
 			"schema": "TRADE",
-			"table": "Japan"
+			"table": "TradeData"
 		}
 	}
 }
