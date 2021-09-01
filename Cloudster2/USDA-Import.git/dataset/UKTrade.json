@@ -1,0 +1,106 @@
+{
+	"name": "UKTrade",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "UK",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "UK Trade.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "partner",
+				"type": "String"
+			},
+			{
+				"name": "volume",
+				"type": "String"
+			},
+			{
+				"name": "value_1",
+				"type": "String"
+			},
+			{
+				"name": "unit",
+				"type": "String"
+			},
+			{
+				"name": "declarant",
+				"type": "String"
+			},
+			{
+				"name": "product",
+				"type": "String"
+			},
+			{
+				"name": "productname",
+				"type": "String"
+			},
+			{
+				"name": "flow",
+				"type": "String"
+			},
+			{
+				"name": "period",
+				"type": "String"
+			},
+			{
+				"name": "indicator",
+				"type": "String"
+			},
+			{
+				"name": "year",
+				"type": "String"
+			},
+			{
+				"name": "month",
+				"type": "String"
+			},
+			{
+				"name": "interval",
+				"type": "String"
+			},
+			{
+				"name": "datemonth",
+				"type": "String"
+			},
+			{
+				"name": "value_2",
+				"type": "String"
+			},
+			{
+				"name": "port",
+				"type": "String"
+			},
+			{
+				"name": "district",
+				"type": "String"
+			},
+			{
+				"name": "transport",
+				"type": "String"
+			},
+			{
+				"name": "partner_name",
+				"type": "String"
+			},
+			{
+				"name": "declarant_name",
+				"type": "String"
+			},
+			{
+				"name": "reported_or_mirrored",
+				"type": "String"
+			}
+		]
+	}
+}

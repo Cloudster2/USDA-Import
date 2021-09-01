@@ -1,0 +1,21 @@
+{
+	"name": "BelarusTrade",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Belarus",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Belarus Trade.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
