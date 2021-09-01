@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ImportUSDA"
 		},
+		"AzureBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
+		},
 		"EuroSlaughterCowsSQL_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'EuroSlaughterCowsSQL'"
@@ -18,6 +22,10 @@
 		"SQLEuroSlaughterCows_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SQLEuroSlaughterCows'"
+		},
+		"Sara Database_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Sara Database'"
 		},
 		"SaraDB connection_connectionString": {
 			"type": "secureString",
@@ -130,6 +138,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureBlobStorage_connectionString": {
+						"value": "[parameters('AzureBlobStorage_connectionString')]"
+					},
 					"EuroSlaughterCowsSQL_connectionString": {
 						"value": "[parameters('EuroSlaughterCowsSQL_connectionString')]"
 					},
@@ -138,6 +149,9 @@
 					},
 					"SQLEuroSlaughterCows_connectionString": {
 						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
+					},
+					"Sara Database_connectionString": {
+						"value": "[parameters('Sara Database_connectionString')]"
 					},
 					"SaraDB connection_connectionString": {
 						"value": "[parameters('SaraDB connection_connectionString')]"
@@ -183,12 +197,6 @@
 					},
 					"RestMilk Annual_properties_typeProperties_url": {
 						"value": "[parameters('RestMilk Annual_properties_typeProperties_url')]"
-					},
-					"SlaughterNationalImport_properties_typeProperties_url": {
-						"value": "[parameters('SlaughterNationalImport_properties_typeProperties_url')]"
-					},
-					"SlaughterRegionalAPI_properties_typeProperties_url": {
-						"value": "[parameters('SlaughterRegionalAPI_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -216,6 +224,12 @@
 					},
 					"usdadata_connectionString": {
 						"value": "[parameters('usdadata_connectionString')]"
+					},
+					"SlaughterNationalImport_properties_typeProperties_url": {
+						"value": "[parameters('SlaughterNationalImport_properties_typeProperties_url')]"
+					},
+					"SlaughterRegionalAPI_properties_typeProperties_url": {
+						"value": "[parameters('SlaughterRegionalAPI_properties_typeProperties_url')]"
 					},
 					"USDAStocks_properties_typeProperties_url": {
 						"value": "[parameters('USDAStocks_properties_typeProperties_url')]"

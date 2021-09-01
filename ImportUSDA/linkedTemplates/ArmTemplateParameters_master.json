@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "ImportUSDA"
 		},
+		"AzureBlobStorage_connectionString": {
+			"value": ""
+		},
 		"EuroSlaughterCowsSQL_connectionString": {
 			"value": ""
 		},
@@ -12,6 +15,9 @@
 			"value": ""
 		},
 		"SQLEuroSlaughterCows_connectionString": {
+			"value": ""
+		},
+		"Sara Database_connectionString": {
 			"value": ""
 		},
 		"SaraDB connection_connectionString": {

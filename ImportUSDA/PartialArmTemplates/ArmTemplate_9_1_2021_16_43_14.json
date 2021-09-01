@@ -1,0 +1,3914 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ImportUSDA"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Trade Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Japan Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "UK Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "productname",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "JapanTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "UK Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "AR Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "UKTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "AR Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "AU Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ARTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "AU Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Belarus Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "AUTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Belarus Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "CN Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "BelarusTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "CN Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "EU Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CNTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "EU Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "EU 27 Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "EUTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "EU 27 Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "MX Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "EU27Trade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "MX Blob",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "MXTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "NZ Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Japan Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "NZTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Russia Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "NZ Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "RussiaTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "South Korea Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Russia Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SouthKoreTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "US Blob",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "South Korea Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "delete from trade.tradedata where partner is null",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "partner",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "volume",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "value_1",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 0,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "unit",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "declarant",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "product",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "ProductCde",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "flow",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Flow",
+											"type": "String",
+											"physicalType": "nchar"
+										}
+									},
+									{
+										"source": {
+											"name": "year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "productname"
+										},
+										"sink": {
+											"name": "Product",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "USTrade",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "TradeData",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Remove Nulls",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "US Blob",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[TRADE].[RemoveNulls]"
+						},
+						"linkedServiceName": {
+							"referenceName": "Sara Database",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/JapanTrade')]",
+				"[concat(variables('factoryId'), '/datasets/TradeData')]",
+				"[concat(variables('factoryId'), '/datasets/UKTrade')]",
+				"[concat(variables('factoryId'), '/datasets/ARTrade')]",
+				"[concat(variables('factoryId'), '/datasets/AUTrade')]",
+				"[concat(variables('factoryId'), '/datasets/BelarusTrade')]",
+				"[concat(variables('factoryId'), '/datasets/CNTrade')]",
+				"[concat(variables('factoryId'), '/datasets/EUTrade')]",
+				"[concat(variables('factoryId'), '/datasets/EU27Trade')]",
+				"[concat(variables('factoryId'), '/datasets/MXTrade')]",
+				"[concat(variables('factoryId'), '/datasets/NZTrade')]",
+				"[concat(variables('factoryId'), '/datasets/RussiaTrade')]",
+				"[concat(variables('factoryId'), '/datasets/SouthKoreTrade')]",
+				"[concat(variables('factoryId'), '/datasets/USTrade')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ARTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "AR",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AR Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AUTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "AU",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AU Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BelarusTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Belarus",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Belarus Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CNTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "CN",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "CN Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EU27Trade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "EU",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EU-27 Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EUTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Sheet0",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EU (only) Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/JapanTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Japan",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Japan Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Japantest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Sheet1",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Japan Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MXTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "MX",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "MX Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/NZTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "NZ",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "NZ Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/RussiaTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Russia",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Russia Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SouthKoreTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "South Korea",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "South Korea Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TradeData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TradeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Partner",
+						"type": "nchar"
+					},
+					{
+						"name": "Volume",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "Unit",
+						"type": "nchar"
+					},
+					{
+						"name": "Declarant",
+						"type": "nchar"
+					},
+					{
+						"name": "ProductCde",
+						"type": "nchar"
+					},
+					{
+						"name": "Product",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Flow",
+						"type": "nchar"
+					},
+					{
+						"name": "Year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Month",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "TRADE",
+					"table": "TradeData"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UKTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "UK",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "UK Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/USTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "US",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "US Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		}
+	]
+}
