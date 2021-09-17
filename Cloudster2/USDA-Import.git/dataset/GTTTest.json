@@ -1,0 +1,16 @@
+{
+	"name": "GTTTest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "TRADE",
+			"table": "GTTImport"
+		}
+	}
+}
