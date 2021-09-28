@@ -1,0 +1,12 @@
+{
+	"name": "GTTAPI",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GTT API",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
