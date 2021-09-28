@@ -53,6 +53,12 @@
 		"EuroStatsSlaughter_properties_typeProperties_url": {
 			"value": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/unicode/en/apro_mt_pwgtm?sinceTimePeriod=2018M06&groupedIndicators=1&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1"
 		},
+		"GTT API_properties_typeProperties_url": {
+			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?periodtype=M&layout=brief&accumulatepartnergroups=true&token=A097C3B5A3441CBA5CD2D18609CADCC9&from=2017-01&partner=zz&currency=USD&unit=MT&decimalscale=2&impexp=IE&source=DEFAULT&reporter=ZZ&hscode=0405&hslevel=6"
+		},
+		"GTTTest_properties_typeProperties_url": {
+			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=A097C3B5A3441CBA5CD2D18609CADCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief&partner=DCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&partner=AR,BO,BR&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief"
+		},
 		"GatsAPI_properties_typeProperties_url": {
 			"value": "https://apps.fas.usda.gov/OpenData/api/gats/commodities"
 		},

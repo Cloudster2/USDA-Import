@@ -71,6 +71,14 @@
 			"type": "string",
 			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/unicode/en/apro_mt_pwgtm?sinceTimePeriod=2018M06&groupedIndicators=1&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1"
 		},
+		"GTT API_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?periodtype=M&layout=brief&accumulatepartnergroups=true&token=A097C3B5A3441CBA5CD2D18609CADCC9&from=2017-01&partner=zz&currency=USD&unit=MT&decimalscale=2&impexp=IE&source=DEFAULT&reporter=ZZ&hscode=0405&hslevel=6"
+		},
+		"GTTTest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=A097C3B5A3441CBA5CD2D18609CADCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief&partner=DCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&partner=AR,BO,BR&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief"
+		},
 		"GatsAPI_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://apps.fas.usda.gov/OpenData/api/gats/commodities"
@@ -553,6 +561,10 @@
 						]
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -1419,6 +1431,10 @@
 						]
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -2466,6 +2482,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -2601,6 +2621,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -2608,6 +2632,224 @@
 				"[concat(variables('factoryId'), '/pipelines/USDA DAIRY PIPELINE')]",
 				"[concat(variables('factoryId'), '/pipelines/Cows')]",
 				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Date Table Update')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Update Date Table",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[USDA].[UpdateDateTable]"
+						},
+						"linkedServiceName": {
+							"referenceName": "SaraDB connection",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GTT Trade')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET"
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['tradeFlow']"
+										},
+										"sink": {
+											"name": "FlowType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['year']"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"path": "[['month']"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterCode']"
+										},
+										"sink": {
+											"name": "DeclarantCde",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterName']"
+										},
+										"sink": {
+											"name": "Declarant",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerCode']"
+										},
+										"sink": {
+											"name": "PartnerCde",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerName']"
+										},
+										"sink": {
+											"name": "Partner",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['hsCode']"
+										},
+										"sink": {
+											"name": "Code",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['commodityDescriptionTranslation']"
+										},
+										"sink": {
+											"name": "Item",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['currency']"
+										},
+										"sink": {
+											"name": "Currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['value']"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['unit1']"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['quantity1']"
+										},
+										"sink": {
+											"name": "Volume",
+											"type": "Decimal"
+										}
+									}
+								],
+								"collectionReference": "$['reportData']",
+								"mapComplexValuesToString": true
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "GTTAPI",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "GTTTest",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/GTTAPI')]",
+				"[concat(variables('factoryId'), '/datasets/GTTTest')]"
 			]
 		},
 		{
@@ -2657,6 +2899,10 @@
 						]
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -3098,6 +3344,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -5202,6 +5452,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -6321,6 +6575,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -6369,7 +6627,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -6553,7 +6810,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -6735,7 +6991,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -6917,7 +7172,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -7099,7 +7353,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -7281,7 +7534,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -7463,7 +7715,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -7645,7 +7896,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -8000,7 +8250,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -8182,7 +8431,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -8364,7 +8612,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -8546,7 +8793,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from trade.tradedata where partner is null",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -8724,8 +8970,32 @@
 							"referenceName": "Sara Database",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "Trade Calculations",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[TRADE].[TradeConversions]"
+						},
+						"linkedServiceName": {
+							"referenceName": "Sara Database",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -9851,6 +10121,10 @@
 						}
 					}
 				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
@@ -10670,6 +10944,45 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GTTAPI')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GTT API",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/GTT API')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GTTTest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "TRADE",
+					"table": "GTTImport"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
 		{
@@ -13069,6 +13382,36 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/GTT API')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('GTT API_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GTTTest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('GTTTest_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/GatsAPI')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -13509,6 +13852,38 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/MilkProductionCowInventory')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DateTableUpdate')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "daily",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Date Table Update",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-09-29T01:00:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Date Table Update')]"
 			]
 		}
 	]

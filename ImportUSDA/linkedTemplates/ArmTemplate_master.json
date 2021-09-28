@@ -71,6 +71,14 @@
 			"type": "string",
 			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/unicode/en/apro_mt_pwgtm?sinceTimePeriod=2018M06&groupedIndicators=1&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1"
 		},
+		"GTT API_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?periodtype=M&layout=brief&accumulatepartnergroups=true&token=A097C3B5A3441CBA5CD2D18609CADCC9&from=2017-01&partner=zz&currency=USD&unit=MT&decimalscale=2&impexp=IE&source=DEFAULT&reporter=ZZ&hscode=0405&hslevel=6"
+		},
+		"GTTTest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=A097C3B5A3441CBA5CD2D18609CADCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief&partner=DCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&partner=AR,BO,BR&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief"
+		},
 		"GatsAPI_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://apps.fas.usda.gov/OpenData/api/gats/commodities"
@@ -150,12 +158,6 @@
 					"SQLEuroSlaughterCows_connectionString": {
 						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
 					},
-					"Sara Database_connectionString": {
-						"value": "[parameters('Sara Database_connectionString')]"
-					},
-					"SaraDB connection_connectionString": {
-						"value": "[parameters('SaraDB connection_connectionString')]"
-					},
 					"10YearDairyProd_properties_typeProperties_url": {
 						"value": "[parameters('10YearDairyProd_properties_typeProperties_url')]"
 					},
@@ -176,6 +178,12 @@
 					},
 					"EuroStatsSlaughter_properties_typeProperties_url": {
 						"value": "[parameters('EuroStatsSlaughter_properties_typeProperties_url')]"
+					},
+					"GTT API_properties_typeProperties_url": {
+						"value": "[parameters('GTT API_properties_typeProperties_url')]"
+					},
+					"GTTTest_properties_typeProperties_url": {
+						"value": "[parameters('GTTTest_properties_typeProperties_url')]"
 					},
 					"GatsAPI_properties_typeProperties_url": {
 						"value": "[parameters('GatsAPI_properties_typeProperties_url')]"
@@ -215,6 +223,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"Sara Database_connectionString": {
+						"value": "[parameters('Sara Database_connectionString')]"
+					},
+					"SaraDB connection_connectionString": {
+						"value": "[parameters('SaraDB connection_connectionString')]"
 					},
 					"TestTriggerConnection_connectionString": {
 						"value": "[parameters('TestTriggerConnection_connectionString')]"
@@ -278,6 +292,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'ImportUSDA_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "ImportUSDA_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ImportUSDA_ArmTemplate_3')]"
 			]
 		}
 	]
