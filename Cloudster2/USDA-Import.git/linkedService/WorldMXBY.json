@@ -1,0 +1,12 @@
+{
+	"name": "WorldMXBY",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=A097C3B5A3441CBA5CD2D18609CADCC9&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&layout=brief",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
