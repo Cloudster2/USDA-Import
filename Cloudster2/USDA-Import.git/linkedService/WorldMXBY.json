@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token= CEBFBA62A15113125D00C50C4193F7A4&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&layout=brief",
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=CEBFBA62A15113125D00C50C4193F7A4&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&layout=brief",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
