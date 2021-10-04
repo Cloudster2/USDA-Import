@@ -3,9 +3,177 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "World all codes no mex no by",
 				"type": "Copy",
 				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:04:00",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['tradeFlow']"
+								},
+								"sink": {
+									"name": "FlowType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['year']"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['month']"
+								},
+								"sink": {
+									"name": "Month",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['reporterCode']"
+								},
+								"sink": {
+									"name": "DeclarantCde",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['reporterName']"
+								},
+								"sink": {
+									"name": "Declarant",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['partnerCode']"
+								},
+								"sink": {
+									"name": "PartnerCde",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['partnerName']"
+								},
+								"sink": {
+									"name": "Partner",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['hsCode']"
+								},
+								"sink": {
+									"name": "Code",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['commodityDescriptionTranslation']"
+								},
+								"sink": {
+									"name": "Item",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['currency']"
+								},
+								"sink": {
+									"name": "Currency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['value']"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['unit1']"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['quantity1']"
+								},
+								"sink": {
+									"name": "Volume",
+									"type": "Decimal"
+								}
+							}
+						],
+						"collectionReference": "$['reportData']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "GTTAPI",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GTTTest",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "MX-BY Not Aggr",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "World all codes no mex no by",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -146,13 +314,12 @@
 								}
 							}
 						],
-						"collectionReference": "$['reportData']",
-						"mapComplexValuesToString": true
+						"collectionReference": "$['reportData']"
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "GTTAPI",
+						"referenceName": "MX_BY_Not_Aggr",
 						"type": "DatasetReference"
 					}
 				],

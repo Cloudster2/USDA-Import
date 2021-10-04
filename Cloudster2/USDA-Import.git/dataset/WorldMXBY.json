@@ -1,0 +1,12 @@
+{
+	"name": "WorldMXBY",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "WorldMXBY",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

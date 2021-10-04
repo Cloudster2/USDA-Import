@@ -1,0 +1,12 @@
+{
+	"name": "MX_BY_Not_Aggr",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MX BY Not Aggr",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
