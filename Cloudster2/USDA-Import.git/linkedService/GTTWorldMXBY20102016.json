@@ -1,0 +1,12 @@
+{
+	"name": "GTTWorldMXBY20102016",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&impexp=IE&periodtype=M$&decimalscale=2&currency=USD&layout=brief&partner=zz&hslevel=0&unit=MT&token=CEBFBA62A15113125D00C50C4193F7A4&reporter=countriesNoMXBY,EU27exUK&from=2010-01&to=2016-12&hscode=MyCodesMXBY&accumulatepartnergroups=true",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
