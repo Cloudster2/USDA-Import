@@ -329,6 +329,150 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "MXBY World 2010-2016",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['flowType']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['periodType']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['monthsToAggregate']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reporter']['id']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reporter']['code']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reporter']['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reporter']['description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reporter']['dataSource']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['partner']['code']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['partner']['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['commodity']['code']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['commodity']['description']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['commodity']['originalDescription']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['value']['unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['value']['number']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quantity1']['unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quantity1']['number']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quantity2']['unit']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['quantity2']['number']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['mirror']"
+								}
+							}
+						],
+						"collectionReference": "$['period']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "GTTWorld2010_2016",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GTTTest",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
