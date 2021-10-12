@@ -921,24 +921,36 @@
 							},
 							{
 								"source": {
-									"name": "PeriodID",
-									"type": "Int32",
-									"physicalType": "int"
-								},
-								"sink": {
-									"name": "PeriodID",
-									"type": "Int32",
-									"physicalType": "int"
-								}
-							},
-							{
-								"source": {
 									"name": "FreqID",
 									"type": "Int32",
 									"physicalType": "int"
 								},
 								"sink": {
 									"name": "PeriodTypeID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								},
+								"sink": {
+									"name": "Period",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PeriodID",
+									"type": "Int32",
+									"physicalType": "int"
+								},
+								"sink": {
+									"name": "PeriodID",
 									"type": "Int32",
 									"physicalType": "int"
 								}
@@ -955,7 +967,7 @@
 									"name": "Value",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 2,
+									"scale": 0,
 									"precision": 18
 								}
 							},
@@ -971,7 +983,7 @@
 									"name": "NormValue",
 									"type": "Decimal",
 									"physicalType": "decimal",
-									"scale": 2,
+									"scale": 0,
 									"precision": 18
 								}
 							}
