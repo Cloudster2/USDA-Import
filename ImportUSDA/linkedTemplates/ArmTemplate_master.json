@@ -57,7 +57,7 @@
 		},
 		"CowInventoryRest_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2016&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
 		},
 		"EuroSlaughterCows_properties_typeProperties_url": {
 			"type": "string",
@@ -73,11 +73,15 @@
 		},
 		"GTT API_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?periodtype=M&layout=brief&accumulatepartnergroups=true&token=A097C3B5A3441CBA5CD2D18609CADCC9&from=2017-01&partner=zz&currency=USD&unit=MT&decimalscale=2&impexp=IE&source=DEFAULT&reporter=ZZ&hscode=0405&hslevel=6"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&impexp=IE&from=2017-01&periodtype=M$&decimalscale=2&currency=USD&layout=brief&accumulatepartnergroups=true&partner=zz&hslevel=0&unit=MT&token=CEBFBA62A15113125D00C50C4193F7A4&reporter=countriesNoMXBY,EU27exUK&hscode=MyCodesMXBY,35040010,35040011,35040012"
 		},
 		"GTTTest_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=A097C3B5A3441CBA5CD2D18609CADCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief&partner=DCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&partner=AR,BO,BR&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief"
+		},
+		"GTTWorldMXBY20102016_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=8048F28701011B2A06A67A130A43544B&impexp=IE&from=2010&to=2016&source=DEFAULT&periodtype=M&accumulatepartnergroups=true&currency=USD&decimalscale=2&layout=brief&reporter=MX,BY&unit=MT&hscode=mycodesmxby"
 		},
 		"GatsAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -87,13 +91,17 @@
 			"type": "string",
 			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/apro_mt_pwgtm?precision=1&unit=THS_HD&meat=B1240&shortLabel=1&time=2021M01&time=2021M02&time=2021M03&time=2021M04"
 		},
+		"MX BY Not Aggr_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&layout=brief&accumulatepartnergroups=false&token=CEBFBA62A15113125D00C50C4193F7A4"
+		},
 		"Milk ProductionAPI_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2016"
 		},
 		"MilkPerCowAPI_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2016&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
 		},
 		"NumberOfCowsAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -109,15 +117,19 @@
 		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&util_practice= SLAUGHTER, COMMERCIAL, FI &statisticalcat_desc=SLAUGHTERED&year__GE=2018&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=NATIONAL"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&util_practice= SLAUGHTER, COMMERCIAL, FI &statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=NATIONAL"
 		},
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2018&freq_desc=WEEKLY&agg_level_desc=REGION : MULTI-STATE"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&agg_level_desc=REGION : MULTI-STATE"
 		},
 		"USDAStocks_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2016&freq_desc=POINT IN TIME"
+		},
+		"WorldMXBY_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=CEBFBA62A15113125D00C50C4193F7A4&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&layout=brief"
 		},
 		"containerUri": {
 			"type": "string",
@@ -155,9 +167,6 @@
 					"EuroStatsImport_connectionString": {
 						"value": "[parameters('EuroStatsImport_connectionString')]"
 					},
-					"SQLEuroSlaughterCows_connectionString": {
-						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
-					},
 					"10YearDairyProd_properties_typeProperties_url": {
 						"value": "[parameters('10YearDairyProd_properties_typeProperties_url')]"
 					},
@@ -185,11 +194,17 @@
 					"GTTTest_properties_typeProperties_url": {
 						"value": "[parameters('GTTTest_properties_typeProperties_url')]"
 					},
+					"GTTWorldMXBY20102016_properties_typeProperties_url": {
+						"value": "[parameters('GTTWorldMXBY20102016_properties_typeProperties_url')]"
+					},
 					"GatsAPI_properties_typeProperties_url": {
 						"value": "[parameters('GatsAPI_properties_typeProperties_url')]"
 					},
 					"HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
+					},
+					"MX BY Not Aggr_properties_typeProperties_url": {
+						"value": "[parameters('MX BY Not Aggr_properties_typeProperties_url')]"
 					},
 					"Milk ProductionAPI_properties_typeProperties_url": {
 						"value": "[parameters('Milk ProductionAPI_properties_typeProperties_url')]"
@@ -202,9 +217,6 @@
 					},
 					"RestDairyProduction_properties_typeProperties_url": {
 						"value": "[parameters('RestDairyProduction_properties_typeProperties_url')]"
-					},
-					"RestMilk Annual_properties_typeProperties_url": {
-						"value": "[parameters('RestMilk Annual_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -224,6 +236,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"SQLEuroSlaughterCows_connectionString": {
+						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
+					},
 					"Sara Database_connectionString": {
 						"value": "[parameters('Sara Database_connectionString')]"
 					},
@@ -239,6 +254,9 @@
 					"usdadata_connectionString": {
 						"value": "[parameters('usdadata_connectionString')]"
 					},
+					"RestMilk Annual_properties_typeProperties_url": {
+						"value": "[parameters('RestMilk Annual_properties_typeProperties_url')]"
+					},
 					"SlaughterNationalImport_properties_typeProperties_url": {
 						"value": "[parameters('SlaughterNationalImport_properties_typeProperties_url')]"
 					},
@@ -247,6 +265,9 @@
 					},
 					"USDAStocks_properties_typeProperties_url": {
 						"value": "[parameters('USDAStocks_properties_typeProperties_url')]"
+					},
+					"WorldMXBY_properties_typeProperties_url": {
+						"value": "[parameters('WorldMXBY_properties_typeProperties_url')]"
 					}
 				}
 			},
