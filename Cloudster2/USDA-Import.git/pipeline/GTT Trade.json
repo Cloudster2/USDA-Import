@@ -5,7 +5,14 @@
 			{
 				"name": "World all codes no mex no by",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "MXBY World 2010-2016",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -358,107 +365,124 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['flowType']"
+									"path": "['tradeFlow']"
+								},
+								"sink": {
+									"name": "FlowType",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['periodType']"
+									"path": "['year']"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
-									"path": "$['monthsToAggregate']"
+									"path": "['month']"
+								},
+								"sink": {
+									"name": "Month",
+									"type": "Int32"
 								}
 							},
 							{
 								"source": {
-									"path": "$['reporter']['id']"
+									"path": "['reporterCode']"
+								},
+								"sink": {
+									"name": "DeclarantCde",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['reporter']['code']"
+									"path": "['reporterName']"
+								},
+								"sink": {
+									"name": "Declarant",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['reporter']['name']"
+									"path": "['partnerCode']"
+								},
+								"sink": {
+									"name": "PartnerCde",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['reporter']['description']"
+									"path": "['partnerName']"
+								},
+								"sink": {
+									"name": "Partner",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['reporter']['dataSource']"
+									"path": "['hsCode']"
+								},
+								"sink": {
+									"name": "Code",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['partner']['code']"
+									"path": "['commodityDescriptionTranslation']"
+								},
+								"sink": {
+									"name": "Item",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['partner']['name']"
+									"path": "['currency']"
+								},
+								"sink": {
+									"name": "Currency",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['commodity']['code']"
+									"path": "['value']"
+								},
+								"sink": {
+									"name": "Value",
+									"type": "Decimal"
 								}
 							},
 							{
 								"source": {
-									"path": "$['commodity']['description']"
+									"path": "['unit1']"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['commodity']['originalDescription']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['value']['unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['value']['number']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['quantity1']['unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['quantity1']['number']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['quantity2']['unit']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['quantity2']['number']"
-								}
-							},
-							{
-								"source": {
-									"path": "$['mirror']"
+									"path": "['quantity1']"
+								},
+								"sink": {
+									"name": "Volume",
+									"type": "Decimal"
 								}
 							}
 						],
-						"collectionReference": "$['period']",
-						"mapComplexValuesToString": true
+						"collectionReference": "$['reportData']",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [

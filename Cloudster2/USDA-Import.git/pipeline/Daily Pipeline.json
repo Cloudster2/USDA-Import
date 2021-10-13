@@ -25,7 +25,14 @@
 			{
 				"name": "Dairy Pipeline",
 				"type": "ExecutePipeline",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "BackUps",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -58,14 +65,7 @@
 			{
 				"name": "BackUps",
 				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "Prod per cow",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -75,7 +75,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[USDA].[RobinBackUps]"
+					"storedProcedureName": "[USDA].[BIBackUps]"
 				},
 				"linkedServiceName": {
 					"referenceName": "SaraDB connection",
@@ -87,7 +87,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "BackUps",
+						"activity": "Prod per cow",
 						"dependencyConditions": [
 							"Succeeded"
 						]
