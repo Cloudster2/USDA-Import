@@ -1,0 +1,12 @@
+{
+	"name": "GTTWorld2010_2016",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GTTWorldMXBY20102016",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
