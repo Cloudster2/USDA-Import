@@ -15213,7 +15213,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -15229,7 +15229,8 @@
 						"frequency": "Day",
 						"interval": 1,
 						"startTime": "2021-06-23T13:30:00",
-						"timeZone": "Mountain Standard Time"
+						"timeZone": "Mountain Standard Time",
+						"schedule": {}
 					}
 				}
 			},
