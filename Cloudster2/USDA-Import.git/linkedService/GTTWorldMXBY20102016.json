@@ -5,7 +5,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?token=5877C1FE493115E7D9A98F7993A701E6&impexp=IE&reporter=CountriesNoMXBY,MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&currency=USD&decimalscale=2&layout=brief&from=2017-01&source=DEFAULT&unit=er=CountriesNoMXBY,MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&currency=USD&unit=MT&decimalscale=2&layout=brief&from=2017-01",
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?token=5877C1FE493115E7D9A98F7993A701E6&impexp=IE&reporter=CountriesNoMXBY,MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&currency=USD&decimalscale=2&layout=brief&from=2017-01&source=DEFAULT",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
