@@ -1,10 +1,11 @@
 {
 	"name": "GTTWorldMXBY20102016",
 	"properties": {
+		"description": "world all codes  MX and BY",
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?impexp=IE&from=2010&to=2016&source=DEFAULT&periodtype=M&accumulatepartnergroups=true&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=mycodesmxby&token=5877C1FE493115E7D9A98F7993A701E6&reporter=MX,BY",
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?token=5877C1FE493115E7D9A98F7993A701E6&impexp=IE&reporter=CountriesNoMXBY,MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&currency=USD&decimalscale=2&layout=brief&from=2017-01&source=DEFAULT",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
