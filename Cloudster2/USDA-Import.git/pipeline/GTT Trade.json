@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "MXBY World 2010-2016",
+						"activity": "MXBY World 2017 - present",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -338,7 +338,7 @@
 				]
 			},
 			{
-				"name": "MXBY World 2010-2016",
+				"name": "MXBY World 2017 - present",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
