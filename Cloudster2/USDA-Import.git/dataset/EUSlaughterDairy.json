@@ -13,7 +13,8 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "EU27 Dairy and Slaughter.xlsx",
 				"container": "trade-data-container"
-			}
+			},
+			"firstRowAsHeader": true
 		},
 		"schema": [
 			{
