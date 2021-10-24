@@ -57,7 +57,7 @@
 		},
 		"GTTWorldMXBY20102016_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=8048F28701011B2A06A67A130A43544B&impexp=IE&from=2010&to=2016&source=DEFAULT&periodtype=M&accumulatepartnergroups=true&currency=USD&decimalscale=2&layout=brief&reporter=MX,BY&unit=MT&hscode=mycodesmxby"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=5877C1FE493115E7D9A98F7993A701E6&impexp=IE&reporter=CountriesNoMXBY,MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&currency=USD&decimalscale=2&layout=brief&from=2017-01&source=DEFAULT"
 		},
 		"GatsAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -272,6 +272,7 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"description": "world all codes  MX and BY",
 				"annotations": [],
 				"type": "RestService",
 				"typeProperties": {
