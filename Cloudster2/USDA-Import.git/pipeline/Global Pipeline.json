@@ -1,0 +1,261 @@
+{
+	"name": "Global Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "EU DAIRY AND SSLAUGHTER",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Country",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CountryCde",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DateString",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PC_FAT",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C1",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "PC_PRO",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C2",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "THS_T (D1110D)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C3",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Drinking Milk (D2100)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C4",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Milk and Cream Powders, excluding skim milk powders (D3100_X_3113)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C5",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Skimmed milk powder (D3113)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C6",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Concentrated Milk (D3200)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C7",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Acidified Milk (D4100)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C8",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Butter (D6000)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C9",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Cheese (D7121)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C10",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Dairy Cows (A2300F)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C11",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Heifers, 2 years old or over, not for slaughter (A2230C)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C12",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Heifers, 1 years old, not for slaughter (A2220C)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C13",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Cow Slaughter (B1230)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C14",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Heifer Slaughter (B1240)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "C15",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "EUSlaughterDairy",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "EUDairyImp",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
