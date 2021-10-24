@@ -24,7 +24,9 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink"
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table global.EUDairySlaughterImp",
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
