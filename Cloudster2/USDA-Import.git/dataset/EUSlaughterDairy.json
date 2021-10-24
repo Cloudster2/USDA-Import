@@ -1,0 +1,73 @@
+{
+	"name": "EUSlaughterDairy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Claudia",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EU27 Dairy and Slaughter.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	}
+}
