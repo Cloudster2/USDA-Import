@@ -117,11 +117,11 @@
 		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&util_practice= SLAUGHTER, COMMERCIAL, FI &statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=NATIONAL"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
 		},
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&agg_level_desc=REGION : MULTI-STATE"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE"
 		},
 		"USDAStocks_properties_typeProperties_url": {
 			"type": "string",
@@ -3308,7 +3308,7 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table global.EUDairySlaughterImp",
+								"preCopyScript": "truncate table globl.EUDairySlaughterImp",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -6330,227 +6330,12 @@
 						]
 					},
 					{
-						"name": "Slaughter Regional Import",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Slaughter National Import",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "delete from USDA.USDAdataFactory where category <>'SLAUGHTERED'"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['region_desc']"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reference_period_desc']"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['statisticcat_desc']"
-										},
-										"sink": {
-											"name": "Category",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domaincat_desc']"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Value']"
-										},
-										"sink": {
-											"name": "Value",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['freq_desc']"
-										},
-										"sink": {
-											"name": "Frequency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['util_practice_desc']"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_ansi']"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['prodn_practice_desc']"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['short_desc']"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit_desc']"
-										},
-										"sink": {
-											"name": "Unit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['class_desc']"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['commodity_desc']"
-										},
-										"sink": {
-											"name": "Commodity",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domain_desc']"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_name']"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['group_desc']"
-										},
-										"sink": {
-											"name": "GRP",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['week_ending']"
-										},
-										"sink": {
-											"name": "WeekEndingString",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['data']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SlaughterRegionalAPI",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DataFactoryTable",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
 						"name": "Copy to USDAData",
 						"description": "transfer from DataFactory to USDAData",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Slaughter Regional Import",
+								"activity": "Slaughter National Import",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -6572,7 +6357,7 @@
 							},
 							"sink": {
 								"type": "SqlServerSink",
-								"preCopyScript": "update usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekendingstring <> ''and weekendingstring is not null\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\n\n\ttruncate table USDA.USDAData\n"
+								"preCopyScript": "delete from USDA.USDAdataFactory where category <>'SLAUGHTERED'\nupdate usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekendingstring <> ''and weekendingstring is not null\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\n\n\ttruncate table USDA.USDAData\n"
 							},
 							"enableStaging": false,
 							"translator": {
@@ -7228,7 +7013,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SlaughterNationalAPI')]",
 				"[concat(variables('factoryId'), '/datasets/DataFactoryTable')]",
-				"[concat(variables('factoryId'), '/datasets/SlaughterRegionalAPI')]",
 				"[concat(variables('factoryId'), '/datasets/USDADataFactory')]",
 				"[concat(variables('factoryId'), '/datasets/USDAData')]",
 				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]",
@@ -15758,7 +15542,7 @@
 			"properties": {
 				"description": "triggered by blob change",
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
