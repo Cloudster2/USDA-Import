@@ -7,7 +7,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "Global Pipeline",
+					"referenceName": "Global Euro Pipeline",
 					"type": "PipelineReference"
 				}
 			}
