@@ -1,0 +1,62 @@
+{
+	"name": "EUCowsNum",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "apro_mt_lscatl__custom_1490223_",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EU Dataset Dairy Cow Herd.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "DATAFLOW",
+				"type": "String"
+			},
+			{
+				"name": "LAST UPDATE",
+				"type": "String"
+			},
+			{
+				"name": "freq",
+				"type": "String"
+			},
+			{
+				"name": "animals",
+				"type": "String"
+			},
+			{
+				"name": "month",
+				"type": "String"
+			},
+			{
+				"name": "unit",
+				"type": "String"
+			},
+			{
+				"name": "geo",
+				"type": "String"
+			},
+			{
+				"name": "TIME_PERIOD",
+				"type": "String"
+			},
+			{
+				"name": "OBS_VALUE",
+				"type": "String"
+			},
+			{
+				"name": "OBS_FLAG",
+				"type": "String"
+			}
+		]
+	}
+}
