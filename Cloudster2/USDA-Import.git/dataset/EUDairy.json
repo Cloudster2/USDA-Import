@@ -1,0 +1,58 @@
+{
+	"name": "EUDairy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "EU_Dataset",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EU Dataset Milk and Dairy Production.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "DATAFLOW",
+				"type": "String"
+			},
+			{
+				"name": "LAST UPDATE",
+				"type": "String"
+			},
+			{
+				"name": "freq",
+				"type": "String"
+			},
+			{
+				"name": "dairyprod",
+				"type": "String"
+			},
+			{
+				"name": "unit",
+				"type": "String"
+			},
+			{
+				"name": "geo",
+				"type": "String"
+			},
+			{
+				"name": "TIME_PERIOD",
+				"type": "String"
+			},
+			{
+				"name": "OBS_VALUE",
+				"type": "String"
+			},
+			{
+				"name": "OBS_FLAG",
+				"type": "String"
+			}
+		]
+	}
+}
