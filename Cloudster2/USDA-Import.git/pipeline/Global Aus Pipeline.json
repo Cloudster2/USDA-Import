@@ -194,7 +194,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AUDairy",
+						"referenceName": "AusDairyLast",
 						"type": "DatasetReference"
 					}
 				],
@@ -307,6 +307,66 @@
 				"userProperties": [],
 				"typeProperties": {
 					"storedProcedureName": "[GLOBL].[GlobaLAUPrep]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Data Calcs",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "AU Data Prep",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[GLOBL].[GlobalCalcs]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "BI Transfer",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Data Calcs",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
+					"storedProcedureParameters": {
+						"Zone": {
+							"value": "AU",
+							"type": "String"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Sara Database",

@@ -368,7 +368,40 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[GLOBL].[GlobalEUCalcs]"
+					"storedProcedureName": "[GLOBL].[GlobalCalcs]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "BI Transfer",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "EU Global Calcs",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
+					"storedProcedureParameters": {
+						"Zone": {
+							"value": "EURO",
+							"type": "String"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Sara Database",
