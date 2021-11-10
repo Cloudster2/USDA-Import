@@ -1,0 +1,34 @@
+{
+	"name": "UKSlaughter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet2",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "UK Dataset Cow Slaughter.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Column1",
+				"type": "String"
+			},
+			{
+				"name": "Heifers",
+				"type": "String"
+			},
+			{
+				"name": "Cows",
+				"type": "String"
+			}
+		]
+	}
+}

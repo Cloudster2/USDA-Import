@@ -1,9 +1,9 @@
 {
-	"name": "Global Aus Pipeline",
+	"name": "UK Global Pipeline",
 	"properties": {
 		"activities": [
 			{
-				"name": "Aus Dairy Current",
+				"name": "UK Dairy Prod",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -25,7 +25,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table Globl.EUGlobalimp",
+						"preCopyScript": "truncate table globl.UKDairyImport",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -34,48 +34,72 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Year",
+									"name": "Date",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "YearString",
+									"name": "DateString",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Month",
+									"name": "Milk available to Processors (Million liters)",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "MonthString",
+									"name": "Milk",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Product",
+									"name": "Liquid Milk Production (million liters)",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "GlobalID",
+									"name": "DrinkingMilk",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
-									"name": "Production",
+									"name": "Cheese Production ('000 tonnes)",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ValueString",
+									"name": "Cheese",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Butter Production ('000 tonnes)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Butter",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Milk Powder Production ('000 tonnes)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SMP",
 									"type": "String",
 									"physicalType": "varchar"
 								}
@@ -90,127 +114,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AUDairy",
+						"referenceName": "UKDairyProd",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "EUGobalImport",
+						"referenceName": "UKGlobalImport",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "Aus Dairy Last",
+				"name": "UK Slaughter Import",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Aus Dairy Current",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"sink": {
-						"type": "AzureSqlSink"
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "Year",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "YearString",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Month",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "MonthString",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Product",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "GlobalID",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Production",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "ValueString",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "AusDairyLast",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "EUGobalImport",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
-				"name": "Aus Slaughter",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Aus Dairy Last",
+						"activity": "UK Dairy Prod",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -235,6 +155,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table globl.UKSlaughterImport",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -243,7 +164,7 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Date",
+									"name": "Column1",
 									"type": "String",
 									"physicalType": "String"
 								},
@@ -255,12 +176,24 @@
 							},
 							{
 								"source": {
-									"name": "Cow and Heifer Slaughter (1000)",
+									"name": "Heifers",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "ValueString",
+									"name": "HeifferSlaughter",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Cows",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CowSlaughter",
 									"type": "String",
 									"physicalType": "varchar"
 								}
@@ -275,23 +208,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AusSlaughter",
+						"referenceName": "UKSlaughter",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "EUGobalImport",
+						"referenceName": "GlobalUKSlaughter",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "AU Data Prep",
+				"name": "GlobalUKPrep",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Aus Slaughter",
+						"activity": "UK Slaughter Import",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -306,7 +239,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[GLOBL].[GlobaLAUPrep]"
+					"storedProcedureName": "[GLOBL].[GlobaLUKPrep]"
 				},
 				"linkedServiceName": {
 					"referenceName": "Sara Database",
@@ -314,11 +247,11 @@
 				}
 			},
 			{
-				"name": "Data Calcs",
+				"name": "global clacs",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "AU Data Prep",
+						"activity": "GlobalUKPrep",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -341,11 +274,11 @@
 				}
 			},
 			{
-				"name": "BI Transfer",
+				"name": "Global BI Transfer",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Data Calcs",
+						"activity": "global clacs",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -363,7 +296,7 @@
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
 						"Zone": {
-							"value": "AU",
+							"value": "UK",
 							"type": "String"
 						}
 					}

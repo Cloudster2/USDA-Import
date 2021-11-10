@@ -1,0 +1,29 @@
+{
+	"name": "GlobalUKSlaughter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DateString",
+				"type": "varchar"
+			},
+			{
+				"name": "HeifferSlaughter",
+				"type": "varchar"
+			},
+			{
+				"name": "CowSlaughter",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "UKSlaughterImport"
+		}
+	}
+}
