@@ -1,0 +1,50 @@
+{
+	"name": "UKDairyProd",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "UK Dairy Production.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Milk available to Processors (Million liters)",
+				"type": "String"
+			},
+			{
+				"name": "Liquid Milk Production (million liters)",
+				"type": "String"
+			},
+			{
+				"name": "Cheese Production ('000 tonnes)",
+				"type": "String"
+			},
+			{
+				"name": "Butter Production ('000 tonnes)",
+				"type": "String"
+			},
+			{
+				"name": "Milk Powder Production ('000 tonnes)",
+				"type": "String"
+			}
+		]
+	}
+}

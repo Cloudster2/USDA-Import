@@ -1,0 +1,41 @@
+{
+	"name": "UKGlobalImport",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DateString",
+				"type": "varbinary"
+			},
+			{
+				"name": "Milk",
+				"type": "varchar"
+			},
+			{
+				"name": "DrinkingMilk",
+				"type": "varchar"
+			},
+			{
+				"name": "Cheese",
+				"type": "varchar"
+			},
+			{
+				"name": "Butter",
+				"type": "varchar"
+			},
+			{
+				"name": "SMP",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "UKDairyImport"
+		}
+	}
+}

@@ -1,0 +1,312 @@
+{
+	"name": "UK Global Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "UK Dairy Prod",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table globl.UKDairyImport",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DateString",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Milk available to Processors (Million liters)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Milk",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Liquid Milk Production (million liters)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DrinkingMilk",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Cheese Production ('000 tonnes)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Cheese",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Butter Production ('000 tonnes)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Butter",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Milk Powder Production ('000 tonnes)",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SMP",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "UKDairyProd",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "UKGlobalImport",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "UK Slaughter Import",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "UK Dairy Prod",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table globl.UKSlaughterImport",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Column1",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DateString",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Heifers",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "HeifferSlaughter",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Cows",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CowSlaughter",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "UKSlaughter",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GlobalUKSlaughter",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "GlobalUKPrep",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "UK Slaughter Import",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[GLOBL].[GlobaLUKPrep]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "global clacs",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "GlobalUKPrep",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[GLOBL].[GlobalCalcs]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Global BI Transfer",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "global clacs",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
+					"storedProcedureParameters": {
+						"Zone": {
+							"value": "UK",
+							"type": "String"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
