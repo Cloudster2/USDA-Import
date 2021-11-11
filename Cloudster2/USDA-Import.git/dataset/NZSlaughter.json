@@ -1,0 +1,30 @@
+{
+	"name": "NZSlaughter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "matrix",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "NZ Dataset Dairy Cow Slaughter.xlsx",
+				"container": "trade-data-container"
+			}
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	}
+}

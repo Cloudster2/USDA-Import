@@ -1,0 +1,29 @@
+{
+	"name": "NzSlaughterImport",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Date",
+				"type": "varchar"
+			},
+			{
+				"name": "Heiffers",
+				"type": "varchar"
+			},
+			{
+				"name": "Cows",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "NZGlobalImp"
+		}
+	}
+}

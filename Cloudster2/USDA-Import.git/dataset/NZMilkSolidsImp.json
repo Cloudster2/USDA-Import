@@ -1,0 +1,16 @@
+{
+	"name": "NZMilkSolidsImp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "globl",
+			"table": "NZMilkSolidsImp"
+		}
+	}
+}
