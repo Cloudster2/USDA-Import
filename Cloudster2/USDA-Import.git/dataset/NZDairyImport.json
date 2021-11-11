@@ -13,7 +13,8 @@
 				"type": "AzureBlobStorageLocation",
 				"fileName": "NZ Milk Production.xlsx",
 				"container": "trade-data-container"
-			}
+			},
+			"firstRowAsHeader": true
 		},
 		"schema": []
 	}

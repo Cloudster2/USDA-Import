@@ -5,14 +5,7 @@
 			{
 				"name": "NZ Slaughter Import",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "NZ Milk",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -32,7 +25,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table globl.nzglobalimp",
+						"preCopyScript": "truncate table globl.nzglobalimp\ntruncate table globl.globalimp",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -201,7 +194,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "NZ Milk Solids",
+						"activity": "NZ Heard Import",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -226,7 +219,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "drop table globl.nzmilkimp\n",
+						"preCopyScript": "drop table globl.nzmilkimp\n\n",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -234,74 +227,6 @@
 					"enableSkipIncompatibleRow": true,
 					"translator": {
 						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 1
-								},
-								"sink": {
-									"name": "Month",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 2
-								},
-								"sink": {
-									"name": "2017",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 3
-								},
-								"sink": {
-									"name": "2018",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 4
-								},
-								"sink": {
-									"name": "2019",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 5
-								},
-								"sink": {
-									"name": "2020",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 6
-								},
-								"sink": {
-									"name": "2021",
-									"type": "String",
-									"physicalType": "nvarchar"
-								}
-							}
-						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
@@ -325,7 +250,14 @@
 			{
 				"name": "NZ Milk Solids",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "NZ Milk Prep",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -345,6 +277,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "drop table globl.nzmilkimp\n\n",
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
@@ -366,10 +299,76 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "NZMilkSolidsImp",
+						"referenceName": "NZDairyImp",
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "NZ Milk Prep",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "NZ Milk",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[GLOBL].[NZMilkPrep]",
+					"storedProcedureParameters": {
+						"Item": {
+							"value": "13",
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "NZ MILK Solids Prep",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "NZ Milk Solids",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[GLOBL].[NZMilkPrep]",
+					"storedProcedureParameters": {
+						"Item": {
+							"value": "23",
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
