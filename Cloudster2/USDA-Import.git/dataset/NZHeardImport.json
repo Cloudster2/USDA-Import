@@ -1,0 +1,33 @@
+{
+	"name": "NZHeardImport",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Year",
+				"type": "varchar"
+			},
+			{
+				"name": "NotInMilk",
+				"type": "varchar"
+			},
+			{
+				"name": "InMilk",
+				"type": "varchar"
+			},
+			{
+				"name": "Total",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "NZHeardImp"
+		}
+	}
+}

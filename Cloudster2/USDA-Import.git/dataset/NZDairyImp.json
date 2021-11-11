@@ -1,0 +1,41 @@
+{
+	"name": "NZDairyImp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Month",
+				"type": "nvarchar"
+			},
+			{
+				"name": "2017",
+				"type": "nvarchar"
+			},
+			{
+				"name": "2018",
+				"type": "nvarchar"
+			},
+			{
+				"name": "2019",
+				"type": "nvarchar"
+			},
+			{
+				"name": "2020",
+				"type": "nvarchar"
+			},
+			{
+				"name": "2021",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "globl",
+			"table": "nzmilkimp"
+		}
+	}
+}

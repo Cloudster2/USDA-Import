@@ -1,0 +1,21 @@
+{
+	"name": "NZDairyImport",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Fluid Milk",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "NZ Milk Production.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}
