@@ -5,7 +5,14 @@
 			{
 				"name": "MXBY All World 2016 to present",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "MXBY all World 2010-2016",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -164,16 +171,9 @@
 				]
 			},
 			{
-				"name": "MX-BY Not Aggr",
+				"name": "Items No Mx BY",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "MXBY All World 2016 to present",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -335,7 +335,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "MX-BY Not Aggr",
+						"activity": "Items No Mx BY",
 						"dependencyConditions": [
 							"Succeeded"
 						]
