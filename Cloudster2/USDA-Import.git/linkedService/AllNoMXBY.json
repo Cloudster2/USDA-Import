@@ -1,0 +1,13 @@
+{
+	"name": "AllNoMXBY",
+	"properties": {
+		"description": "all items no mx by all countries",
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&to=&partner=NoMXBY,MX,BY&accumulatepartnergroups=false&hscode=NOMXBY&reporter=NoMXBY&from=2010-01",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
