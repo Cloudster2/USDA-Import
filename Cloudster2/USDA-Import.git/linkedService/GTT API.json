@@ -1,11 +1,11 @@
 {
 	"name": "GTT API",
 	"properties": {
-		"description": "world totals all codes no MX no BY",
+		"description": "world totals all codes  2016 to present",
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&impexp=IE&from=2017-01&periodtype=M$&decimalscale=2&currency=USD&layout=brief&accumulatepartnergroups=true&partner=zz&hslevel=0&unit=MT&token=CEBFBA62A15113125D00C50C4193F7A4&reporter=countriesNoMXBY,EU27exUK&hscode=MyCodesMXBY,35040010,35040011,35040012",
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&reporter=NoMXBY,MX,BY&hscode=MXBYIncl&partner=ZZ&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&accumulatepartnergroups=true&from=2016-01&to=",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
