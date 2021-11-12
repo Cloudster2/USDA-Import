@@ -1,10 +1,11 @@
 {
 	"name": "MX BY Not Aggr",
 	"properties": {
+		"description": "Items NO MX BY",
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&layout=brief&accumulatepartnergroups=false&token=CEBFBA62A15113125D00C50C4193F7A4",
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&partner=ZZ&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&accumulatepartnergroups=true&to=&reporter=NoMXBY&hscode=NOMXBY&from=2010-01",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
