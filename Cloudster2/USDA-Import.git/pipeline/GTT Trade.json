@@ -3,16 +3,9 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "World all codes no mex no by",
+				"name": "MXBY All World 2016 to present",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "MXBY World 2017 - present",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -175,7 +168,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "World all codes no mex no by",
+						"activity": "MXBY All World 2016 to present",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -338,9 +331,16 @@
 				]
 			},
 			{
-				"name": "MXBY World 2017 - present",
+				"name": "MXBY all World 2010-2016",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "MX-BY Not Aggr",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
