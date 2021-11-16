@@ -1,0 +1,12 @@
+{
+	"name": "GTT2016",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&to=&from=2020-01&reporter=NoMXBY,MX,BY&hscode=MXBYIncl&partner=NoMXBY,MX,BY&accumulatepartnergroups=false",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
