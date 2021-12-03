@@ -1,0 +1,12 @@
+{
+	"name": "AMSTest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AMSTest",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
