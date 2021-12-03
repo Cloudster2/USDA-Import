@@ -1,0 +1,12 @@
+{
+	"name": "AMSTest",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://marsapi.ams.usda.gov/services/v1.2/reports/1623",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
