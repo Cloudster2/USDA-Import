@@ -1,0 +1,155 @@
+{
+	"name": "AMS Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "AMS test",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['category']"
+								},
+								"sink": {
+									"name": "Category",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_begin_date']"
+								},
+								"sink": {
+									"name": "BeginDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_end_date']"
+								},
+								"sink": {
+									"name": "EndDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_year']"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_month']"
+								},
+								"sink": {
+									"name": "Month",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['commodity']"
+								},
+								"sink": {
+									"name": "Commodity",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['market_type']"
+								},
+								"sink": {
+									"name": "MarketType",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['community']"
+								},
+								"sink": {
+									"name": "Community",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['grade']"
+								},
+								"sink": {
+									"name": "Grade",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['package']"
+								},
+								"sink": {
+									"name": "Package",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['monthly AVG']"
+								},
+								"sink": {
+									"name": "MonthlyAvg",
+									"type": "Decimal"
+								}
+							}
+						],
+						"collectionReference": "$['results']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AMSTest",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

@@ -456,7 +456,8 @@
 						}
 					},
 					"sink": {
-						"type": "SqlServerSink"
+						"type": "SqlServerSink",
+						"preCopyScript": "truncate table usda.usdadatafactory"
 					},
 					"enableStaging": false,
 					"translator": {
