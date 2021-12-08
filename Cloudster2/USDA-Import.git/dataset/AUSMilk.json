@@ -1,0 +1,54 @@
+{
+	"name": "AUSMilk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "AU Milk Production",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AU Dataset Milk Production and Components.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Period",
+				"type": "String"
+			},
+			{
+				"name": "NSW",
+				"type": "String"
+			},
+			{
+				"name": "VIC",
+				"type": "String"
+			},
+			{
+				"name": "QLD",
+				"type": "String"
+			},
+			{
+				"name": "SA",
+				"type": "String"
+			},
+			{
+				"name": "WA",
+				"type": "String"
+			},
+			{
+				"name": "TAS",
+				"type": "String"
+			},
+			{
+				"name": "AUSTRALIA",
+				"type": "String"
+			}
+		]
+	}
+}

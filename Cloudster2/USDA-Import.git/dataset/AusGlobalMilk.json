@@ -1,0 +1,45 @@
+{
+	"name": "AusGlobalMilk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Date",
+				"type": "date"
+			},
+			{
+				"name": "DateString",
+				"type": "varchar"
+			},
+			{
+				"name": "MonthString",
+				"type": "varchar"
+			},
+			{
+				"name": "itemid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UnitID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ValueLbs",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 5
+			}
+		],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "AUSGlobalMilk"
+		}
+	}
+}
