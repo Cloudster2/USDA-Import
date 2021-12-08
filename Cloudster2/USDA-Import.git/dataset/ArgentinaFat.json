@@ -1,0 +1,54 @@
+{
+	"name": "ArgentinaFat",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Butterfat",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "AR Milk Dataset.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Año",
+				"type": "String"
+			},
+			{
+				"name": "NACIONAL",
+				"type": "String"
+			},
+			{
+				"name": "BUENOS AIRES",
+				"type": "String"
+			},
+			{
+				"name": "CÓRDOBA",
+				"type": "String"
+			},
+			{
+				"name": "ENTRE RÍOS",
+				"type": "String"
+			},
+			{
+				"name": " LA PAMPA",
+				"type": "String"
+			},
+			{
+				"name": "SANTA FE",
+				"type": "String"
+			},
+			{
+				"name": "SANTIAGO DEL ESTERO",
+				"type": "String"
+			}
+		]
+	}
+}

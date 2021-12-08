@@ -1,0 +1,75 @@
+{
+	"name": "LatinAmGlobal",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Date",
+				"type": "date"
+			},
+			{
+				"name": "DateString",
+				"type": "varchar"
+			},
+			{
+				"name": "MonthString",
+				"type": "varchar"
+			},
+			{
+				"name": "YearString",
+				"type": "varchar"
+			},
+			{
+				"name": "Month",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Year",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ItemID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UnitID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ValueString",
+				"type": "varchar"
+			},
+			{
+				"name": "Value",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 5
+			},
+			{
+				"name": "ValueLbs",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "ValueMT",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "LatinAmGlobal"
+		}
+	}
+}
