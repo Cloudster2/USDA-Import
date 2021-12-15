@@ -8,7 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "AU Milk Production",
+			"sheetName": "AU Milk Production HIstory",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "AU Dataset Milk Production and Components.xlsx",
