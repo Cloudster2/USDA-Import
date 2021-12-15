@@ -1,5 +1,5 @@
 {
-	"name": "AUSMilk",
+	"name": "ArgentinaFat",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage",
@@ -8,45 +8,45 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "AU Milk Production HIstory",
+			"sheetName": "Butterfat",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "AU Dataset Milk Production and Components.xlsx",
+				"fileName": "AR Milk Dataset.xlsx",
 				"container": "trade-data-container"
 			},
 			"firstRowAsHeader": true
 		},
 		"schema": [
 			{
-				"name": "Period",
+				"name": "Año",
 				"type": "String"
 			},
 			{
-				"name": "NSW",
+				"name": "NACIONAL",
 				"type": "String"
 			},
 			{
-				"name": "VIC",
+				"name": "BUENOS AIRES",
 				"type": "String"
 			},
 			{
-				"name": "QLD",
+				"name": "CÓRDOBA",
 				"type": "String"
 			},
 			{
-				"name": "SA",
+				"name": "ENTRE RÍOS",
 				"type": "String"
 			},
 			{
-				"name": "WA",
+				"name": " LA PAMPA",
 				"type": "String"
 			},
 			{
-				"name": "TAS",
+				"name": "SANTA FE",
 				"type": "String"
 			},
 			{
-				"name": "AUSTRALIA",
+				"name": "SANTIAGO DEL ESTERO",
 				"type": "String"
 			}
 		]

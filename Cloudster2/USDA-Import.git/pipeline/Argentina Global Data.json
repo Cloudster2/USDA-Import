@@ -1,9 +1,9 @@
 {
-	"name": "Global NZ Pipeline",
+	"name": "Argentina Global Data",
 	"properties": {
 		"activities": [
 			{
-				"name": "NZ Slaughter Import",
+				"name": "Argentina Milk",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -25,7 +25,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table globl.nzglobalimp\ntruncate table globl.globalimp",
+						"preCopyScript": "truncate table globl.LatinAmGlobal",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -34,33 +34,24 @@
 						"mappings": [
 							{
 								"source": {
+									"name": "MES",
 									"type": "String",
-									"ordinal": 1
+									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Date",
+									"name": "DateString",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
+									"name": "Litros",
 									"type": "String",
-									"ordinal": 2
+									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Heiffers",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 3
-								},
-								"sink": {
-									"name": "Cows",
+									"name": "ValueString",
 									"type": "String",
 									"physicalType": "varchar"
 								}
@@ -75,23 +66,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "NZSlaughter",
+						"referenceName": "ArgentinaMilk",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "NzSlaughterImport",
+						"referenceName": "LatinAmGlobal",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "NZ Heard Import",
+				"name": "Argentina Protein",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "NZ Slaughter Import",
+						"activity": "Argentina Milk",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -116,54 +107,33 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table globl.nzheardimp",
+						"preCopyScript": "update globl.LatinAmGlobal\nset ItemID = 13\nwhere ITemID is null",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
-					"enableSkipIncompatibleRow": true,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
 							{
 								"source": {
+									"name": "Año",
 									"type": "String",
-									"ordinal": 1
+									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Year",
+									"name": "DateString",
 									"type": "String",
 									"physicalType": "varchar"
 								}
 							},
 							{
 								"source": {
+									"name": "NACIONAL",
 									"type": "String",
-									"ordinal": 2
+									"physicalType": "String"
 								},
 								"sink": {
-									"name": "NotInMilk",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 3
-								},
-								"sink": {
-									"name": "InMilk",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"type": "String",
-									"ordinal": 4
-								},
-								"sink": {
-									"name": "Total",
+									"name": "ValueString",
 									"type": "String",
 									"physicalType": "varchar"
 								}
@@ -178,23 +148,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "NZHeard",
+						"referenceName": "ArgentinaProtein",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "NZHeardImport",
+						"referenceName": "LatinAmGlobal",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "NZ Milk",
+				"name": "Argentina Fat",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "NZ Heard Import",
+						"activity": "Argentina Protein",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -219,14 +189,38 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "drop table globl.nzmilkimp\n\n",
-						"tableOption": "autoCreate",
+						"preCopyScript": "update globl.LatinAmGlobal\nset ItemID = 2\nwhere ITemID is null",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
-					"enableSkipIncompatibleRow": true,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Año",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DateString",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "NACIONAL",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ValueString",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
@@ -236,80 +230,23 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "NZDairyImport",
+						"referenceName": "ArgentinaFat",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "NZDairyImp",
+						"referenceName": "LatinAmGlobal",
 						"type": "DatasetReference"
 					}
 				]
 			},
 			{
-				"name": "NZ Milk Solids",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "NZ Milk Prep",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
-					},
-					"sink": {
-						"type": "AzureSqlSink",
-						"preCopyScript": "drop table globl.nzmilkimp\n\n",
-						"tableOption": "autoCreate",
-						"disableMetricsCollection": false
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "NZMilkSolids",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "NZDairyImp",
-						"type": "DatasetReference"
-					}
-				]
-			},
-			{
-				"name": "NZ Milk Prep",
+				"name": "Argentina Prep",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "NZ Milk",
+						"activity": "Argentina Fat",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -324,11 +261,11 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[GLOBL].[NZMilkPrep]",
+					"storedProcedureName": "[GLOBL].[GlobalLatPrep]",
 					"storedProcedureParameters": {
-						"Item": {
-							"value": "13",
-							"type": "Int32"
+						"Country": {
+							"value": "AR",
+							"type": "String"
 						}
 					}
 				},
@@ -338,71 +275,11 @@
 				}
 			},
 			{
-				"name": "NZ MILK Solids Prep",
+				"name": "Calcs",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "NZ Milk Solids",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[GLOBL].[NZMilkPrep]",
-					"storedProcedureParameters": {
-						"Item": {
-							"value": "23",
-							"type": "Int32"
-						}
-					}
-				},
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "NZ Prep",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "NZ MILK Solids Prep",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[GLOBL].[GlobalNZPrep]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "global clacs",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [
-					{
-						"activity": "NZ Prep",
+						"activity": "Argentina Prep",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -425,11 +302,11 @@
 				}
 			},
 			{
-				"name": "Global BI Transfer",
+				"name": "BI Transfer",
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "global clacs",
+						"activity": "Calcs",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -447,7 +324,7 @@
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
 						"Zone": {
-							"value": "NZ",
+							"value": "AR",
 							"type": "String"
 						}
 					}
