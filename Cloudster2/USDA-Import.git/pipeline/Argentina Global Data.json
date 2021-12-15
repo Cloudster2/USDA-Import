@@ -261,7 +261,13 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[GLOBL].[GlobalArgPrep]"
+					"storedProcedureName": "[GLOBL].[GlobalLatPrep]",
+					"storedProcedureParameters": {
+						"Country": {
+							"value": "AR",
+							"type": "String"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Sara Database",
