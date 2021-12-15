@@ -447,7 +447,7 @@
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
 						"Zone": {
-							"value": "UK",
+							"value": "NZ",
 							"type": "String"
 						}
 					}
