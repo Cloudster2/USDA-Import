@@ -14,7 +14,7 @@
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
 			"blobPathBeginsWith": "/trade-data-container/blobs/AU",
-			"blobPathEndsWith": "xlsx",
+			"blobPathEndsWith": "Slaughter.xlsx",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata",
 			"events": [
