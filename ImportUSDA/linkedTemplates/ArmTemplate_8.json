@@ -2390,13 +2390,6 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "Global Aus Pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					},
-					{
-						"pipelineReference": {
 							"referenceName": "AMS Pipeline",
 							"type": "PipelineReference"
 						},

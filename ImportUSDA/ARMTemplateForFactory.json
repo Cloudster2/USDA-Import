@@ -23018,13 +23018,6 @@
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "Global Aus Pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					},
-					{
-						"pipelineReference": {
 							"referenceName": "AMS Pipeline",
 							"type": "PipelineReference"
 						},
@@ -23043,7 +23036,6 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Global Aus Pipeline')]",
 				"[concat(variables('factoryId'), '/pipelines/AMS Pipeline')]"
 			]
 		},
