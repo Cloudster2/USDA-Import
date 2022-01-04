@@ -2399,7 +2399,7 @@
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
 					"blobPathBeginsWith": "/trade-data-container/blobs/AU",
-					"blobPathEndsWith": "xlsx",
+					"blobPathEndsWith": "Slaughter.xlsx",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('AusPipelineRun_properties_typeProperties_scope')]",
 					"events": [
