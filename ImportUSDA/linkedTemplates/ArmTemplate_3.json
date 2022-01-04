@@ -13,7 +13,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/RussiaTrade')]",
+			"name": "[concat(parameters('factoryName'), '/ArgentinaProtein')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -24,97 +24,45 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "Russia",
+					"sheetName": "Protein",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "Russia Trade.xlsx",
+						"fileName": "AR Milk Dataset.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
 				},
 				"schema": [
 					{
-						"name": "partner",
+						"name": "Año",
 						"type": "String"
 					},
 					{
-						"name": "volume",
+						"name": "NACIONAL",
 						"type": "String"
 					},
 					{
-						"name": "value_1",
+						"name": "BUENOS AIRES",
 						"type": "String"
 					},
 					{
-						"name": "unit",
+						"name": "CÓRDOBA",
 						"type": "String"
 					},
 					{
-						"name": "declarant",
+						"name": "ENTRE RÍOS",
 						"type": "String"
 					},
 					{
-						"name": "product",
+						"name": " LA PAMPA",
 						"type": "String"
 					},
 					{
-						"name": "productname",
+						"name": "SANTA FE",
 						"type": "String"
 					},
 					{
-						"name": "flow",
-						"type": "String"
-					},
-					{
-						"name": "period",
-						"type": "String"
-					},
-					{
-						"name": "indicator",
-						"type": "String"
-					},
-					{
-						"name": "year",
-						"type": "String"
-					},
-					{
-						"name": "month",
-						"type": "String"
-					},
-					{
-						"name": "interval",
-						"type": "String"
-					},
-					{
-						"name": "datemonth",
-						"type": "String"
-					},
-					{
-						"name": "value_2",
-						"type": "String"
-					},
-					{
-						"name": "port",
-						"type": "String"
-					},
-					{
-						"name": "district",
-						"type": "String"
-					},
-					{
-						"name": "transport",
-						"type": "String"
-					},
-					{
-						"name": "partner_name",
-						"type": "String"
-					},
-					{
-						"name": "declarant_name",
-						"type": "String"
-					},
-					{
-						"name": "reported_or_mirrored",
+						"name": "SANTIAGO DEL ESTERO",
 						"type": "String"
 					}
 				]
@@ -122,194 +70,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SlaughterNationalAPI')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SlaughterNationalImport",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SlaughterRegionalAPI')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SlaughterRegionalAPI",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SlaughterWorkTable')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SaraDB connection",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "USDAId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GRPID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CommodityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UtilPract",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Class",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ProdPract",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CatID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Domain",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DomainCat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ItemConcat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GeoID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Region",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RegionId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WeekEnding",
-						"type": "date"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FreqID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SeqNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Period",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Value",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "NormValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 0
-					},
-					{
-						"name": "mom",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "yoy",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "ytd",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					}
-				],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "WorkSlaughter"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SouthKoreTrade')]",
+			"name": "[concat(parameters('factoryName'), '/AusDairyLast')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -320,97 +81,33 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "South Korea",
+					"sheetName": "Previous Season",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "South Korea Trade.xlsx",
+						"fileName": "AU Dataset Dairy Product Production.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
 				},
 				"schema": [
 					{
-						"name": "partner",
+						"name": "Month",
 						"type": "String"
 					},
 					{
-						"name": "volume",
+						"name": "Production",
 						"type": "String"
 					},
 					{
-						"name": "value_1",
+						"name": "Product",
 						"type": "String"
 					},
 					{
-						"name": "unit",
+						"name": "Season",
 						"type": "String"
 					},
 					{
-						"name": "declarant",
-						"type": "String"
-					},
-					{
-						"name": "product",
-						"type": "String"
-					},
-					{
-						"name": "productname",
-						"type": "String"
-					},
-					{
-						"name": "flow",
-						"type": "String"
-					},
-					{
-						"name": "period",
-						"type": "String"
-					},
-					{
-						"name": "indicator",
-						"type": "String"
-					},
-					{
-						"name": "year",
-						"type": "String"
-					},
-					{
-						"name": "month",
-						"type": "String"
-					},
-					{
-						"name": "interval",
-						"type": "String"
-					},
-					{
-						"name": "datemonth",
-						"type": "String"
-					},
-					{
-						"name": "value_2",
-						"type": "String"
-					},
-					{
-						"name": "port",
-						"type": "String"
-					},
-					{
-						"name": "district",
-						"type": "String"
-					},
-					{
-						"name": "transport",
-						"type": "String"
-					},
-					{
-						"name": "partner_name",
-						"type": "String"
-					},
-					{
-						"name": "declarant_name",
-						"type": "String"
-					},
-					{
-						"name": "reported_or_mirrored",
+						"name": "Year",
 						"type": "String"
 					}
 				]
@@ -418,160 +115,64 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
+			"name": "[concat(parameters('factoryName'), '/AusFat')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "SaraDB connection",
+					"referenceName": "AzureBlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "SqlServerTable",
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "AU Milkfat",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AU Dataset Milk Production and Components.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
 				"schema": [
 					{
-						"name": "USDAId",
-						"type": "int",
-						"precision": 10
+						"name": "Column2",
+						"type": "String"
 					},
 					{
-						"name": "GRPID",
-						"type": "int",
-						"precision": 10
+						"name": "NSW",
+						"type": "String"
 					},
 					{
-						"name": "CommodityID",
-						"type": "int",
-						"precision": 10
+						"name": "VIC",
+						"type": "String"
 					},
 					{
-						"name": "Class",
-						"type": "nvarchar"
+						"name": "QLD",
+						"type": "String"
 					},
 					{
-						"name": "ClassID",
-						"type": "int",
-						"precision": 10
+						"name": "SA",
+						"type": "String"
 					},
 					{
-						"name": "CatID",
-						"type": "int",
-						"precision": 10
+						"name": "WA",
+						"type": "String"
 					},
 					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
+						"name": "TAS",
+						"type": "String"
 					},
 					{
-						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GeoID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Region",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RegionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WeekEnding",
-						"type": "date"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FreqID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SeqNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "OldValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "NormValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "MOM",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YOY",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YOYlbs",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "YTD",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "OldYTD",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "OldMonthID",
-						"type": "int",
-						"precision": 10
+						"name": "AUSTRALIA",
+						"type": "String"
 					}
-				],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "calctable"
-				}
+				]
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/TradeData')]",
+			"name": "[concat(parameters('factoryName'), '/AusGlobalMilk')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -583,66 +184,43 @@
 				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "TradeID",
+						"name": "Date",
+						"type": "date"
+					},
+					{
+						"name": "DateString",
+						"type": "varchar"
+					},
+					{
+						"name": "MonthString",
+						"type": "varchar"
+					},
+					{
+						"name": "itemid",
 						"type": "int",
 						"precision": 10
 					},
 					{
-						"name": "Partner",
-						"type": "nchar"
+						"name": "UnitID",
+						"type": "int",
+						"precision": 10
 					},
 					{
-						"name": "Volume",
+						"name": "ValueLbs",
 						"type": "decimal",
 						"precision": 18,
-						"scale": 0
-					},
-					{
-						"name": "Value",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 0
-					},
-					{
-						"name": "Unit",
-						"type": "nchar"
-					},
-					{
-						"name": "Declarant",
-						"type": "nchar"
-					},
-					{
-						"name": "ProductCde",
-						"type": "nchar"
-					},
-					{
-						"name": "Product",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Flow",
-						"type": "nchar"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Month",
-						"type": "int",
-						"precision": 10
+						"scale": 5
 					}
 				],
 				"typeProperties": {
-					"schema": "TRADE",
-					"table": "TradeData"
+					"schema": "GLOBL",
+					"table": "AUSGlobalMilk"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UKTrade')]",
+			"name": "[concat(parameters('factoryName'), '/AusProtein')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -653,10 +231,143 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "UK",
+					"sheetName": "AU Protein",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "UK Trade.xlsx",
+						"fileName": "AU Dataset Milk Production and Components.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Column2",
+						"type": "String"
+					},
+					{
+						"name": "NSW",
+						"type": "String"
+					},
+					{
+						"name": "VIC",
+						"type": "String"
+					},
+					{
+						"name": "QLD",
+						"type": "String"
+					},
+					{
+						"name": "SA",
+						"type": "String"
+					},
+					{
+						"name": "WA",
+						"type": "String"
+					},
+					{
+						"name": "TAS",
+						"type": "String"
+					},
+					{
+						"name": "AUSTRALIA",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AusSlaughter')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Sheet2",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AU Dataset Dairy Cow Slaughter.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Cow and Heifer Slaughter (1000)",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Pricing"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BelarusTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Belarus",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Belarus Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CNTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "CN",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "CN Trade.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
@@ -751,149 +462,88 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/USDAData')]",
+			"name": "[concat(parameters('factoryName'), '/ChinaGlobalData')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "usdadata",
+					"referenceName": "AzureBlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "SqlServerTable",
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "ChinaDairyProduction",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "China Dairy production.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
 				"schema": [
 					{
-						"name": "USDAId",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "GRP",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "GRPID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "Commodity",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "CommodityID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "UtilPract",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "Class",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "ProdPract",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Category",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CatID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Unit",
-						"type": "nvarchar"
-					},
-					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Domain",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DomainCat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ItemConcat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GeoID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Region",
-						"type": "nvarchar"
-					},
-					{
-						"name": "State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WeekEnding",
-						"type": "date"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Frequency",
-						"type": "nvarchar"
-					},
-					{
-						"name": "FreqID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Period",
-						"type": "nvarchar"
-					},
-					{
-						"name": "PeriodID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Value",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "NormValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 0
+						"type": "String"
 					}
-				],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "USDAData"
-				}
+				]
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/USDADataFactory')]",
+			"name": "[concat(parameters('factoryName'), '/ColdStorageAPI')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ColdStorageAPI",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DairyProductionAPI')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RestDairyProduction",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DataFactoryTable')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1047,23 +697,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/USDAStocksAPI')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "10YearDairyStocks",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/USTrade')]",
+			"name": "[concat(parameters('factoryName'), '/EU27Trade')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -1074,10 +708,10 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "US",
+					"sheetName": "EU",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "US Trade.xlsx",
+						"fileName": "EU-27 Trade.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
@@ -1172,92 +806,282 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/WorkDairyMilkProd')]",
+			"name": "[concat(parameters('factoryName'), '/EUCowsNum')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "usdadata",
+					"referenceName": "AzureBlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "SqlServerTable",
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "apro_mt_lscatl__custom_1490223_",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EU Dataset Dairy Cow Herd.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
 				"schema": [
 					{
-						"name": "USDAId",
+						"name": "DATAFLOW",
+						"type": "String"
+					},
+					{
+						"name": "LAST UPDATE",
+						"type": "String"
+					},
+					{
+						"name": "freq",
+						"type": "String"
+					},
+					{
+						"name": "animals",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "geo",
+						"type": "String"
+					},
+					{
+						"name": "TIME_PERIOD",
+						"type": "String"
+					},
+					{
+						"name": "OBS_VALUE",
+						"type": "String"
+					},
+					{
+						"name": "OBS_FLAG",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EUDairy')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "EU_Dataset",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EU Dataset Milk and Dairy Production.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "DATAFLOW",
+						"type": "String"
+					},
+					{
+						"name": "LAST UPDATE",
+						"type": "String"
+					},
+					{
+						"name": "freq",
+						"type": "String"
+					},
+					{
+						"name": "dairyprod",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "geo",
+						"type": "String"
+					},
+					{
+						"name": "TIME_PERIOD",
+						"type": "String"
+					},
+					{
+						"name": "OBS_VALUE",
+						"type": "String"
+					},
+					{
+						"name": "OBS_FLAG",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EUDairyImp')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ImpEUID",
 						"type": "int",
 						"precision": 10
 					},
 					{
-						"name": "GRPID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CommodityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UtilPract",
+						"name": "CountryCde",
 						"type": "varchar"
 					},
 					{
-						"name": "Class",
-						"type": "varchar"
-					},
-					{
-						"name": "ClassID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ProdPract",
-						"type": "varchar"
-					},
-					{
-						"name": "CatID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Domain",
-						"type": "varchar"
-					},
-					{
-						"name": "DomainCat",
-						"type": "varchar"
-					},
-					{
-						"name": "ItemConcat",
-						"type": "varchar"
-					},
-					{
-						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GeoID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Region",
-						"type": "varchar"
-					},
-					{
-						"name": "State",
-						"type": "varchar"
-					},
-					{
-						"name": "WeekEnding",
+						"name": "Date",
 						"type": "date"
+					},
+					{
+						"name": "C1",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C3",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C4",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C5",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C6",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C7",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C8",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C9",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C10",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C11",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C12",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C13",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C14",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "C15",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					}
+				],
+				"typeProperties": {
+					"schema": "GLOBL",
+					"table": "EUDairySlaughterImp"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EUGobalImport')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "EUID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Date",
+						"type": "date"
+					},
+					{
+						"name": "DateString",
+						"type": "varchar"
+					},
+					{
+						"name": "YearString",
+						"type": "varchar"
 					},
 					{
 						"name": "Year",
@@ -1265,2789 +1089,166 @@
 						"precision": 10
 					},
 					{
-						"name": "FreqID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Period",
+						"name": "MonthString",
 						"type": "varchar"
 					},
 					{
-						"name": "PeriodID",
+						"name": "Month",
 						"type": "int",
 						"precision": 10
 					},
 					{
-						"name": "PeriodTypeID",
-						"type": "int",
-						"precision": 10
+						"name": "ItemID",
+						"type": "varchar"
 					},
 					{
-						"name": "SeqNum",
-						"type": "int",
-						"precision": 10
+						"name": "ValueString",
+						"type": "varchar"
 					},
 					{
 						"name": "Value",
 						"type": "decimal",
 						"precision": 18,
 						"scale": 2
-					},
-					{
-						"name": "NormValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 0
-					},
-					{
-						"name": "MOM",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YOY",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YTD",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "DOH",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
 					}
 				],
 				"typeProperties": {
-					"schema": "USDA",
-					"table": "WorkDairyMilkProd"
+					"schema": "GLOBL",
+					"table": "EUGlobalImp"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/WorkDairyProd')]",
+			"name": "[concat(parameters('factoryName'), '/EUSlaughter')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "SaraDB connection",
+					"referenceName": "AzureBlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "SqlServerTable",
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Dataset",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EU Dataset Dairy Cow Slaughter.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
 				"schema": [
 					{
-						"name": "USDAId",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "GRPID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "CommodityID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "UtilPract",
-						"type": "varchar"
+						"type": "String"
 					},
 					{
-						"name": "Class",
-						"type": "varchar"
+						"type": "String"
 					},
 					{
-						"name": "ClassID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "ProdPract",
-						"type": "varchar"
+						"type": "String"
 					},
 					{
-						"name": "CatID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "Domain",
-						"type": "varchar"
-					},
-					{
-						"name": "DomainCat",
-						"type": "varchar"
-					},
-					{
-						"name": "ItemConcat",
-						"type": "varchar"
-					},
-					{
-						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GeoID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Region",
-						"type": "varchar"
-					},
-					{
-						"name": "State",
-						"type": "varchar"
-					},
-					{
-						"name": "WeekEnding",
-						"type": "date"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FreqID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Period",
-						"type": "varchar"
-					},
-					{
-						"name": "PeriodID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SeqNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Value",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "NormValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 0
-					},
-					{
-						"name": "MOM",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YOY",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YTD",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "DOH",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
+						"type": "String"
 					}
-				],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "WorkDairyProd"
-				}
+				]
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/WorkMilkProd')]",
+			"name": "[concat(parameters('factoryName'), '/EUSlaughterDairy')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "SaraDB connection",
+					"referenceName": "AzureBlobStorage",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "SqlServerTable",
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Claudia",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "EU27 Dairy and Slaughter.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
 				"schema": [
 					{
-						"name": "USDAId",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "GRPID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "CommodityID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "UtilPract",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "Class",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "ProdPract",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "CatID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "Domain",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "DomainCat",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "ItemConcat",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "GeoID",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					},
 					{
-						"name": "Region",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "State",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "WeekEnding",
-						"type": "date"
+						"type": "String"
 					},
 					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FreqID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SeqNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Value",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "NormValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "MOM",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YOY",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YTD",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
+						"type": "String"
 					}
-				],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "WorkmilkProd"
-				}
+				]
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/WorldMXBY')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "WorldMXBY",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/testingtriggers')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SaraDB connection",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "TriggerTestingTable"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/10 Year Dairy')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy 10 year Dairy Stocks",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Destination",
-								"value": "USDA.USDADataFactory"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "truncate table usda.USDADataFactory\n",
-								"writeBehavior": "insert"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['week_ending']"
-										},
-										"sink": {
-											"name": "WeekEndingString",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['util_practice_desc']"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['class_desc']"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['group_desc']"
-										},
-										"sink": {
-											"name": "GRP",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['short_desc']"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['statisticcat_desc']"
-										},
-										"sink": {
-											"name": "Category",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reference_period_desc']"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Value']"
-										},
-										"sink": {
-											"name": "Value",
-											"type": "Decimal"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_name']"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['freq_desc']"
-										},
-										"sink": {
-											"name": "Frequency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domain_desc']"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_ansi']"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['commodity_desc']"
-										},
-										"sink": {
-											"name": "Commodity",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['prodn_practice_desc']"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domaincat_desc']"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit_desc']"
-										},
-										"sink": {
-											"name": "Unit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['region_desc']"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['data']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "10YearStocks",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DataFactoryTable",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Copy 10 Year Dairy Prod",
-						"description": "dairy production api\n",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Copy 10 year Dairy Stocks",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"writeBehavior": "insert"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['prodn_practice_desc']"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_ansi']"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domain_desc']"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['util_practice_desc']"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['commodity_desc']"
-										},
-										"sink": {
-											"name": "Commodity",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['group_desc']"
-										},
-										"sink": {
-											"name": "GRP",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit_desc']"
-										},
-										"sink": {
-											"name": "Unit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['freq_desc']"
-										},
-										"sink": {
-											"name": "Frequency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['statisticcat_desc']"
-										},
-										"sink": {
-											"name": "Category",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['short_desc']"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reference_period_desc']"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['class_desc']"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['region_desc']"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_name']"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domaincat_desc']"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['week_ending']"
-										},
-										"sink": {
-											"name": "WeekEndingString",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Value']"
-										},
-										"sink": {
-											"name": "Value",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['data']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "10YearDairyProd",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DataFactoryTable",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Cold Storage Pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "ID Updates",
-						"description": "Set the proper ids in USDADATA table",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Copy to USDAData",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[USDA].[UpdateIds]"
-						},
-						"linkedServiceName": {
-							"referenceName": "SaraDB connection",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Work Table Transfer",
-						"description": "Transfer data to workDairy table",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "ID Updates",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "\tselect * into usda.TempDairy from USDA.workdairyprod\n\tdelete from usda.TempDairy where commodityid in (6,8) and catid = 41\ntruncate table usda.wo rkDairyProd"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "GRPID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "GRPID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "CommodityID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "CommodityID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "UtilPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Class",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ProdPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "CatID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "CatID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "UnitID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "UnitID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Domain",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DomainCat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ItemConcat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "StateAnsi",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "GeoID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "GeoID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Region",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "State",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "WeekEnding",
-											"type": "DateTime",
-											"physicalType": "date"
-										},
-										"sink": {
-											"name": "WeekEnding",
-											"type": "DateTime",
-											"physicalType": "date"
-										}
-									},
-									{
-										"source": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Period",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "PeriodID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "PeriodID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "FreqID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "PeriodTypeID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "NormValue",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 0,
-											"precision": 18
-										},
-										"sink": {
-											"name": "NormValue",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 0,
-											"precision": 18
-										}
-									},
-									{
-										"source": {
-											"name": "Value",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 2,
-											"precision": 18
-										},
-										"sink": {
-											"name": "Value",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 2,
-											"precision": 18
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "USDAData",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "WorkDairyProd",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Cold Storage Transformations",
-						"description": "Executes 4 procedures to deal with all dairy calculations and queries",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Work Table Transfer",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[USDA].[ColdStorageInsert]"
-						},
-						"linkedServiceName": {
-							"referenceName": "SaraDB connection",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Copy to USDAData",
-						"description": "transfer from DataFactory to USDAData",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "CopyDairyStocks",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "update usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekending <> ''\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\ntruncate table usda.usdadata\n\n"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "GRP",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "GRP",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Commodity",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Commodity",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "UtilPract",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Class",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ProdPract",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Category",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Category",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Unit",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Unit",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Domain",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DomainCat",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ItemConcat",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "StateAnsiInt",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Region",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "State",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Frequency",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Frequency",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Period",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ValueDec",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 0,
-											"precision": 18
-										},
-										"sink": {
-											"name": "Value",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 2,
-											"precision": 18
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "USDADataFactory",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "USDAData",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "CopyDairyStocks",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [
-							{
-								"name": "Destination",
-								"value": "USDA.USDADataFactory"
-							}
-						],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "truncate table usda.usdadatafactory\n"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['week_ending']"
-										},
-										"sink": {
-											"name": "WeekEndingString",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['util_practice_desc']"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['class_desc']"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['group_desc']"
-										},
-										"sink": {
-											"name": "GRP",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['short_desc']"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['statisticcat_desc']"
-										},
-										"sink": {
-											"name": "Category",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reference_period_desc']"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Value']"
-										},
-										"sink": {
-											"name": "Value",
-											"type": "Decimal"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_name']"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['freq_desc']"
-										},
-										"sink": {
-											"name": "Frequency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domain_desc']"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_ansi']"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['commodity_desc']"
-										},
-										"sink": {
-											"name": "Commodity",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['prodn_practice_desc']"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domaincat_desc']"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit_desc']"
-										},
-										"sink": {
-											"name": "Unit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['region_desc']"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['data']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "ColdStorageAPI",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DataFactoryTable",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/USDAData')]",
-				"[concat(variables('factoryId'), '/datasets/WorkDairyProd')]",
-				"[concat(variables('factoryId'), '/datasets/USDADataFactory')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Cows')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Import Num Cows",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Milk Per Cow",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "delete from usda.usdadatafactory where unit <> 'LB / HEAD'"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['prodn_practice_desc']"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domaincat_desc']"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reference_period_desc']"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['class_desc']"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['commodity_desc']"
-										},
-										"sink": {
-											"name": "Commodity",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_name']"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domain_desc']"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['short_desc']"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit_desc']"
-										},
-										"sink": {
-											"name": "Unit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32"
-										}
-									},
-									{
-										"source": {
-											"path": "[['region_desc']"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['freq_desc']"
-										},
-										"sink": {
-											"name": "Frequency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Value']"
-										},
-										"sink": {
-											"name": "Value",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['util_practice_desc']"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_ansi']"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['statisticcat_desc']"
-										},
-										"sink": {
-											"name": "Category",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['group_desc']"
-										},
-										"sink": {
-											"name": "GRP",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['data']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "NumCowsAPI",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DataFactoryTable",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Milk Per Cow",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "truncate table usda.usdadatafactory"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['commodity_desc']"
-										},
-										"sink": {
-											"name": "Commodity",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['class_desc']"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domaincat_desc']"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reference_period_desc']"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['prodn_practice_desc']"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['group_desc']"
-										},
-										"sink": {
-											"name": "GRP",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['statisticcat_desc']"
-										},
-										"sink": {
-											"name": "Category",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['freq_desc']"
-										},
-										"sink": {
-											"name": "Frequency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Value']"
-										},
-										"sink": {
-											"name": "Value",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_ansi']"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['util_practice_desc']"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32"
-										}
-									},
-									{
-										"source": {
-											"path": "[['region_desc']"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['domain_desc']"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['state_name']"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit_desc']"
-										},
-										"sink": {
-											"name": "Unit",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['short_desc']"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['data']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "MilkPerCowAPI",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DataFactoryTable",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Copy to USDAData_copy1",
-						"description": "transfer from DataFactory to USDAData",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Import Num Cows",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "\nupdate usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekending <> ''\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\n\n\ttruncate table USDA.USDAData\n"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "GRP",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "GRP",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Commodity",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Commodity",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "UtilPract",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Class",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ProdPract",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Category",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Category",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Unit",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Unit",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Domain",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DomainCat",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ItemConcat",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "StateAnsiInt",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Region",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "State",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Frequency",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Frequency",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Period",
-											"type": "String",
-											"physicalType": "varchar"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ValueDec",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 0,
-											"precision": 18
-										},
-										"sink": {
-											"name": "Value",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 2,
-											"precision": 18
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "USDADataFactory",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "USDAData",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "ID Updates_copy1",
-						"description": "Set the proper ids in USDADATA table",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Copy to USDAData_copy1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[USDA].[UpdateIds]"
-						},
-						"linkedServiceName": {
-							"referenceName": "SaraDB connection",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "WorkMilkProd Transfer",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "ID Updates_copy1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "SqlServerSink",
-								"preCopyScript": "truncate table USDA.WorkMilkProd"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "GRPID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "GRPID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "CommodityID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "CommodityID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "UtilPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "UtilPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Class",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Class",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ProdPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ProdPract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "CatID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "CatID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "UnitID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "UnitID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Domain",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Domain",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "DomainCat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "DomainCat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "ItemConcat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "ItemConcat",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "StateAnsi",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "StateAnsi",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "GeoID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "GeoID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Region",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Region",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "State",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "State",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "WeekEnding",
-											"type": "DateTime",
-											"physicalType": "date"
-										},
-										"sink": {
-											"name": "WeekEnding",
-											"type": "DateTime",
-											"physicalType": "date"
-										}
-									},
-									{
-										"source": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "FreqID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "PeriodTypeID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Period",
-											"type": "String",
-											"physicalType": "nvarchar"
-										},
-										"sink": {
-											"name": "Period",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "PeriodID",
-											"type": "Int32",
-											"physicalType": "int"
-										},
-										"sink": {
-											"name": "PeriodID",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Value",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 2,
-											"precision": 18
-										},
-										"sink": {
-											"name": "Value",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 0,
-											"precision": 18
-										}
-									},
-									{
-										"source": {
-											"name": "NormValue",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 0,
-											"precision": 18
-										},
-										"sink": {
-											"name": "NormValue",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 0,
-											"precision": 18
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "USDAData",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "WorkMilkProd",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Milk Transformations",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "WorkMilkProd Transfer",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[USDA].[MilkProdTransform]"
-						},
-						"linkedServiceName": {
-							"referenceName": "SaraDB connection",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/USDADataFactory')]",
-				"[concat(variables('factoryId'), '/datasets/USDAData')]",
-				"[concat(variables('factoryId'), '/datasets/WorkMilkProd')]"
-			]
 		}
 	]
 }
