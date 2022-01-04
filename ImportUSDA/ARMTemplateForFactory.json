@@ -17745,6 +17745,84 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/CMEDaily')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "SlugID",
+						"type": "varchar"
+					},
+					{
+						"name": "Category",
+						"type": "varchar"
+					},
+					{
+						"name": "BeginDate",
+						"type": "varchar"
+					},
+					{
+						"name": "EndDate",
+						"type": "varchar"
+					},
+					{
+						"name": "Year",
+						"type": "varchar"
+					},
+					{
+						"name": "Month",
+						"type": "varchar"
+					},
+					{
+						"name": "Grade",
+						"type": "varchar"
+					},
+					{
+						"name": "Commodity",
+						"type": "varchar"
+					},
+					{
+						"name": "MarketType",
+						"type": "varchar"
+					},
+					{
+						"name": "Community",
+						"type": "varchar"
+					},
+					{
+						"name": "Package",
+						"type": "varchar"
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 3
+					},
+					{
+						"name": "Change",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CMEDaily"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/CNTrade')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -23037,7 +23115,7 @@
 			"properties": {
 				"description": "triggered by blob change",
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
