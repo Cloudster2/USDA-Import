@@ -1,0 +1,81 @@
+{
+	"name": "Pricing",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SlugID",
+				"type": "varchar"
+			},
+			{
+				"name": "Grp",
+				"type": "varchar"
+			},
+			{
+				"name": "Category",
+				"type": "varchar"
+			},
+			{
+				"name": "BeginDate",
+				"type": "varchar"
+			},
+			{
+				"name": "EndDate",
+				"type": "varchar"
+			},
+			{
+				"name": "Grade",
+				"type": "varchar"
+			},
+			{
+				"name": "Commodity",
+				"type": "varchar"
+			},
+			{
+				"name": "MarketType",
+				"type": "varchar"
+			},
+			{
+				"name": "Community",
+				"type": "varchar"
+			},
+			{
+				"name": "Package",
+				"type": "varchar"
+			},
+			{
+				"name": "RangeLow",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 3
+			},
+			{
+				"name": "RangeHigh",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 3
+			},
+			{
+				"name": "MostlyLow",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 3
+			},
+			{
+				"name": "MostlyHigh",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Pricing"
+		}
+	}
+}
