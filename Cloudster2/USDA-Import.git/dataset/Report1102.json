@@ -1,0 +1,12 @@
+{
+	"name": "Report1102",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Report1102",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
