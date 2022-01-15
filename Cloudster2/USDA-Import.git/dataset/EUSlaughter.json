@@ -8,12 +8,12 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "Dataset",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "EU Dataset Dairy Cow Slaughter.xlsx",
 				"container": "trade-data-container"
 			},
+			"sheetIndex": 0,
 			"firstRowAsHeader": true
 		},
 		"schema": [
