@@ -63,6 +63,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Report1053'"
 		},
+		"Report1100_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Report1100'"
+		},
+		"Report1101_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Report1101'"
+		},
+		"Report1102_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Report1102'"
+		},
 		"SQLEuroSlaughterCows_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SQLEuroSlaughterCows'"
@@ -193,7 +205,7 @@
 		},
 		"Report 1043_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1043/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1043/Details?lastDays=14"
 		},
 		"Report 1043_properties_typeProperties_userName": {
 			"type": "string",
@@ -201,7 +213,7 @@
 		},
 		"Report1045_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1045/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1045/Details?lastDays=14"
 		},
 		"Report1045_properties_typeProperties_userName": {
 			"type": "string",
@@ -209,7 +221,7 @@
 		},
 		"Report1046_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1046/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1046/Details?lastDays=14"
 		},
 		"Report1046_properties_typeProperties_userName": {
 			"type": "string",
@@ -217,7 +229,7 @@
 		},
 		"Report1047_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1047/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1047/Details?lastDays=14"
 		},
 		"Report1047_properties_typeProperties_userName": {
 			"type": "string",
@@ -225,7 +237,7 @@
 		},
 		"Report1048_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1048/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1048/Details?lastDays=14"
 		},
 		"Report1048_properties_typeProperties_userName": {
 			"type": "string",
@@ -233,7 +245,7 @@
 		},
 		"Report1049_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1049/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1049/Details?lastDays=14"
 		},
 		"Report1049_properties_typeProperties_userName": {
 			"type": "string",
@@ -241,7 +253,7 @@
 		},
 		"Report1050_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1050/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1050/Details?lastDays=14"
 		},
 		"Report1050_properties_typeProperties_userName": {
 			"type": "string",
@@ -249,7 +261,7 @@
 		},
 		"Report1051_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1051/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1051/Details?lastDays=14"
 		},
 		"Report1051_properties_typeProperties_userName": {
 			"type": "string",
@@ -257,7 +269,7 @@
 		},
 		"Report1052_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1052/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1052/Details?lastDays=14"
 		},
 		"Report1052_properties_typeProperties_userName": {
 			"type": "string",
@@ -265,9 +277,33 @@
 		},
 		"Report1053_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1053/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1053/Details?lastDays=14"
 		},
 		"Report1053_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"Report1100_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1100/Details?lastDays=14"
+		},
+		"Report1100_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"Report1101_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1101/Details?lastDays=14"
+		},
+		"Report1101_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"Report1102_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1102/Details?lastDays=14"
+		},
+		"Report1102_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
 		},
@@ -297,7 +333,7 @@
 		},
 		"report1044_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1044/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1044/Details?lastDays=14"
 		},
 		"report1044_properties_typeProperties_userName": {
 			"type": "string",
@@ -310,10 +346,6 @@
 		"report1603_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
-		},
-		"AusPipelineRun_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
 		},
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"type": "string",
@@ -774,7 +806,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AMS Pipeline')]",
+			"name": "[concat(parameters('factoryName'), '/AMS Pipeline All Data')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -976,7 +1008,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "AMS 1045",
+								"activity": "AMS 1046",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -1164,14 +1196,7 @@
 					{
 						"name": "AMS 1045",
 						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "AMS 1046",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -1191,7 +1216,9 @@
 								}
 							},
 							"sink": {
-								"type": "AzureSqlSink"
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table pricing",
+								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
 							"translator": {
@@ -1280,7 +1307,7 @@
 									},
 									{
 										"source": {
-											"path": "[['grade']"
+											"path": "[['lot_Desc']"
 										},
 										"sink": {
 											"name": "Grade",
@@ -2684,7 +2711,14 @@
 					{
 						"name": "AMS 1053",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "AMS 1100",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -2863,6 +2897,585 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "AMS 1100",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "AMS 1101",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_begin_date']"
+										},
+										"sink": {
+											"name": "BeginDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_end_date']"
+										},
+										"sink": {
+											"name": "EndDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['market_type']"
+										},
+										"sink": {
+											"name": "MarketType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['community']"
+										},
+										"sink": {
+											"name": "Community",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['category']"
+										},
+										"sink": {
+											"name": "Category",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['commodity']"
+										},
+										"sink": {
+											"name": "Commodity",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['group']"
+										},
+										"sink": {
+											"name": "Grp",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['price_Unit']"
+										},
+										"sink": {
+											"name": "Grade",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['package']"
+										},
+										"sink": {
+											"name": "Package",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['price_min']"
+										},
+										"sink": {
+											"name": "RangeLow",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['price_max']"
+										},
+										"sink": {
+											"name": "RangeHigh",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mostly_low_price']"
+										},
+										"sink": {
+											"name": "MostlyLow",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mostly_high_price']"
+										},
+										"sink": {
+											"name": "MostlyHigh",
+											"type": "Decimal"
+										}
+									}
+								],
+								"collectionReference": "$['results']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Report1100",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Pricing",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "AMS 1101",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "AMS 1102",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_begin_date']"
+										},
+										"sink": {
+											"name": "BeginDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_end_date']"
+										},
+										"sink": {
+											"name": "EndDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['market_type']"
+										},
+										"sink": {
+											"name": "MarketType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['community']"
+										},
+										"sink": {
+											"name": "Community",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['category']"
+										},
+										"sink": {
+											"name": "Category",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['commodity']"
+										},
+										"sink": {
+											"name": "Commodity",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['group']"
+										},
+										"sink": {
+											"name": "Grp",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['price_Unit']"
+										},
+										"sink": {
+											"name": "Grade",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['package']"
+										},
+										"sink": {
+											"name": "Package",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['price_min']"
+										},
+										"sink": {
+											"name": "RangeLow",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['price_max']"
+										},
+										"sink": {
+											"name": "RangeHigh",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mostly_low_price']"
+										},
+										"sink": {
+											"name": "MostlyLow",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mostly_high_price']"
+										},
+										"sink": {
+											"name": "MostlyHigh",
+											"type": "Decimal"
+										}
+									}
+								],
+								"collectionReference": "$['results']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Report1101",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Pricing",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "AMS 1102",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "AMS 1045",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_begin_date']"
+										},
+										"sink": {
+											"name": "BeginDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_end_date']"
+										},
+										"sink": {
+											"name": "EndDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['market_type']"
+										},
+										"sink": {
+											"name": "MarketType",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['community']"
+										},
+										"sink": {
+											"name": "Community",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['category']"
+										},
+										"sink": {
+											"name": "Category",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['commodity']"
+										},
+										"sink": {
+											"name": "Commodity",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['group']"
+										},
+										"sink": {
+											"name": "Grp",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['price_min']"
+										},
+										"sink": {
+											"name": "RangeLow",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['price_max']"
+										},
+										"sink": {
+											"name": "RangeHigh",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mostly_low_price']"
+										},
+										"sink": {
+											"name": "MostlyLow",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mostly_high_price']"
+										},
+										"sink": {
+											"name": "MostlyHigh",
+											"type": "Decimal"
+										}
+									}
+								],
+								"collectionReference": "$['results']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Report1102",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Pricing",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "AMS procedure",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "AMS 1043",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[AMSPricingProcedure]"
+						},
+						"linkedServiceName": {
+							"referenceName": "Sara Database",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -2883,7 +3496,11 @@
 				"[concat(variables('factoryId'), '/datasets/Report1050')]",
 				"[concat(variables('factoryId'), '/datasets/Report1051')]",
 				"[concat(variables('factoryId'), '/datasets/Report1052')]",
-				"[concat(variables('factoryId'), '/datasets/Report1053')]"
+				"[concat(variables('factoryId'), '/datasets/Report1053')]",
+				"[concat(variables('factoryId'), '/datasets/Report1100')]",
+				"[concat(variables('factoryId'), '/datasets/Report1101')]",
+				"[concat(variables('factoryId'), '/datasets/Report1102')]",
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
 		{
@@ -9042,6 +9659,33 @@
 						"userProperties": [],
 						"typeProperties": {
 							"storedProcedureName": "[[USDA].[IceCreamInsert]"
+						},
+						"linkedServiceName": {
+							"referenceName": "Sara Database",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "BI Transfer",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "Count",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[USDA].[USDA_BI_Transfer]"
 						},
 						"linkedServiceName": {
 							"referenceName": "Sara Database",
@@ -18299,12 +18943,12 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "apro_mt_lscatl__custom_1490223_",
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "EU Dataset Dairy Cow Herd.xlsx",
 						"container": "trade-data-container"
 					},
+					"sheetIndex": 0,
 					"firstRowAsHeader": true
 				},
 				"schema": [
@@ -18366,12 +19010,12 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "EU_Dataset",
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "EU Dataset Milk and Dairy Production.xlsx",
 						"container": "trade-data-container"
 					},
+					"sheetIndex": 0,
 					"firstRowAsHeader": true
 				},
 				"schema": [
@@ -18621,12 +19265,12 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "Dataset",
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "EU Dataset Dairy Cow Slaughter.xlsx",
 						"container": "trade-data-container"
 					},
+					"sheetIndex": 0,
 					"firstRowAsHeader": true
 				},
 				"schema": [
@@ -19000,7 +19644,7 @@
 					"sheetName": "Ice Cream",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "Ice Cream Import.xlsx",
+						"fileName": "Ice Cream import.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
@@ -20343,6 +20987,60 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Report1053')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Report1100')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Report1100",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Report1100')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Report1101')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Report1101",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Report1101')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Report1102')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Report1102",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Report1102')]"
 			]
 		},
 		{
@@ -22784,6 +23482,66 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Report1100')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('Report1100_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('Report1100_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Report1100_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Report1101')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('Report1101_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('Report1101_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Report1101_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Report1102')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('Report1102_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('Report1102_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Report1102_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/RestDairyProduction')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -23009,34 +23767,34 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AusPipelineRun')]",
+			"name": "[concat(parameters('factoryName'), '/AMS trigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"description": "triggers every Friday ",
 				"annotations": [],
 				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "AMS Pipeline",
+							"referenceName": "AMS Pipeline All Data",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
 					}
 				],
-				"type": "BlobEventsTrigger",
+				"type": "ScheduleTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/trade-data-container/blobs/AU",
-					"blobPathEndsWith": "Slaughter.xlsx",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('AusPipelineRun_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 7,
+						"startTime": "2022-01-21T12:00:00Z",
+						"timeZone": "UTC"
+					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/AMS Pipeline')]"
+				"[concat(variables('factoryId'), '/pipelines/AMS Pipeline All Data')]"
 			]
 		},
 		{

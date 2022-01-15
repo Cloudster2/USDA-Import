@@ -63,6 +63,18 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Report1053'"
 		},
+		"Report1100_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Report1100'"
+		},
+		"Report1101_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Report1101'"
+		},
+		"Report1102_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Report1102'"
+		},
 		"SQLEuroSlaughterCows_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'SQLEuroSlaughterCows'"
@@ -193,7 +205,7 @@
 		},
 		"Report 1043_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1043/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1043/Details?lastDays=14"
 		},
 		"Report 1043_properties_typeProperties_userName": {
 			"type": "string",
@@ -201,7 +213,7 @@
 		},
 		"Report1045_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1045/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1045/Details?lastDays=14"
 		},
 		"Report1045_properties_typeProperties_userName": {
 			"type": "string",
@@ -209,7 +221,7 @@
 		},
 		"Report1046_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1046/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1046/Details?lastDays=14"
 		},
 		"Report1046_properties_typeProperties_userName": {
 			"type": "string",
@@ -217,7 +229,7 @@
 		},
 		"Report1047_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1047/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1047/Details?lastDays=14"
 		},
 		"Report1047_properties_typeProperties_userName": {
 			"type": "string",
@@ -225,7 +237,7 @@
 		},
 		"Report1048_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1048/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1048/Details?lastDays=14"
 		},
 		"Report1048_properties_typeProperties_userName": {
 			"type": "string",
@@ -233,7 +245,7 @@
 		},
 		"Report1049_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1049/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1049/Details?lastDays=14"
 		},
 		"Report1049_properties_typeProperties_userName": {
 			"type": "string",
@@ -241,7 +253,7 @@
 		},
 		"Report1050_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1050/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1050/Details?lastDays=14"
 		},
 		"Report1050_properties_typeProperties_userName": {
 			"type": "string",
@@ -249,7 +261,7 @@
 		},
 		"Report1051_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1051/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1051/Details?lastDays=14"
 		},
 		"Report1051_properties_typeProperties_userName": {
 			"type": "string",
@@ -257,7 +269,7 @@
 		},
 		"Report1052_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1052/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1052/Details?lastDays=14"
 		},
 		"Report1052_properties_typeProperties_userName": {
 			"type": "string",
@@ -265,9 +277,33 @@
 		},
 		"Report1053_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1053/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1053/Details?lastDays=14"
 		},
 		"Report1053_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"Report1100_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1100/Details?lastDays=14"
+		},
+		"Report1100_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"Report1101_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1101/Details?lastDays=14"
+		},
+		"Report1101_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"Report1102_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1102/Details?lastDays=14"
+		},
+		"Report1102_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
 		},
@@ -297,7 +333,7 @@
 		},
 		"report1044_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1044/Details?lastDays=7"
+			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1044/Details?lastDays=14"
 		},
 		"report1044_properties_typeProperties_userName": {
 			"type": "string",
@@ -310,10 +346,6 @@
 		"report1603_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
-		},
-		"AusPipelineRun_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
 		},
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"type": "string",
@@ -460,14 +492,14 @@
 					"Report1053_password": {
 						"value": "[parameters('Report1053_password')]"
 					},
-					"SQLEuroSlaughterCows_connectionString": {
-						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
+					"Report1100_password": {
+						"value": "[parameters('Report1100_password')]"
 					},
-					"Sara Database_connectionString": {
-						"value": "[parameters('Sara Database_connectionString')]"
+					"Report1101_password": {
+						"value": "[parameters('Report1101_password')]"
 					},
-					"SaraDB connection_connectionString": {
-						"value": "[parameters('SaraDB connection_connectionString')]"
+					"Report1102_password": {
+						"value": "[parameters('Report1102_password')]"
 					},
 					"HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
@@ -544,6 +576,24 @@
 					"Report1053_properties_typeProperties_userName": {
 						"value": "[parameters('Report1053_properties_typeProperties_userName')]"
 					},
+					"Report1100_properties_typeProperties_url": {
+						"value": "[parameters('Report1100_properties_typeProperties_url')]"
+					},
+					"Report1100_properties_typeProperties_userName": {
+						"value": "[parameters('Report1100_properties_typeProperties_userName')]"
+					},
+					"Report1101_properties_typeProperties_url": {
+						"value": "[parameters('Report1101_properties_typeProperties_url')]"
+					},
+					"Report1101_properties_typeProperties_userName": {
+						"value": "[parameters('Report1101_properties_typeProperties_userName')]"
+					},
+					"Report1102_properties_typeProperties_url": {
+						"value": "[parameters('Report1102_properties_typeProperties_url')]"
+					},
+					"Report1102_properties_typeProperties_userName": {
+						"value": "[parameters('Report1102_properties_typeProperties_userName')]"
+					},
 					"RestDairyProduction_properties_typeProperties_url": {
 						"value": "[parameters('RestDairyProduction_properties_typeProperties_url')]"
 					},
@@ -569,6 +619,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"SQLEuroSlaughterCows_connectionString": {
+						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
+					},
+					"Sara Database_connectionString": {
+						"value": "[parameters('Sara Database_connectionString')]"
+					},
+					"SaraDB connection_connectionString": {
+						"value": "[parameters('SaraDB connection_connectionString')]"
 					},
 					"TestTriggerConnection_connectionString": {
 						"value": "[parameters('TestTriggerConnection_connectionString')]"
@@ -731,9 +790,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"AusPipelineRun_properties_typeProperties_scope": {
-						"value": "[parameters('AusPipelineRun_properties_typeProperties_scope')]"
 					},
 					"EUGlobalDataTrigger_properties_typeProperties_scope": {
 						"value": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]"
