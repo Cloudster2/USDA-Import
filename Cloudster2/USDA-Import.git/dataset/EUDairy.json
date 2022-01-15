@@ -8,12 +8,12 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "EU_Dataset",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "EU Dataset Milk and Dairy Production.xlsx",
 				"container": "trade-data-container"
 			},
+			"sheetIndex": 0,
 			"firstRowAsHeader": true
 		},
 		"schema": [

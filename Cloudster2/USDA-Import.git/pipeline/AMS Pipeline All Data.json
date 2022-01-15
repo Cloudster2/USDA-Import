@@ -197,7 +197,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "AMS 1045",
+						"activity": "AMS 1046",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -383,14 +383,7 @@
 			{
 				"name": "AMS 1045",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "AMS 1046",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -410,7 +403,9 @@
 						}
 					},
 					"sink": {
-						"type": "AzureSqlSink"
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table pricing",
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -499,7 +494,7 @@
 							},
 							{
 								"source": {
-									"path": "['grade']"
+									"path": "['lot_Desc']"
 								},
 								"sink": {
 									"name": "Grade",
@@ -2451,7 +2446,14 @@
 			{
 				"name": "AMS 1102",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "AMS 1045",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -2461,6 +2463,15 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
 					"sink": {
 						"type": "AzureSqlSink"
 					},
@@ -2551,24 +2562,6 @@
 							},
 							{
 								"source": {
-									"path": "['price_Unit']"
-								},
-								"sink": {
-									"name": "Grade",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['package']"
-								},
-								"sink": {
-									"name": "Package",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
 									"path": "['price_min']"
 								},
 								"sink": {
@@ -2603,15 +2596,49 @@
 									"type": "Decimal"
 								}
 							}
-						]
+						],
+						"collectionReference": "$['results']"
 					}
 				},
+				"inputs": [
+					{
+						"referenceName": "Report1102",
+						"type": "DatasetReference"
+					}
+				],
 				"outputs": [
 					{
 						"referenceName": "Pricing",
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "AMS procedure",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "AMS 1043",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[AMSPricingProcedure]"
+				},
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
