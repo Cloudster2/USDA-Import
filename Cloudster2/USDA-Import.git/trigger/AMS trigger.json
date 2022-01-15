@@ -1,0 +1,25 @@
+{
+	"name": "AMS trigger",
+	"properties": {
+		"description": "triggers every Friday ",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "AMS Pipeline All Data",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2022-01-21T21:41:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
