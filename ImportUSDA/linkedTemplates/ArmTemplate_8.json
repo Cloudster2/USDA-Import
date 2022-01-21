@@ -9413,8 +9413,9 @@
 					"recurrence": {
 						"frequency": "Day",
 						"interval": 7,
-						"startTime": "2022-01-21T12:00:00Z",
-						"timeZone": "UTC"
+						"startTime": "2022-01-21T12:00:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {}
 					}
 				}
 			},
