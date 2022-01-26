@@ -23866,7 +23866,7 @@
 			"properties": {
 				"description": "triggered by blob change",
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
