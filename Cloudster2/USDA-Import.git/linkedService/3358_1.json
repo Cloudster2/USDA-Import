@@ -1,0 +1,13 @@
+{
+	"name": "3358_1",
+	"properties": {
+		"description": "Milk Conv Product",
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3358/estimated total U.S. sales of fluid Milk Conventional Products",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
