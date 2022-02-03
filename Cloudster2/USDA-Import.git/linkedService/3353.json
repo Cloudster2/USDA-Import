@@ -1,0 +1,12 @@
+{
+	"name": "3353",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3353/Price and Pool Annual",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
