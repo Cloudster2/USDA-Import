@@ -1,0 +1,12 @@
+{
+	"name": "reports",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FMMOSreports",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

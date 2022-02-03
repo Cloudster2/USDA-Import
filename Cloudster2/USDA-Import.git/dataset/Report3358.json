@@ -1,0 +1,12 @@
+{
+	"name": "Report3358",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FFMPS3358",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

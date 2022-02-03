@@ -1,0 +1,12 @@
+{
+	"name": "3351PPD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3351PPD",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

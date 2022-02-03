@@ -1,0 +1,69 @@
+{
+	"name": "3352_3353",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SlugID",
+				"type": "varchar"
+			},
+			{
+				"name": "Section",
+				"type": "varchar"
+			},
+			{
+				"name": "POName",
+				"type": "varchar"
+			},
+			{
+				"name": "PONumber",
+				"type": "varchar"
+			},
+			{
+				"name": "Year",
+				"type": "varchar"
+			},
+			{
+				"name": "Month",
+				"type": "varchar"
+			},
+			{
+				"name": "Class1Ut",
+				"type": "varchar"
+			},
+			{
+				"name": "Class1UtPerc",
+				"type": "varchar"
+			},
+			{
+				"name": "Class1UtDiff",
+				"type": "varchar"
+			},
+			{
+				"name": "Class2UtPerc",
+				"type": "varchar"
+			},
+			{
+				"name": "Class3UtPerc",
+				"type": "varchar"
+			},
+			{
+				"name": "Class4UtPerc",
+				"type": "varchar"
+			},
+			{
+				"name": "UniformPrice",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PRICING",
+			"table": "Imp3352_3353"
+		}
+	}
+}
