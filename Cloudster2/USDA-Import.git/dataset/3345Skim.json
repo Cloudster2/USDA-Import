@@ -1,0 +1,12 @@
+{
+	"name": "3345Skim",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3345Skim",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

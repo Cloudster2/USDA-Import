@@ -1,0 +1,45 @@
+{
+	"name": "imp3354",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SlugID",
+				"type": "varchar"
+			},
+			{
+				"name": "Section",
+				"type": "varchar"
+			},
+			{
+				"name": "PONumber",
+				"type": "varchar"
+			},
+			{
+				"name": "POName",
+				"type": "varchar"
+			},
+			{
+				"name": "Whole",
+				"type": "varchar"
+			},
+			{
+				"name": "Skim",
+				"type": "varchar"
+			},
+			{
+				"name": "Butterfat",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PRICING",
+			"table": "Imp3354"
+		}
+	}
+}
