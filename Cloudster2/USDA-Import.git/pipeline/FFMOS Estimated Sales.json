@@ -1,0 +1,190 @@
+{
+	"name": "FFMOS Estimated Sales",
+	"properties": {
+		"activities": [
+			{
+				"name": "3358 Milk Conventional",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['report_year']"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Pool_Order_Name']"
+								},
+								"sink": {
+									"name": "POName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_month']"
+								},
+								"sink": {
+									"name": "Month",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Pool_order_No']"
+								},
+								"sink": {
+									"name": "PONumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Producer_Receipts']"
+								},
+								"sink": {
+									"name": "ProdRec",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Producer_Receipts_Diff']"
+								},
+								"sink": {
+									"name": "ProdRecDiff",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClassI_Util']"
+								},
+								"sink": {
+									"name": "Class1Ut",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClassI_Util_Diff']"
+								},
+								"sink": {
+									"name": "Class1UtDiff",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClassI_Util_Percent']"
+								},
+								"sink": {
+									"name": "Class1UtPerc",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClassII_Util_Percent']"
+								},
+								"sink": {
+									"name": "Class2UtPerc",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClassIII_Util_Percent']"
+								},
+								"sink": {
+									"name": "Class3UtPerc",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['ClassIV_Util_Percent']"
+								},
+								"sink": {
+									"name": "Class4UtPerc",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Uniform_Price']"
+								},
+								"sink": {
+									"name": "UniformPrice",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['slug_id']"
+								},
+								"sink": {
+									"name": "SlugID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['reportSection']"
+								},
+								"sink": {
+									"name": "Section",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['results']",
+						"mapComplexValuesToString": true
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "3358_1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "3352_3353",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
