@@ -1,0 +1,12 @@
+{
+	"name": "3348Protein",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3348/protein",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
