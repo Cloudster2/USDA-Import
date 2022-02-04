@@ -1,0 +1,12 @@
+{
+	"name": "350Receipts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "350Receipts",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
