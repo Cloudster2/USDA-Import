@@ -1,0 +1,12 @@
+{
+	"name": "3350OtherSolids",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/Other Solids",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
