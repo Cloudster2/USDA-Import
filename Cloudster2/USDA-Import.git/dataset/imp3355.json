@@ -1,0 +1,57 @@
+{
+	"name": "imp3355",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SlugID",
+				"type": "varchar"
+			},
+			{
+				"name": "Section",
+				"type": "varchar"
+			},
+			{
+				"name": "PONumber",
+				"type": "varchar"
+			},
+			{
+				"name": "POName",
+				"type": "varchar"
+			},
+			{
+				"name": "Class1Whole",
+				"type": "varchar"
+			},
+			{
+				"name": "Class2Whole",
+				"type": "varchar"
+			},
+			{
+				"name": "Class3Whole",
+				"type": "varchar"
+			},
+			{
+				"name": "Class4Whole",
+				"type": "varchar"
+			},
+			{
+				"name": "Month",
+				"type": "varchar"
+			},
+			{
+				"name": "Year",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "PRICING",
+			"table": "Imp3355"
+		}
+	}
+}
