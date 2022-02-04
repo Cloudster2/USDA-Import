@@ -1,0 +1,12 @@
+{
+	"name": "3347NFS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3347NFS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
