@@ -13,12 +13,12 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/MilkProductionAPI')]",
+			"name": "[concat(parameters('factoryName'), '/3348Milk')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Milk ProductionAPI",
+					"referenceName": "3348Milk",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -29,362 +29,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/NZDairyImp')]",
+			"name": "[concat(parameters('factoryName'), '/3348OtherSolids')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Month",
-						"type": "nvarchar"
-					},
-					{
-						"name": "2017",
-						"type": "nvarchar"
-					},
-					{
-						"name": "2018",
-						"type": "nvarchar"
-					},
-					{
-						"name": "2019",
-						"type": "nvarchar"
-					},
-					{
-						"name": "2020",
-						"type": "nvarchar"
-					},
-					{
-						"name": "2021",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "globl",
-					"table": "nzmilkimp"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/NZDairyImport')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Fluid Milk",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "NZ Milk Production.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/NZHeard')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "matrix",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "NZ Dataset Dairy Cow Herd.xlsx",
-						"container": "trade-data-container"
-					}
-				},
-				"schema": [
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/NZHeardImport')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Year",
-						"type": "varchar"
-					},
-					{
-						"name": "NotInMilk",
-						"type": "varchar"
-					},
-					{
-						"name": "InMilk",
-						"type": "varchar"
-					},
-					{
-						"name": "Total",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "GLOBL",
-					"table": "NZHeardImp"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/NZMilkSolids')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Milk Solids",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "NZ Milk Production.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Month",
-						"type": "String"
-					},
-					{
-						"name": "2017",
-						"type": "String"
-					},
-					{
-						"name": "2018",
-						"type": "String"
-					},
-					{
-						"name": "2019",
-						"type": "String"
-					},
-					{
-						"name": "2020",
-						"type": "String"
-					},
-					{
-						"name": "2021",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/NZMilkSolidsImp')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "globl",
-					"table": "NZMilkSolidsImp"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/NZSlaughter')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "matrix",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "NZ Dataset Dairy Cow Slaughter.xlsx",
-						"container": "trade-data-container"
-					}
-				},
-				"schema": [
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/NZTrade')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "NZ",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "NZ Trade.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "partner",
-						"type": "String"
-					},
-					{
-						"name": "volume",
-						"type": "String"
-					},
-					{
-						"name": "value_1",
-						"type": "String"
-					},
-					{
-						"name": "unit",
-						"type": "String"
-					},
-					{
-						"name": "declarant",
-						"type": "String"
-					},
-					{
-						"name": "product",
-						"type": "String"
-					},
-					{
-						"name": "productname",
-						"type": "String"
-					},
-					{
-						"name": "flow",
-						"type": "String"
-					},
-					{
-						"name": "period",
-						"type": "String"
-					},
-					{
-						"name": "indicator",
-						"type": "String"
-					},
-					{
-						"name": "year",
-						"type": "String"
-					},
-					{
-						"name": "month",
-						"type": "String"
-					},
-					{
-						"name": "interval",
-						"type": "String"
-					},
-					{
-						"name": "datemonth",
-						"type": "String"
-					},
-					{
-						"name": "value_2",
-						"type": "String"
-					},
-					{
-						"name": "port",
-						"type": "String"
-					},
-					{
-						"name": "district",
-						"type": "String"
-					},
-					{
-						"name": "transport",
-						"type": "String"
-					},
-					{
-						"name": "partner_name",
-						"type": "String"
-					},
-					{
-						"name": "declarant_name",
-						"type": "String"
-					},
-					{
-						"name": "reported_or_mirrored",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/NumCowsAPI')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "CowInventoryRest",
+					"referenceName": "3348OtherSolids",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -395,12 +45,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/NumberOfCows')]",
+			"name": "[concat(parameters('factoryName'), '/3348Protein')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "NumberOfCowsAPI",
+					"referenceName": "3348Protein",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -411,39 +61,87 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/NzSlaughterImport')]",
+			"name": "[concat(parameters('factoryName'), '/3348Utilization')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Sara Database",
+					"referenceName": "3348Utilization",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Date",
-						"type": "varchar"
-					},
-					{
-						"name": "Heiffers",
-						"type": "varchar"
-					},
-					{
-						"name": "Cows",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "GLOBL",
-					"table": "NZGlobalImp"
-				}
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Pricing')]",
+			"name": "[concat(parameters('factoryName'), '/3349Butterfat')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3349Butterfat",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3349Milk')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3349Milk",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3349NFS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3349NFS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3349Utilization')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3349Utilization",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3351')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -459,80 +157,121 @@
 						"type": "varchar"
 					},
 					{
-						"name": "Grp",
+						"name": "Section",
 						"type": "varchar"
 					},
 					{
-						"name": "Category",
+						"name": "POName",
+						"type": "varbinary"
+					},
+					{
+						"name": "PONumber",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Year",
 						"type": "varchar"
 					},
 					{
-						"name": "BeginDate",
-						"type": "varchar"
-					},
-					{
-						"name": "EndDate",
-						"type": "varchar"
-					},
-					{
-						"name": "Grade",
-						"type": "varchar"
-					},
-					{
-						"name": "Commodity",
-						"type": "varchar"
-					},
-					{
-						"name": "MarketType",
-						"type": "varchar"
-					},
-					{
-						"name": "Community",
-						"type": "varchar"
-					},
-					{
-						"name": "Package",
-						"type": "varchar"
-					},
-					{
-						"name": "RangeLow",
+						"name": "Month",
 						"type": "decimal",
 						"precision": 18,
-						"scale": 3
+						"scale": 2
 					},
 					{
-						"name": "RangeHigh",
+						"name": "Jan",
 						"type": "decimal",
 						"precision": 18,
-						"scale": 3
+						"scale": 2
 					},
 					{
-						"name": "MostlyLow",
+						"name": "Feb",
 						"type": "decimal",
 						"precision": 18,
-						"scale": 3
+						"scale": 2
 					},
 					{
-						"name": "MostlyHigh",
+						"name": "Mar",
 						"type": "decimal",
 						"precision": 18,
-						"scale": 3
+						"scale": 2
+					},
+					{
+						"name": "Apr",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "May",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Jun",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Jul",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Aug",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Sep",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Oct",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Nov",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Dec",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Total",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
 					}
 				],
 				"typeProperties": {
-					"schema": "dbo",
-					"table": "Pricing"
+					"schema": "PRICING",
+					"table": "ImportTable"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1043')]",
+			"name": "[concat(parameters('factoryName'), '/3351Butterfat')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Report 1043",
+					"referenceName": "3351Butterfat",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -543,12 +282,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1044')]",
+			"name": "[concat(parameters('factoryName'), '/3351Milk')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "report1044",
+					"referenceName": "3351ilk",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -559,12 +298,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1045')]",
+			"name": "[concat(parameters('factoryName'), '/3351PPD')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Report1045",
+					"referenceName": "3351PPD",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -575,12 +314,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1046')]",
+			"name": "[concat(parameters('factoryName'), '/3351Skim')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Report1046",
+					"referenceName": "3351Skim",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -591,12 +330,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1047')]",
+			"name": "[concat(parameters('factoryName'), '/3352')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Report1047",
+					"referenceName": "3352",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -607,12 +346,84 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1048')]",
+			"name": "[concat(parameters('factoryName'), '/3352_3353')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Report1048",
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "SlugID",
+						"type": "varchar"
+					},
+					{
+						"name": "Section",
+						"type": "varchar"
+					},
+					{
+						"name": "POName",
+						"type": "varchar"
+					},
+					{
+						"name": "PONumber",
+						"type": "varchar"
+					},
+					{
+						"name": "Year",
+						"type": "varchar"
+					},
+					{
+						"name": "Month",
+						"type": "varchar"
+					},
+					{
+						"name": "Class1Ut",
+						"type": "varchar"
+					},
+					{
+						"name": "Class1UtPerc",
+						"type": "varchar"
+					},
+					{
+						"name": "Class1UtDiff",
+						"type": "varchar"
+					},
+					{
+						"name": "Class2UtPerc",
+						"type": "varchar"
+					},
+					{
+						"name": "Class3UtPerc",
+						"type": "varchar"
+					},
+					{
+						"name": "Class4UtPerc",
+						"type": "varchar"
+					},
+					{
+						"name": "UniformPrice",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PRICING",
+					"table": "Imp3352_3353"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3353')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3353",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -623,12 +434,60 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1049')]",
+			"name": "[concat(parameters('factoryName'), '/3354')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Report1049",
+					"referenceName": "3354",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3355')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3355",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3358_1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3358_1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AMSTest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AMSTest",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],

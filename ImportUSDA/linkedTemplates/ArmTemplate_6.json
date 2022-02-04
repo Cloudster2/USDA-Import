@@ -13,135 +13,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1050')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1050",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1051')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1051",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1052')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1052",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1053')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1053",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1100')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1100",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1101')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1101",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1102')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1102",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1603')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "report1603",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RussiaTrade')]",
+			"name": "[concat(parameters('factoryName'), '/ARTrade')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -152,10 +24,10 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "Russia",
+					"sheetName": "AR",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "Russia Trade.xlsx",
+						"fileName": "AR Trade.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
@@ -250,194 +122,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SlaughterNationalAPI')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SlaughterNationalImport",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SlaughterRegionalAPI')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SlaughterRegionalAPI",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SlaughterWorkTable')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SaraDB connection",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "USDAId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GRPID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CommodityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UtilPract",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Class",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ProdPract",
-						"type": "nvarchar"
-					},
-					{
-						"name": "CatID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Domain",
-						"type": "nvarchar"
-					},
-					{
-						"name": "DomainCat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ItemConcat",
-						"type": "nvarchar"
-					},
-					{
-						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GeoID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Region",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RegionId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WeekEnding",
-						"type": "date"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FreqID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SeqNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Period",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Value",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "NormValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 0
-					},
-					{
-						"name": "mom",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "yoy",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "ytd",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					}
-				],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "WorkSlaughter"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SouthKoreTrade')]",
+			"name": "[concat(parameters('factoryName'), '/AUDairy')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -448,329 +133,41 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "South Korea",
+					"sheetName": "Current Season",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "South Korea Trade.xlsx",
+						"fileName": "AU Dataset Dairy Product Production.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
 				},
 				"schema": [
 					{
-						"name": "partner",
+						"name": "Month",
 						"type": "String"
 					},
 					{
-						"name": "volume",
+						"name": "Production",
 						"type": "String"
-					},
-					{
-						"name": "value_1",
-						"type": "String"
-					},
-					{
-						"name": "unit",
-						"type": "String"
-					},
-					{
-						"name": "declarant",
-						"type": "String"
-					},
-					{
-						"name": "product",
-						"type": "String"
-					},
-					{
-						"name": "productname",
-						"type": "String"
-					},
-					{
-						"name": "flow",
-						"type": "String"
-					},
-					{
-						"name": "period",
-						"type": "String"
-					},
-					{
-						"name": "indicator",
-						"type": "String"
-					},
-					{
-						"name": "year",
-						"type": "String"
-					},
-					{
-						"name": "month",
-						"type": "String"
-					},
-					{
-						"name": "interval",
-						"type": "String"
-					},
-					{
-						"name": "datemonth",
-						"type": "String"
-					},
-					{
-						"name": "value_2",
-						"type": "String"
-					},
-					{
-						"name": "port",
-						"type": "String"
-					},
-					{
-						"name": "district",
-						"type": "String"
-					},
-					{
-						"name": "transport",
-						"type": "String"
-					},
-					{
-						"name": "partner_name",
-						"type": "String"
-					},
-					{
-						"name": "declarant_name",
-						"type": "String"
-					},
-					{
-						"name": "reported_or_mirrored",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SqlServerTable1')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SaraDB connection",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [
-					{
-						"name": "USDAId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GRPID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CommodityID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Class",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ClassID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "CatID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "GeoID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Region",
-						"type": "nvarchar"
-					},
-					{
-						"name": "RegionID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "State",
-						"type": "nvarchar"
-					},
-					{
-						"name": "WeekEnding",
-						"type": "date"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "FreqID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "PeriodTypeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "SeqNum",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "OldValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "NormValue",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "MOM",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YOY",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "YOYlbs",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "YTD",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					},
-					{
-						"name": "OldYTD",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					},
-					{
-						"name": "OldMonthID",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "calctable"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/TradeData')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "TradeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Partner",
-						"type": "nchar"
-					},
-					{
-						"name": "Volume",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 0
-					},
-					{
-						"name": "Value",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 0
-					},
-					{
-						"name": "Unit",
-						"type": "nchar"
-					},
-					{
-						"name": "Declarant",
-						"type": "nchar"
-					},
-					{
-						"name": "ProductCde",
-						"type": "nchar"
 					},
 					{
 						"name": "Product",
-						"type": "nvarchar"
+						"type": "String"
 					},
 					{
-						"name": "Flow",
-						"type": "nchar"
+						"name": "Season",
+						"type": "String"
 					},
 					{
 						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Month",
-						"type": "int",
-						"precision": 10
+						"type": "String"
 					}
-				],
-				"typeProperties": {
-					"schema": "TRADE",
-					"table": "TradeData"
-				}
+				]
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UKDairyProd')]",
+			"name": "[concat(parameters('factoryName'), '/AUSMilk')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -781,41 +178,45 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "Sheet1",
+					"sheetName": "AU Milk Production HIstory",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "UK Dairy Production.xlsx",
+						"fileName": "AU Dataset Milk Production and Components.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
 				},
 				"schema": [
 					{
-						"name": "Country",
+						"name": "Period",
 						"type": "String"
 					},
 					{
-						"name": "Date",
+						"name": "NSW",
 						"type": "String"
 					},
 					{
-						"name": "Milk available to Processors (Million liters)",
+						"name": "VIC",
 						"type": "String"
 					},
 					{
-						"name": "Liquid Milk Production (million liters)",
+						"name": "QLD",
 						"type": "String"
 					},
 					{
-						"name": "Cheese Production ('000 tonnes)",
+						"name": "SA",
 						"type": "String"
 					},
 					{
-						"name": "Butter Production ('000 tonnes)",
+						"name": "WA",
 						"type": "String"
 					},
 					{
-						"name": "Milk Powder Production ('000 tonnes)",
+						"name": "TAS",
+						"type": "String"
+					},
+					{
+						"name": "AUSTRALIA",
 						"type": "String"
 					}
 				]
@@ -823,7 +224,366 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UKGlobalImport')]",
+			"name": "[concat(parameters('factoryName'), '/AUTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "AU",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AU Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "partner",
+						"type": "String"
+					},
+					{
+						"name": "volume",
+						"type": "String"
+					},
+					{
+						"name": "value_1",
+						"type": "String"
+					},
+					{
+						"name": "unit",
+						"type": "String"
+					},
+					{
+						"name": "declarant",
+						"type": "String"
+					},
+					{
+						"name": "product",
+						"type": "String"
+					},
+					{
+						"name": "productname",
+						"type": "String"
+					},
+					{
+						"name": "flow",
+						"type": "String"
+					},
+					{
+						"name": "period",
+						"type": "String"
+					},
+					{
+						"name": "indicator",
+						"type": "String"
+					},
+					{
+						"name": "year",
+						"type": "String"
+					},
+					{
+						"name": "month",
+						"type": "String"
+					},
+					{
+						"name": "interval",
+						"type": "String"
+					},
+					{
+						"name": "datemonth",
+						"type": "String"
+					},
+					{
+						"name": "value_2",
+						"type": "String"
+					},
+					{
+						"name": "port",
+						"type": "String"
+					},
+					{
+						"name": "district",
+						"type": "String"
+					},
+					{
+						"name": "transport",
+						"type": "String"
+					},
+					{
+						"name": "partner_name",
+						"type": "String"
+					},
+					{
+						"name": "declarant_name",
+						"type": "String"
+					},
+					{
+						"name": "reported_or_mirrored",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ArgentinaFat')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Butterfat",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AR Milk Dataset.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Año",
+						"type": "String"
+					},
+					{
+						"name": "NACIONAL",
+						"type": "String"
+					},
+					{
+						"name": "BUENOS AIRES",
+						"type": "String"
+					},
+					{
+						"name": "CÓRDOBA",
+						"type": "String"
+					},
+					{
+						"name": "ENTRE RÍOS",
+						"type": "String"
+					},
+					{
+						"name": " LA PAMPA",
+						"type": "String"
+					},
+					{
+						"name": "SANTA FE",
+						"type": "String"
+					},
+					{
+						"name": "SANTIAGO DEL ESTERO",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ArgentinaMilk')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "AR Milk Production",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AR Milk Dataset.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ArgentinaProtein')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Protein",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AR Milk Dataset.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Año",
+						"type": "String"
+					},
+					{
+						"name": "NACIONAL",
+						"type": "String"
+					},
+					{
+						"name": "BUENOS AIRES",
+						"type": "String"
+					},
+					{
+						"name": "CÓRDOBA",
+						"type": "String"
+					},
+					{
+						"name": "ENTRE RÍOS",
+						"type": "String"
+					},
+					{
+						"name": " LA PAMPA",
+						"type": "String"
+					},
+					{
+						"name": "SANTA FE",
+						"type": "String"
+					},
+					{
+						"name": "SANTIAGO DEL ESTERO",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AusDairyLast')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "Previous Season",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AU Dataset Dairy Product Production.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Month",
+						"type": "String"
+					},
+					{
+						"name": "Production",
+						"type": "String"
+					},
+					{
+						"name": "Product",
+						"type": "String"
+					},
+					{
+						"name": "Season",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AusFat')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "AU Milkfat",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AU Dataset Milk Production and Components.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Column2",
+						"type": "String"
+					},
+					{
+						"name": "NSW",
+						"type": "String"
+					},
+					{
+						"name": "VIC",
+						"type": "String"
+					},
+					{
+						"name": "QLD",
+						"type": "String"
+					},
+					{
+						"name": "SA",
+						"type": "String"
+					},
+					{
+						"name": "WA",
+						"type": "String"
+					},
+					{
+						"name": "TAS",
+						"type": "String"
+					},
+					{
+						"name": "AUSTRALIA",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AusGlobalMilk')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -835,39 +595,100 @@
 				"type": "AzureSqlTable",
 				"schema": [
 					{
+						"name": "Date",
+						"type": "date"
+					},
+					{
 						"name": "DateString",
-						"type": "varbinary"
-					},
-					{
-						"name": "Milk",
 						"type": "varchar"
 					},
 					{
-						"name": "DrinkingMilk",
+						"name": "MonthString",
 						"type": "varchar"
 					},
 					{
-						"name": "Cheese",
-						"type": "varchar"
+						"name": "itemid",
+						"type": "int",
+						"precision": 10
 					},
 					{
-						"name": "Butter",
-						"type": "varchar"
+						"name": "UnitID",
+						"type": "int",
+						"precision": 10
 					},
 					{
-						"name": "SMP",
-						"type": "varchar"
+						"name": "ValueLbs",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 5
 					}
 				],
 				"typeProperties": {
 					"schema": "GLOBL",
-					"table": "UKDairyImport"
+					"table": "AUSGlobalMilk"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UKSlaughter')]",
+			"name": "[concat(parameters('factoryName'), '/AusProtein')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "AU Protein",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AU Dataset Milk Production and Components.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Column2",
+						"type": "String"
+					},
+					{
+						"name": "NSW",
+						"type": "String"
+					},
+					{
+						"name": "VIC",
+						"type": "String"
+					},
+					{
+						"name": "QLD",
+						"type": "String"
+					},
+					{
+						"name": "SA",
+						"type": "String"
+					},
+					{
+						"name": "WA",
+						"type": "String"
+					},
+					{
+						"name": "TAS",
+						"type": "String"
+					},
+					{
+						"name": "AUSTRALIA",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AusSlaughter')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -881,22 +702,18 @@
 					"sheetName": "Sheet2",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "UK Dataset Cow Slaughter.xlsx",
+						"fileName": "AU Dataset Dairy Cow Slaughter.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
 				},
 				"schema": [
 					{
-						"name": "Column1",
+						"name": "Date",
 						"type": "String"
 					},
 					{
-						"name": "Heifers",
-						"type": "String"
-					},
-					{
-						"name": "Cows",
+						"name": "Cow and Heifer Slaughter (1000)",
 						"type": "String"
 					}
 				]
@@ -904,7 +721,26 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/UKTrade')]",
+			"name": "[concat(parameters('factoryName'), '/AzureSqlTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Pricing"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BelarusTrade')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -915,10 +751,110 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "UK",
+					"sheetName": "Belarus",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "UK Trade.xlsx",
+						"fileName": "Belarus Trade.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CMEDaily')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "SlugID",
+						"type": "varchar"
+					},
+					{
+						"name": "Category",
+						"type": "varchar"
+					},
+					{
+						"name": "BeginDate",
+						"type": "varchar"
+					},
+					{
+						"name": "EndDate",
+						"type": "varchar"
+					},
+					{
+						"name": "Year",
+						"type": "varchar"
+					},
+					{
+						"name": "Month",
+						"type": "varchar"
+					},
+					{
+						"name": "Grade",
+						"type": "varchar"
+					},
+					{
+						"name": "Commodity",
+						"type": "varchar"
+					},
+					{
+						"name": "MarketType",
+						"type": "varchar"
+					},
+					{
+						"name": "Community",
+						"type": "varchar"
+					},
+					{
+						"name": "Package",
+						"type": "varchar"
+					},
+					{
+						"name": "Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 3
+					},
+					{
+						"name": "Change",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "CMEDaily"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CNTrade')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "CN",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "CN Trade.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
@@ -1013,12 +949,93 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/USDAData')]",
+			"name": "[concat(parameters('factoryName'), '/ChinaGlobalData')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "usdadata",
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "ChinaDairyProduction",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "China Dairy production.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ColdStorageAPI')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ColdStorageAPI",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DairyProductionAPI')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "RestDairyProduction",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DataFactoryTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SaraDB connection",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -1031,7 +1048,7 @@
 					},
 					{
 						"name": "GRP",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "GRPID",
@@ -1040,7 +1057,7 @@
 					},
 					{
 						"name": "Commodity",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "CommodityID",
@@ -1049,19 +1066,19 @@
 					},
 					{
 						"name": "UtilPract",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "Class",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "ProdPract",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "Category",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "CatID",
@@ -1070,7 +1087,7 @@
 					},
 					{
 						"name": "Unit",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "UnitID",
@@ -1079,20 +1096,24 @@
 					},
 					{
 						"name": "Domain",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "DomainCat",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "ItemConcat",
-						"type": "nvarchar"
+						"type": "varchar"
+					},
+					{
+						"name": "StateAnsiInt",
+						"type": "int",
+						"precision": 10
 					},
 					{
 						"name": "StateAnsi",
-						"type": "int",
-						"precision": 10
+						"type": "varchar"
 					},
 					{
 						"name": "GeoID",
@@ -1101,15 +1122,19 @@
 					},
 					{
 						"name": "Region",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "State",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "WeekEnding",
 						"type": "date"
+					},
+					{
+						"name": "WeekEndingString",
+						"type": "varchar"
 					},
 					{
 						"name": "Year",
@@ -1118,7 +1143,7 @@
 					},
 					{
 						"name": "Frequency",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "FreqID",
@@ -1127,7 +1152,7 @@
 					},
 					{
 						"name": "Period",
-						"type": "nvarchar"
+						"type": "varchar"
 					},
 					{
 						"name": "PeriodID",
@@ -1135,10 +1160,14 @@
 						"precision": 10
 					},
 					{
-						"name": "Value",
+						"name": "ValueDec",
 						"type": "decimal",
 						"precision": 18,
-						"scale": 2
+						"scale": 0
+					},
+					{
+						"name": "Value",
+						"type": "varchar"
 					},
 					{
 						"name": "NormValue",
@@ -1149,7 +1178,7 @@
 				],
 				"typeProperties": {
 					"schema": "USDA",
-					"table": "USDAData"
+					"table": "USDADataFactory"
 				}
 			},
 			"dependsOn": []
