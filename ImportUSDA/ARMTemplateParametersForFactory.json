@@ -149,6 +149,24 @@
 		"3349Utilization_properties_typeProperties_url": {
 			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3349/utilization"
 		},
+		"3350AvgDaily_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/Avg Daily"
+		},
+		"3350NFS_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/NFS"
+		},
+		"3350OtherSolids_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/Other Solids"
+		},
+		"3350Producers_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/producers"
+		},
+		"3350SomCell_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/SomCell"
+		},
+		"3350protein_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/protein"
+		},
 		"3351Butterfat_properties_typeProperties_url": {
 			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3351/Butterfat"
 		},
@@ -175,6 +193,33 @@
 		},
 		"3358_1_properties_typeProperties_url": {
 			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3358/estimated total U.S. sales of fluid Milk Conventional Products"
+		},
+		"3461AvgDaily_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3461/Avg Daily"
+		},
+		"3461PRODUCERS_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3461/producers"
+		},
+		"3461receipts_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3461/receipts"
+		},
+		"3462Butterfat_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3462/Butterfat"
+		},
+		"3462NFS_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3462/NFS"
+		},
+		"3462Protein_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3462/Protein"
+		},
+		"3462Receipts_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3462/Receipts"
+		},
+		"350Receipts_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/receipts"
+		},
+		"3550Butterfat_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3350/butterfat"
 		},
 		"AMSTest_properties_typeProperties_url": {
 			"value": "https://marsapi.ams.usda.gov/services/v1.2/reports/1623"
