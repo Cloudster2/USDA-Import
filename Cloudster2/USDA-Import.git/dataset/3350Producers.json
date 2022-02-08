@@ -1,0 +1,12 @@
+{
+	"name": "3350Producers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3350Producers",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
