@@ -1,0 +1,12 @@
+{
+	"name": "3462Butterfat",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3462Butterfat",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

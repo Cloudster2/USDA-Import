@@ -1,0 +1,12 @@
+{
+	"name": "3462Protein",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3462Protein",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
