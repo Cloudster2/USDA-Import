@@ -434,12 +434,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/350Receipts')]",
+			"name": "[concat(parameters('factoryName'), '/3461AvgDaily')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "350Receipts",
+					"referenceName": "3461AvgDaily",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -450,12 +450,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/3550Butterfat')]",
+			"name": "[concat(parameters('factoryName'), '/3461Producers')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "3550Butterfat",
+					"referenceName": "3461PRODUCERS",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -466,12 +466,12 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AMSTest')]",
+			"name": "[concat(parameters('factoryName'), '/3461Receipts')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AMSTest",
+					"referenceName": "3461receipts",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -482,111 +482,18 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ARTrade')]",
+			"name": "[concat(parameters('factoryName'), '/3462Butterfat')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3462Butterfat",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AR",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AR Trade.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "partner",
-						"type": "String"
-					},
-					{
-						"name": "volume",
-						"type": "String"
-					},
-					{
-						"name": "value_1",
-						"type": "String"
-					},
-					{
-						"name": "unit",
-						"type": "String"
-					},
-					{
-						"name": "declarant",
-						"type": "String"
-					},
-					{
-						"name": "product",
-						"type": "String"
-					},
-					{
-						"name": "productname",
-						"type": "String"
-					},
-					{
-						"name": "flow",
-						"type": "String"
-					},
-					{
-						"name": "period",
-						"type": "String"
-					},
-					{
-						"name": "indicator",
-						"type": "String"
-					},
-					{
-						"name": "year",
-						"type": "String"
-					},
-					{
-						"name": "month",
-						"type": "String"
-					},
-					{
-						"name": "interval",
-						"type": "String"
-					},
-					{
-						"name": "datemonth",
-						"type": "String"
-					},
-					{
-						"name": "value_2",
-						"type": "String"
-					},
-					{
-						"name": "port",
-						"type": "String"
-					},
-					{
-						"name": "district",
-						"type": "String"
-					},
-					{
-						"name": "transport",
-						"type": "String"
-					},
-					{
-						"name": "partner_name",
-						"type": "String"
-					},
-					{
-						"name": "declarant_name",
-						"type": "String"
-					},
-					{
-						"name": "reported_or_mirrored",
-						"type": "String"
-					}
-				]
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		}
