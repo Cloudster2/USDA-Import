@@ -1,0 +1,12 @@
+{
+	"name": "3461AvgDaily",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3461AvgDaily",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
