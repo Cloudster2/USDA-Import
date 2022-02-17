@@ -1,0 +1,12 @@
+{
+	"name": "imp2989",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "imp2989",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
