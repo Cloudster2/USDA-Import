@@ -1,0 +1,12 @@
+{
+	"name": "3350SomCell",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3350SomCell",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
