@@ -1,0 +1,12 @@
+{
+	"name": "rest2991",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2991/detail",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
