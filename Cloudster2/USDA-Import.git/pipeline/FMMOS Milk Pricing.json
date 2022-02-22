@@ -444,6 +444,218 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "3354",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['reportSection']"
+								},
+								"sink": {
+									"name": "Section",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_month']"
+								},
+								"sink": {
+									"name": "Month",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_year']"
+								},
+								"sink": {
+									"name": "Year",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Pool_Order_Name']"
+								},
+								"sink": {
+									"name": "POName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Pool_order_No']"
+								},
+								"sink": {
+									"name": "PONumber",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['jan']"
+								},
+								"sink": {
+									"name": "Jan",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['feb']"
+								},
+								"sink": {
+									"name": "Feb",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['mar']"
+								},
+								"sink": {
+									"name": "Mar",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['apr']"
+								},
+								"sink": {
+									"name": "Apr",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['may']"
+								},
+								"sink": {
+									"name": "May",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['jun']"
+								},
+								"sink": {
+									"name": "Jun",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['jul']"
+								},
+								"sink": {
+									"name": "Jul",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['aug']"
+								},
+								"sink": {
+									"name": "Aug",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['sep']"
+								},
+								"sink": {
+									"name": "Sep",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['oct']"
+								},
+								"sink": {
+									"name": "Oct",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['nov']"
+								},
+								"sink": {
+									"name": "Nov",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['dec']"
+								},
+								"sink": {
+									"name": "Dec",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['total']"
+								},
+								"sink": {
+									"name": "Total",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['slug_id']"
+								},
+								"sink": {
+									"name": "SlugID",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "imp3354",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "3351",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []

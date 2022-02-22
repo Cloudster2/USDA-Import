@@ -5,14 +5,7 @@
 			{
 				"name": "imp2991",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "imp2989",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -30,6 +23,11 @@
 						"paginationRules": {
 							"supportRFC5988": "true"
 						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -208,11 +206,29 @@
 							},
 							{
 								"source": {
+									"path": "['report_title']"
+								},
+								"sink": {
+									"name": "ReportTitle",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "['slug_id']"
 								},
 								"sink": {
 									"name": "SlugID",
 									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['published_date']"
+								},
+								"sink": {
+									"name": "PublishDate",
+									"type": "DateTime"
 								}
 							}
 						],
@@ -222,7 +238,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "imp2991",
+						"referenceName": "rest2991",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "table2991",
 						"type": "DatasetReference"
 					}
 				]
@@ -230,7 +252,14 @@
 			{
 				"name": "imp2989",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "imp2991",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -264,15 +293,6 @@
 								},
 								"sink": {
 									"name": "WeekEnding",
-									"type": "DateTime"
-								}
-							},
-							{
-								"source": {
-									"path": "['created_date']"
-								},
-								"sink": {
-									"name": "CreatedDate",
 									"type": "DateTime"
 								}
 							},
