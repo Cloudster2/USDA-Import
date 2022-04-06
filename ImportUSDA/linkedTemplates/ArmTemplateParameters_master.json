@@ -386,6 +386,12 @@
 		"WorldMXBY_properties_typeProperties_url": {
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=CEBFBA62A15113125D00C50C4193F7A4&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&layout=brief"
 		},
+		"imp2989_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2989/detail"
+		},
+		"imp2991_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2991/detail"
+		},
 		"report1044_properties_typeProperties_url": {
 			"value": "https://marsapi.ams.usda.gov/services/v1.2/reports/1044/Details?lastDays=14"
 		},
@@ -397,6 +403,9 @@
 		},
 		"report1603_properties_typeProperties_userName": {
 			"value": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"rest2991_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2991/detail"
 		},
 		"test_properties_typeProperties_url": {
 			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3351/milk"

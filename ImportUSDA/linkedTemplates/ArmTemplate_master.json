@@ -515,6 +515,14 @@
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=CEBFBA62A15113125D00C50C4193F7A4&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&layout=brief"
 		},
+		"imp2989_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2989/detail"
+		},
+		"imp2991_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2991/detail"
+		},
 		"report1044_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1044/Details?lastDays=14"
@@ -530,6 +538,10 @@
 		"report1603_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"rest2991_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2991/detail"
 		},
 		"test_properties_typeProperties_url": {
 			"type": "string",
@@ -977,12 +989,6 @@
 					"report1603_password": {
 						"value": "[parameters('report1603_password')]"
 					},
-					"tradeDB_connectionString": {
-						"value": "[parameters('tradeDB_connectionString')]"
-					},
-					"usdadata_connectionString": {
-						"value": "[parameters('usdadata_connectionString')]"
-					},
 					"Report1053_properties_typeProperties_url": {
 						"value": "[parameters('Report1053_properties_typeProperties_url')]"
 					},
@@ -1025,6 +1031,12 @@
 					"WorldMXBY_properties_typeProperties_url": {
 						"value": "[parameters('WorldMXBY_properties_typeProperties_url')]"
 					},
+					"imp2989_properties_typeProperties_url": {
+						"value": "[parameters('imp2989_properties_typeProperties_url')]"
+					},
+					"imp2991_properties_typeProperties_url": {
+						"value": "[parameters('imp2991_properties_typeProperties_url')]"
+					},
 					"report1044_properties_typeProperties_url": {
 						"value": "[parameters('report1044_properties_typeProperties_url')]"
 					},
@@ -1037,8 +1049,8 @@
 					"report1603_properties_typeProperties_userName": {
 						"value": "[parameters('report1603_properties_typeProperties_userName')]"
 					},
-					"test_properties_typeProperties_url": {
-						"value": "[parameters('test_properties_typeProperties_url')]"
+					"rest2991_properties_typeProperties_url": {
+						"value": "[parameters('rest2991_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1059,6 +1071,15 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"tradeDB_connectionString": {
+						"value": "[parameters('tradeDB_connectionString')]"
+					},
+					"usdadata_connectionString": {
+						"value": "[parameters('usdadata_connectionString')]"
+					},
+					"test_properties_typeProperties_url": {
+						"value": "[parameters('test_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1227,6 +1248,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'ImportUSDA_ArmTemplate_12')]"
+			]
+		},
+		{
+			"name": "ImportUSDA_ArmTemplate_14",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_14.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ImportUSDA_ArmTemplate_13')]"
 			]
 		}
 	]

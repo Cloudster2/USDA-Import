@@ -515,6 +515,14 @@
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=CEBFBA62A15113125D00C50C4193F7A4&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&layout=brief"
 		},
+		"imp2989_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2989/detail"
+		},
+		"imp2991_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2991/detail"
+		},
 		"report1044_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1044/Details?lastDays=14"
@@ -530,6 +538,10 @@
 		"report1603_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
+		},
+		"rest2991_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2991/detail"
 		},
 		"test_properties_typeProperties_url": {
 			"type": "string",
@@ -6576,11 +6588,11 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "3346Milk",
+						"name": "3346NFS",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "3346Utilization",
+								"activity": "3347Milk",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -6626,15 +6638,6 @@
 										},
 										"sink": {
 											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
 											"type": "String"
 										}
 									},
@@ -6775,229 +6778,11 @@
 									},
 									{
 										"source": {
-											"path": "$['reportSection']"
+											"path": "[['published_date']"
 										},
 										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3346Milk",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3346Utilization",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3346ButterFat",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -7016,7 +6801,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "3346Utilization",
+								"referenceName": "3346NFS",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -7085,15 +6870,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -7225,6 +7001,15 @@
 										"sink": {
 											"name": "SlugID",
 											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -7257,11 +7042,11 @@
 						]
 					},
 					{
-						"name": "3346NFS",
+						"name": "3346Milk",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "3347Milk",
+								"activity": "3346ButterFat",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -7307,15 +7092,6 @@
 										},
 										"sink": {
 											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
 											"type": "String"
 										}
 									},
@@ -7456,229 +7232,11 @@
 									},
 									{
 										"source": {
-											"path": "$['reportSection']"
+											"path": "[['published_date']"
 										},
 										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3346NFS",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3347Milk",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3347Utilization",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -7697,461 +7255,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "3347Milk",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3347Utilization",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3347Butterfat",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3347Utilization",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3347Butterfat",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3347NFS",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3347Butterfat",
+								"referenceName": "3346Milk",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -8220,10 +7324,228 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
+											"path": "[['Pool_order_No']"
 										},
 										"sink": {
-											"name": "POName",
+											"name": "PONumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jan']"
+										},
+										"sink": {
+											"name": "Jan",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['feb']"
+										},
+										"sink": {
+											"name": "Feb",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mar']"
+										},
+										"sink": {
+											"name": "Mar",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['apr']"
+										},
+										"sink": {
+											"name": "Apr",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['may']"
+										},
+										"sink": {
+											"name": "May",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jun']"
+										},
+										"sink": {
+											"name": "Jun",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jul']"
+										},
+										"sink": {
+											"name": "Jul",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['aug']"
+										},
+										"sink": {
+											"name": "Aug",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['sep']"
+										},
+										"sink": {
+											"name": "Sep",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['oct']"
+										},
+										"sink": {
+											"name": "Oct",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nov']"
+										},
+										"sink": {
+											"name": "Nov",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['dec']"
+										},
+										"sink": {
+											"name": "Dec",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['total']"
+										},
+										"sink": {
+											"name": "Total",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "$['reportSection']"
+										},
+										"sink": {
+											"name": "Section",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "3347NFS",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "3351",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "3347ButterFat",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "3347NFS",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['report_month']"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_year']"
+										},
+										"sink": {
+											"name": "Year",
 											"type": "String"
 										}
 									},
@@ -8364,6 +7686,15 @@
 									},
 									{
 										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
 											"path": "$['reportSection']"
 										},
 										"sink": {
@@ -8378,7 +7709,461 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "3347NFS",
+								"referenceName": "3347Butterfat",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "3351",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "3347Utilisation",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "3347ButterFat",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['report_month']"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_year']"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Pool_order_No']"
+										},
+										"sink": {
+											"name": "PONumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jan']"
+										},
+										"sink": {
+											"name": "Jan",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['feb']"
+										},
+										"sink": {
+											"name": "Feb",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mar']"
+										},
+										"sink": {
+											"name": "Mar",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['apr']"
+										},
+										"sink": {
+											"name": "Apr",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['may']"
+										},
+										"sink": {
+											"name": "May",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jun']"
+										},
+										"sink": {
+											"name": "Jun",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jul']"
+										},
+										"sink": {
+											"name": "Jul",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['aug']"
+										},
+										"sink": {
+											"name": "Aug",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['sep']"
+										},
+										"sink": {
+											"name": "Sep",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['oct']"
+										},
+										"sink": {
+											"name": "Oct",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nov']"
+										},
+										"sink": {
+											"name": "Nov",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['dec']"
+										},
+										"sink": {
+											"name": "Dec",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['total']"
+										},
+										"sink": {
+											"name": "Total",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "$['reportSection']"
+										},
+										"sink": {
+											"name": "Section",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "3347Utilization",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "3351",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "3347Milk",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "3347Utilisation",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['report_month']"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_year']"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Pool_order_No']"
+										},
+										"sink": {
+											"name": "PONumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jan']"
+										},
+										"sink": {
+											"name": "Jan",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['feb']"
+										},
+										"sink": {
+											"name": "Feb",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mar']"
+										},
+										"sink": {
+											"name": "Mar",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['apr']"
+										},
+										"sink": {
+											"name": "Apr",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['may']"
+										},
+										"sink": {
+											"name": "May",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jun']"
+										},
+										"sink": {
+											"name": "Jun",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jul']"
+										},
+										"sink": {
+											"name": "Jul",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['aug']"
+										},
+										"sink": {
+											"name": "Aug",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['sep']"
+										},
+										"sink": {
+											"name": "Sep",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['oct']"
+										},
+										"sink": {
+											"name": "Oct",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nov']"
+										},
+										"sink": {
+											"name": "Nov",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['dec']"
+										},
+										"sink": {
+											"name": "Dec",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['total']"
+										},
+										"sink": {
+											"name": "Total",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "$['reportSection']"
+										},
+										"sink": {
+											"name": "Section",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "3347Milk",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -8447,15 +8232,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -8591,6 +8367,15 @@
 									},
 									{
 										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
 											"path": "$['reportSection']"
 										},
 										"sink": {
@@ -8619,7 +8404,7 @@
 						]
 					},
 					{
-						"name": "3348Utilization",
+						"name": "3348Utilisation",
 						"type": "Copy",
 						"dependsOn": [
 							{
@@ -8674,15 +8459,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -8818,6 +8594,15 @@
 									},
 									{
 										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
 											"path": "$['reportSection']"
 										},
 										"sink": {
@@ -8846,11 +8631,11 @@
 						]
 					},
 					{
-						"name": "3348Butterfat",
+						"name": "3348ButterFat",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "3348Utilization",
+								"activity": "3348Utilisation",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -8901,15 +8686,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -9041,6 +8817,15 @@
 										"sink": {
 											"name": "SlugID",
 											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -9077,7 +8862,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "3348Butterfat",
+								"activity": "3348ButterFat",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -9123,15 +8908,6 @@
 										},
 										"sink": {
 											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
 											"type": "String"
 										}
 									},
@@ -9268,6 +9044,15 @@
 										"sink": {
 											"name": "SlugID",
 											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -9355,15 +9140,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -9495,6 +9271,15 @@
 										"sink": {
 											"name": "SlugID",
 											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -9575,15 +9360,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -9719,6 +9495,15 @@
 									},
 									{
 										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
 											"path": "$['reportSection']"
 										},
 										"sink": {
@@ -9747,7 +9532,7 @@
 						]
 					},
 					{
-						"name": "3349Utilization",
+						"name": "3349Utilisation",
 						"type": "Copy",
 						"dependsOn": [
 							{
@@ -9802,15 +9587,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -9946,6 +9722,15 @@
 									},
 									{
 										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
 											"path": "$['reportSection']"
 										},
 										"sink": {
@@ -9974,11 +9759,11 @@
 						]
 					},
 					{
-						"name": "3349Butterfat",
+						"name": "3349ButterFat",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "3349Utilization",
+								"activity": "3349Utilisation",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -10029,15 +9814,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -10169,6 +9945,15 @@
 										"sink": {
 											"name": "SlugID",
 											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -10205,7 +9990,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "3349Butterfat",
+								"activity": "3349ButterFat",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -10251,15 +10036,6 @@
 										},
 										"sink": {
 											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
 											"type": "String"
 										}
 									},
@@ -10396,6 +10172,15 @@
 										"sink": {
 											"name": "SlugID",
 											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -10435,15 +10220,14 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/3346Milk')]",
-				"[concat(variables('factoryId'), '/datasets/3351')]",
-				"[concat(variables('factoryId'), '/datasets/3346Utilization')]",
-				"[concat(variables('factoryId'), '/datasets/3346Butterfat')]",
 				"[concat(variables('factoryId'), '/datasets/3346NFS')]",
-				"[concat(variables('factoryId'), '/datasets/3347Milk')]",
-				"[concat(variables('factoryId'), '/datasets/3347Utilization')]",
-				"[concat(variables('factoryId'), '/datasets/3347Butterfat')]",
+				"[concat(variables('factoryId'), '/datasets/3351')]",
+				"[concat(variables('factoryId'), '/datasets/3346Butterfat')]",
+				"[concat(variables('factoryId'), '/datasets/3346Milk')]",
 				"[concat(variables('factoryId'), '/datasets/3347NFS')]",
+				"[concat(variables('factoryId'), '/datasets/3347Butterfat')]",
+				"[concat(variables('factoryId'), '/datasets/3347Utilization')]",
+				"[concat(variables('factoryId'), '/datasets/3347Milk')]",
 				"[concat(variables('factoryId'), '/datasets/3348Milk')]",
 				"[concat(variables('factoryId'), '/datasets/3348Utilization')]",
 				"[concat(variables('factoryId'), '/datasets/3348Butterfat')]",
@@ -10462,688 +10246,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "3350Producers",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3350receipts",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3350Producers",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3350receipts",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3350AvgDaily",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "350Receipts",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3350AvgDaily",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3350Butterfat",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3350AvgDaily",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3350Butterfat",
+						"name": "3350SomCell",
 						"type": "Copy",
 						"dependsOn": [
 							{
@@ -11356,7 +10459,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "3550Butterfat",
+								"referenceName": "3350SomCell",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -12099,15 +11202,6 @@
 									},
 									{
 										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
 											"path": "[['Pool_order_No']"
 										},
 										"sink": {
@@ -12239,6 +11333,15 @@
 										"sink": {
 											"name": "SlugID",
 											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
 										}
 									},
 									{
@@ -12470,7 +11573,16 @@
 									},
 									{
 										"source": {
-											"path": "$['reportSection']"
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reportSection']"
 										},
 										"sink": {
 											"name": "Section",
@@ -12950,6 +12062,233 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "3350Producers",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "3350SomCell",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['report_month']"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_year']"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Pool_order_No']"
+										},
+										"sink": {
+											"name": "PONumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jan']"
+										},
+										"sink": {
+											"name": "Jan",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['feb']"
+										},
+										"sink": {
+											"name": "Feb",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mar']"
+										},
+										"sink": {
+											"name": "Mar",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['apr']"
+										},
+										"sink": {
+											"name": "Apr",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['may']"
+										},
+										"sink": {
+											"name": "May",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jun']"
+										},
+										"sink": {
+											"name": "Jun",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jul']"
+										},
+										"sink": {
+											"name": "Jul",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['aug']"
+										},
+										"sink": {
+											"name": "Aug",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['sep']"
+										},
+										"sink": {
+											"name": "Sep",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['oct']"
+										},
+										"sink": {
+											"name": "Oct",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nov']"
+										},
+										"sink": {
+											"name": "Nov",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['dec']"
+										},
+										"sink": {
+											"name": "Dec",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['total']"
+										},
+										"sink": {
+											"name": "Total",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "$['reportSection']"
+										},
+										"sink": {
+											"name": "Section",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "3350Producers",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "3351",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -12959,18 +12298,16 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/3350Producers')]",
+				"[concat(variables('factoryId'), '/datasets/3350SomCell')]",
 				"[concat(variables('factoryId'), '/datasets/3351')]",
-				"[concat(variables('factoryId'), '/datasets/350Receipts')]",
-				"[concat(variables('factoryId'), '/datasets/3350AvgDaily')]",
-				"[concat(variables('factoryId'), '/datasets/3550Butterfat')]",
 				"[concat(variables('factoryId'), '/datasets/3461Producers')]",
 				"[concat(variables('factoryId'), '/datasets/3461Receipts')]",
 				"[concat(variables('factoryId'), '/datasets/3461AvgDaily')]",
 				"[concat(variables('factoryId'), '/datasets/3462Receipts')]",
 				"[concat(variables('factoryId'), '/datasets/3462Butterfat')]",
 				"[concat(variables('factoryId'), '/datasets/3462NFS')]",
-				"[concat(variables('factoryId'), '/datasets/3462Protein')]"
+				"[concat(variables('factoryId'), '/datasets/3462Protein')]",
+				"[concat(variables('factoryId'), '/datasets/3350Producers')]"
 			]
 		},
 		{
@@ -12982,14 +12319,7 @@
 					{
 						"name": "3351Milk",
 						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3352",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -13207,465 +12537,11 @@
 						]
 					},
 					{
-						"name": "3351ButterFat",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3351PPD",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3351Butterfat",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3351Skim",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3351Milk",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3351Skim",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
 						"name": "3351PPD",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "3351Skim",
+								"activity": "3351Milk",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -13888,1126 +12764,7 @@
 						]
 					},
 					{
-						"name": "3352",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3353",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Producer_Receipts']"
-										},
-										"sink": {
-											"name": "ProdRec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Producer_Receipts_Diff']"
-										},
-										"sink": {
-											"name": "ProdRecDiff",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassI_Util']"
-										},
-										"sink": {
-											"name": "Class1Ut",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassI_Util_Diff']"
-										},
-										"sink": {
-											"name": "Class1UtDiff",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassI_Util_Percent']"
-										},
-										"sink": {
-											"name": "Class1UtPerc",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassII_Util_Percent']"
-										},
-										"sink": {
-											"name": "Class2UtPerc",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassIII_Util_Percent']"
-										},
-										"sink": {
-											"name": "Class3UtPerc",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassIV_Util_Percent']"
-										},
-										"sink": {
-											"name": "Class4UtPerc",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Uniform_Price']"
-										},
-										"sink": {
-											"name": "UniformPrice",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": true
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3352",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3352_3353",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3353",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3354",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Producer_Receipts']"
-										},
-										"sink": {
-											"name": "ProdRec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Producer_Receipts_Diff']"
-										},
-										"sink": {
-											"name": "ProdRecDiff",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassI_Util']"
-										},
-										"sink": {
-											"name": "Class1Ut",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassI_Util_Diff']"
-										},
-										"sink": {
-											"name": "Class1UtDiff",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassI_Util_Percent']"
-										},
-										"sink": {
-											"name": "Class1UtPerc",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassII_Util_Percent']"
-										},
-										"sink": {
-											"name": "Class2UtPerc",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassIII_Util_Percent']"
-										},
-										"sink": {
-											"name": "Class3UtPerc",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassIV_Util_Percent']"
-										},
-										"sink": {
-											"name": "Class4UtPerc",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Uniform_Price']"
-										},
-										"sink": {
-											"name": "UniformPrice",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": true
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3353",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3352_3353",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
 						"name": "3354",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3355",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['MarketingArea']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['order_no']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Price_Whole']"
-										},
-										"sink": {
-											"name": "Whole",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Price_Skim']"
-										},
-										"sink": {
-											"name": "Skim",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Price_Butterfat']"
-										},
-										"sink": {
-											"name": "Butterfat",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": true
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3354",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "imp3354",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3355",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3345MIlk",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['MarketingArea']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['order_no']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassIWhole']"
-										},
-										"sink": {
-											"name": "Class1Whole",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassIIWhole']"
-										},
-										"sink": {
-											"name": "Class2Whole",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassIIIWhole']"
-										},
-										"sink": {
-											"name": "Class3Whole",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['ClassIVWhole']"
-										},
-										"sink": {
-											"name": "Class4Whole",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": true
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3355",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "imp3355",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3345MIlk",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3345ButterFat",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3345milk",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3345ButterFat",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "3345Skim",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink"
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['report_month']"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['report_year']"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_Order_Name']"
-										},
-										"sink": {
-											"name": "POName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['Pool_order_No']"
-										},
-										"sink": {
-											"name": "PONumber",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jan']"
-										},
-										"sink": {
-											"name": "Jan",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['feb']"
-										},
-										"sink": {
-											"name": "Feb",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['mar']"
-										},
-										"sink": {
-											"name": "Mar",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['apr']"
-										},
-										"sink": {
-											"name": "Apr",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['may']"
-										},
-										"sink": {
-											"name": "May",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jun']"
-										},
-										"sink": {
-											"name": "Jun",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['jul']"
-										},
-										"sink": {
-											"name": "Jul",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['aug']"
-										},
-										"sink": {
-											"name": "Aug",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['sep']"
-										},
-										"sink": {
-											"name": "Sep",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['oct']"
-										},
-										"sink": {
-											"name": "Oct",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['nov']"
-										},
-										"sink": {
-											"name": "Nov",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['dec']"
-										},
-										"sink": {
-											"name": "Dec",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['total']"
-										},
-										"sink": {
-											"name": "Total",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['slug_id']"
-										},
-										"sink": {
-											"name": "SlugID",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
-									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "3345butterfat",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "3351",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "3345Skim",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -15020,13 +12777,9 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
 							},
 							"sink": {
 								"type": "AzureSqlSink"
@@ -15035,6 +12788,15 @@
 							"translator": {
 								"type": "TabularTranslator",
 								"mappings": [
+									{
+										"source": {
+											"path": "$['reportSection']"
+										},
+										"sink": {
+											"name": "Section",
+											"type": "String"
+										}
+									},
 									{
 										"source": {
 											"path": "[['report_month']"
@@ -15196,24 +12958,13 @@
 											"name": "SlugID",
 											"type": "String"
 										}
-									},
-									{
-										"source": {
-											"path": "$['reportSection']"
-										},
-										"sink": {
-											"name": "Section",
-											"type": "String"
-										}
 									}
-								],
-								"collectionReference": "$['results']",
-								"mapComplexValuesToString": false
+								]
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "3345Skim",
+								"referenceName": "imp3354",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -15236,19 +12987,8 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/3351Milk')]",
 				"[concat(variables('factoryId'), '/datasets/3351')]",
-				"[concat(variables('factoryId'), '/datasets/3351Butterfat')]",
-				"[concat(variables('factoryId'), '/datasets/3351Skim')]",
 				"[concat(variables('factoryId'), '/datasets/3351PPD')]",
-				"[concat(variables('factoryId'), '/datasets/3352')]",
-				"[concat(variables('factoryId'), '/datasets/3352_3353')]",
-				"[concat(variables('factoryId'), '/datasets/3353')]",
-				"[concat(variables('factoryId'), '/datasets/3354')]",
-				"[concat(variables('factoryId'), '/datasets/imp3354')]",
-				"[concat(variables('factoryId'), '/datasets/3355')]",
-				"[concat(variables('factoryId'), '/datasets/imp3355')]",
-				"[concat(variables('factoryId'), '/datasets/3345milk')]",
-				"[concat(variables('factoryId'), '/datasets/3345butterfat')]",
-				"[concat(variables('factoryId'), '/datasets/3345Skim')]"
+				"[concat(variables('factoryId'), '/datasets/imp3354')]"
 			]
 		},
 		{
@@ -26628,6 +24368,504 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/test pip')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "imp2991",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['week_ending_date']"
+										},
+										"sink": {
+											"name": "WeekEnding",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "[['class_2_Price']"
+										},
+										"sink": {
+											"name": "Class2Price",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['class_2_butterfat_Price']"
+										},
+										"sink": {
+											"name": "Class2ButterFat",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['advanced_skim_milk_class_2_Price']"
+										},
+										"sink": {
+											"name": "AdvSkimClass2",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['class_3_Price']"
+										},
+										"sink": {
+											"name": "Class3Price",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['class_3_skim_milk_Price']"
+										},
+										"sink": {
+											"name": "Class3Skim",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['class_4_Price']"
+										},
+										"sink": {
+											"name": "Class4Price",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['class_4_skim_milk_Price']"
+										},
+										"sink": {
+											"name": "Class4Skim",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['butterfat_Price']"
+										},
+										"sink": {
+											"name": "ButterFat",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nonfat_solids_Price']"
+										},
+										"sink": {
+											"name": "NonFatSolids",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['protein_Price']"
+										},
+										"sink": {
+											"name": "Protein",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['other_solids_Price']"
+										},
+										"sink": {
+											"name": "OtherSolids",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['somatic_cell_adjustment_Rate']"
+										},
+										"sink": {
+											"name": "SomaticCellAdj",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['butter_monthly_avg_Price']"
+										},
+										"sink": {
+											"name": "ButterMonthlyAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nfdm_monthly_avg_Price']"
+										},
+										"sink": {
+											"name": "NFDMMonthlyAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['cheese_monthly_avg_Price']"
+										},
+										"sink": {
+											"name": "CheeseMonthlyAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['cheese_monthly_40p_Price']"
+										},
+										"sink": {
+											"name": "CheeseMonthly40pAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['cheese_monthly_500p_Price']"
+										},
+										"sink": {
+											"name": "CheeseMonthly500PAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['whey_monthly_avg_Price']"
+										},
+										"sink": {
+											"name": "WheyMonthlyAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_title']"
+										},
+										"sink": {
+											"name": "ReportTitle",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "rest2991",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "table2991",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "imp2989",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "imp2991",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['week_ending_date']"
+										},
+										"sink": {
+											"name": "WeekEnding",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "[['base_class_1_Price']"
+										},
+										"sink": {
+											"name": "BaseClass1Price",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['base_skim_milk_class_1_Price']"
+										},
+										"sink": {
+											"name": "BaseSkimClass1",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['advanced_skim_milk_class_3_Factor']"
+										},
+										"sink": {
+											"name": "AdvSkimClass3Factor",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['advanced_skim_milk_class_4_Factor']"
+										},
+										"sink": {
+											"name": "AdvSkimClass4Factor",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['advanced_butterfat_factor']"
+										},
+										"sink": {
+											"name": "AdvButterFatFactor",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['skim_milk_class_2_Price']"
+										},
+										"sink": {
+											"name": "SkimClass2",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nonfat_solids_class_2_Price']"
+										},
+										"sink": {
+											"name": "NonFatSolidsClass2",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['butter_two_week_avg_Price']"
+										},
+										"sink": {
+											"name": "Butter2WeekAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nfdm_two_week_avg_Price']"
+										},
+										"sink": {
+											"name": "NFDM2WeekAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['cheese_two_week_avg_Price']"
+										},
+										"sink": {
+											"name": "Cheese2WeekAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['cheese_two_week_40p_Price']"
+										},
+										"sink": {
+											"name": "Cheese2Week40pAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['cheese_two_week_500p_Price']"
+										},
+										"sink": {
+											"name": "Cheese2Week500pAvg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['whey_two_week_Price']"
+										},
+										"sink": {
+											"name": "Whey2WeekPrice",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['diesel_fuel_Price']"
+										},
+										"sink": {
+											"name": "DieselPrice",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mileage_rate_factor']"
+										},
+										"sink": {
+											"name": "MieageRateFactor",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_title']"
+										},
+										"sink": {
+											"name": "ReportTitle",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "imp2989",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "2989",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/rest2991')]",
+				"[concat(variables('factoryId'), '/datasets/table2991')]",
+				"[concat(variables('factoryId'), '/datasets/imp2989')]",
+				"[concat(variables('factoryId'), '/datasets/2989')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/10YearDairyProd')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -26661,6 +24899,127 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/10YearDairyStocks')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/2989')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "WeekEnding",
+						"type": "date"
+					},
+					{
+						"name": "BaseClass1Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "BaseSkimClass1",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "AdvSkimClass3Factor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "AdvSkimClass4Factor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "AdvButterFatFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SkimClass2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "NonFatSolidsClass2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Butter2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "NFDM2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Cheese2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Cheese2Week40pAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Cheese2Week500pAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Whey2WeekPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "DieselPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "MieageRateFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SlugID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "PRICING",
+					"table": "Imp2989"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
 		{
@@ -27057,6 +25416,24 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/3350Producers')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3350SomCell')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3350SomCell",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/3350SomCell')]"
 			]
 		},
 		{
@@ -29658,7 +28035,7 @@
 					"sheetName": "Ice Cream",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "Ice Cream import.xlsx",
+						"fileName": "Ice Cream Import New.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
@@ -32930,6 +31307,24 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/imp2989')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "imp2989",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/imp2989')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/imp3354')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -33057,6 +31452,175 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/FMMOSreports')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/rest2991')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "rest2991",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/rest2991')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/table2991')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "WeekEnding",
+						"type": "date"
+					},
+					{
+						"name": "PublishDate",
+						"type": "date"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "date"
+					},
+					{
+						"name": "Class2Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class2ButterFat",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "AdvSkimClass2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class3Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class3Skim",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class4Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class4Skim",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "ButterFat",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "NonFatSolids",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Protein",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "OtherSolids",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SomaticCellAdj",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "ButterMonthlyAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "NFDMMonthlyAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "CheeseMonthlyAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "CheeseMonthly40pAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "CheeseMonthly500PAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "WheyMonthlyAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SlugID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ReportTitle",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PRICING",
+					"table": "imp2991"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
 		{
@@ -34574,6 +33138,36 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/imp2989')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('imp2989_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/imp2991')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('imp2991_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/report1044')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -34609,6 +33203,21 @@
 						"type": "SecureString",
 						"value": "[parameters('report1603_password')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/rest2991')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('rest2991_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
 				}
 			},
 			"dependsOn": []
