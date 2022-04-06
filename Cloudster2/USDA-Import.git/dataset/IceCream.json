@@ -11,7 +11,7 @@
 			"sheetName": "Ice Cream",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Ice Cream import.xlsx",
+				"fileName": "Ice Cream Import New.xlsx",
 				"container": "trade-data-container"
 			},
 			"firstRowAsHeader": true
