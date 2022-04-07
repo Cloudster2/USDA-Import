@@ -24376,14 +24376,7 @@
 					{
 						"name": "trigger logic",
 						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "Xrate Blob Transfer",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -24402,7 +24395,14 @@
 					{
 						"name": "Xrate Blob Transfer",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "trigger logic",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
