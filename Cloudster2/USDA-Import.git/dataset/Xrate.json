@@ -1,0 +1,50 @@
+{
+	"name": "Xrate",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "EXCHANGE_RATE_REPORT",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Exchange_Rate_Report1.xls.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Australian dollar   (AUD)                     ",
+				"type": "String"
+			},
+			{
+				"name": "Euro   (EUR)                     ",
+				"type": "String"
+			},
+			{
+				"name": "Mexican peso   (MXN)                     ",
+				"type": "String"
+			},
+			{
+				"name": "New Zealand dollar   (NZD)                     ",
+				"type": "String"
+			},
+			{
+				"name": "Polish Zloty (PLN)",
+				"type": "String"
+			},
+			{
+				"name": "U.S. dollar   (USD)                     ",
+				"type": "String"
+			}
+		]
+	}
+}
