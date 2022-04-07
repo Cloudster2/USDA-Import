@@ -24368,6 +24368,187 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Xchange Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "trigger logic",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Xrate Blob Transfer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://prod-81.westus.logic.azure.com:443/workflows/698a50a012c24d82ac7eb1e0f3bf17bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uGL7WkC3-T_TZU54M9xXBILgT6GQp2d-GAltobux_3I",
+							"method": "GET",
+							"headers": {},
+							"body": "https://prod-81.westus.logic.azure.com:443/workflows/698a50a012c24d82ac7eb1e0f3bf17bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uGL7WkC3-T_TZU54M9xXBILgT6GQp2d-GAltobux_3I"
+						}
+					},
+					{
+						"name": "Xrate Blob Transfer",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table xrateimport",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Date",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Date",
+											"type": "DateTime",
+											"physicalType": "date"
+										}
+									},
+									{
+										"source": {
+											"name": "Euro   (EUR)                     ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Euro_USD",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 6,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "Polish Zloty (PLN)",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PLN_USD",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 6,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "New Zealand dollar   (NZD)                     ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "NZD_USD",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 6,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "Australian dollar   (AUD)                     ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "AUD_USD",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 6,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "Mexican peso   (MXN)                     ",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "MXN_USD",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 6,
+											"precision": 18
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Xrate",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "XrateImport",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Xrate')]",
+				"[concat(variables('factoryId'), '/datasets/XrateImport')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/test pip')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -31286,6 +31467,138 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Xrate')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "EXCHANGE_RATE_REPORT",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Exchange_Rate_Report1.xls.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Australian dollar   (AUD)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Euro   (EUR)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Mexican peso   (MXN)                     ",
+						"type": "String"
+					},
+					{
+						"name": "New Zealand dollar   (NZD)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Polish Zloty (PLN)",
+						"type": "String"
+					},
+					{
+						"name": "U.S. dollar   (USD)                     ",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XrateImport')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Date",
+						"type": "date"
+					},
+					{
+						"name": "Euro_Zloty",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "Euro_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "PLN_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "NZD_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "AUD_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "MXN_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "week",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "day",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "XRateImport"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/fmmosreports')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -33469,6 +33782,37 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/Slaughter Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XRate Ttigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Transfers Xrates weekly from excel file ",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Xchange Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 7,
+						"startTime": "2022-04-08T11:45:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Xchange Pipeline')]"
 			]
 		},
 		{
