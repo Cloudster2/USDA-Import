@@ -1,0 +1,25 @@
+{
+	"name": "XRate Ttigger",
+	"properties": {
+		"description": "Transfers Xrates weekly from excel file ",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Xchange Pipeline",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 7,
+				"startTime": "2022-04-08T11:45:00",
+				"timeZone": "Mountain Standard Time"
+			}
+		}
+	}
+}
