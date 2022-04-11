@@ -1,0 +1,12 @@
+{
+	"name": "Current_ALL_NoMXBY",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Current ALL NOMXBY",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
