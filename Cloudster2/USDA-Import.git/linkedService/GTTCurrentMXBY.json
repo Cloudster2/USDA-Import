@@ -1,0 +1,12 @@
+{
+	"name": "GTTCurrentMXBY",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&latestmonths=12&periodtype=M&currency=USD&decimalscale=2&layout=brief&hscode=MXBYIncl&reporter=NOMXBY,MX,BY",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
