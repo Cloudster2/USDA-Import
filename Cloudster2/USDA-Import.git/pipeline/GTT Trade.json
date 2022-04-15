@@ -672,7 +672,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "040690E",
+						"activity": "Run Prep and Calcs",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -832,7 +832,14 @@
 			{
 				"name": "040690E",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "rename table",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -853,7 +860,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "EXEC sp_rename 'GTT040690E', Temp1",
+						"preCopyScript": "truncate table GTTImportCurrent\nEXEC sp_rename 'GTT040690E','Temp1'",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -996,6 +1003,58 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "rename table",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "EXEC sp_rename 'Temp1','GTT040690E'\n\ntruncate table GTT040690E_BI\n\ninsert Into GTT040690E_BI(date,FlowType,Year,Month,Reporter,Partner,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nselect GTT040690E.Date,GTT040690E.FlowType,GTT040690E.Year,GTT040690E.Month,\nGTT040690E.Declarant,GTT040690E.Partner,GTT040690E.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nGTT040690E.item,CommodityTable.Commodity,ClassTable.Class,GTT040690E.Volume,GTT040690E.Unit,GTT040690E.Value,\nGTT040690E.Currency,GTT040690E.LB,GTT040690E.NormVal,GTT040690E.Normlbs,GTT040690E.MOMPerc,\nGTT040690E.MOMActualLbs,MOMNormLbs,GTT040690E.YOYPerc,GTT040690E.YOYActualLbs,GTT040690E.YOYNormLbs,\nGTT040690E.YTDperc,GTT040690E.YTDActualLbs,GTT040690E.YTDNormLbs,GTT040690E.Avg5Year,\nGTT040690E.Avg5YearVol \n\nFrom \n\nGTT040690E Inner Join ItemTable on GTT040690E.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n\n"
+						}
+					]
+				}
+			},
+			{
+				"name": "Run Prep and Calcs",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "040690E",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[GTTImportPrep]"
+				},
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
