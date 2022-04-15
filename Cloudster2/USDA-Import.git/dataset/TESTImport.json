@@ -1,5 +1,5 @@
 {
-	"name": "GTTCurrentNOMXBY",
+	"name": "TESTImport",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "tradeDB",
@@ -19,7 +19,7 @@
 			},
 			{
 				"name": "FlowType",
-				"type": "nchar"
+				"type": "varchar"
 			},
 			{
 				"name": "Year",
@@ -33,19 +33,19 @@
 			},
 			{
 				"name": "Declarant",
-				"type": "nvarchar"
+				"type": "varchar"
 			},
 			{
 				"name": "DeclarantCde",
-				"type": "nchar"
+				"type": "varchar"
 			},
 			{
 				"name": "Partner",
-				"type": "nvarchar"
+				"type": "varchar"
 			},
 			{
 				"name": "PartnerCde",
-				"type": "nchar"
+				"type": "varchar"
 			},
 			{
 				"name": "FamilyCde",
@@ -54,7 +54,7 @@
 			},
 			{
 				"name": "Code",
-				"type": "nchar"
+				"type": "varchar"
 			},
 			{
 				"name": "Item",
@@ -68,7 +68,7 @@
 			},
 			{
 				"name": "Unit",
-				"type": "nchar"
+				"type": "varchar"
 			},
 			{
 				"name": "Value",
@@ -78,7 +78,7 @@
 			},
 			{
 				"name": "Currency",
-				"type": "nchar"
+				"type": "varchar"
 			},
 			{
 				"name": "LB",
@@ -169,11 +169,16 @@
 				"type": "decimal",
 				"precision": 18,
 				"scale": 0
+			},
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
 			}
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "GTTCurrentNOMXBY"
+			"table": "WorkTable"
 		}
 	}
 }

@@ -1,0 +1,12 @@
+{
+	"name": "GTTCurrent",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GTTCurrent",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

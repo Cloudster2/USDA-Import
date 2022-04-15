@@ -1,0 +1,16 @@
+{
+	"name": "GTTImportCurrent",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tradeDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "DBO",
+			"table": "GTTImportCurrent"
+		}
+	}
+}
