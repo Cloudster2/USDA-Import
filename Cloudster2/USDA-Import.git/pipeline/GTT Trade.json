@@ -670,14 +670,7 @@
 			{
 				"name": "GTTCurrentMXBY",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Run Prep and Calcs",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -832,14 +825,7 @@
 			{
 				"name": "040690E",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "rename table",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1007,7 +993,14 @@
 			{
 				"name": "rename table",
 				"type": "Script",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Run Prep and Calcs",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
