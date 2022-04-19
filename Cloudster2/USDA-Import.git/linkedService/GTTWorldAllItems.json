@@ -1,0 +1,12 @@
+{
+	"name": "GTTWorldAllItems",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&from=2010-01&reporter=NoMXBY,MXBY&impexp=IE&hscode=MXBYIncl&partner=ZZ&accumulatepartnergroups=true",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
