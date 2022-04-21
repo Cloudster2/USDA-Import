@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069084,04069085,04069086,04069087,04069088,04069090,04069093,04069099&reporter=NoMXBY,MX,BY&partner=NoMXBY,MX,BY&latestmonths=&from=2010-01B5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069084,04069085,04069086,04069087,04069088,04069090,04069093,04069099&latestmonths=4&reporter=NoMXBY,MX,BY&partner=NoMXBY,MX,BY",
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069084,04069085,04069086,04069087,04069088,04069090,04069093,04069099&reporter=NoMXBY,MX,BY&partner=NoMXBY,MX,BY&latestmonths=&from=2010-01B5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069084,04069085,04069086,04069087,04069088,04069090,04069093,04069099&latestmonths=4&reporter=all&partner=all",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
