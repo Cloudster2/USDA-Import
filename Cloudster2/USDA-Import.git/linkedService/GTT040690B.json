@@ -1,0 +1,12 @@
+{
+	"name": "GTT040690B",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069019,04069020,04069021,04069023,04069025,04069027,04069029,04069031&reporter=all&partner=all&latestmonths=&from=2021-01",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
