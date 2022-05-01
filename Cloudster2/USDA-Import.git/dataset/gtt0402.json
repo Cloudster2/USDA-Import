@@ -1,0 +1,12 @@
+{
+	"name": "gtt0402",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GTT0402",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
