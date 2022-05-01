@@ -2930,7 +2930,14 @@
 			{
 				"name": "04069",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "rename table 1702",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -3141,6 +3148,674 @@
 						{
 							"type": "Query",
 							"text": "EXEC sp_rename 'Temp1','GTT04069'\ntruncate table GTT04069_BI\n\nInsert Into\nGTT04069_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nselect GTT04069.Date, GTT04069.FlowType, GTT04069.Year, GTT04069.Month,\nGTT04069.Declarant, GTT04069.DeclarantCde, GTT04069.Partner, GTT04069.PartnerCde, GTT04069.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTT04069.Volume, GTT04069.Unit, GTT04069.Value,\nGTT04069.Currency, GTT04069.LB, GTT04069.NormVal, GTT04069.Normlbs, GTT04069.MOMPerc,\nGTT04069.MOMActualLbs, GTT04069.MOMNormLbs, GTT04069.YOYPerc, GTT04069.YOYActualLbs, GTT04069.YOYNormLbs,\nGTT04069.YTDperc, GTT04069.YTDActualLbs, GTT04069.YTDNormLbs, GTT04069.Avg5Year,\nGTT04069.Avg5YearVol \n\nFrom \n\nGTT04069 Inner Join ItemTable on GTT04069.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n"
+						}
+					]
+				}
+			},
+			{
+				"name": "1702",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "rename table 3501",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:03:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table GTTImportCurrent\nexec sp_rename 'GTT1702','Temp1'",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['tradeFlow']"
+								},
+								"sink": {
+									"name": "tradeFlow",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['year']"
+								},
+								"sink": {
+									"name": "year",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['month']"
+								},
+								"sink": {
+									"name": "month",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['reporterCode']"
+								},
+								"sink": {
+									"name": "reporterCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['reporterName']"
+								},
+								"sink": {
+									"name": "reporterName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['partnerCode']"
+								},
+								"sink": {
+									"name": "partnerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['partnerName']"
+								},
+								"sink": {
+									"name": "partnerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['hsCode']"
+								},
+								"sink": {
+									"name": "hsCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['currency']"
+								},
+								"sink": {
+									"name": "currency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['value']"
+								},
+								"sink": {
+									"name": "value",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['unit1']"
+								},
+								"sink": {
+									"name": "unit1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['quantity1']"
+								},
+								"sink": {
+									"name": "quantity1",
+									"type": "Double"
+								}
+							}
+						],
+						"collectionReference": "$['reportData']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "gtt1702",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GTTImportCurrent",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Run Prep and Calcs 1702",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "1702",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[GTTImportPrep]"
+				},
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "rename table 1702",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Run Prep and Calcs 1702",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "EXEC sp_rename 'Temp1','GTT1702'\ntruncate table GTT1702_BI\n\nInsert Into\nGTT1702_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nselect GTT1702.Date, GTT1702.FlowType, GTT1702.Year, GTT1702.Month,\nGTT1702.Declarant, GTT1702.DeclarantCde, GTT1702.Partner, GTT1702.PartnerCde, GTT1702.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTT1702.Volume, GTT1702.Unit, GTT1702.Value,\nGTT1702.Currency, GTT1702.LB, GTT1702.NormVal, GTT1702.Normlbs, GTT1702.MOMPerc,\nGTT1702.MOMActualLbs, GTT1702.MOMNormLbs, GTT1702.YOYPerc, GTT1702.YOYActualLbs, GTT1702.YOYNormLbs,\nGTT1702.YTDperc, GTT1702.YTDActualLbs, GTT1702.YTDNormLbs, GTT1702.Avg5Year,\nGTT1702.Avg5YearVol \n\nFrom \n\nGTT1702 Inner Join ItemTable on GTT1702.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n"
+						}
+					]
+				}
+			},
+			{
+				"name": "3501",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "rename table 3502",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:03:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table GTTImportCurrent\nexec sp_rename 'GTT3501','Temp1'",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['tradeFlow']"
+								},
+								"sink": {
+									"name": "tradeFlow",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['year']"
+								},
+								"sink": {
+									"name": "year",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['month']"
+								},
+								"sink": {
+									"name": "month",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['reporterCode']"
+								},
+								"sink": {
+									"name": "reporterCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['reporterName']"
+								},
+								"sink": {
+									"name": "reporterName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['partnerCode']"
+								},
+								"sink": {
+									"name": "partnerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['partnerName']"
+								},
+								"sink": {
+									"name": "partnerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['hsCode']"
+								},
+								"sink": {
+									"name": "hsCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['currency']"
+								},
+								"sink": {
+									"name": "currency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['value']"
+								},
+								"sink": {
+									"name": "value",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['unit1']"
+								},
+								"sink": {
+									"name": "unit1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['quantity1']"
+								},
+								"sink": {
+									"name": "quantity1",
+									"type": "Double"
+								}
+							}
+						],
+						"collectionReference": "$['reportData']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "gtt3501",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GTTImportCurrent",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Run Prep and Calcs 3501",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "3501",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[GTTImportPrep]"
+				},
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "rename table 3501",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Run Prep and Calcs 3501",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "EXEC sp_rename 'Temp1','GTT3501'\ntruncate table GTT3501_BI\n\nInsert Into\nGTT3501_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nselect GTT3501.Date, GTT3501.FlowType, GTT3501.Year, GTT3501.Month,\nGTT3501.Declarant, GTT3501.DeclarantCde, GTT3501.Partner, GTT3501.PartnerCde, GTT3501.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTT3501.Volume, GTT3501.Unit, GTT3501.Value,\nGTT3501.Currency, GTT3501.LB, GTT3501.NormVal, GTT3501.Normlbs, GTT3501.MOMPerc,\nGTT3501.MOMActualLbs, GTT3501.MOMNormLbs, GTT3501.YOYPerc, GTT3501.YOYActualLbs, GTT3501.YOYNormLbs,\nGTT3501.YTDperc, GTT3501.YTDActualLbs, GTT3501.YTDNormLbs, GTT3501.Avg5Year,\nGTT3501.Avg5YearVol \n\nFrom \n\nGTT3501 Inner Join ItemTable on GTT3501.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n"
+						}
+					]
+				}
+			},
+			{
+				"name": "3502",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:03:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table GTTImportCurrent\nexec sp_rename 'GTT3502','Temp1'",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['tradeFlow']"
+								},
+								"sink": {
+									"name": "tradeFlow",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['year']"
+								},
+								"sink": {
+									"name": "year",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['month']"
+								},
+								"sink": {
+									"name": "month",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "['reporterCode']"
+								},
+								"sink": {
+									"name": "reporterCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['reporterName']"
+								},
+								"sink": {
+									"name": "reporterName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['partnerCode']"
+								},
+								"sink": {
+									"name": "partnerCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['partnerName']"
+								},
+								"sink": {
+									"name": "partnerName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['hsCode']"
+								},
+								"sink": {
+									"name": "hsCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['currency']"
+								},
+								"sink": {
+									"name": "currency",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['value']"
+								},
+								"sink": {
+									"name": "value",
+									"type": "Double"
+								}
+							},
+							{
+								"source": {
+									"path": "['unit1']"
+								},
+								"sink": {
+									"name": "unit1",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['quantity1']"
+								},
+								"sink": {
+									"name": "quantity1",
+									"type": "Double"
+								}
+							}
+						],
+						"collectionReference": "$['reportData']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "GTT3502",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "GTTImportCurrent",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Run Prep and Calcs 3502",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "3502",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[GTTImportPrep]"
+				},
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "rename table 3502",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Run Prep and Calcs 3502",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "EXEC sp_rename 'Temp1','GTT3502'\ntruncate table GTT3502_BI\n\nInsert Into\nGTT3502_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nselect GTT3502.Date, GTT3502.FlowType, GTT3502.Year, GTT3502.Month,\nGTT3502.Declarant, GTT3502.DeclarantCde, GTT3502.Partner, GTT3502.PartnerCde, GTT3502.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTT3502.Volume, GTT3502.Unit, GTT3502.Value,\nGTT3502.Currency, GTT3502.LB, GTT3502.NormVal, GTT3502.Normlbs, GTT3502.MOMPerc,\nGTT3502.MOMActualLbs, GTT3502.MOMNormLbs, GTT3502.YOYPerc, GTT3502.YOYActualLbs, GTT3502.YOYNormLbs,\nGTT3502.YTDperc, GTT3502.YTDActualLbs, GTT3502.YTDNormLbs, GTT3502.Avg5Year,\nGTT3502.Avg5YearVol \n\nFrom \n\nGTT3502 Inner Join ItemTable on GTT3502.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n"
 						}
 					]
 				}
