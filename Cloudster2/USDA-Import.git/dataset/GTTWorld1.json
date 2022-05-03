@@ -1,0 +1,12 @@
+{
+	"name": "GTTWorld1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GTTWorld1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
