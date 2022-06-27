@@ -1,0 +1,16 @@
+{
+	"name": "BRtesting",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BlueRockDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "sampletable"
+		}
+	}
+}

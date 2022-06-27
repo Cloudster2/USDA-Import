@@ -1,0 +1,70 @@
+{
+	"name": "BRTest",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Sheet1",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "WaterTestingSched.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Test Panel/Analyte",
+				"type": "String"
+			},
+			{
+				"name": "num samples",
+				"type": "String"
+			},
+			{
+				"name": "Compliance Period",
+				"type": "String"
+			},
+			{
+				"name": "Frequency",
+				"type": "String"
+			},
+			{
+				"name": "Last Sample Date",
+				"type": "String"
+			},
+			{
+				"name": "Next Sample Date",
+				"type": "String"
+			},
+			{
+				"name": "wellnum",
+				"type": "String"
+			},
+			{
+				"name": "Custom.Well_No",
+				"type": "String"
+			},
+			{
+				"name": "Custom.Type",
+				"type": "String"
+			},
+			{
+				"name": "Custom.Use",
+				"type": "String"
+			},
+			{
+				"name": "Custom.Susceptibility",
+				"type": "String"
+			},
+			{
+				"name": "Custom.System",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,145 @@
+{
+	"name": "BR",
+	"properties": {
+		"activities": [
+			{
+				"name": "TestInfo",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "WSID",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "WellID",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Test Panel/Analyte",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Test",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "num samples",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NumSamp",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
+									"name": "Compliance Period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "CompPeriod",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Frequency",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Frequency",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Last Sample Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "LastDateString",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Next Sample Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "NextDateString",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "BRTest",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "BRtesting",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}
