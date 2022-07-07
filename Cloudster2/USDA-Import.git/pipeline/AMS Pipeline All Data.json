@@ -2595,6 +2595,15 @@
 									"name": "MostlyHigh",
 									"type": "Decimal"
 								}
+							},
+							{
+								"source": {
+									"path": "['price_Unit']"
+								},
+								"sink": {
+									"name": "PriceUnit",
+									"type": "String"
+								}
 							}
 						],
 						"collectionReference": "$['results']"
