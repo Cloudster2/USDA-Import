@@ -5,7 +5,14 @@
 			{
 				"name": "TestInfo",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "ColiForm Sched",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -135,6 +142,143 @@
 				"outputs": [
 					{
 						"referenceName": "BRtesting",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "ColiForm Sched",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Water System Name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Water System Name",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "DOH IDNo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "DOH IDNo",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Source ",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Source ",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Routine Sample Address",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Routine Sample Address",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Rotation",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Rotation",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Location1: Repeat Sample",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Location1: Repeat Sample",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "Location2: Repeat Sample",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Location2: Repeat Sample",
+									"type": "String",
+									"physicalType": "String"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "BRTest",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ColiformSched",
 						"type": "DatasetReference"
 					}
 				]
