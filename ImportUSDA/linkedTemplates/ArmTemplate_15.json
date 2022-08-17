@@ -13,7 +13,247 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/Pricing')]",
+			"name": "[concat(parameters('factoryName'), '/gtt0402')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GTT0402",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04021')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt04021",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt0404')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GTT0404",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04041')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt04041",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt0405')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt0405",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04051')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt04051",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04061')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt04061",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04063')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt04063",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04069')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt04069",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt040690')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GTT040690",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt040690C')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GTT040690C",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt1702')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt1702",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt3501')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt3501",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt3504')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "gtt3504",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/imp2989')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "imp2989",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/imp3354')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -29,445 +269,104 @@
 						"type": "varchar"
 					},
 					{
-						"name": "Grp",
+						"name": "Section",
 						"type": "varchar"
 					},
 					{
-						"name": "Category",
+						"name": "PONumber",
 						"type": "varchar"
 					},
 					{
-						"name": "BeginDate",
+						"name": "POName",
 						"type": "varchar"
 					},
 					{
-						"name": "EndDate",
+						"name": "Whole",
 						"type": "varchar"
 					},
 					{
-						"name": "Grade",
+						"name": "Skim",
 						"type": "varchar"
 					},
 					{
-						"name": "Commodity",
+						"name": "Butterfat",
 						"type": "varchar"
-					},
-					{
-						"name": "MarketType",
-						"type": "varchar"
-					},
-					{
-						"name": "Community",
-						"type": "varchar"
-					},
-					{
-						"name": "Package",
-						"type": "varchar"
-					},
-					{
-						"name": "RangeLow",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 3
-					},
-					{
-						"name": "RangeHigh",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 3
-					},
-					{
-						"name": "MostlyLow",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 3
-					},
-					{
-						"name": "MostlyHigh",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 3
 					}
 				],
 				"typeProperties": {
-					"schema": "dbo",
-					"table": "Pricing"
+					"schema": "PRICING",
+					"table": "Imp3354"
 				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Report1043')]",
+			"name": "[concat(parameters('factoryName'), '/imp3355')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Report 1043",
+					"referenceName": "Sara Database",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1044')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "report1044",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1045')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1045",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1046')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1046",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1047')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1047",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1048')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1048",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1049')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1049",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1050')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1050",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1051')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1051",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1052')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1052",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1053')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1053",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1100')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1100",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1101')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1101",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1102')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Report1102",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1603')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "report1603",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report3358')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "FFMPS3358",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/RussiaTrade')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Russia",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Russia Trade.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
+				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "partner",
-						"type": "String"
+						"name": "SlugID",
+						"type": "varchar"
 					},
 					{
-						"name": "volume",
-						"type": "String"
+						"name": "Section",
+						"type": "varchar"
 					},
 					{
-						"name": "value_1",
-						"type": "String"
+						"name": "PONumber",
+						"type": "varchar"
 					},
 					{
-						"name": "unit",
-						"type": "String"
+						"name": "POName",
+						"type": "varchar"
 					},
 					{
-						"name": "declarant",
-						"type": "String"
+						"name": "Class1Whole",
+						"type": "varchar"
 					},
 					{
-						"name": "product",
-						"type": "String"
+						"name": "Class2Whole",
+						"type": "varchar"
 					},
 					{
-						"name": "productname",
-						"type": "String"
+						"name": "Class3Whole",
+						"type": "varchar"
 					},
 					{
-						"name": "flow",
-						"type": "String"
+						"name": "Class4Whole",
+						"type": "varchar"
 					},
 					{
-						"name": "period",
-						"type": "String"
+						"name": "Month",
+						"type": "varchar"
 					},
 					{
-						"name": "indicator",
-						"type": "String"
-					},
-					{
-						"name": "year",
-						"type": "String"
-					},
-					{
-						"name": "month",
-						"type": "String"
-					},
-					{
-						"name": "interval",
-						"type": "String"
-					},
-					{
-						"name": "datemonth",
-						"type": "String"
-					},
-					{
-						"name": "value_2",
-						"type": "String"
-					},
-					{
-						"name": "port",
-						"type": "String"
-					},
-					{
-						"name": "district",
-						"type": "String"
-					},
-					{
-						"name": "transport",
-						"type": "String"
-					},
-					{
-						"name": "partner_name",
-						"type": "String"
-					},
-					{
-						"name": "declarant_name",
-						"type": "String"
-					},
-					{
-						"name": "reported_or_mirrored",
-						"type": "String"
+						"name": "Year",
+						"type": "varchar"
 					}
-				]
+				],
+				"typeProperties": {
+					"schema": "PRICING",
+					"table": "Imp3355"
+				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SlaughterNationalAPI')]",
+			"name": "[concat(parameters('factoryName'), '/reports')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "SlaughterNationalImport",
+					"referenceName": "FMMOSreports",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
@@ -478,18 +377,167 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SlaughterRegionalAPI')]",
+			"name": "[concat(parameters('factoryName'), '/rest2991')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "SlaughterRegionalAPI",
+					"referenceName": "rest2991",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
 				"type": "RestResource",
 				"typeProperties": {},
 				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/table2991')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "WeekEnding",
+						"type": "date"
+					},
+					{
+						"name": "PublishDate",
+						"type": "date"
+					},
+					{
+						"name": "CreatedDate",
+						"type": "date"
+					},
+					{
+						"name": "Class2Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class2ButterFat",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "AdvSkimClass2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class3Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class3Skim",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class4Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Class4Skim",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "ButterFat",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "NonFatSolids",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Protein",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "OtherSolids",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SomaticCellAdj",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "ButterMonthlyAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "NFDMMonthlyAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "CheeseMonthlyAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "CheeseMonthly40pAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "CheeseMonthly500PAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "WheyMonthlyAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SlugID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ReportTitle",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PRICING",
+					"table": "imp2991"
+				}
 			},
 			"dependsOn": []
 		}

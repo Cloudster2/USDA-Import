@@ -13,748 +13,425 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/3358_1')]",
+			"name": "[concat(parameters('factoryName'), '/2989')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "3358_1",
+					"referenceName": "Sara Database",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3461AvgDaily')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3461AvgDaily",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3461Producers')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3461PRODUCERS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3461Receipts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3461receipts",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3462Butterfat')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3462Butterfat",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3462NFS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3462NFS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3462Protein')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3462Protein",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3462Receipts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3462Receipts",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/350Receipts')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "350Receipts",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3550Butterfat')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3550Butterfat",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AMSTest')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AMSTest",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ARTrade')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AR",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AR Trade.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
+				"type": "AzureSqlTable",
 				"schema": [
 					{
-						"name": "partner",
-						"type": "String"
+						"name": "WeekEnding",
+						"type": "date"
 					},
 					{
-						"name": "volume",
-						"type": "String"
+						"name": "BaseClass1Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "value_1",
-						"type": "String"
+						"name": "BaseSkimClass1",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "unit",
-						"type": "String"
+						"name": "AdvSkimClass3Factor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "declarant",
-						"type": "String"
+						"name": "AdvSkimClass4Factor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "product",
-						"type": "String"
+						"name": "AdvButterFatFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "productname",
-						"type": "String"
+						"name": "SkimClass2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "flow",
-						"type": "String"
+						"name": "NonFatSolidsClass2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "period",
-						"type": "String"
+						"name": "Butter2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "indicator",
-						"type": "String"
+						"name": "NFDM2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "year",
-						"type": "String"
+						"name": "Cheese2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "month",
-						"type": "String"
+						"name": "Cheese2Week40pAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "interval",
-						"type": "String"
+						"name": "Cheese2Week500pAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "datemonth",
-						"type": "String"
+						"name": "Whey2WeekPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "value_2",
-						"type": "String"
+						"name": "DieselPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "port",
-						"type": "String"
+						"name": "MieageRateFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
 					},
 					{
-						"name": "district",
-						"type": "String"
-					},
-					{
-						"name": "transport",
-						"type": "String"
-					},
-					{
-						"name": "partner_name",
-						"type": "String"
-					},
-					{
-						"name": "declarant_name",
-						"type": "String"
-					},
-					{
-						"name": "reported_or_mirrored",
-						"type": "String"
+						"name": "SlugID",
+						"type": "int",
+						"precision": 10
 					}
-				]
+				],
+				"typeProperties": {
+					"schema": "PRICING",
+					"table": "Imp2989"
+				}
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AUDairy')]",
+			"name": "[concat(parameters('factoryName'), '/3345Skim')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3345Skim",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Current Season",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Dairy Product Production.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Month",
-						"type": "String"
-					},
-					{
-						"name": "Production",
-						"type": "String"
-					},
-					{
-						"name": "Product",
-						"type": "String"
-					},
-					{
-						"name": "Season",
-						"type": "String"
-					},
-					{
-						"name": "Year",
-						"type": "String"
-					}
-				]
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AUSMilk')]",
+			"name": "[concat(parameters('factoryName'), '/3345butterfat')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3345butterfat",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AU Milk Production HIstory",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Milk Production and Components.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Period",
-						"type": "String"
-					},
-					{
-						"name": "NSW",
-						"type": "String"
-					},
-					{
-						"name": "VIC",
-						"type": "String"
-					},
-					{
-						"name": "QLD",
-						"type": "String"
-					},
-					{
-						"name": "SA",
-						"type": "String"
-					},
-					{
-						"name": "WA",
-						"type": "String"
-					},
-					{
-						"name": "TAS",
-						"type": "String"
-					},
-					{
-						"name": "AUSTRALIA",
-						"type": "String"
-					}
-				]
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AUTrade')]",
+			"name": "[concat(parameters('factoryName'), '/3345milk')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3345milk",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AU",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Trade.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "partner",
-						"type": "String"
-					},
-					{
-						"name": "volume",
-						"type": "String"
-					},
-					{
-						"name": "value_1",
-						"type": "String"
-					},
-					{
-						"name": "unit",
-						"type": "String"
-					},
-					{
-						"name": "declarant",
-						"type": "String"
-					},
-					{
-						"name": "product",
-						"type": "String"
-					},
-					{
-						"name": "productname",
-						"type": "String"
-					},
-					{
-						"name": "flow",
-						"type": "String"
-					},
-					{
-						"name": "period",
-						"type": "String"
-					},
-					{
-						"name": "indicator",
-						"type": "String"
-					},
-					{
-						"name": "year",
-						"type": "String"
-					},
-					{
-						"name": "month",
-						"type": "String"
-					},
-					{
-						"name": "interval",
-						"type": "String"
-					},
-					{
-						"name": "datemonth",
-						"type": "String"
-					},
-					{
-						"name": "value_2",
-						"type": "String"
-					},
-					{
-						"name": "port",
-						"type": "String"
-					},
-					{
-						"name": "district",
-						"type": "String"
-					},
-					{
-						"name": "transport",
-						"type": "String"
-					},
-					{
-						"name": "partner_name",
-						"type": "String"
-					},
-					{
-						"name": "declarant_name",
-						"type": "String"
-					},
-					{
-						"name": "reported_or_mirrored",
-						"type": "String"
-					}
-				]
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ArgentinaFat')]",
+			"name": "[concat(parameters('factoryName'), '/3346Butterfat')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3346Butterfat",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Butterfat",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AR Milk Dataset.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Año",
-						"type": "String"
-					},
-					{
-						"name": "NACIONAL",
-						"type": "String"
-					},
-					{
-						"name": "BUENOS AIRES",
-						"type": "String"
-					},
-					{
-						"name": "CÓRDOBA",
-						"type": "String"
-					},
-					{
-						"name": "ENTRE RÍOS",
-						"type": "String"
-					},
-					{
-						"name": " LA PAMPA",
-						"type": "String"
-					},
-					{
-						"name": "SANTA FE",
-						"type": "String"
-					},
-					{
-						"name": "SANTIAGO DEL ESTERO",
-						"type": "String"
-					}
-				]
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ArgentinaMilk')]",
+			"name": "[concat(parameters('factoryName'), '/3346Milk')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3346Milk",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AR Milk Production",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AR Milk Dataset.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					}
-				]
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ArgentinaProtein')]",
+			"name": "[concat(parameters('factoryName'), '/3346NFS')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3346NFS",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Protein",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AR Milk Dataset.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Año",
-						"type": "String"
-					},
-					{
-						"name": "NACIONAL",
-						"type": "String"
-					},
-					{
-						"name": "BUENOS AIRES",
-						"type": "String"
-					},
-					{
-						"name": "CÓRDOBA",
-						"type": "String"
-					},
-					{
-						"name": "ENTRE RÍOS",
-						"type": "String"
-					},
-					{
-						"name": " LA PAMPA",
-						"type": "String"
-					},
-					{
-						"name": "SANTA FE",
-						"type": "String"
-					},
-					{
-						"name": "SANTIAGO DEL ESTERO",
-						"type": "String"
-					}
-				]
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AusDairyLast')]",
+			"name": "[concat(parameters('factoryName'), '/3346Utilization')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3346Utilization",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Previous Season",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Dairy Product Production.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Month",
-						"type": "String"
-					},
-					{
-						"name": "Production",
-						"type": "String"
-					},
-					{
-						"name": "Product",
-						"type": "String"
-					},
-					{
-						"name": "Season",
-						"type": "String"
-					},
-					{
-						"name": "Year",
-						"type": "String"
-					}
-				]
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AusFat')]",
+			"name": "[concat(parameters('factoryName'), '/3347Butterfat')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
+					"referenceName": "3347Butterfat",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AU Milkfat",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Milk Production and Components.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3347Milk')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3347Milk",
+					"type": "LinkedServiceReference"
 				},
-				"schema": [
-					{
-						"name": "Column2",
-						"type": "String"
-					},
-					{
-						"name": "NSW",
-						"type": "String"
-					},
-					{
-						"name": "VIC",
-						"type": "String"
-					},
-					{
-						"name": "QLD",
-						"type": "String"
-					},
-					{
-						"name": "SA",
-						"type": "String"
-					},
-					{
-						"name": "WA",
-						"type": "String"
-					},
-					{
-						"name": "TAS",
-						"type": "String"
-					},
-					{
-						"name": "AUSTRALIA",
-						"type": "String"
-					}
-				]
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3347NFS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3347NFS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3347Utilization')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3347Utilization",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3348Butterfat')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3348Butterfat",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3348Milk')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3348Milk",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3348OtherSolids')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3348OtherSolids",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3348Protein')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3348Protein",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3348Utilization')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3348Utilization",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3349Butterfat')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3349Butterfat",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3349Milk')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3349Milk",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3349NFS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3349NFS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
 			},
 			"dependsOn": []
 		}
