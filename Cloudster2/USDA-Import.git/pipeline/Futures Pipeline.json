@@ -32,7 +32,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table futuresimp",
+						"preCopyScript": "truncate table futuresimp\n",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -189,7 +189,16 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[FuturesProcedure]"
+					"storedProcedureName": "[dbo].[FuturesProcedure]",
+					"storedProcedureParameters": {
+						"TimeStamp": {
+							"value": {
+								"value": "@utcnow()",
+								"type": "Expression"
+							},
+							"type": "Datetime"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Sara Database",
@@ -197,6 +206,11 @@
 				}
 			}
 		],
+		"variables": {
+			"TimeSTamp": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
