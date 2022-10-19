@@ -189,16 +189,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[dbo].[FuturesProcedure]",
-					"storedProcedureParameters": {
-						"TimeStamp": {
-							"value": {
-								"value": "@utcnow()",
-								"type": "Expression"
-							},
-							"type": "Datetime"
-						}
-					}
+					"storedProcedureName": "[dbo].[FuturesProcedure]"
 				},
 				"linkedServiceName": {
 					"referenceName": "Sara Database",
