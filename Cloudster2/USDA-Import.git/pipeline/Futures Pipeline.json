@@ -64,7 +64,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@{equals(variables('DateCheckVar'),'yes')}",
+						"value": "@equals(variables('DateCheckVar'),'Yes')",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [
@@ -233,6 +233,33 @@
 									"PipelineName": "@{pipeline().Pipeline}"
 								},
 								"timeout": "00:10:00"
+							}
+						},
+						{
+							"name": "FuturesCalcs",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "FuturesBlob_copy1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[FuturesProcedure]"
+							},
+							"linkedServiceName": {
+								"referenceName": "Sara Database",
+								"type": "LinkedServiceReference"
 							}
 						}
 					]
