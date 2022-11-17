@@ -278,7 +278,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ColiformSched",
+						"referenceName": "TESTImport",
 						"type": "DatasetReference"
 					}
 				]
