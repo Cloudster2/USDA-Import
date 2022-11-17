@@ -673,8 +673,7 @@
 									"path": "['week_ending']"
 								},
 								"sink": {
-									"name": "WeekEndingString",
-									"type": "String"
+									"name": "Year"
 								}
 							},
 							{
