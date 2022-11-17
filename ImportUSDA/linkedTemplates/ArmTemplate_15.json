@@ -13,6 +13,59 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Xrate')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "EXCHANGE_RATE_REPORT",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Exchange_Rate_Report1.xls.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Australian dollar   (AUD)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Euro   (EUR)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Mexican peso   (MXN)                     ",
+						"type": "String"
+					},
+					{
+						"name": "New Zealand dollar   (NZD)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Polish Zloty (PLN)",
+						"type": "String"
+					},
+					{
+						"name": "U.S. dollar   (USD)                     ",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/XrateImport')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -84,6 +137,22 @@
 					"schema": "dbo",
 					"table": "XRateImport"
 				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/checkdate')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
 			},
 			"dependsOn": []
 		},
@@ -391,82 +460,6 @@
 					"schema": "PRICING",
 					"table": "Imp3354"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/imp3355')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SlugID",
-						"type": "varchar"
-					},
-					{
-						"name": "Section",
-						"type": "varchar"
-					},
-					{
-						"name": "PONumber",
-						"type": "varchar"
-					},
-					{
-						"name": "POName",
-						"type": "varchar"
-					},
-					{
-						"name": "Class1Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Class2Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Class3Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Class4Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Month",
-						"type": "varchar"
-					},
-					{
-						"name": "Year",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PRICING",
-					"table": "Imp3355"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/reports')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "FMMOSreports",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
 			},
 			"dependsOn": []
 		}
