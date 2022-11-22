@@ -47,7 +47,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "DateCheckVar",
-					"value": "@activity('datecheck').output.firstRow.answer"
+					"value": {
+						"value": "@activity('datecheck').output.firstRow.answer",
+						"type": "Expression"
+					}
 				}
 			},
 			{

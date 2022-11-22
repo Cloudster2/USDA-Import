@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Triggers futures data",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
