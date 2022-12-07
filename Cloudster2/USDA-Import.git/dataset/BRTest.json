@@ -8,10 +8,10 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "Sheet1",
+			"sheetName": "ForImport",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Coliform Monitoring Plan.xlsx",
+				"fileName": "JasonImport.xlsx",
 				"container": "trade-data-container"
 			},
 			"firstRowAsHeader": true
