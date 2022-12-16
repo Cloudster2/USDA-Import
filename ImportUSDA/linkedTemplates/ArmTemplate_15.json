@@ -13,6 +13,22 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/WorldMXBY')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "WorldMXBY",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Xrate')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -412,54 +428,6 @@
 				"type": "RestResource",
 				"typeProperties": {},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/imp3354')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SlugID",
-						"type": "varchar"
-					},
-					{
-						"name": "Section",
-						"type": "varchar"
-					},
-					{
-						"name": "PONumber",
-						"type": "varchar"
-					},
-					{
-						"name": "POName",
-						"type": "varchar"
-					},
-					{
-						"name": "Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Skim",
-						"type": "varchar"
-					},
-					{
-						"name": "Butterfat",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PRICING",
-					"table": "Imp3354"
-				}
 			},
 			"dependsOn": []
 		}

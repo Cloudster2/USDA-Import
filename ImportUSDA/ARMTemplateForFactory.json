@@ -447,6 +447,10 @@
 			"type": "string",
 			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/apro_mt_pwgtm?precision=1&unit=THS_HD&meat=B1240&shortLabel=1&time=2021M01&time=2021M02&time=2021M03&time=2021M04"
 		},
+		"ICECREAMAPI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78  &commodity_desc=ICE CREAM&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010"
+		},
 		"MX BY Not Aggr_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=D6D61C6154D44C86FC10F410E47816D5&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&from=2010&to=&reporter=NoMXBY&impexp=IE&source=DEFAULT&hscode=NOMXBY&partner=zz&accumulatepartnergroups=true"
@@ -29132,7 +29136,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "ice cream save",
+								"activity": "ID Updates",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -29737,33 +29741,6 @@
 								"parameters": {}
 							}
 						]
-					},
-					{
-						"name": "ice cream save",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "ID Updates",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[USDA].[IceCreamSave]"
-						},
-						"linkedServiceName": {
-							"referenceName": "SaraDB connection",
-							"type": "LinkedServiceReference"
-						}
 					}
 				],
 				"policy": {
@@ -32093,10 +32070,10 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "Sheet1",
+					"sheetName": "ForImport",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "Coliform Monitoring Plan.xlsx",
+						"fileName": "JasonImport.xlsx",
 						"container": "trade-data-container"
 					},
 					"firstRowAsHeader": true
@@ -38090,6 +38067,7 @@
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
+				"description": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010",
 				"annotations": [],
 				"type": "RestService",
 				"typeProperties": {
@@ -39384,6 +39362,21 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ICECREAMAPI')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('ICECREAMAPI_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/MX BY Not Aggr')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -40344,7 +40337,7 @@
 			"properties": {
 				"description": "Triggers futures data",
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {

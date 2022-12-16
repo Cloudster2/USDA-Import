@@ -13,6 +13,22 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/3462NFS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3462NFS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/3462Protein')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -835,79 +851,6 @@
 					"schema": "dbo",
 					"table": "Pricing"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BRTest')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Sheet1",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "Coliform Monitoring Plan.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Test Panel/Analyte",
-						"type": "String"
-					},
-					{
-						"name": "num samples",
-						"type": "String"
-					},
-					{
-						"name": "Compliance Period",
-						"type": "String"
-					},
-					{
-						"name": "Frequency",
-						"type": "String"
-					},
-					{
-						"name": "Last Sample Date",
-						"type": "String"
-					},
-					{
-						"name": "Next Sample Date",
-						"type": "String"
-					},
-					{
-						"name": "wellnum",
-						"type": "String"
-					},
-					{
-						"name": "Custom.Well_No",
-						"type": "String"
-					},
-					{
-						"name": "Custom.Type",
-						"type": "String"
-					},
-					{
-						"name": "Custom.Use",
-						"type": "String"
-					},
-					{
-						"name": "Custom.Susceptibility",
-						"type": "String"
-					},
-					{
-						"name": "Custom.System",
-						"type": "String"
-					}
-				]
 			},
 			"dependsOn": []
 		}

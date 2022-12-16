@@ -13,6 +13,79 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/BRTest')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "ForImport",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "JasonImport.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Test Panel/Analyte",
+						"type": "String"
+					},
+					{
+						"name": "num samples",
+						"type": "String"
+					},
+					{
+						"name": "Compliance Period",
+						"type": "String"
+					},
+					{
+						"name": "Frequency",
+						"type": "String"
+					},
+					{
+						"name": "Last Sample Date",
+						"type": "String"
+					},
+					{
+						"name": "Next Sample Date",
+						"type": "String"
+					},
+					{
+						"name": "wellnum",
+						"type": "String"
+					},
+					{
+						"name": "Custom.Well_No",
+						"type": "String"
+					},
+					{
+						"name": "Custom.Type",
+						"type": "String"
+					},
+					{
+						"name": "Custom.Use",
+						"type": "String"
+					},
+					{
+						"name": "Custom.Susceptibility",
+						"type": "String"
+					},
+					{
+						"name": "Custom.System",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/BRtesting')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1189,25 +1262,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FFM3358')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "FFM",
-					"table": "FFM3358"
-				}
 			},
 			"dependsOn": []
 		}
