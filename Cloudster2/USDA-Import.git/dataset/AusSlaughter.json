@@ -14,15 +14,14 @@
 				"fileName": "AU Dataset Dairy Cow Slaughter.xlsx",
 				"container": "trade-data-container"
 			},
-			"firstRowAsHeader": true
+			"range": "",
+			"firstRowAsHeader": false
 		},
 		"schema": [
 			{
-				"name": "Date",
 				"type": "String"
 			},
 			{
-				"name": "Cow and Heifer Slaughter (1000)",
 				"type": "String"
 			}
 		]
