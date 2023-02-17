@@ -1,0 +1,25 @@
+{
+	"name": "AustSync",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "DateString",
+				"type": "varchar"
+			},
+			{
+				"name": "ValueString",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "Austemp"
+		}
+	}
+}
