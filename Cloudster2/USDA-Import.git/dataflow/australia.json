@@ -1,0 +1,64 @@
+{
+	"name": "australia",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AusSlaughter",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AustSync",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Date as string,",
+				"          {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     inferDriftedColumnTypes: true,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 derive(Date = Date,",
+				"          {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;} = {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;},",
+				"          column1 = toString(byPosition(1)),",
+				"          column2 = toString(byPosition(2))) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          DateString as string,",
+				"          ValueString as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     postSQLs:['Delete From Globl.austimp where  datestring is null\\nDelete from Globl.austimp where Datestring = \\'Date\\''],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          DateString = column1,",
+				"          ValueString = column2",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}

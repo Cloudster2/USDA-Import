@@ -210,7 +210,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Aus Dairy Last",
+						"activity": "AUstralia Slaughter Flow",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -226,12 +226,9 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "ExcelSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						}
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"sink": {
 						"type": "AzureSqlSink",
@@ -243,9 +240,9 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Date",
+									"name": "DateString",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "varchar"
 								},
 								"sink": {
 									"name": "DateString",
@@ -255,9 +252,9 @@
 							},
 							{
 								"source": {
-									"name": "Cow and Heifer Slaughter (1000)",
+									"name": "ValueString",
 									"type": "String",
-									"physicalType": "String"
+									"physicalType": "varchar"
 								},
 								"sink": {
 									"name": "ValueString",
@@ -275,7 +272,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "AusSlaughter",
+						"referenceName": "austslaughter",
 						"type": "DatasetReference"
 					}
 				],
@@ -371,6 +368,40 @@
 				"linkedServiceName": {
 					"referenceName": "Sara Database",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "AUstralia Slaughter Flow",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Aus Dairy Last",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "australia",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "None",
+					"cacheSinks": {
+						"firstRowOnly": true
+					}
 				}
 			}
 		],
