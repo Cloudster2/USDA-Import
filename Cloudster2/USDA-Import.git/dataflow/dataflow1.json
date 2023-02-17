@@ -24,6 +24,9 @@
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "alterRow1"
 				}
 			],
 			"scriptLines": [
@@ -34,8 +37,9 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Australia",
-				"Australia derive(Column_1 = ERROR_FUNCTION(''),",
+				"alterRow1 derive(Column_1 = ERROR_FUNCTION(''),",
 				"          Column_2 = ERROR_FUNCTION('')) ~> derivedColumn1",
+				"Australia alterRow(deleteIf(isMatch(1))) ~> alterRow1",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: true,",
 				"     input(",
