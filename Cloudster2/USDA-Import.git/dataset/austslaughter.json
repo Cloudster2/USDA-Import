@@ -1,0 +1,61 @@
+{
+	"name": "austslaughter",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Date",
+				"type": "date"
+			},
+			{
+				"name": "DateString",
+				"type": "varchar"
+			},
+			{
+				"name": "Cheddar",
+				"type": "varchar"
+			},
+			{
+				"name": "NonCheddar",
+				"type": "varchar"
+			},
+			{
+				"name": "Cheese",
+				"type": "varchar"
+			},
+			{
+				"name": "Butter",
+				"type": "varchar"
+			},
+			{
+				"name": "ButterOil",
+				"type": "varchar"
+			},
+			{
+				"name": "SMP",
+				"type": "varchar"
+			},
+			{
+				"name": "BMP",
+				"type": "varchar"
+			},
+			{
+				"name": "WMP",
+				"type": "varchar"
+			},
+			{
+				"name": "WheyPowder",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "AustImp"
+		}
+	}
+}
