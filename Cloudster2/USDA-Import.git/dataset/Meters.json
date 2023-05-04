@@ -1,0 +1,16 @@
+{
+	"name": "Meters",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BlueRockDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "DBO",
+			"table": "MeterInfo"
+		}
+	}
+}
