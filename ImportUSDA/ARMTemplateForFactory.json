@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
+		"Bizz_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Bizz'"
+		},
 		"BlueRockDB_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'BlueRockDB'"
@@ -117,11 +121,11 @@
 		},
 		"10YearDairyProd_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2018"
 		},
 		"10YearDairyStocks_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2010&freq_desc=POINT IN TIME"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2018&freq_desc=POINT IN TIME"
 		},
 		"3345Skim_properties_typeProperties_url": {
 			"type": "string",
@@ -317,7 +321,7 @@
 		},
 		"CowInventoryRest_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2018&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
 		},
 		"Current ALL NOMXBY_properties_typeProperties_url": {
 			"type": "string",
@@ -461,7 +465,7 @@
 		},
 		"MilkPerCowAPI_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2018&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
 		},
 		"NumberOfCowsAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -581,7 +585,7 @@
 		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2018&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
 		},
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -19891,7 +19895,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Aus Dairy Last",
+								"activity": "AUstralia Slaughter Flow",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -19907,12 +19911,9 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "ExcelSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								}
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
 							},
 							"sink": {
 								"type": "AzureSqlSink",
@@ -19924,9 +19925,9 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "Date",
+											"name": "DateString",
 											"type": "String",
-											"physicalType": "String"
+											"physicalType": "varchar"
 										},
 										"sink": {
 											"name": "DateString",
@@ -19936,9 +19937,9 @@
 									},
 									{
 										"source": {
-											"name": "Cow and Heifer Slaughter (1000)",
+											"name": "ValueString",
 											"type": "String",
-											"physicalType": "String"
+											"physicalType": "varchar"
 										},
 										"sink": {
 											"name": "ValueString",
@@ -19956,7 +19957,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "AusSlaughter",
+								"referenceName": "austslaughter",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -20055,6 +20056,46 @@
 							"referenceName": "Sara Database",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "AUstralia Slaughter Flow",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Aus Dairy Last",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "australia",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "None",
+							"cacheSinks": {
+								"firstRowOnly": true
+							}
+						}
 					}
 				],
 				"policy": {
@@ -20067,8 +20108,9 @@
 				"[concat(variables('factoryId'), '/datasets/AUDairy')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]",
 				"[concat(variables('factoryId'), '/datasets/AusDairyLast')]",
-				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
-				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+				"[concat(variables('factoryId'), '/datasets/austslaughter')]",
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]",
+				"[concat(variables('factoryId'), '/dataflows/australia')]"
 			]
 		},
 		{
@@ -32020,21 +32062,50 @@
 						"fileName": "AU Dataset Dairy Cow Slaughter.xlsx",
 						"container": "trade-data-container"
 					},
+					"range": "",
 					"firstRowAsHeader": true
 				},
 				"schema": [
 					{
-						"name": "Date",
 						"type": "String"
 					},
 					{
-						"name": "Cow and Heifer Slaughter (1000)",
 						"type": "String"
 					}
 				]
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AustSync')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "DateString",
+						"type": "varchar"
+					},
+					{
+						"name": "ValueString",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "GLOBL",
+					"table": "Austemp"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
 		{
@@ -34391,6 +34462,27 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/MX BY Not Aggr')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Meters')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "BlueRockDB",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "DBO",
+					"table": "MeterInfo"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BlueRockDB')]"
 			]
 		},
 		{
@@ -37434,6 +37526,72 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/austslaughter')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Date",
+						"type": "date"
+					},
+					{
+						"name": "DateString",
+						"type": "varchar"
+					},
+					{
+						"name": "Cheddar",
+						"type": "varchar"
+					},
+					{
+						"name": "NonCheddar",
+						"type": "varchar"
+					},
+					{
+						"name": "Cheese",
+						"type": "varchar"
+					},
+					{
+						"name": "Butter",
+						"type": "varchar"
+					},
+					{
+						"name": "ButterOil",
+						"type": "varchar"
+					},
+					{
+						"name": "SMP",
+						"type": "varchar"
+					},
+					{
+						"name": "BMP",
+						"type": "varchar"
+					},
+					{
+						"name": "WMP",
+						"type": "varchar"
+					},
+					{
+						"name": "WheyPowder",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "GLOBL",
+					"table": "AustImp"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/checkdate')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -38799,6 +38957,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Bizz')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('Bizz_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -40337,7 +40508,7 @@
 			"properties": {
 				"description": "Triggers futures data",
 				"annotations": [],
-				"runtimeState": "Stopped",
+				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -40356,7 +40527,7 @@
 						"timeZone": "Mountain Standard Time",
 						"schedule": {
 							"minutes": [
-								30
+								1
 							],
 							"hours": [
 								9
@@ -40574,6 +40745,154 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/MilkProductionCowInventory')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/australia')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AusSlaughter",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AustSync",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Date as string,",
+						"          {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;} as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     inferDriftedColumnTypes: true,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source1 derive(Date = Date,",
+						"          {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;} = {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;},",
+						"          column1 = toString(byPosition(1)),",
+						"          column2 = toString(byPosition(2))) ~> derivedColumn1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          DateString as string,",
+						"          ValueString as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     postSQLs:['Delete From Globl.austimp where  datestring is null\\nDelete from Globl.austimp where Datestring = \\'Date\\''],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          DateString = column1,",
+						"          ValueString = column2",
+						"     )) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
+				"[concat(variables('factoryId'), '/datasets/AustSync')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AusSlaughter",
+								"type": "DatasetReference"
+							},
+							"name": "Australia"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "EUGobalImport",
+								"type": "DatasetReference"
+							},
+							"name": "australiasink"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "alterRow1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Column_1 as string,",
+						"          Column_2 as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Australia",
+						"alterRow1 derive(Column_1 = Column_1,",
+						"          Column_2 = Column_2) ~> derivedColumn1",
+						"Australia alterRow(deleteIf(isMatch(1))) ~> alterRow1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: true,",
+						"     input(",
+						"          EUID as integer,",
+						"          Date as date,",
+						"          DateString as string,",
+						"          YearString as string,",
+						"          Year as integer,",
+						"          MonthString as string,",
+						"          Month as integer,",
+						"          ItemID as string,",
+						"          ValueString as string,",
+						"          Value as decimal(18,2)",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          DateString = Column_1,",
+						"          ValueString = Column_2",
+						"     )) ~> australiasink"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
+				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
 			]
 		}
 	]

@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
+		"Bizz_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Bizz'"
+		},
 		"BlueRockDB_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'BlueRockDB'"
@@ -117,11 +121,11 @@
 		},
 		"10YearDairyProd_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2018"
 		},
 		"10YearDairyStocks_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2010&freq_desc=POINT IN TIME"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2018&freq_desc=POINT IN TIME"
 		},
 		"3345Skim_properties_typeProperties_url": {
 			"type": "string",
@@ -317,7 +321,7 @@
 		},
 		"CowInventoryRest_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2018&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
 		},
 		"Current ALL NOMXBY_properties_typeProperties_url": {
 			"type": "string",
@@ -461,7 +465,7 @@
 		},
 		"MilkPerCowAPI_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2018&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
 		},
 		"NumberOfCowsAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -581,7 +585,7 @@
 		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2018&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
 		},
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -882,6 +886,9 @@
 					"AzureBlobStorage_connectionString": {
 						"value": "[parameters('AzureBlobStorage_connectionString')]"
 					},
+					"Bizz_connectionString": {
+						"value": "[parameters('Bizz_connectionString')]"
+					},
 					"BlueRockDB_connectionString": {
 						"value": "[parameters('BlueRockDB_connectionString')]"
 					},
@@ -938,9 +945,6 @@
 					},
 					"FFMPS3358_properties_typeProperties_url": {
 						"value": "[parameters('FFMPS3358_properties_typeProperties_url')]"
-					},
-					"FMMOSreports_properties_typeProperties_url": {
-						"value": "[parameters('FMMOSreports_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -961,6 +965,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"FMMOSreports_properties_typeProperties_url": {
+						"value": "[parameters('FMMOSreports_properties_typeProperties_url')]"
 					},
 					"GTT API_properties_typeProperties_url": {
 						"value": "[parameters('GTT API_properties_typeProperties_url')]"
@@ -1018,9 +1025,6 @@
 					},
 					"GTTWorld1_properties_typeProperties_url": {
 						"value": "[parameters('GTTWorld1_properties_typeProperties_url')]"
-					},
-					"GTTWorld3_properties_typeProperties_url": {
-						"value": "[parameters('GTTWorld3_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1066,8 +1070,8 @@
 					"Report1051_password": {
 						"value": "[parameters('Report1051_password')]"
 					},
-					"Report1052_password": {
-						"value": "[parameters('Report1052_password')]"
+					"GTTWorld3_properties_typeProperties_url": {
+						"value": "[parameters('GTTWorld3_properties_typeProperties_url')]"
 					},
 					"GTTWorld4_properties_typeProperties_url": {
 						"value": "[parameters('GTTWorld4_properties_typeProperties_url')]"
@@ -1149,12 +1153,6 @@
 					},
 					"Report1051_properties_typeProperties_userName": {
 						"value": "[parameters('Report1051_properties_typeProperties_userName')]"
-					},
-					"Report1052_properties_typeProperties_url": {
-						"value": "[parameters('Report1052_properties_typeProperties_url')]"
-					},
-					"Report1052_properties_typeProperties_userName": {
-						"value": "[parameters('Report1052_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -1175,6 +1173,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"Report1052_password": {
+						"value": "[parameters('Report1052_password')]"
 					},
 					"Report1053_password": {
 						"value": "[parameters('Report1053_password')]"
@@ -1202,6 +1203,12 @@
 					},
 					"WorkDairy_connectionString": {
 						"value": "[parameters('WorkDairy_connectionString')]"
+					},
+					"Report1052_properties_typeProperties_url": {
+						"value": "[parameters('Report1052_properties_typeProperties_url')]"
+					},
+					"Report1052_properties_typeProperties_userName": {
+						"value": "[parameters('Report1052_properties_typeProperties_userName')]"
 					},
 					"Report1053_properties_typeProperties_url": {
 						"value": "[parameters('Report1053_properties_typeProperties_url')]"
@@ -1256,9 +1263,6 @@
 					},
 					"gtt04041_properties_typeProperties_url": {
 						"value": "[parameters('gtt04041_properties_typeProperties_url')]"
-					},
-					"gtt0405_properties_typeProperties_url": {
-						"value": "[parameters('gtt0405_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1291,6 +1295,9 @@
 					},
 					"usdadata_connectionString": {
 						"value": "[parameters('usdadata_connectionString')]"
+					},
+					"gtt0405_properties_typeProperties_url": {
+						"value": "[parameters('gtt0405_properties_typeProperties_url')]"
 					},
 					"gtt04051_properties_typeProperties_url": {
 						"value": "[parameters('gtt04051_properties_typeProperties_url')]"
