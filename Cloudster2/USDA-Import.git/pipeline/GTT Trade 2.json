@@ -906,7 +906,14 @@
 			{
 				"name": "040690",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "rename table 3504",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1349,14 +1356,7 @@
 			{
 				"name": "3504",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "rename table 04069",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -1377,7 +1377,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table GTTImportCurrent\nexec sp_rename 'GTT3504','Temp1'",
+						"preCopyScript": "truncate table GTTImportCurrent\nEXEC sp_rename 'GTT3504','Temp1'",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
