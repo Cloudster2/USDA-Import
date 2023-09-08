@@ -1,0 +1,12 @@
+{
+	"name": "EuroMilkPrices",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "EuroCommission",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
