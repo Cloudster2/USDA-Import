@@ -1,0 +1,36 @@
+{
+	"name": "EuroMilkPriceTrigger",
+	"properties": {
+		"description": "Monthly pull of europpen milk prices ",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Euro Milk Prices",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Month",
+				"interval": 1,
+				"startTime": "2023-09-08T17:40:00",
+				"timeZone": "Mountain Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						10
+					],
+					"monthDays": [
+						5
+					]
+				}
+			}
+		}
+	}
+}
