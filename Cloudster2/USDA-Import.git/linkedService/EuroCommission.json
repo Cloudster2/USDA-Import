@@ -5,7 +5,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "api/rawMilk/prices?products=raw%20milk,smp&memberStateCodes=BG,NL&years=2017&months=7,8 ",
+			"url": "https://ec.europa.eu/agrifood/api/rawMilk/prices?",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
