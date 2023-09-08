@@ -31,25 +31,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Report1049'"
 		},
-		"Report1050_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Report1050'"
+		"GTTTest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=A097C3B5A3441CBA5CD2D18609CADCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief&partner=DCC9&impexp=IE&from=2017-01&reporter=AR&hscode=040210,040221,040410,0405,0406&partner=AR,BO,BR&currency=USD&decimalscale=2&source=DEFAULT&unit=MT&periodtype=M&layout=brief"
 		},
 		"GTTWorld1_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2020-01&hscode=World1"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2023-01&hscode=World1"
 		},
 		"GTTWorld3_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2020-01&hscode=World3,World2"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2023-01&hscode=World3,World2"
 		},
 		"GTTWorld4_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2020-01&hscode=World4"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2023-01&hscode=World4"
 		},
 		"GTTWorld5_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&hscode=World5&impexp=IE&source=DEFAULT&from=2020-01"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&hscode=World5&impexp=IE&source=DEFAULT&from=2023-01"
 		},
 		"GTTWorldAllItems_properties_typeProperties_url": {
 			"type": "string",
@@ -134,20 +134,27 @@
 		"Report1049_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
-		},
-		"Report1050_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1050/Details?lastDays=7"
-		},
-		"Report1050_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/GTTTest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('GTTTest_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/GTTWorld1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -467,26 +474,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('Report1049_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1050')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('Report1050_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('Report1050_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Report1050_password')]"
 					}
 				}
 			},

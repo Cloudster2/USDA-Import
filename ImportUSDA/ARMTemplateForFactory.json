@@ -327,6 +327,10 @@
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&latestmonths=12&hscode=NOMXBY&reporter=nomxby&periodtype=M&currency=USD&decimalscale=2&layout=brief"
 		},
+		"EuroCommission_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ec.europa.eu/agrifood/api/rawMilk/prices?"
+		},
 		"EuroSlaughterCows_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/apro_mt_pwgtm?sinceTimePeriod=2020M06&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1"
@@ -425,19 +429,19 @@
 		},
 		"GTTWorld1_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2020-01&hscode=World1"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2023-01&hscode=World1"
 		},
 		"GTTWorld3_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2020-01&hscode=World3,World2"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2023-01&hscode=World3,World2"
 		},
 		"GTTWorld4_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2020-01&hscode=World4"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&impexp=IE&source=DEFAULT&from=2023-01&hscode=World4"
 		},
 		"GTTWorld5_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&hscode=World5&impexp=IE&source=DEFAULT&from=2020-01"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=all&hscode=World5&impexp=IE&source=DEFAULT&from=2023-01"
 		},
 		"GTTWorldAllItems_properties_typeProperties_url": {
 			"type": "string",
@@ -589,7 +593,7 @@
 		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2018&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
 		},
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -6837,6 +6841,165 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Euro Milk Prices')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "EuroComMilkPrices",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['memberStateCode']"
+										},
+										"sink": {
+											"name": "memberStateCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['memberStateName']"
+										},
+										"sink": {
+											"name": "memberStateName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['beginDate']"
+										},
+										"sink": {
+											"name": "beginDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['endDate']"
+										},
+										"sink": {
+											"name": "endDate",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['month']"
+										},
+										"sink": {
+											"name": "month",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "$['monthName']"
+										},
+										"sink": {
+											"name": "monthName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['price']"
+										},
+										"sink": {
+											"name": "price",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['unit']"
+										},
+										"sink": {
+											"name": "unit",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['year']"
+										},
+										"sink": {
+											"name": "year",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "$['product']"
+										},
+										"sink": {
+											"name": "product",
+											"type": "String"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "EuroMilkPrices",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "EuroMilkPricesTable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/EuroMilkPrices')]",
+				"[concat(variables('factoryId'), '/datasets/EuroMilkPricesTable')]"
 			]
 		},
 		{
@@ -13601,6 +13764,10 @@
 									"name": "Futures LogicApp WebHook_copy1",
 									"type": "WebHook",
 									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
 									"userProperties": [],
 									"typeProperties": {
 										"url": "https://prod-15.westus.logic.azure.com:443/workflows/dbe0895afdca41918cc5a002c1a2c138/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vJPcVEvH6olmcdFW8O9tCBccc2i0JpNAom4qYNzEpBw",
@@ -18243,7 +18410,7 @@
 							"scripts": [
 								{
 									"type": "Query",
-									"text": "EXEC sp_rename 'Temp1','GTTWorld5'\ntruncate table GTTWorld_BI\n\nInsert Into\nGTTWorld_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nSelect  GTTWorld5.Date, Insert Into\nGTTWorld_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nSelect  GTTWorld5.Date, GTTWorld5.FlowType, GTTWorld5.Year, GTTWorld5.Month,\nGTTWorld5.Declarant, GTTWorld5.DeclarantCde, GTTWorld5.Partner, GTTWorld5.PartnerCde, GTTWorld5.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTTWorld5.Volume, GTTWorld5.Unit, GTTWorld5.Value,\nGTTWorld5.Currency, GTTWorld5.LB, GTTWorld5.NormVal, GTTWorld5.Normlbs, GTTWorld5.MOMPerc,\nGTTWorld5.MOMActualLbs, GTTWorld5.MOMNormLbs, GTTWorld5.YOYPerc, GTTWorld5.YOYActualLbs, GTTWorld5.YOYNormLbs,\nGTTWorld5.YTDperc, GTTWorld5.YTDActualLbs, GTTWorld5.YTDNormLbs, GTTWorld5.Avg5Year,\nGTTWorld5.Avg5YearVol \n\nFrom \n\nGTTWorld5 Inner Join ItemTable on GTTWorld5.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n\n"
+									"text": "EXEC sp_rename 'Temp1','GTTWorld5'\ntruncate table GTTWorld_BI\n\nInsert Into\nGTTWorld_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\n\nSelect  GTTWorld5.Date, GTTWorld5.FlowType, GTTWorld5.Year, GTTWorld5.Month,\nGTTWorld5.Declarant, GTTWorld5.DeclarantCde, GTTWorld5.Partner, GTTWorld5.PartnerCde, GTTWorld5.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTTWorld5.Volume, GTTWorld5.Unit, GTTWorld5.Value,\nGTTWorld5.Currency, GTTWorld5.LB, GTTWorld5.NormVal, GTTWorld5.Normlbs, GTTWorld5.MOMPerc,\nGTTWorld5.MOMActualLbs, GTTWorld5.MOMNormLbs, GTTWorld5.YOYPerc, GTTWorld5.YOYActualLbs, GTTWorld5.YOYNormLbs,\nGTTWorld5.YTDperc, GTTWorld5.YTDActualLbs, GTTWorld5.YTDNormLbs, GTTWorld5.Avg5Year,\nGTTWorld5.Avg5YearVol \n\nFrom \n\nGTTWorld5 Inner Join ItemTable on GTTWorld5.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n\n"
 								}
 							]
 						}
@@ -18697,7 +18864,7 @@
 							"scripts": [
 								{
 									"type": "Query",
-									"text": "EXEC sp_rename 'Temp1','GTTWorld3'\n\n\nSelect  GTTWorld3.Date, GTTWorld3.FlowType, GTTWorld3.Year, GTTWorld3.Month,\nGTTWorld3.Declarant, GTTWorld3.DeclarantCde, GTTWorld3.Partner, GTTWorld3.PartnerCde, GTTWorld3.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTTWorld3.Volume, GTTWorld3.Unit, GTTWorld3.Value,\nGTTWorld3.Currency, GTTWorld3.LB, GTTWorld3.NormVal, GTTWorld3.Normlbs, GTTWorld3.MOMPerc,\nGTTWorld3.MOMActualLbs, GTTWorld3.MOMNormLbs, GTTWorld3.YOYPerc, GTTWorld3.YOYActualLbs, GTTWorld3.YOYNormLbs,\nGTTWorld3.YTDperc, GTTWorld3.YTDActualLbs, GTTWorld3.YTDNormLbs, GTTWorld3.Avg5Year,\nGTTWorld3.Avg5YearVol \n\nFrom \n\nGTTWorld3 Inner Join ItemTable on GTTWorld3.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n\n"
+									"text": "EXEC sp_rename 'Temp1','GTTWorld3'\n\nInsert Into\nGTTWorld_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nSelect  GTTWorld3.Date, GTTWorld3.FlowType, GTTWorld3.Year, GTTWorld3.Month,\nGTTWorld3.Declarant, GTTWorld3.DeclarantCde, GTTWorld3.Partner, GTTWorld3.PartnerCde, GTTWorld3.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTTWorld3.Volume, GTTWorld3.Unit, GTTWorld3.Value,\nGTTWorld3.Currency, GTTWorld3.LB, GTTWorld3.NormVal, GTTWorld3.Normlbs, GTTWorld3.MOMPerc,\nGTTWorld3.MOMActualLbs, GTTWorld3.MOMNormLbs, GTTWorld3.YOYPerc, GTTWorld3.YOYActualLbs, GTTWorld3.YOYNormLbs,\nGTTWorld3.YTDperc, GTTWorld3.YTDActualLbs, GTTWorld3.YTDNormLbs, GTTWorld3.Avg5Year,\nGTTWorld3.Avg5YearVol \n\nFrom \n\nGTTWorld3 Inner Join ItemTable on GTTWorld3.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n\n"
 								}
 							]
 						}
@@ -18924,7 +19091,7 @@
 							"scripts": [
 								{
 									"type": "Query",
-									"text": "EXEC sp_rename 'Temp1','GTTWorld1'\n\n\nSelect  GTTWorld1.Date, GTTWorld1.FlowType, GTTWorld1.Year, GTTWorld1.Month,\nGTTWorld1.Declarant, GTTWorld1.DeclarantCde, GTTWorld1.Partner, GTTWorld1.PartnerCde, GTTWorld1.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTTWorld1.Volume, GTTWorld1.Unit, GTTWorld1.Value,\nGTTWorld1.Currency, GTTWorld1.LB, GTTWorld1.NormVal, GTTWorld1.Normlbs, GTTWorld1.MOMPerc,\nGTTWorld1.MOMActualLbs, GTTWorld1.MOMNormLbs, GTTWorld1.YOYPerc, GTTWorld1.YOYActualLbs, GTTWorld1.YOYNormLbs,\nGTTWorld1.YTDperc, GTTWorld1.YTDActualLbs, GTTWorld1.YTDNormLbs, GTTWorld1.Avg5Year,\nGTTWorld1.Avg5YearVol \n\nFrom \n\nGTTWorld1 Inner Join ItemTable on GTTWorld1.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n"
+									"text": "EXEC sp_rename 'Temp1','GTTWorld1'\n\nInsert Into\nGTTWorld_BI(date,FlowType,Year,Month,Reporter,ReporterCode,Partner,PartnerCode,Code,FourDigit,SixDigit,Item,Commodity,\nClass,Volume,Unit,Value,Currency,lb,normval,normlbs,MOMPerc,MOMActualLbs,MOMNormLbs,\nYOYPerc,YOYActualLbs,YOYNormLbs,YTDPerc,YTDActualLbs,YTDNormLbs,Avg5Year,Avg5YearVol)\n\nSelect  GTTWorld1.Date, GTTWorld1.FlowType, GTTWorld1.Year, GTTWorld1.Month,\nGTTWorld1.Declarant, GTTWorld1.DeclarantCde, GTTWorld1.Partner, GTTWorld1.PartnerCde, GTTWorld1.Code,ItemTable.FourDigit,ItemTable.SixDigit,\nItemTable.item,CommodityTable.Commodity,ClassTable.Class, GTTWorld1.Volume, GTTWorld1.Unit, GTTWorld1.Value,\nGTTWorld1.Currency, GTTWorld1.LB, GTTWorld1.NormVal, GTTWorld1.Normlbs, GTTWorld1.MOMPerc,\nGTTWorld1.MOMActualLbs, GTTWorld1.MOMNormLbs, GTTWorld1.YOYPerc, GTTWorld1.YOYActualLbs, GTTWorld1.YOYNormLbs,\nGTTWorld1.YTDperc, GTTWorld1.YTDActualLbs, GTTWorld1.YTDNormLbs, GTTWorld1.Avg5Year,\nGTTWorld1.Avg5YearVol \n\nFrom \n\nGTTWorld1 Inner Join ItemTable on GTTWorld1.Code = ItemTable.TradeCode \nInner Join CommodityTable on ItemTable.Commodity = CommodityTable.CommodityID\nInner Join ClassTable on ItemTable.Class = ClassTable.ClassID\n"
 								}
 							]
 						}
@@ -30173,6 +30340,10 @@
 						"name": "Futures LogicApp WebHook",
 						"type": "WebHook",
 						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
 						"userProperties": [],
 						"typeProperties": {
 							"url": "https://prod-15.westus.logic.azure.com:443/workflows/dbe0895afdca41918cc5a002c1a2c138/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vJPcVEvH6olmcdFW8O9tCBccc2i0JpNAom4qYNzEpBw",
@@ -30218,6 +30389,197 @@
 				"[concat(variables('factoryId'), '/datasets/FuturesBlob')]",
 				"[concat(variables('factoryId'), '/datasets/FuturesImp')]",
 				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tempwork')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "FuturesBlob_copy1_copy2",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Futures LogicApp WebHook_copy1_copy2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table futuresimp\n",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "Contract",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Contract",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Description",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Source",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Source",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Month",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String",
+											"physicalType": "nvarchar"
+										}
+									},
+									{
+										"source": {
+											"name": "Year",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "Int32",
+											"physicalType": "int"
+										}
+									},
+									{
+										"source": {
+											"name": "Price",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "Price",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 2,
+											"precision": 18
+										}
+									},
+									{
+										"source": {
+											"name": "Price_Lb",
+											"type": "String",
+											"physicalType": "String"
+										},
+										"sink": {
+											"name": "PriceLb",
+											"type": "Decimal",
+											"physicalType": "decimal",
+											"scale": 5,
+											"precision": 18
+										}
+									}
+								],
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "FuturesBlob",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "FuturesImp",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Futures LogicApp WebHook_copy1_copy2",
+						"type": "WebHook",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://prod-15.westus.logic.azure.com:443/workflows/dbe0895afdca41918cc5a002c1a2c138/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vJPcVEvH6olmcdFW8O9tCBccc2i0JpNAom4qYNzEpBw",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/json"
+							},
+							"body": {
+								"DataFactoryName": "@{pipeline().DataFactory}",
+								"PipelineName": "@{pipeline().Pipeline}"
+							},
+							"timeout": "00:10:00"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/FuturesBlob')]",
+				"[concat(variables('factoryId'), '/datasets/FuturesImp')]"
 			]
 		},
 		{
@@ -33428,6 +33790,45 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EuroMilkPrices')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "EuroCommission",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/EuroCommission')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EuroMilkPricesTable')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "EuroMilkPrices_BI"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
 		{
@@ -39041,6 +39442,22 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/EuroCommission')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "europeen milk rices",
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('EuroCommission_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/EuroSlaughterCows')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -40522,6 +40939,48 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/Global Euro Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EuroMilkPriceTrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Monthly pull of europpen milk prices ",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Euro Milk Prices",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Month",
+						"interval": 1,
+						"startTime": "2023-09-08T17:40:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								10
+							],
+							"monthDays": [
+								5
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Euro Milk Prices')]"
 			]
 		},
 		{

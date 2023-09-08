@@ -13,6 +13,63 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/AusProtein')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "AU Protein",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "AU Dataset Milk Production and Components.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Column2",
+						"type": "String"
+					},
+					{
+						"name": "NSW",
+						"type": "String"
+					},
+					{
+						"name": "VIC",
+						"type": "String"
+					},
+					{
+						"name": "QLD",
+						"type": "String"
+					},
+					{
+						"name": "SA",
+						"type": "String"
+					},
+					{
+						"name": "WA",
+						"type": "String"
+					},
+					{
+						"name": "TAS",
+						"type": "String"
+					},
+					{
+						"name": "AUSTRALIA",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AusSlaughter')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1035,71 +1092,6 @@
 				"typeProperties": {
 					"schema": "GLOBL",
 					"table": "EUDairySlaughterImp"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/EUGobalImport')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "EUID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Date",
-						"type": "date"
-					},
-					{
-						"name": "DateString",
-						"type": "varchar"
-					},
-					{
-						"name": "YearString",
-						"type": "varchar"
-					},
-					{
-						"name": "Year",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "MonthString",
-						"type": "varchar"
-					},
-					{
-						"name": "Month",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ItemID",
-						"type": "varchar"
-					},
-					{
-						"name": "ValueString",
-						"type": "varchar"
-					},
-					{
-						"name": "Value",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 2
-					}
-				],
-				"typeProperties": {
-					"schema": "GLOBL",
-					"table": "EUGlobalImp"
 				}
 			},
 			"dependsOn": []

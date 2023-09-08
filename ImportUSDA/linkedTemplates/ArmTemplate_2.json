@@ -79,6 +79,10 @@
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&latestmonths=12&hscode=NOMXBY&reporter=nomxby&periodtype=M&currency=USD&decimalscale=2&layout=brief"
 		},
+		"EuroCommission_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ec.europa.eu/agrifood/api/rawMilk/prices?"
+		},
 		"EuroSlaughterCows_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/apro_mt_pwgtm?sinceTimePeriod=2020M06&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1"
@@ -90,10 +94,6 @@
 		"EuroStatsSlaughter_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/unicode/en/apro_mt_pwgtm?sinceTimePeriod=2018M06&groupedIndicators=1&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1"
-		},
-		"ExchangeRates_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "http://dataservices.imf.org/REST/SDMX_JSON.svc/Dataflow"
 		}
 	},
 	"variables": {
@@ -311,6 +311,22 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/EuroCommission')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "europeen milk rices",
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('EuroCommission_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/EuroSlaughterCows')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -375,21 +391,6 @@
 				"type": "RestService",
 				"typeProperties": {
 					"url": "[parameters('EuroStatsSlaughter_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ExchangeRates')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('ExchangeRates_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}
