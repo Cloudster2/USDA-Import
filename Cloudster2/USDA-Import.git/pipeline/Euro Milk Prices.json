@@ -31,7 +31,102 @@
 						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['memberStateCode']"
+								},
+								"sink": {
+									"name": "memberStateCode",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['memberStateName']"
+								},
+								"sink": {
+									"name": "memberStateName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['beginDate']"
+								},
+								"sink": {
+									"name": "beginDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['endDate']"
+								},
+								"sink": {
+									"name": "endDate",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['month']"
+								},
+								"sink": {
+									"name": "month",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "$['monthName']"
+								},
+								"sink": {
+									"name": "monthName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['price']"
+								},
+								"sink": {
+									"name": "price",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['unit']"
+								},
+								"sink": {
+									"name": "unit",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['year']"
+								},
+								"sink": {
+									"name": "year",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"path": "$['product']"
+								},
+								"sink": {
+									"name": "product",
+									"type": "String"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
