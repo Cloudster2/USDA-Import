@@ -1,0 +1,12 @@
+{
+	"name": "3504EU",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&filterby&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&decimalscale=2&layout=brief&source=EUROSTAT&partner=World minus EU27exUK&hslevel=6&accumulatereportergroups=true&latestmonths=24&reporter=EU27exUK&hscode=35040010,3504001210,3504001290,35040011,3504001200",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
