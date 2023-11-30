@@ -1,0 +1,12 @@
+{
+	"name": "3504EuroMXBY",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3504EUNoMXBY",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

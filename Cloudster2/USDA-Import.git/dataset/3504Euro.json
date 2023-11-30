@@ -1,0 +1,12 @@
+{
+	"name": "3504Euro",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "3504EU",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
