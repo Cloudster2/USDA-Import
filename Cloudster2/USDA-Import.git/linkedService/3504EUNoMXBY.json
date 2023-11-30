@@ -1,0 +1,12 @@
+{
+	"name": "3504EUNoMXBY",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&filterby&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&decimalscale=2&layout=brief&source=EUROSTAT&accumulatereportergroups=true&reporter=EU27exUK&partner=PartnersNonEuro&from=2010-01&hscode=NOMXBY",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
