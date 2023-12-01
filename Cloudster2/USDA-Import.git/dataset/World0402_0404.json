@@ -1,0 +1,12 @@
+{
+	"name": "World0402_0404",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "WorldA",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
