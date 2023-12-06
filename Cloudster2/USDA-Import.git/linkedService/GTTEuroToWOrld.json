@@ -1,0 +1,12 @@
+{
+	"name": "GTTEuroToWOrld",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?impexp=I&token=E3A720ABF1B82CB5D67831FFCF2CF995&from=2012-01&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&reporter=EU27ExUK&source=EUROSTAT&accumulatereportergroups=true&accumulatepartnergroups=true&partner=World minus EU27exUK",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
