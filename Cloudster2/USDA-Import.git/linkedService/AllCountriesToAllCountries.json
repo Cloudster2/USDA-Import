@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?impexp=I&filterby&periodtype=M&onlycompleteperiods=true$&unit=MT&decimalscale=2&currency=USD&layout=brief&token=E3A720ABF1B82CB5D67831FFCF2CF995&latestmonths=&from=2010-01&reporter=ReportersAll&hscode=CurrentList&source=NATIONAL&filterbysource=DEFAULT&partner=AllCountries&hslevel=0",
+			"url": "https://www.globaltradetracker.com:443/api/rest/getreport?impexp=I&token=E3A720ABF1B82CB5D67831FFCF2CF995&from=2012-01&hscode=CurrentList&source=NATIONAL&reporter=ReportersAll&partner=AllCountries&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
