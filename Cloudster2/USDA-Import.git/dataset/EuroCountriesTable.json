@@ -1,0 +1,16 @@
+{
+	"name": "EuroCountriesTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tradeDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GTTEuroToCOuntries"
+		}
+	}
+}

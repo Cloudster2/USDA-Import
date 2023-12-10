@@ -1,0 +1,12 @@
+{
+	"name": "CountriesToCountries",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Countries To Countries",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

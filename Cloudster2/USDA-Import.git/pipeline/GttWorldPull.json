@@ -5,7 +5,14 @@
 			{
 				"name": "EuroWorld",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "CountriesWorld",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -164,14 +171,7 @@
 			{
 				"name": "CountriesWorld",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "CountriesToCountries",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -192,7 +192,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table GTTImportCurrent\n\n\n",
+						"preCopyScript": "truncate table GTTCountriesToWorld\n\n\n",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -316,13 +316,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "World0402_0404",
+						"referenceName": "CountriesToWorld",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "GTTImportCurrent",
+						"referenceName": "GTTCountriesToWorld",
 						"type": "DatasetReference"
 					}
 				]
@@ -358,7 +358,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table GTTEuroToWorld\n\n\n",
+						"preCopyScript": "truncate table GTTCountriesToCountries\n\n\n",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -482,13 +482,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "EuroWorld",
+						"referenceName": "CountriesToCountries",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "GTTEuroWorld",
+						"referenceName": "GTTCountriesToCountries",
 						"type": "DatasetReference"
 					}
 				]
@@ -524,10 +524,9 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table GTTImportCurrent\n\n\n",
+						"preCopyScript": "truncate table GTTEuroToCOuntries",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
-						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -654,7 +653,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "GTTImportCurrent",
+						"referenceName": "EuroCountriesTable",
 						"type": "DatasetReference"
 					}
 				]

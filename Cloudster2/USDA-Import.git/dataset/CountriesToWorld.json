@@ -1,0 +1,12 @@
+{
+	"name": "CountriesToWorld",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "CountriesToWorld",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
