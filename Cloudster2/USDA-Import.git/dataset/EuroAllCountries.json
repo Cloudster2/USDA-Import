@@ -1,0 +1,12 @@
+{
+	"name": "EuroAllCountries",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "EuroAllCountries",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

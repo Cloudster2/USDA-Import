@@ -1,0 +1,83 @@
+{
+	"name": "GTTEuroWorld",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "tradeDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TradeID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "tradeFlow",
+				"type": "nvarchar"
+			},
+			{
+				"name": "year",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "month",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "date",
+				"type": "date"
+			},
+			{
+				"name": "reporterCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "reporterName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "partnerCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "partnerName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "hsCode",
+				"type": "nvarchar"
+			},
+			{
+				"name": "commodityDescriptionOriginal",
+				"type": "nvarchar"
+			},
+			{
+				"name": "currency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "value",
+				"type": "float",
+				"precision": 15
+			},
+			{
+				"name": "unit1",
+				"type": "nvarchar"
+			},
+			{
+				"name": "quantity1",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 5
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GTTEuroToWorld"
+		}
+	}
+}

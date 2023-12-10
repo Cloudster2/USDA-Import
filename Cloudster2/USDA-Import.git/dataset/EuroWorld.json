@@ -1,0 +1,12 @@
+{
+	"name": "EuroWorld",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "EuroWorld",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
