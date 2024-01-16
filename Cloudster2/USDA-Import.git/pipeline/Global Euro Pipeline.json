@@ -186,6 +186,18 @@
 							},
 							{
 								"source": {
+									"name": "unit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
 									"name": "OBS_VALUE",
 									"type": "String",
 									"physicalType": "String"
@@ -284,6 +296,18 @@
 								},
 								"sink": {
 									"name": "GlobalID",
+									"type": "String",
+									"physicalType": "varchar"
+								}
+							},
+							{
+								"source": {
+									"name": "unit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Unit",
 									"type": "String",
 									"physicalType": "varchar"
 								}
