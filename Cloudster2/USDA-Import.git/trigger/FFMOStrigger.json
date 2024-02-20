@@ -1,0 +1,36 @@
+{
+	"name": "FFMOStrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "FFMOS",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Week",
+				"interval": 1,
+				"startTime": "2024-02-20T19:32:00",
+				"timeZone": "Mountain Standard Time",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						13
+					],
+					"weekDays": [
+						"Wednesday",
+						"Thursday"
+					]
+				}
+			}
+		}
+	}
+}
