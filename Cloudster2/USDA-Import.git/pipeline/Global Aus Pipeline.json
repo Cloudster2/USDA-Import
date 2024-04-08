@@ -210,7 +210,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "AUstralia Slaughter Flow",
+						"activity": "Aus Dairy Last",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -368,40 +368,6 @@
 				"linkedServiceName": {
 					"referenceName": "Sara Database",
 					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "AUstralia Slaughter Flow",
-				"type": "ExecuteDataFlow",
-				"dependsOn": [
-					{
-						"activity": "Aus Dairy Last",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataflow": {
-						"referenceName": "australia",
-						"type": "DataFlowReference"
-					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
-					},
-					"traceLevel": "None",
-					"cacheSinks": {
-						"firstRowOnly": true
-					}
 				}
 			}
 		],
