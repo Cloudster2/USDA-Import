@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "FuturesBlob",
+				"name": "FuturesBlob_copy1",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -143,44 +143,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Futures LogicApp WebHook",
-				"type": "WebHook",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"url": "https://prod-15.westus.logic.azure.com:443/workflows/dbe0895afdca41918cc5a002c1a2c138/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vJPcVEvH6olmcdFW8O9tCBccc2i0JpNAom4qYNzEpBw",
-					"method": "POST",
-					"headers": {
-						"Content-Type": "application/json"
-					},
-					"body": {
-						"DataFactoryName": "@{pipeline().DataFactory}",
-						"PipelineName": "@{pipeline().Pipeline}"
-					},
-					"timeout": "00:10:00"
-				}
-			},
-			{
-				"name": "FuturesCalcs",
-				"type": "SqlServerStoredProcedure",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"storedProcedureName": "[dbo].[FuturesProcedure]"
-				},
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				}
 			}
 		],
 		"annotations": []
