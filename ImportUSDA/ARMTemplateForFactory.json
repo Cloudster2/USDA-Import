@@ -20463,7 +20463,7 @@
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "AUstralia Slaughter Flow",
+								"activity": "Aus Dairy Last",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -20624,46 +20624,6 @@
 							"referenceName": "Sara Database",
 							"type": "LinkedServiceReference"
 						}
-					},
-					{
-						"name": "AUstralia Slaughter Flow",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [
-							{
-								"activity": "Aus Dairy Last",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataflow": {
-								"referenceName": "australia",
-								"type": "DataFlowReference",
-								"parameters": {},
-								"datasetParameters": {
-									"source1": {},
-									"sink1": {}
-								}
-							},
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "None",
-							"cacheSinks": {
-								"firstRowOnly": true
-							}
-						}
 					}
 				],
 				"policy": {
@@ -20676,8 +20636,7 @@
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]",
 				"[concat(variables('factoryId'), '/datasets/AusDairyLast')]",
 				"[concat(variables('factoryId'), '/datasets/austslaughter')]",
-				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]",
-				"[concat(variables('factoryId'), '/dataflows/australia')]"
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
 		{
@@ -31286,9 +31245,16 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "FuturesBlob",
+						"name": "FuturesBlob_copy1",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Futures LogicApp WebHook_copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -31430,7 +31396,7 @@
 						]
 					},
 					{
-						"name": "Futures LogicApp WebHook",
+						"name": "Futures LogicApp WebHook_copy1",
 						"type": "WebHook",
 						"dependsOn": [],
 						"policy": {
@@ -31450,26 +31416,6 @@
 							},
 							"timeout": "00:10:00"
 						}
-					},
-					{
-						"name": "FuturesCalcs",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[dbo].[FuturesProcedure]"
-						},
-						"linkedServiceName": {
-							"referenceName": "Sara Database",
-							"type": "LinkedServiceReference"
-						}
 					}
 				],
 				"policy": {
@@ -31479,8 +31425,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/FuturesBlob')]",
-				"[concat(variables('factoryId'), '/datasets/FuturesImp')]",
-				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+				"[concat(variables('factoryId'), '/datasets/FuturesImp')]"
 			]
 		},
 		{
@@ -42696,6 +42641,48 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/FFMOStrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "FFMOS",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2024-02-20T19:32:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {
+							"minutes": [
+								15
+							],
+							"hours": [
+								13
+							],
+							"weekDays": [
+								"Wednesday",
+								"Thursday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/FFMOS')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/FuturesTrigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -43087,48 +43074,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FFMOStrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "FFMOS",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2024-02-20T19:32:00",
-						"timeZone": "Mountain Standard Time",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								13
-							],
-							"weekDays": [
-								"Wednesday",
-								"Thursday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/FFMOS')]"
 			]
 		}
 	]
