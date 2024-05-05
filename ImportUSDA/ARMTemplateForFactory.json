@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
+		"BatchPyth_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'BatchPyth'"
+		},
 		"Bizz_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Bizz'"
@@ -326,6 +330,18 @@
 		"AllNoMXBY_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&to=&partner=NoMXBY,MX,BY&accumulatepartnergroups=false&hscode=NOMXBY&reporter=NoMXBY&from=2010-01"
+		},
+		"BatchPyth_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://ceresbatch.westus.batch.azure.com"
+		},
+		"BatchPyth_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "CeresPool"
+		},
+		"BatchPyth_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "ceresbatch"
 		},
 		"ColdStorageAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -758,6 +774,10 @@
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
+		},
+		"DataLakesTest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesstorage.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -21582,693 +21602,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/GttWorldPull')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "EuroWorld",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "CountriesWorld",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:03:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table GTTEuroToWorld\n\n\n",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['tradeFlow']"
-										},
-										"sink": {
-											"name": "tradeFlow",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "year",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['month']"
-										},
-										"sink": {
-											"name": "month",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterCode']"
-										},
-										"sink": {
-											"name": "reporterCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterName']"
-										},
-										"sink": {
-											"name": "reporterName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerCode']"
-										},
-										"sink": {
-											"name": "partnerCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerName']"
-										},
-										"sink": {
-											"name": "partnerName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['hsCode']"
-										},
-										"sink": {
-											"name": "hsCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['currency']"
-										},
-										"sink": {
-											"name": "currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['value']"
-										},
-										"sink": {
-											"name": "value",
-											"type": "Double"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit1']"
-										},
-										"sink": {
-											"name": "unit1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['quantity1']"
-										},
-										"sink": {
-											"name": "quantity1",
-											"type": "Double"
-										}
-									}
-								],
-								"collectionReference": "$['reportData']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "EuroWorld",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "GTTEuroWorld",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "CountriesWorld",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:03:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table GTTCountriesToWorld\n\n\n",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['tradeFlow']"
-										},
-										"sink": {
-											"name": "tradeFlow",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "year",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['month']"
-										},
-										"sink": {
-											"name": "month",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterCode']"
-										},
-										"sink": {
-											"name": "reporterCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterName']"
-										},
-										"sink": {
-											"name": "reporterName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerCode']"
-										},
-										"sink": {
-											"name": "partnerCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerName']"
-										},
-										"sink": {
-											"name": "partnerName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['hsCode']"
-										},
-										"sink": {
-											"name": "hsCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['currency']"
-										},
-										"sink": {
-											"name": "currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['value']"
-										},
-										"sink": {
-											"name": "value",
-											"type": "Double"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit1']"
-										},
-										"sink": {
-											"name": "unit1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['quantity1']"
-										},
-										"sink": {
-											"name": "quantity1",
-											"type": "Double"
-										}
-									}
-								],
-								"collectionReference": "$['reportData']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "CountriesToWorld",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "GTTCountriesToWorld",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "CountriesToCountries",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "EuroCountries",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:03:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table GTTCountriesToCountries\n\n\n",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['tradeFlow']"
-										},
-										"sink": {
-											"name": "tradeFlow",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "year",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['month']"
-										},
-										"sink": {
-											"name": "month",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterCode']"
-										},
-										"sink": {
-											"name": "reporterCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterName']"
-										},
-										"sink": {
-											"name": "reporterName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerCode']"
-										},
-										"sink": {
-											"name": "partnerCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerName']"
-										},
-										"sink": {
-											"name": "partnerName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['hsCode']"
-										},
-										"sink": {
-											"name": "hsCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['currency']"
-										},
-										"sink": {
-											"name": "currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['value']"
-										},
-										"sink": {
-											"name": "value",
-											"type": "Double"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit1']"
-										},
-										"sink": {
-											"name": "unit1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['quantity1']"
-										},
-										"sink": {
-											"name": "quantity1",
-											"type": "Double"
-										}
-									}
-								],
-								"collectionReference": "$['reportData']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "CountriesToCountries",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "GTTCountriesToCountries",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "EuroCountries",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "EuroWorld",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:03:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table GTTEuroToCOuntries",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['tradeFlow']"
-										},
-										"sink": {
-											"name": "tradeFlow",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "year",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['month']"
-										},
-										"sink": {
-											"name": "month",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterCode']"
-										},
-										"sink": {
-											"name": "reporterCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterName']"
-										},
-										"sink": {
-											"name": "reporterName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerCode']"
-										},
-										"sink": {
-											"name": "partnerCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerName']"
-										},
-										"sink": {
-											"name": "partnerName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['hsCode']"
-										},
-										"sink": {
-											"name": "hsCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['currency']"
-										},
-										"sink": {
-											"name": "currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['value']"
-										},
-										"sink": {
-											"name": "value",
-											"type": "Double"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit1']"
-										},
-										"sink": {
-											"name": "unit1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['quantity1']"
-										},
-										"sink": {
-											"name": "quantity1",
-											"type": "Double"
-										}
-									}
-								],
-								"collectionReference": "$['reportData']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "EuroAllCountries",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "EuroCountriesTable",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/EuroWorld')]",
-				"[concat(variables('factoryId'), '/datasets/GTTEuroWorld')]",
-				"[concat(variables('factoryId'), '/datasets/CountriesToWorld')]",
-				"[concat(variables('factoryId'), '/datasets/GTTCountriesToWorld')]",
-				"[concat(variables('factoryId'), '/datasets/CountriesToCountries')]",
-				"[concat(variables('factoryId'), '/datasets/GTTCountriesToCountries')]",
-				"[concat(variables('factoryId'), '/datasets/EuroAllCountries')]",
-				"[concat(variables('factoryId'), '/datasets/EuroCountriesTable')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/Ice Cream Pipeline')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -28842,6 +28175,693 @@
 				"[concat(variables('factoryId'), '/datasets/SouthKoreTrade')]",
 				"[concat(variables('factoryId'), '/datasets/USTrade')]",
 				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TradeDataCurrent')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "EuroWorld",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "CountriesWorld",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:03:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table GTTEuroToWorld\n\n\n",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['tradeFlow']"
+										},
+										"sink": {
+											"name": "tradeFlow",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['year']"
+										},
+										"sink": {
+											"name": "year",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['month']"
+										},
+										"sink": {
+											"name": "month",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterCode']"
+										},
+										"sink": {
+											"name": "reporterCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterName']"
+										},
+										"sink": {
+											"name": "reporterName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerCode']"
+										},
+										"sink": {
+											"name": "partnerCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerName']"
+										},
+										"sink": {
+											"name": "partnerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['hsCode']"
+										},
+										"sink": {
+											"name": "hsCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['currency']"
+										},
+										"sink": {
+											"name": "currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['value']"
+										},
+										"sink": {
+											"name": "value",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "[['unit1']"
+										},
+										"sink": {
+											"name": "unit1",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['quantity1']"
+										},
+										"sink": {
+											"name": "quantity1",
+											"type": "Double"
+										}
+									}
+								],
+								"collectionReference": "$['reportData']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "EuroWorld",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "GTTEuroWorld",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "CountriesWorld",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:03:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table GTTCountriesToWorld\n\n\n",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['tradeFlow']"
+										},
+										"sink": {
+											"name": "tradeFlow",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['year']"
+										},
+										"sink": {
+											"name": "year",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['month']"
+										},
+										"sink": {
+											"name": "month",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterCode']"
+										},
+										"sink": {
+											"name": "reporterCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterName']"
+										},
+										"sink": {
+											"name": "reporterName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerCode']"
+										},
+										"sink": {
+											"name": "partnerCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerName']"
+										},
+										"sink": {
+											"name": "partnerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['hsCode']"
+										},
+										"sink": {
+											"name": "hsCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['currency']"
+										},
+										"sink": {
+											"name": "currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['value']"
+										},
+										"sink": {
+											"name": "value",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "[['unit1']"
+										},
+										"sink": {
+											"name": "unit1",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['quantity1']"
+										},
+										"sink": {
+											"name": "quantity1",
+											"type": "Double"
+										}
+									}
+								],
+								"collectionReference": "$['reportData']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CountriesToWorld",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "GTTCountriesToWorld",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "CountriesToCountries",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "EuroCountries",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:03:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table GTTCountriesToCountries\n\n\n",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['tradeFlow']"
+										},
+										"sink": {
+											"name": "tradeFlow",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['year']"
+										},
+										"sink": {
+											"name": "year",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['month']"
+										},
+										"sink": {
+											"name": "month",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterCode']"
+										},
+										"sink": {
+											"name": "reporterCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterName']"
+										},
+										"sink": {
+											"name": "reporterName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerCode']"
+										},
+										"sink": {
+											"name": "partnerCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerName']"
+										},
+										"sink": {
+											"name": "partnerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['hsCode']"
+										},
+										"sink": {
+											"name": "hsCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['currency']"
+										},
+										"sink": {
+											"name": "currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['value']"
+										},
+										"sink": {
+											"name": "value",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "[['unit1']"
+										},
+										"sink": {
+											"name": "unit1",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['quantity1']"
+										},
+										"sink": {
+											"name": "quantity1",
+											"type": "Double"
+										}
+									}
+								],
+								"collectionReference": "$['reportData']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CountriesToCountries",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "GTTCountriesToCountries",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "EuroCountries",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "EuroWorld",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:03:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table GTTEuroToCOuntries",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['tradeFlow']"
+										},
+										"sink": {
+											"name": "tradeFlow",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['year']"
+										},
+										"sink": {
+											"name": "year",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['month']"
+										},
+										"sink": {
+											"name": "month",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterCode']"
+										},
+										"sink": {
+											"name": "reporterCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterName']"
+										},
+										"sink": {
+											"name": "reporterName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerCode']"
+										},
+										"sink": {
+											"name": "partnerCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerName']"
+										},
+										"sink": {
+											"name": "partnerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['hsCode']"
+										},
+										"sink": {
+											"name": "hsCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['currency']"
+										},
+										"sink": {
+											"name": "currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['value']"
+										},
+										"sink": {
+											"name": "value",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "[['unit1']"
+										},
+										"sink": {
+											"name": "unit1",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['quantity1']"
+										},
+										"sink": {
+											"name": "quantity1",
+											"type": "Double"
+										}
+									}
+								],
+								"collectionReference": "$['reportData']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "EuroAllCountries",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "EuroCountriesTable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/EuroWorld')]",
+				"[concat(variables('factoryId'), '/datasets/GTTEuroWorld')]",
+				"[concat(variables('factoryId'), '/datasets/CountriesToWorld')]",
+				"[concat(variables('factoryId'), '/datasets/GTTCountriesToWorld')]",
+				"[concat(variables('factoryId'), '/datasets/CountriesToCountries')]",
+				"[concat(variables('factoryId'), '/datasets/GTTCountriesToCountries')]",
+				"[concat(variables('factoryId'), '/datasets/EuroAllCountries')]",
+				"[concat(variables('factoryId'), '/datasets/EuroCountriesTable')]"
 			]
 		},
 		{
@@ -40863,6 +40883,31 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/BatchPyth')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBatch",
+				"typeProperties": {
+					"batchUri": "[parameters('BatchPyth_properties_typeProperties_batchUri')]",
+					"poolName": "[parameters('BatchPyth_properties_typeProperties_poolName')]",
+					"accountName": "[parameters('BatchPyth_properties_typeProperties_accountName')]",
+					"linkedServiceName": {
+						"referenceName": "AzureBlobStorage",
+						"type": "LinkedServiceReference"
+					},
+					"accessKey": {
+						"type": "SecureString",
+						"value": "[parameters('BatchPyth_accessKey')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Bizz')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -43075,6 +43120,19 @@
 				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DataLakesTest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('DataLakesTest_properties_typeProperties_url')]"
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }

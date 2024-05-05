@@ -11,6 +11,9 @@
 		"AzureBlobStorage_connectionString": {
 			"value": ""
 		},
+		"BatchPyth_accessKey": {
+			"value": ""
+		},
 		"Bizz_connectionString": {
 			"value": ""
 		},
@@ -244,6 +247,15 @@
 		},
 		"AllNoMXBY_properties_typeProperties_url": {
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&to=&partner=NoMXBY,MX,BY&accumulatepartnergroups=false&hscode=NOMXBY&reporter=NoMXBY&from=2010-01"
+		},
+		"BatchPyth_properties_typeProperties_batchUri": {
+			"value": "https://ceresbatch.westus.batch.azure.com"
+		},
+		"BatchPyth_properties_typeProperties_poolName": {
+			"value": "CeresPool"
+		},
+		"BatchPyth_properties_typeProperties_accountName": {
+			"value": "ceresbatch"
 		},
 		"ColdStorageAPI_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=CHEESE&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2016&freq_desc=POINT IN TIME"
@@ -568,6 +580,9 @@
 		},
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
+		},
+		"DataLakesTest_properties_typeProperties_url": {
+			"value": "https://datalakesstorage.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"value": ""

@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage'"
 		},
+		"BatchPyth_accessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessKey' of 'BatchPyth'"
+		},
 		"Bizz_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Bizz'"
@@ -326,6 +330,18 @@
 		"AllNoMXBY_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&to=&partner=NoMXBY,MX,BY&accumulatepartnergroups=false&hscode=NOMXBY&reporter=NoMXBY&from=2010-01"
+		},
+		"BatchPyth_properties_typeProperties_batchUri": {
+			"type": "string",
+			"defaultValue": "https://ceresbatch.westus.batch.azure.com"
+		},
+		"BatchPyth_properties_typeProperties_poolName": {
+			"type": "string",
+			"defaultValue": "CeresPool"
+		},
+		"BatchPyth_properties_typeProperties_accountName": {
+			"type": "string",
+			"defaultValue": "ceresbatch"
 		},
 		"ColdStorageAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -758,6 +774,10 @@
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
+		},
+		"DataLakesTest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesstorage.dfs.core.windows.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -1484,6 +1504,9 @@
 					},
 					"world5_properties_typeProperties_url": {
 						"value": "[parameters('world5_properties_typeProperties_url')]"
+					},
+					"DataLakesTest_properties_typeProperties_url": {
+						"value": "[parameters('DataLakesTest_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1704,6 +1727,18 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"BatchPyth_accessKey": {
+						"value": "[parameters('BatchPyth_accessKey')]"
+					},
+					"BatchPyth_properties_typeProperties_batchUri": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_batchUri')]"
+					},
+					"BatchPyth_properties_typeProperties_poolName": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_poolName')]"
+					},
+					"BatchPyth_properties_typeProperties_accountName": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_accountName')]"
 					}
 				}
 			},
@@ -1724,9 +1759,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"EUGlobalDataTrigger_properties_typeProperties_scope": {
-						"value": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -1747,6 +1779,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"EUGlobalDataTrigger_properties_typeProperties_scope": {
+						"value": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},

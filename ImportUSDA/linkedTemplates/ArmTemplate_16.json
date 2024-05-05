@@ -13,6 +13,77 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/TradeData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TradeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Partner",
+						"type": "nchar"
+					},
+					{
+						"name": "Volume",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "Unit",
+						"type": "nchar"
+					},
+					{
+						"name": "Declarant",
+						"type": "nchar"
+					},
+					{
+						"name": "ProductCde",
+						"type": "nchar"
+					},
+					{
+						"name": "Product",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Flow",
+						"type": "nchar"
+					},
+					{
+						"name": "Year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Month",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "TRADE",
+					"table": "TradeData"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/UKDairyProd')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1410,22 +1481,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "GTT0402",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gtt04021')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "gtt04021",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
