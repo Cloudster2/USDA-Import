@@ -1,0 +1,10 @@
+{
+	"name": "DataLakesTest",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://datalakesstorage.dfs.core.windows.net/"
+		}
+	}
+}
