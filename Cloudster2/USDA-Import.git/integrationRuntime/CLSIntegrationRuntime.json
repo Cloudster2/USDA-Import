@@ -1,0 +1,6 @@
+{
+	"name": "CLSIntegrationRuntime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
