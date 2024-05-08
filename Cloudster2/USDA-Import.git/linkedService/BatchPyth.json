@@ -6,13 +6,13 @@
 		"type": "AzureBatch",
 		"typeProperties": {
 			"batchUri": "https://ceresbatch.westus.batch.azure.com",
-			"poolName": "CeresPool",
+			"poolName": "cerespool",
 			"accountName": "ceresbatch",
 			"linkedServiceName": {
 				"referenceName": "AzureBlobStorage",
 				"type": "LinkedServiceReference"
 			},
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDkzNjhCQUFELTUxOTAtNEZENS04MTE0LUE5REQ3NDA2MEUyMF8xZTlmOTMwYy05NGM5LTQ1MzctYWM2Mi1iMzVlNTc5NzNlMjkiDQp9"
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDkzNjhCQUFELTUxOTAtNEZENS04MTE0LUE5REQ3NDA2MEUyMF9mNjMzMDgwNC1hMGM4LTQwYTAtYWQ0Yy01NGZmMGI0ZmY0MjEiDQp9"
 		}
 	}
 }
