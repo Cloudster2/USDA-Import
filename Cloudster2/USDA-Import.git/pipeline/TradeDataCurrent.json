@@ -7,7 +7,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "ToBricks",
+						"activity": "CountriesWorld",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -663,7 +663,7 @@
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "CountriesWorld",
+						"activity": "CountriesToCountries",
 						"dependencyConditions": [
 							"Succeeded"
 						]
