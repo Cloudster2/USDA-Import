@@ -8,13 +8,14 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "Sheet1",
+			"sheetName": "UK_Monthly",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "UK Dairy Production.xlsx",
+				"fileName": "UK Dataset Milk and Dairy Production.xlsx",
 				"container": "trade-data-container"
 			},
-			"firstRowAsHeader": true
+			"range": "",
+			"firstRowAsHeader": false
 		},
 		"schema": [
 			{

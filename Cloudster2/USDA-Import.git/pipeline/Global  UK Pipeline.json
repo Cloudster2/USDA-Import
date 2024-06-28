@@ -34,9 +34,8 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Date",
 									"type": "String",
-									"physicalType": "String"
+									"ordinal": 1
 								},
 								"sink": {
 									"name": "DateString",
@@ -46,60 +45,11 @@
 							},
 							{
 								"source": {
-									"name": "Milk available to Processors (Million liters)",
 									"type": "String",
-									"physicalType": "String"
+									"ordinal": 3
 								},
 								"sink": {
 									"name": "Milk",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Liquid Milk Production (million liters)",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "DrinkingMilk",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Cheese Production ('000 tonnes)",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Cheese",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Butter Production ('000 tonnes)",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "Butter",
-									"type": "String",
-									"physicalType": "varchar"
-								}
-							},
-							{
-								"source": {
-									"name": "Milk Powder Production ('000 tonnes)",
-									"type": "String",
-									"physicalType": "String"
-								},
-								"sink": {
-									"name": "SMP",
 									"type": "String",
 									"physicalType": "varchar"
 								}
