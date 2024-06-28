@@ -318,7 +318,7 @@
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
 						"Zone": {
-							"value": "AUMILK",
+							"value": "AUSMILK",
 							"type": "String"
 						}
 					}
