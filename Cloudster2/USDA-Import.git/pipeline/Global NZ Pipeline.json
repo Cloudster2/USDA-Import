@@ -449,6 +449,10 @@
 						"Zone": {
 							"value": "NZ",
 							"type": "String"
+						},
+						"Country": {
+							"value": "OCEANIA",
+							"type": "String"
 						}
 					}
 				},
