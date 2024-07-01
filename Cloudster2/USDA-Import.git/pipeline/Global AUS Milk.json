@@ -320,6 +320,10 @@
 						"Zone": {
 							"value": "AUSMILK",
 							"type": "String"
+						},
+						"Country": {
+							"value": "AUS",
+							"type": "String"
 						}
 					}
 				},
