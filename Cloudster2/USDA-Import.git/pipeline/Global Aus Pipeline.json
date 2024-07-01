@@ -226,9 +226,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
 					},
 					"sink": {
 						"type": "AzureSqlSink",
@@ -240,9 +243,8 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "DateString",
 									"type": "String",
-									"physicalType": "varchar"
+									"ordinal": 1
 								},
 								"sink": {
 									"name": "DateString",
@@ -252,9 +254,8 @@
 							},
 							{
 								"source": {
-									"name": "ValueString",
 									"type": "String",
-									"physicalType": "varchar"
+									"ordinal": 2
 								},
 								"sink": {
 									"name": "ValueString",
@@ -272,7 +273,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "austslaughter",
+						"referenceName": "AusSlaughter",
 						"type": "DatasetReference"
 					}
 				],
@@ -360,7 +361,11 @@
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
 						"Zone": {
-							"value": "AU",
+							"value": "OCEANIA",
+							"type": "String"
+						},
+						"Country": {
+							"value": "AUS",
 							"type": "String"
 						}
 					}
