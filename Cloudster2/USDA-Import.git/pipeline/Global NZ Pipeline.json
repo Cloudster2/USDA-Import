@@ -446,12 +446,8 @@
 				"typeProperties": {
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
-						"Zone": {
+						"Var": {
 							"value": "NZ",
-							"type": "String"
-						},
-						"Country": {
-							"value": "OCEANIA",
 							"type": "String"
 						}
 					}
