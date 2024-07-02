@@ -159,7 +159,7 @@
 				"typeProperties": {
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
-						"Zone": {
+						"Var": {
 							"value": "MX",
 							"type": "String"
 						}
