@@ -317,12 +317,8 @@
 				"typeProperties": {
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
-						"Zone": {
+						"Var": {
 							"value": "AUSMILK",
-							"type": "String"
-						},
-						"Country": {
-							"value": "AUS",
 							"type": "String"
 						}
 					}
