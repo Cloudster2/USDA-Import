@@ -421,8 +421,8 @@
 				"typeProperties": {
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
-						"Zone": {
-							"value": "EURO",
+						"Var": {
+							"value": "EU27",
 							"type": "String"
 						}
 					}
