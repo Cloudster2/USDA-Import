@@ -263,7 +263,7 @@
 				"typeProperties": {
 					"storedProcedureName": "[GLOBL].[GlobalLatPrep]",
 					"storedProcedureParameters": {
-						"Country": {
+						"Var": {
 							"value": "AR",
 							"type": "String"
 						}
@@ -323,7 +323,7 @@
 				"typeProperties": {
 					"storedProcedureName": "[GLOBL].[GlobalBITransfer]",
 					"storedProcedureParameters": {
-						"Zone": {
+						"Var": {
 							"value": "AR",
 							"type": "String"
 						}
