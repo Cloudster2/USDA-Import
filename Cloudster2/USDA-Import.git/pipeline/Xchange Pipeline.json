@@ -15,8 +15,8 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"url": "https://prod-81.westus.logic.azure.com:443/workflows/698a50a012c24d82ac7eb1e0f3bf17bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uGL7WkC3-T_TZU54M9xXBILgT6GQp2d-GAltobux_3I",
 					"method": "GET",
+					"url": "https://prod-81.westus.logic.azure.com:443/workflows/698a50a012c24d82ac7eb1e0f3bf17bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uGL7WkC3-T_TZU54M9xXBILgT6GQp2d-GAltobux_3I",
 					"body": "https://prod-81.westus.logic.azure.com:443/workflows/698a50a012c24d82ac7eb1e0f3bf17bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uGL7WkC3-T_TZU54M9xXBILgT6GQp2d-GAltobux_3I"
 				}
 			},
