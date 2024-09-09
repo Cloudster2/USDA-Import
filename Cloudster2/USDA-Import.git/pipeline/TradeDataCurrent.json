@@ -687,6 +687,33 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Transfer to BI",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "ToBricks",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[TradeBITransfer]"
+				},
+				"linkedServiceName": {
+					"referenceName": "tradeDB",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
