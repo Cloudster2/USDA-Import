@@ -1,0 +1,25 @@
+{
+	"name": "trade trigger",
+	"properties": {
+		"description": "pulls trade data , runs python in databricks and transfers to BI",
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "TradeDataCurrent",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-09-10T00:36:00",
+				"timeZone": "Mountain Standard Time"
+			}
+		}
+	}
+}
