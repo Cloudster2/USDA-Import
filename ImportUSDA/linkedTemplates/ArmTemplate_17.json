@@ -13,6 +13,588 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/WorkDairyProd')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SaraDB connection",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "USDAId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GRPID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CommodityID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UtilPract",
+						"type": "varchar"
+					},
+					{
+						"name": "Class",
+						"type": "varchar"
+					},
+					{
+						"name": "ClassID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "ProdPract",
+						"type": "varchar"
+					},
+					{
+						"name": "CatID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UnitID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Domain",
+						"type": "varchar"
+					},
+					{
+						"name": "DomainCat",
+						"type": "varchar"
+					},
+					{
+						"name": "ItemConcat",
+						"type": "varchar"
+					},
+					{
+						"name": "StateAnsi",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GeoID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Region",
+						"type": "varchar"
+					},
+					{
+						"name": "State",
+						"type": "varchar"
+					},
+					{
+						"name": "WeekEnding",
+						"type": "date"
+					},
+					{
+						"name": "Year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FreqID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Period",
+						"type": "varchar"
+					},
+					{
+						"name": "PeriodID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PeriodTypeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SeqNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "NormValue",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 0
+					},
+					{
+						"name": "MOM",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 5
+					},
+					{
+						"name": "YOY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 5
+					},
+					{
+						"name": "YTD",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 5
+					},
+					{
+						"name": "DOH",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 5
+					}
+				],
+				"typeProperties": {
+					"schema": "USDA",
+					"table": "WorkDairyProd"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WorkMilkProd')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SaraDB connection",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "USDAId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GRPID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CommodityID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UtilPract",
+						"type": "nvarchar"
+					},
+					{
+						"name": "Class",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ProdPract",
+						"type": "nvarchar"
+					},
+					{
+						"name": "CatID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "UnitID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Domain",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DomainCat",
+						"type": "nvarchar"
+					},
+					{
+						"name": "ItemConcat",
+						"type": "nvarchar"
+					},
+					{
+						"name": "StateAnsi",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "GeoID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Region",
+						"type": "nvarchar"
+					},
+					{
+						"name": "State",
+						"type": "nvarchar"
+					},
+					{
+						"name": "WeekEnding",
+						"type": "date"
+					},
+					{
+						"name": "Year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "FreqID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PeriodID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "PeriodTypeID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "SeqNum",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Value",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "NormValue",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "MOM",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 5
+					},
+					{
+						"name": "YOY",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 5
+					},
+					{
+						"name": "YTD",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 5
+					}
+				],
+				"typeProperties": {
+					"schema": "USDA",
+					"table": "WorkmilkProd"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/World0402_0404')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "WorldA",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WorldMXBY')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "WorldMXBY",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Xrate')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "EXCHANGE_RATE_REPORT",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Exchange_Rate_Report1.xls.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "Date",
+						"type": "String"
+					},
+					{
+						"name": "Australian dollar   (AUD)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Euro   (EUR)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Mexican peso   (MXN)                     ",
+						"type": "String"
+					},
+					{
+						"name": "New Zealand dollar   (NZD)                     ",
+						"type": "String"
+					},
+					{
+						"name": "Polish Zloty (PLN)",
+						"type": "String"
+					},
+					{
+						"name": "U.S. dollar   (USD)                     ",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XrateImport')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Date",
+						"type": "date"
+					},
+					{
+						"name": "Euro_Zloty",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "Euro_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "PLN_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "NZD_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "AUD_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "MXN_USD",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 6
+					},
+					{
+						"name": "week",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "year",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "day",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "XRateImport"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/austslaughter')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Date",
+						"type": "date"
+					},
+					{
+						"name": "DateString",
+						"type": "varchar"
+					},
+					{
+						"name": "Cheddar",
+						"type": "varchar"
+					},
+					{
+						"name": "NonCheddar",
+						"type": "varchar"
+					},
+					{
+						"name": "Cheese",
+						"type": "varchar"
+					},
+					{
+						"name": "Butter",
+						"type": "varchar"
+					},
+					{
+						"name": "ButterOil",
+						"type": "varchar"
+					},
+					{
+						"name": "SMP",
+						"type": "varchar"
+					},
+					{
+						"name": "BMP",
+						"type": "varchar"
+					},
+					{
+						"name": "WMP",
+						"type": "varchar"
+					},
+					{
+						"name": "WheyPowder",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "GLOBL",
+					"table": "AustImp"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/checkdate')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/fmmosreports')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "reports"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt0402')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GTT0402",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/gtt04021')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -169,378 +751,6 @@
 				"type": "RestResource",
 				"typeProperties": {},
 				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gtt1702')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "gtt1702",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gtt3501')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "gtt3501",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gtt3504')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "gtt3504",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/imp2989')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "imp2989",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/imp3354')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SlugID",
-						"type": "varchar"
-					},
-					{
-						"name": "Section",
-						"type": "varchar"
-					},
-					{
-						"name": "PONumber",
-						"type": "varchar"
-					},
-					{
-						"name": "POName",
-						"type": "varchar"
-					},
-					{
-						"name": "Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Skim",
-						"type": "varchar"
-					},
-					{
-						"name": "Butterfat",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PRICING",
-					"table": "Imp3354"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/imp3355')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "SlugID",
-						"type": "varchar"
-					},
-					{
-						"name": "Section",
-						"type": "varchar"
-					},
-					{
-						"name": "PONumber",
-						"type": "varchar"
-					},
-					{
-						"name": "POName",
-						"type": "varchar"
-					},
-					{
-						"name": "Class1Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Class2Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Class3Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Class4Whole",
-						"type": "varchar"
-					},
-					{
-						"name": "Month",
-						"type": "varchar"
-					},
-					{
-						"name": "Year",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PRICING",
-					"table": "Imp3355"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/reports')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "FMMOSreports",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/rest2991')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "rest2991",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/table2991')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "WeekEnding",
-						"type": "date"
-					},
-					{
-						"name": "PublishDate",
-						"type": "date"
-					},
-					{
-						"name": "CreatedDate",
-						"type": "date"
-					},
-					{
-						"name": "Class2Price",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Class2ButterFat",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "AdvSkimClass2",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Class3Price",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Class3Skim",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Class4Price",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Class4Skim",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "ButterFat",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "NonFatSolids",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Protein",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "OtherSolids",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "SomaticCellAdj",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "ButterMonthlyAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "NFDMMonthlyAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "CheeseMonthlyAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "CheeseMonthly40pAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "CheeseMonthly500PAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "WheyMonthlyAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "SlugID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ReportTitle",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "PRICING",
-					"table": "imp2991"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/testingtriggers')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "SaraDB connection",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "SqlServerTable",
-				"schema": [],
-				"typeProperties": {
-					"schema": "USDA",
-					"table": "TriggerTestingTable"
-				}
 			},
 			"dependsOn": []
 		}

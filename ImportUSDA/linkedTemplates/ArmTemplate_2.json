@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'BlueRockDB'"
 		},
+		"3461receipts_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3461/receipts"
+		},
 		"3462Butterfat_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3462/Butterfat"
@@ -77,7 +81,7 @@
 		},
 		"Countries To Countries_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&impexp=IE&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true&reporter=ReportersAll&source=NATIONAL&accumulatereportergroups=false"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2018-01&hscode=CurrentList&source=NATIONAL&partner=AllCountries&reporter=ReportersAll&currency=USD&unit=MT&decimalscale=2&includeotherpartners=true&layout=brief"
 		},
 		"CountriesReportingWorld_properties_typeProperties_url": {
 			"type": "string",
@@ -85,21 +89,32 @@
 		},
 		"CountriesToWorld_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=ReportersAll&hscode=CurrentList&impexp=IE&source=DEFAULT&from=2019-01"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=ReportersAll&hscode=CurrentList&impexp=IE&source=DEFAULT&from=2018-01"
 		},
 		"CowInventoryRest_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
-		},
-		"Current ALL NOMXBY_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&latestmonths=12&hscode=NOMXBY&reporter=nomxby&periodtype=M&currency=USD&decimalscale=2&layout=brief"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/3461receipts')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('3461receipts_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/3462Butterfat')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -379,21 +394,6 @@
 				"type": "RestService",
 				"typeProperties": {
 					"url": "[parameters('CowInventoryRest_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Current ALL NOMXBY')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('Current ALL NOMXBY_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}

@@ -23,6 +23,34 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
 		},
+		"gtt04041_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=0404100500,0404100850,040490,040410&reporter=all&partner=all&latestmonths=&from=2021-01"
+		},
+		"gtt0405_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=0405&reporter=all&partner=all&latestmonths=&from=2021-01"
+		},
+		"gtt04051_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04051&reporter=all&partner=all&latestmonths=&from=2021-01"
+		},
+		"gtt04061_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04061&reporter=all&partner=all&latestmonths=&from=2021-01"
+		},
+		"gtt04063_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=040630,040640&reporter=all&partner=all&latestmonths=&from=2021-01"
+		},
+		"gtt04069_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=040690&reporter=all&partner=all&latestmonths=&from=2021-01"
+		},
+		"gtt1702_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=1702,170211,170219&reporter=all&partner=all&latestmonths=&from=2021-01"
+		},
 		"gtt3501_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=3501,350110,3501100001,3501100011,3501100019,350190&reporter=all&partner=all&latestmonths=&from=2021-01"
@@ -74,24 +102,117 @@
 		"world3_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World3"
-		},
-		"world4_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World4"
-		},
-		"world5_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World5"
-		},
-		"DataLakesTest_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://datalakesstorage.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04041')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('gtt04041_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt0405')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('gtt0405_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04051')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('gtt04051_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04061')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('gtt04061_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04063')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('gtt04063_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04069')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('gtt04069_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt1702')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('gtt1702_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/gtt3501')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -290,234 +411,6 @@
 					"url": "[parameters('world3_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/world4')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('world4_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/world5')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('world5_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DataLakesTest')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('DataLakesTest_properties_typeProperties_url')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Date Table Update')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Update Date Table",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[USDA].[UpdateDateTable]"
-						},
-						"linkedServiceName": {
-							"referenceName": "SaraDB connection",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/10YearDairyProd')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "10YearDairyProd",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/10YearStocks')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "10YearDairyStocks",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/2989')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "WeekEnding",
-						"type": "date"
-					},
-					{
-						"name": "BaseClass1Price",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "BaseSkimClass1",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "AdvSkimClass3Factor",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "AdvSkimClass4Factor",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "AdvButterFatFactor",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "SkimClass2",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "NonFatSolidsClass2",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Butter2WeekAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "NFDM2WeekAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Cheese2WeekAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Cheese2Week40pAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Cheese2Week500pAvg",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "Whey2WeekPrice",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "DieselPrice",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "MieageRateFactor",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 4
-					},
-					{
-						"name": "SlugID",
-						"type": "int",
-						"precision": 10
-					}
-				],
-				"typeProperties": {
-					"schema": "PRICING",
-					"table": "Imp2989"
 				}
 			},
 			"dependsOn": []

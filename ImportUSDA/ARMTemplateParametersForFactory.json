@@ -26,6 +26,12 @@
 		"EuroStatsImport_connectionString": {
 			"value": ""
 		},
+		"LocalFile_password": {
+			"value": ""
+		},
+		"PythonBlobStorage_connectionString": {
+			"value": ""
+		},
 		"Report 1043_password": {
 			"value": ""
 		},
@@ -77,6 +83,9 @@
 		"TestTriggerConnection_connectionString": {
 			"value": ""
 		},
+		"ToDataBricks_accessToken": {
+			"value": ""
+		},
 		"WorkDairy_connectionString": {
 			"value": ""
 		},
@@ -91,6 +100,9 @@
 		},
 		"usdadata_connectionString": {
 			"value": ""
+		},
+		"EUGlobalDataTrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
 		},
 		"10YearDairyProd_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010"
@@ -252,7 +264,7 @@
 			"value": "https://ceresbatch.westus.batch.azure.com"
 		},
 		"BatchPyth_properties_typeProperties_poolName": {
-			"value": "CeresPool"
+			"value": "cerespool"
 		},
 		"BatchPyth_properties_typeProperties_accountName": {
 			"value": "ceresbatch"
@@ -261,13 +273,13 @@
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=CHEESE&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2016&freq_desc=POINT IN TIME"
 		},
 		"Countries To Countries_properties_typeProperties_url": {
-			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&impexp=IE&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true&reporter=ReportersAll&source=NATIONAL&accumulatereportergroups=false"
+			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2018-01&hscode=CurrentList&source=NATIONAL&partner=AllCountries&reporter=ReportersAll&currency=USD&unit=MT&decimalscale=2&includeotherpartners=true&layout=brief"
 		},
 		"CountriesReportingWorld_properties_typeProperties_url": {
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?impexp=I&token=E3A720ABF1B82CB5D67831FFCF2CF995&from=2012-01&hscode=CurrentList&source=NATIONAL&reporter=ReportersAll&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&accumulatepartnergroups=true&partner=World"
 		},
 		"CountriesToWorld_properties_typeProperties_url": {
-			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=ReportersAll&hscode=CurrentList&impexp=IE&source=DEFAULT&from=2019-01"
+			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=ReportersAll&hscode=CurrentList&impexp=IE&source=DEFAULT&from=2018-01"
 		},
 		"CowInventoryRest_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&statisticcat_desc=INVENTORY, AVG&class_desc=COWS, MILK&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
@@ -275,11 +287,14 @@
 		"Current ALL NOMXBY_properties_typeProperties_url": {
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&latestmonths=12&hscode=NOMXBY&reporter=nomxby&periodtype=M&currency=USD&decimalscale=2&layout=brief"
 		},
+		"DataLakesTest_properties_typeProperties_url": {
+			"value": "https://datalakesstorage.dfs.core.windows.net/"
+		},
 		"Euro_properties_typeProperties_url": {
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2010-01&reporter=EU27ExUK&source=EUROSTAT&partner=ReportersAll&periodtype=M&onlycompleteperiods=true&accumulatereportergroups=true&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=0402,040210,040221,04022100,0404,040410,04041004,0404100500,0404100850,040490    "
 		},
 		"EuroAllCountries_properties_typeProperties_url": {
-			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true"
+			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2018-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true"
 		},
 		"EuroCommission_properties_typeProperties_url": {
 			"value": "https://ec.europa.eu/agrifood/api/rawMilk/prices?"
@@ -294,7 +309,7 @@
 			"value": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/unicode/en/apro_mt_pwgtm?sinceTimePeriod=2018M06&groupedIndicators=1&precision=1&unit=THS_HD&meat=B1230&meat=B1240&shortLabel=1"
 		},
 		"EuroWorld_properties_typeProperties_url": {
-			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=World minus EU27exUK&accumulatepartnergroups=true&excludeintratrade=true"
+			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2018-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=World minus EU27exUK&accumulatepartnergroups=true&excludeintratrade=true"
 		},
 		"ExchangeRates_properties_typeProperties_url": {
 			"value": "http://dataservices.imf.org/REST/SDMX_JSON.svc/Dataflow"
@@ -388,6 +403,12 @@
 		},
 		"ICECREAMAPI_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78  &commodity_desc=ICE CREAM&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010"
+		},
+		"LocalFile_properties_typeProperties_host": {
+			"value": "\"C:\\Users\\cloud\\OneDrive\\Desktop\\CME BI.xlsx\""
+		},
+		"LocalFile_properties_typeProperties_userId": {
+			"value": "claudia stern"
 		},
 		"MX BY Not Aggr_properties_typeProperties_url": {
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?token=D6D61C6154D44C86FC10F410E47816D5&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&from=2010&to=&reporter=NoMXBY&impexp=IE&source=DEFAULT&hscode=NOMXBY&partner=zz&accumulatepartnergroups=true"
@@ -485,11 +506,20 @@
 		"RestMilk Annual_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78&commodity_desc=MILK&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL&freq_desc=ANNUAL&year__LE=2015&year__GE=2010"
 		},
+		"SkillsClassPublicStorage_sasUri": {
+			"value": ""
+		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
 		},
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE"
+		},
+		"ToDataBricks_properties_typeProperties_existingClusterId": {
+			"value": "0906-223609-hx2lmgj8"
+		},
+		"Tokens_properties_typeProperties_baseUrl": {
+			"value": "https://CeresVault.vault.azure.net/"
 		},
 		"USDAStocks_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2016&freq_desc=POINT IN TIME"
@@ -577,12 +607,6 @@
 		},
 		"world5_properties_typeProperties_url": {
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World5"
-		},
-		"EUGlobalDataTrigger_properties_typeProperties_scope": {
-			"value": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
-		},
-		"DataLakesTest_properties_typeProperties_url": {
-			"value": "https://datalakesstorage.dfs.core.windows.net/"
 		}
 	}
 }

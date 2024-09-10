@@ -15,13 +15,21 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'EuroStatsImport'"
 		},
+		"Current ALL NOMXBY_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&latestmonths=12&hscode=NOMXBY&reporter=nomxby&periodtype=M&currency=USD&decimalscale=2&layout=brief"
+		},
+		"DataLakesTest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesstorage.dfs.core.windows.net/"
+		},
 		"Euro_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2010-01&reporter=EU27ExUK&source=EUROSTAT&partner=ReportersAll&periodtype=M&onlycompleteperiods=true&accumulatereportergroups=true&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=0402,040210,040221,04022100,0404,040410,04041004,0404100500,0404100850,040490    "
 		},
 		"EuroAllCountries_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2018-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true"
 		},
 		"EuroCommission_properties_typeProperties_url": {
 			"type": "string",
@@ -41,7 +49,7 @@
 		},
 		"EuroWorld_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=World minus EU27exUK&accumulatepartnergroups=true&excludeintratrade=true"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2018-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=World minus EU27exUK&accumulatepartnergroups=true&excludeintratrade=true"
 		},
 		"ExchangeRates_properties_typeProperties_url": {
 			"type": "string",
@@ -78,20 +86,40 @@
 		"GTT040690_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069000,04069001,04069004,04069010,04069013,04069015,04069017,04069018&reporter=all&partner=all&latestmonths=&from=2021-01"
-		},
-		"GTT040690B_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069019,04069020,04069021,04069023,04069025,04069027,04069029,04069031&reporter=all&partner=all&latestmonths=&from=2021-01"
-		},
-		"GTT040690C_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069032,04069033,04069035,04069037,04069039,04069050,04069061,04069063&reporter=all&partner=all&latestmonths=&from=2021-01"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Current ALL NOMXBY')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('Current ALL NOMXBY_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DataLakesTest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('DataLakesTest_properties_typeProperties_url')]"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Euro')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -354,36 +382,6 @@
 				"type": "RestService",
 				"typeProperties": {
 					"url": "[parameters('GTT040690_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GTT040690B')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('GTT040690B_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GTT040690C')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('GTT040690C_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}

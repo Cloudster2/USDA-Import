@@ -35,6 +35,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'EuroStatsImport'"
 		},
+		"LocalFile_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LocalFile'"
+		},
+		"PythonBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'PythonBlobStorage'"
+		},
 		"Report 1043_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Report 1043'"
@@ -103,6 +111,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'TestTriggerConnection'"
 		},
+		"ToDataBricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ToDataBricks'"
+		},
 		"WorkDairy_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'WorkDairy'"
@@ -122,6 +134,10 @@
 		"usdadata_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
+		},
+		"EUGlobalDataTrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
 		},
 		"10YearDairyProd_properties_typeProperties_url": {
 			"type": "string",
@@ -337,7 +353,7 @@
 		},
 		"BatchPyth_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "CeresPool"
+			"defaultValue": "cerespool"
 		},
 		"BatchPyth_properties_typeProperties_accountName": {
 			"type": "string",
@@ -349,7 +365,7 @@
 		},
 		"Countries To Countries_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&impexp=IE&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true&reporter=ReportersAll&source=NATIONAL&accumulatereportergroups=false"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2018-01&hscode=CurrentList&source=NATIONAL&partner=AllCountries&reporter=ReportersAll&currency=USD&unit=MT&decimalscale=2&includeotherpartners=true&layout=brief"
 		},
 		"CountriesReportingWorld_properties_typeProperties_url": {
 			"type": "string",
@@ -357,7 +373,7 @@
 		},
 		"CountriesToWorld_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=ReportersAll&hscode=CurrentList&impexp=IE&source=DEFAULT&from=2019-01"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=ReportersAll&hscode=CurrentList&impexp=IE&source=DEFAULT&from=2018-01"
 		},
 		"CowInventoryRest_properties_typeProperties_url": {
 			"type": "string",
@@ -367,13 +383,17 @@
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&latestmonths=12&hscode=NOMXBY&reporter=nomxby&periodtype=M&currency=USD&decimalscale=2&layout=brief"
 		},
+		"DataLakesTest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesstorage.dfs.core.windows.net/"
+		},
 		"Euro_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2010-01&reporter=EU27ExUK&source=EUROSTAT&partner=ReportersAll&periodtype=M&onlycompleteperiods=true&accumulatereportergroups=true&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=0402,040210,040221,04022100,0404,040410,04041004,0404100500,0404100850,040490    "
 		},
 		"EuroAllCountries_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2018-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true"
 		},
 		"EuroCommission_properties_typeProperties_url": {
 			"type": "string",
@@ -393,7 +413,7 @@
 		},
 		"EuroWorld_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=World minus EU27exUK&accumulatepartnergroups=true&excludeintratrade=true"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2018-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=World minus EU27exUK&accumulatepartnergroups=true&excludeintratrade=true"
 		},
 		"ExchangeRates_properties_typeProperties_url": {
 			"type": "string",
@@ -518,6 +538,14 @@
 		"ICECREAMAPI_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78  &commodity_desc=ICE CREAM&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010"
+		},
+		"LocalFile_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "\"C:\\Users\\cloud\\OneDrive\\Desktop\\CME BI.xlsx\""
+		},
+		"LocalFile_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "claudia stern"
 		},
 		"MX BY Not Aggr_properties_typeProperties_url": {
 			"type": "string",
@@ -647,6 +675,10 @@
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78&commodity_desc=MILK&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL&freq_desc=ANNUAL&year__LE=2015&year__GE=2010"
 		},
+		"SkillsClassPublicStorage_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'SkillsClassPublicStorage'"
+		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
@@ -654,6 +686,14 @@
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE"
+		},
+		"ToDataBricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0906-223609-hx2lmgj8"
+		},
+		"Tokens_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://CeresVault.vault.azure.net/"
 		},
 		"USDAStocks_properties_typeProperties_url": {
 			"type": "string",
@@ -771,14 +811,6 @@
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World5"
 		},
-		"EUGlobalDataTrigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
-		},
-		"DataLakesTest_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://datalakesstorage.dfs.core.windows.net/"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -862,9 +894,6 @@
 					},
 					"3349Butterfat_properties_typeProperties_url": {
 						"value": "[parameters('3349Butterfat_properties_typeProperties_url')]"
-					},
-					"3349Milk_properties_typeProperties_url": {
-						"value": "[parameters('3349Milk_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -883,6 +912,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"3349Milk_properties_typeProperties_url": {
+						"value": "[parameters('3349Milk_properties_typeProperties_url')]"
 					},
 					"3349NFS_properties_typeProperties_url": {
 						"value": "[parameters('3349NFS_properties_typeProperties_url')]"
@@ -940,9 +972,6 @@
 					},
 					"3461PRODUCERS_properties_typeProperties_url": {
 						"value": "[parameters('3461PRODUCERS_properties_typeProperties_url')]"
-					},
-					"3461receipts_properties_typeProperties_url": {
-						"value": "[parameters('3461receipts_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -975,6 +1004,9 @@
 					},
 					"BlueRockDB_connectionString": {
 						"value": "[parameters('BlueRockDB_connectionString')]"
+					},
+					"3461receipts_properties_typeProperties_url": {
+						"value": "[parameters('3461receipts_properties_typeProperties_url')]"
 					},
 					"3462Butterfat_properties_typeProperties_url": {
 						"value": "[parameters('3462Butterfat_properties_typeProperties_url')]"
@@ -1026,9 +1058,6 @@
 					},
 					"CowInventoryRest_properties_typeProperties_url": {
 						"value": "[parameters('CowInventoryRest_properties_typeProperties_url')]"
-					},
-					"Current ALL NOMXBY_properties_typeProperties_url": {
-						"value": "[parameters('Current ALL NOMXBY_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1055,6 +1084,12 @@
 					},
 					"EuroStatsImport_connectionString": {
 						"value": "[parameters('EuroStatsImport_connectionString')]"
+					},
+					"Current ALL NOMXBY_properties_typeProperties_url": {
+						"value": "[parameters('Current ALL NOMXBY_properties_typeProperties_url')]"
+					},
+					"DataLakesTest_properties_typeProperties_url": {
+						"value": "[parameters('DataLakesTest_properties_typeProperties_url')]"
 					},
 					"Euro_properties_typeProperties_url": {
 						"value": "[parameters('Euro_properties_typeProperties_url')]"
@@ -1103,12 +1138,6 @@
 					},
 					"GTT040690_properties_typeProperties_url": {
 						"value": "[parameters('GTT040690_properties_typeProperties_url')]"
-					},
-					"GTT040690B_properties_typeProperties_url": {
-						"value": "[parameters('GTT040690B_properties_typeProperties_url')]"
-					},
-					"GTT040690C_properties_typeProperties_url": {
-						"value": "[parameters('GTT040690C_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1129,6 +1158,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"GTT040690B_properties_typeProperties_url": {
+						"value": "[parameters('GTT040690B_properties_typeProperties_url')]"
+					},
+					"GTT040690C_properties_typeProperties_url": {
+						"value": "[parameters('GTT040690C_properties_typeProperties_url')]"
 					},
 					"GTT040690D_properties_typeProperties_url": {
 						"value": "[parameters('GTT040690D_properties_typeProperties_url')]"
@@ -1183,12 +1218,6 @@
 					},
 					"GatsAPI_properties_typeProperties_url": {
 						"value": "[parameters('GatsAPI_properties_typeProperties_url')]"
-					},
-					"HttpServer1_properties_typeProperties_url": {
-						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
-					},
-					"ICECREAMAPI_properties_typeProperties_url": {
-						"value": "[parameters('ICECREAMAPI_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1209,6 +1238,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"LocalFile_password": {
+						"value": "[parameters('LocalFile_password')]"
+					},
+					"PythonBlobStorage_connectionString": {
+						"value": "[parameters('PythonBlobStorage_connectionString')]"
 					},
 					"Report 1043_password": {
 						"value": "[parameters('Report 1043_password')]"
@@ -1246,11 +1281,17 @@
 					"Report1101_password": {
 						"value": "[parameters('Report1101_password')]"
 					},
-					"Report1102_password": {
-						"value": "[parameters('Report1102_password')]"
+					"HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
 					},
-					"SQLEuroSlaughterCows_connectionString": {
-						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
+					"ICECREAMAPI_properties_typeProperties_url": {
+						"value": "[parameters('ICECREAMAPI_properties_typeProperties_url')]"
+					},
+					"LocalFile_properties_typeProperties_host": {
+						"value": "[parameters('LocalFile_properties_typeProperties_host')]"
+					},
+					"LocalFile_properties_typeProperties_userId": {
+						"value": "[parameters('LocalFile_properties_typeProperties_userId')]"
 					},
 					"MX BY Not Aggr_properties_typeProperties_url": {
 						"value": "[parameters('MX BY Not Aggr_properties_typeProperties_url')]"
@@ -1335,18 +1376,6 @@
 					},
 					"Report1101_properties_typeProperties_userName": {
 						"value": "[parameters('Report1101_properties_typeProperties_userName')]"
-					},
-					"Report1102_properties_typeProperties_url": {
-						"value": "[parameters('Report1102_properties_typeProperties_url')]"
-					},
-					"Report1102_properties_typeProperties_userName": {
-						"value": "[parameters('Report1102_properties_typeProperties_userName')]"
-					},
-					"RestDairyProduction_properties_typeProperties_url": {
-						"value": "[parameters('RestDairyProduction_properties_typeProperties_url')]"
-					},
-					"RestMilk Annual_properties_typeProperties_url": {
-						"value": "[parameters('RestMilk Annual_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1368,6 +1397,12 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"Report1102_password": {
+						"value": "[parameters('Report1102_password')]"
+					},
+					"SQLEuroSlaughterCows_connectionString": {
+						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
+					},
 					"Sara Database_connectionString": {
 						"value": "[parameters('Sara Database_connectionString')]"
 					},
@@ -1377,14 +1412,38 @@
 					"TestTriggerConnection_connectionString": {
 						"value": "[parameters('TestTriggerConnection_connectionString')]"
 					},
+					"ToDataBricks_accessToken": {
+						"value": "[parameters('ToDataBricks_accessToken')]"
+					},
 					"WorkDairy_connectionString": {
 						"value": "[parameters('WorkDairy_connectionString')]"
+					},
+					"Report1102_properties_typeProperties_url": {
+						"value": "[parameters('Report1102_properties_typeProperties_url')]"
+					},
+					"Report1102_properties_typeProperties_userName": {
+						"value": "[parameters('Report1102_properties_typeProperties_userName')]"
+					},
+					"RestDairyProduction_properties_typeProperties_url": {
+						"value": "[parameters('RestDairyProduction_properties_typeProperties_url')]"
+					},
+					"RestMilk Annual_properties_typeProperties_url": {
+						"value": "[parameters('RestMilk Annual_properties_typeProperties_url')]"
+					},
+					"SkillsClassPublicStorage_sasUri": {
+						"value": "[parameters('SkillsClassPublicStorage_sasUri')]"
 					},
 					"SlaughterNationalImport_properties_typeProperties_url": {
 						"value": "[parameters('SlaughterNationalImport_properties_typeProperties_url')]"
 					},
 					"SlaughterRegionalAPI_properties_typeProperties_url": {
 						"value": "[parameters('SlaughterRegionalAPI_properties_typeProperties_url')]"
+					},
+					"ToDataBricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('ToDataBricks_properties_typeProperties_existingClusterId')]"
+					},
+					"Tokens_properties_typeProperties_baseUrl": {
+						"value": "[parameters('Tokens_properties_typeProperties_baseUrl')]"
 					},
 					"USDAStocks_properties_typeProperties_url": {
 						"value": "[parameters('USDAStocks_properties_typeProperties_url')]"
@@ -1406,27 +1465,6 @@
 					},
 					"gtt04021_properties_typeProperties_url": {
 						"value": "[parameters('gtt04021_properties_typeProperties_url')]"
-					},
-					"gtt04041_properties_typeProperties_url": {
-						"value": "[parameters('gtt04041_properties_typeProperties_url')]"
-					},
-					"gtt0405_properties_typeProperties_url": {
-						"value": "[parameters('gtt0405_properties_typeProperties_url')]"
-					},
-					"gtt04051_properties_typeProperties_url": {
-						"value": "[parameters('gtt04051_properties_typeProperties_url')]"
-					},
-					"gtt04061_properties_typeProperties_url": {
-						"value": "[parameters('gtt04061_properties_typeProperties_url')]"
-					},
-					"gtt04063_properties_typeProperties_url": {
-						"value": "[parameters('gtt04063_properties_typeProperties_url')]"
-					},
-					"gtt04069_properties_typeProperties_url": {
-						"value": "[parameters('gtt04069_properties_typeProperties_url')]"
-					},
-					"gtt1702_properties_typeProperties_url": {
-						"value": "[parameters('gtt1702_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1459,6 +1497,27 @@
 					},
 					"usdadata_connectionString": {
 						"value": "[parameters('usdadata_connectionString')]"
+					},
+					"gtt04041_properties_typeProperties_url": {
+						"value": "[parameters('gtt04041_properties_typeProperties_url')]"
+					},
+					"gtt0405_properties_typeProperties_url": {
+						"value": "[parameters('gtt0405_properties_typeProperties_url')]"
+					},
+					"gtt04051_properties_typeProperties_url": {
+						"value": "[parameters('gtt04051_properties_typeProperties_url')]"
+					},
+					"gtt04061_properties_typeProperties_url": {
+						"value": "[parameters('gtt04061_properties_typeProperties_url')]"
+					},
+					"gtt04063_properties_typeProperties_url": {
+						"value": "[parameters('gtt04063_properties_typeProperties_url')]"
+					},
+					"gtt04069_properties_typeProperties_url": {
+						"value": "[parameters('gtt04069_properties_typeProperties_url')]"
+					},
+					"gtt1702_properties_typeProperties_url": {
+						"value": "[parameters('gtt1702_properties_typeProperties_url')]"
 					},
 					"gtt3501_properties_typeProperties_url": {
 						"value": "[parameters('gtt3501_properties_typeProperties_url')]"
@@ -1498,15 +1557,6 @@
 					},
 					"world3_properties_typeProperties_url": {
 						"value": "[parameters('world3_properties_typeProperties_url')]"
-					},
-					"world4_properties_typeProperties_url": {
-						"value": "[parameters('world4_properties_typeProperties_url')]"
-					},
-					"world5_properties_typeProperties_url": {
-						"value": "[parameters('world5_properties_typeProperties_url')]"
-					},
-					"DataLakesTest_properties_typeProperties_url": {
-						"value": "[parameters('DataLakesTest_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1527,6 +1577,12 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"world4_properties_typeProperties_url": {
+						"value": "[parameters('world4_properties_typeProperties_url')]"
+					},
+					"world5_properties_typeProperties_url": {
+						"value": "[parameters('world5_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1787,6 +1843,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'ImportUSDA_ArmTemplate_19')]"
+			]
+		},
+		{
+			"name": "ImportUSDA_ArmTemplate_21",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_21.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ImportUSDA_ArmTemplate_20')]"
 			]
 		}
 	]

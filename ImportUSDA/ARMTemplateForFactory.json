@@ -35,6 +35,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'EuroStatsImport'"
 		},
+		"LocalFile_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LocalFile'"
+		},
+		"PythonBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'PythonBlobStorage'"
+		},
 		"Report 1043_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Report 1043'"
@@ -103,6 +111,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'TestTriggerConnection'"
 		},
+		"ToDataBricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ToDataBricks'"
+		},
 		"WorkDairy_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'WorkDairy'"
@@ -122,6 +134,10 @@
 		"usdadata_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
+		},
+		"EUGlobalDataTrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
 		},
 		"10YearDairyProd_properties_typeProperties_url": {
 			"type": "string",
@@ -337,7 +353,7 @@
 		},
 		"BatchPyth_properties_typeProperties_poolName": {
 			"type": "string",
-			"defaultValue": "CeresPool"
+			"defaultValue": "cerespool"
 		},
 		"BatchPyth_properties_typeProperties_accountName": {
 			"type": "string",
@@ -349,7 +365,7 @@
 		},
 		"Countries To Countries_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&impexp=IE&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true&reporter=ReportersAll&source=NATIONAL&accumulatereportergroups=false"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2018-01&hscode=CurrentList&source=NATIONAL&partner=AllCountries&reporter=ReportersAll&currency=USD&unit=MT&decimalscale=2&includeotherpartners=true&layout=brief"
 		},
 		"CountriesReportingWorld_properties_typeProperties_url": {
 			"type": "string",
@@ -357,7 +373,7 @@
 		},
 		"CountriesToWorld_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=ReportersAll&hscode=CurrentList&impexp=IE&source=DEFAULT&from=2019-01"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&accumulatepartnergroups=true&partner=ZZ&reporter=ReportersAll&hscode=CurrentList&impexp=IE&source=DEFAULT&from=2018-01"
 		},
 		"CowInventoryRest_properties_typeProperties_url": {
 			"type": "string",
@@ -367,13 +383,17 @@
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&latestmonths=12&hscode=NOMXBY&reporter=nomxby&periodtype=M&currency=USD&decimalscale=2&layout=brief"
 		},
+		"DataLakesTest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesstorage.dfs.core.windows.net/"
+		},
 		"Euro_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2010-01&reporter=EU27ExUK&source=EUROSTAT&partner=ReportersAll&periodtype=M&onlycompleteperiods=true&accumulatereportergroups=true&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=0402,040210,040221,04022100,0404,040410,04041004,0404100500,0404100850,040490    "
 		},
 		"EuroAllCountries_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2018-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=AllCountries&accumulatepartnergroups=false&excludeintratrade=true"
 		},
 		"EuroCommission_properties_typeProperties_url": {
 			"type": "string",
@@ -393,7 +413,7 @@
 		},
 		"EuroWorld_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2019-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=World minus EU27exUK&accumulatepartnergroups=true&excludeintratrade=true"
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&hscode=CurrentList&periodtype=M&onlycompleteperiods=true&currency=USD&unit=MT&unitpreferred=MT&decimalscale=2&layout=brief&from=2018-01&reporter=EU27exUK&impexp=IE&source=EUROSTAT&accumulatereportergroups=true&partner=World minus EU27exUK&accumulatepartnergroups=true&excludeintratrade=true"
 		},
 		"ExchangeRates_properties_typeProperties_url": {
 			"type": "string",
@@ -518,6 +538,14 @@
 		"ICECREAMAPI_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78  &commodity_desc=ICE CREAM&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010"
+		},
+		"LocalFile_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "\"C:\\Users\\cloud\\OneDrive\\Desktop\\CME BI.xlsx\""
+		},
+		"LocalFile_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "claudia stern"
 		},
 		"MX BY Not Aggr_properties_typeProperties_url": {
 			"type": "string",
@@ -647,6 +675,10 @@
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78&commodity_desc=MILK&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL&freq_desc=ANNUAL&year__LE=2015&year__GE=2010"
 		},
+		"SkillsClassPublicStorage_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'SkillsClassPublicStorage'"
+		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
@@ -654,6 +686,14 @@
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE"
+		},
+		"ToDataBricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0906-223609-hx2lmgj8"
+		},
+		"Tokens_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://CeresVault.vault.azure.net/"
 		},
 		"USDAStocks_properties_typeProperties_url": {
 			"type": "string",
@@ -770,14 +810,6 @@
 		"world5_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World5"
-		},
-		"EUGlobalDataTrigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
-		},
-		"DataLakesTest_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://datalakesstorage.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -4211,7 +4243,7 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalLatPrep]",
 							"storedProcedureParameters": {
-								"Country": {
+								"Var": {
 									"value": "AR",
 									"type": "String"
 								}
@@ -4271,7 +4303,7 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
 							"storedProcedureParameters": {
-								"Zone": {
+								"Var": {
 									"value": "AR",
 									"type": "String"
 								}
@@ -4782,7 +4814,7 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
 							"storedProcedureParameters": {
-								"ZONE": {
+								"Var": {
 									"value": "CHINA",
 									"type": "String"
 								}
@@ -5674,6 +5706,86 @@
 				"[concat(variables('factoryId'), '/datasets/USDADataFactory')]",
 				"[concat(variables('factoryId'), '/datasets/ColdStorageAPI')]",
 				"[concat(variables('factoryId'), '/datasets/DataFactoryTable')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CopySkillsExcerc')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Bring data in from public storage to my blob storage",
+				"activities": [
+					{
+						"name": "Copy_jok",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "training/crime-data-2016/"
+							},
+							{
+								"name": "Destination",
+								"value": "dwtemp/03.02/"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*"
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings",
+									"copyBehavior": "PreserveHierarchy"
+								}
+							},
+							"enableStaging": false,
+							"enableSkipIncompatibleRow": false,
+							"skipErrorFile": {
+								"fileMissing": true
+							},
+							"validateDataConsistency": false
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_jok",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_jok",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_jok')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_jok')]"
 			]
 		},
 		{
@@ -19623,9 +19735,8 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "Date",
 											"type": "String",
-											"physicalType": "String"
+											"ordinal": 1
 										},
 										"sink": {
 											"name": "DateString",
@@ -19635,60 +19746,11 @@
 									},
 									{
 										"source": {
-											"name": "Milk available to Processors (Million liters)",
 											"type": "String",
-											"physicalType": "String"
+											"ordinal": 3
 										},
 										"sink": {
 											"name": "Milk",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Liquid Milk Production (million liters)",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "DrinkingMilk",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Cheese Production ('000 tonnes)",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Cheese",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Butter Production ('000 tonnes)",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Butter",
-											"type": "String",
-											"physicalType": "varchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Milk Powder Production ('000 tonnes)",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "SMP",
 											"type": "String",
 											"physicalType": "varchar"
 										}
@@ -19888,7 +19950,7 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
 							"storedProcedureParameters": {
-								"Zone": {
+								"Var": {
 									"value": "UK",
 									"type": "String"
 								}
@@ -20240,8 +20302,8 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
 							"storedProcedureParameters": {
-								"Zone": {
-									"value": "AUMILK",
+								"Var": {
+									"value": "AUSMILK",
 									"type": "String"
 								}
 							}
@@ -20499,9 +20561,12 @@
 						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "AzureSqlSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
+								"type": "ExcelSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								}
 							},
 							"sink": {
 								"type": "AzureSqlSink",
@@ -20513,9 +20578,8 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "DateString",
 											"type": "String",
-											"physicalType": "varchar"
+											"ordinal": 1
 										},
 										"sink": {
 											"name": "DateString",
@@ -20525,9 +20589,8 @@
 									},
 									{
 										"source": {
-											"name": "ValueString",
 											"type": "String",
-											"physicalType": "varchar"
+											"ordinal": 2
 										},
 										"sink": {
 											"name": "ValueString",
@@ -20545,7 +20608,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "austslaughter",
+								"referenceName": "AusSlaughter",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -20634,8 +20697,8 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
 							"storedProcedureParameters": {
-								"Zone": {
-									"value": "AU",
+								"Var": {
+									"value": "OCEANIA",
 									"type": "String"
 								}
 							}
@@ -20655,7 +20718,7 @@
 				"[concat(variables('factoryId'), '/datasets/AUDairy')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]",
 				"[concat(variables('factoryId'), '/datasets/AusDairyLast')]",
-				"[concat(variables('factoryId'), '/datasets/austslaughter')]",
+				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
 				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
@@ -21090,8 +21153,8 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
 							"storedProcedureParameters": {
-								"Zone": {
-									"value": "EURO",
+								"Var": {
+									"value": "EU27",
 									"type": "String"
 								}
 							}
@@ -21573,7 +21636,7 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
 							"storedProcedureParameters": {
-								"Zone": {
+								"Var": {
 									"value": "NZ",
 									"type": "String"
 								}
@@ -22713,7 +22776,7 @@
 						"typeProperties": {
 							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
 							"storedProcedureParameters": {
-								"Zone": {
+								"Var": {
 									"value": "MX",
 									"type": "String"
 								}
@@ -28354,7 +28417,14 @@
 					{
 						"name": "CountriesWorld",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "CountriesToCountries",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -28507,174 +28577,6 @@
 						"outputs": [
 							{
 								"referenceName": "GTTCountriesToWorld",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "CountriesToCountries",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "EuroCountries",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:03:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"paginationRules": {
-									"supportRFC5988": "true"
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table GTTCountriesToCountries\n\n\n",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "[['tradeFlow']"
-										},
-										"sink": {
-											"name": "tradeFlow",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['year']"
-										},
-										"sink": {
-											"name": "year",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['month']"
-										},
-										"sink": {
-											"name": "month",
-											"type": "Int64"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterCode']"
-										},
-										"sink": {
-											"name": "reporterCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['reporterName']"
-										},
-										"sink": {
-											"name": "reporterName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerCode']"
-										},
-										"sink": {
-											"name": "partnerCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['partnerName']"
-										},
-										"sink": {
-											"name": "partnerName",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['hsCode']"
-										},
-										"sink": {
-											"name": "hsCode",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['currency']"
-										},
-										"sink": {
-											"name": "currency",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['value']"
-										},
-										"sink": {
-											"name": "value",
-											"type": "Double"
-										}
-									},
-									{
-										"source": {
-											"path": "[['unit1']"
-										},
-										"sink": {
-											"name": "unit1",
-											"type": "String"
-										}
-									},
-									{
-										"source": {
-											"path": "[['quantity1']"
-										},
-										"sink": {
-											"name": "quantity1",
-											"type": "Double"
-										}
-									}
-								],
-								"collectionReference": "$['reportData']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "CountriesToCountries",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "GTTCountriesToCountries",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -28846,6 +28748,224 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "ToBricks",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "EuroCountries",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/claudia@ceresdrm.com/TradeNB",
+							"baseParameters": {
+								"TradeFile": "GTTCountriesToWorld"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "ToDataBricks",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "CountriesToCountries",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:03:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table GTTCountriesToCountries\n\n\n",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['tradeFlow']"
+										},
+										"sink": {
+											"name": "tradeFlow",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['year']"
+										},
+										"sink": {
+											"name": "year",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['month']"
+										},
+										"sink": {
+											"name": "month",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterCode']"
+										},
+										"sink": {
+											"name": "reporterCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reporterName']"
+										},
+										"sink": {
+											"name": "reporterName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerCode']"
+										},
+										"sink": {
+											"name": "partnerCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['partnerName']"
+										},
+										"sink": {
+											"name": "partnerName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['hsCode']"
+										},
+										"sink": {
+											"name": "hsCode",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['currency']"
+										},
+										"sink": {
+											"name": "currency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['value']"
+										},
+										"sink": {
+											"name": "value",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "[['unit1']"
+										},
+										"sink": {
+											"name": "unit1",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['quantity1']"
+										},
+										"sink": {
+											"name": "quantity1",
+											"type": "Double"
+										}
+									}
+								],
+								"collectionReference": "$['reportData']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "CountriesToCountries",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "GTTCountriesToCountries",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Transfer to BI",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "ToBricks",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[TradeBITransfer]"
+						},
+						"linkedServiceName": {
+							"referenceName": "tradeDB",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -28858,10 +28978,12 @@
 				"[concat(variables('factoryId'), '/datasets/GTTEuroWorld')]",
 				"[concat(variables('factoryId'), '/datasets/CountriesToWorld')]",
 				"[concat(variables('factoryId'), '/datasets/GTTCountriesToWorld')]",
+				"[concat(variables('factoryId'), '/datasets/EuroAllCountries')]",
+				"[concat(variables('factoryId'), '/datasets/EuroCountriesTable')]",
+				"[concat(variables('factoryId'), '/linkedServices/ToDataBricks')]",
 				"[concat(variables('factoryId'), '/datasets/CountriesToCountries')]",
 				"[concat(variables('factoryId'), '/datasets/GTTCountriesToCountries')]",
-				"[concat(variables('factoryId'), '/datasets/EuroAllCountries')]",
-				"[concat(variables('factoryId'), '/datasets/EuroCountriesTable')]"
+				"[concat(variables('factoryId'), '/linkedServices/tradeDB')]"
 			]
 		},
 		{
@@ -31455,16 +31577,9 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "FuturesBlob_copy1_copy2",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Futures LogicApp WebHook_copy1_copy2",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"name": "FirstTest",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
 							"retry": 0,
@@ -31474,157 +31589,14 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "ExcelSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table futuresimp\n",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Contract",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Contract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Source",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Source",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Month",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Year",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Price",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Price",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 2,
-											"precision": 18
-										}
-									},
-									{
-										"source": {
-											"name": "Price_Lb",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "PriceLb",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 5,
-											"precision": 18
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
+							"notebookPath": "/Users/claudia@ceresdrm.com/ADF to DataBricks NB",
+							"baseParameters": {
+								"TradeFile": "ItemTable"
 							}
 						},
-						"inputs": [
-							{
-								"referenceName": "FuturesBlob",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "FuturesImp",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Futures LogicApp WebHook_copy1_copy2",
-						"type": "WebHook",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://prod-15.westus.logic.azure.com:443/workflows/dbe0895afdca41918cc5a002c1a2c138/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vJPcVEvH6olmcdFW8O9tCBccc2i0JpNAom4qYNzEpBw",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/json"
-							},
-							"body": {
-								"DataFactoryName": "@{pipeline().DataFactory}",
-								"PipelineName": "@{pipeline().Pipeline}"
-							},
-							"timeout": "00:10:00"
+						"linkedServiceName": {
+							"referenceName": "ToDataBricks",
+							"type": "LinkedServiceReference"
 						}
 					}
 				],
@@ -31634,8 +31606,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/FuturesBlob')]",
-				"[concat(variables('factoryId'), '/datasets/FuturesImp')]"
+				"[concat(variables('factoryId'), '/linkedServices/ToDataBricks')]"
 			]
 		},
 		{
@@ -33525,7 +33496,7 @@
 						"container": "trade-data-container"
 					},
 					"range": "",
-					"firstRowAsHeader": true
+					"firstRowAsHeader": false
 				},
 				"schema": [
 					{
@@ -34239,6 +34210,29 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_jok')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "03.02",
+						"container": "dwtemp"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
 			]
 		},
 		{
@@ -36874,6 +36868,29 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ParquetLesson')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "DataLakesTest",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/DataLakesTest')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Pricing')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -37552,6 +37569,29 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_jok')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SkillsClassPublicStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "crime-data-2016",
+						"container": "training"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SkillsClassPublicStorage')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SouthKoreTrade')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -38091,13 +38131,14 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "Sheet1",
+					"sheetName": "UK_Monthly",
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "UK Dairy Production.xlsx",
+						"fileName": "UK Dataset Milk and Dairy Production.xlsx",
 						"container": "trade-data-container"
 					},
-					"firstRowAsHeader": true
+					"range": "",
+					"firstRowAsHeader": false
 				},
 				"schema": [
 					{
@@ -40076,6 +40117,27 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/tempXrate')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "XrateTest"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/testingtriggers')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -40094,6 +40156,617 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AMS trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "triggers every Friday ",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "AMS Pipeline All Data",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 7,
+						"startTime": "2022-01-21T12:00:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/AMS Pipeline All Data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Daily Trigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Daily Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-06-23T13:30:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Daily Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DateTableUpdate')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "daily",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Date Table Update",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-09-29T01:00:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Date Table Update')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EUGlobalDataTrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "triggered by blob change",
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Global Euro Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/trade-data-container/blobs/",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Global Euro Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EuroMilkPriceTrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Monthly pull of europpen milk prices ",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Euro Milk Prices",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Month",
+						"interval": 1,
+						"startTime": "2023-09-08T17:40:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								10
+							],
+							"monthDays": [
+								5
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Euro Milk Prices')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FFMOStrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "FFMOS",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2024-02-20T19:32:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {
+							"minutes": [
+								15
+							],
+							"hours": [
+								13
+							],
+							"weekDays": [
+								"Wednesday",
+								"Thursday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/FFMOS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FuturesTrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Triggers futures data",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Futures Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2022-11-14T23:19:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {
+							"minutes": [
+								1
+							],
+							"hours": [
+								7
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Futures Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MilkProductionInventory')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Milk Production, Inventory Cows, Production per cow",
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "MilkProductionCowInventory",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2021-06-03T13:00:00",
+						"endTime": "2021-06-03T18:09:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {
+							"minutes": [
+								15
+							],
+							"hours": [
+								13
+							],
+							"weekDays": [
+								"Thursday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/MilkProductionCowInventory')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Weekly Slaughter')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Slaughter Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2021-06-21T13:40:00",
+						"timeZone": "Mountain Standard Time",
+						"schedule": {
+							"minutes": [
+								40
+							],
+							"hours": [
+								13
+							],
+							"weekDays": [
+								"Monday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Slaughter Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/XRate Ttigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Transfers Xrates weekly from excel file ",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Xchange Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 7,
+						"startTime": "2022-04-08T11:45:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Xchange Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/cold storage')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Cold Storage Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 1,
+						"startTime": "2021-06-22T12:30:00",
+						"endTime": "2021-06-22T14:01:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Cold Storage Pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/just once')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "USDA DAIRY PIPELINE",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-06-22T13:30:00",
+						"endTime": "2021-06-23T17:21:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/USDA DAIRY PIPELINE')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/milk prod trigger twice')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "MilkProductionCowInventory",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2021-06-15T13:17:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/MilkProductionCowInventory')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CLSIntegrationRuntime')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/australia')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AusSlaughter",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "AustSync",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Date as string,",
+						"          {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;} as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     inferDriftedColumnTypes: true,",
+						"     ignoreNoFilesFound: false) ~> source1",
+						"source1 derive(Date = Date,",
+						"          {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;} = {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;},",
+						"          column1 = toString(byPosition(1)),",
+						"          column2 = toString(byPosition(2))) ~> derivedColumn1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          DateString as string,",
+						"          ValueString as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     postSQLs:['Delete From Globl.austimp where  datestring is null\\nDelete from Globl.austimp where Datestring = \\'Date\\''],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          DateString = column1,",
+						"          ValueString = column2",
+						"     )) ~> sink1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
+				"[concat(variables('factoryId'), '/datasets/AustSync')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "AusSlaughter",
+								"type": "DatasetReference"
+							},
+							"name": "Australia"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "EUGobalImport",
+								"type": "DatasetReference"
+							},
+							"name": "australiasink"
+						}
+					],
+					"transformations": [
+						{
+							"name": "derivedColumn1"
+						},
+						{
+							"name": "alterRow1"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Column_1 as string,",
+						"          Column_2 as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> Australia",
+						"alterRow1 derive(Column_1 = Column_1,",
+						"          Column_2 = Column_2) ~> derivedColumn1",
+						"Australia alterRow(deleteIf(isMatch(1))) ~> alterRow1",
+						"derivedColumn1 sink(allowSchemaDrift: true,",
+						"     validateSchema: true,",
+						"     input(",
+						"          EUID as integer,",
+						"          Date as date,",
+						"          DateString as string,",
+						"          YearString as string,",
+						"          Year as integer,",
+						"          MonthString as string,",
+						"          Month as integer,",
+						"          ItemID as string,",
+						"          ValueString as string,",
+						"          Value as decimal(18,2)",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     errorHandlingOption: 'stopOnFirstError',",
+						"     mapColumn(",
+						"          DateString = Column_1,",
+						"          ValueString = Column_2",
+						"     )) ~> australiasink"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
+				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
 			]
 		},
 		{
@@ -41024,6 +41697,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/DataLakesTest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('DataLakesTest_properties_typeProperties_url')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Euro')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -41630,6 +42316,24 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/LocalFile')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "FileServer",
+				"typeProperties": {
+					"host": "[parameters('LocalFile_properties_typeProperties_host')]",
+					"userId": "[parameters('LocalFile_properties_typeProperties_userId')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('LocalFile_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/MX BY Not Aggr')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -41686,6 +42390,19 @@
 					"url": "[parameters('NumberOfCowsAPI_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/PythonBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('PythonBlobStorage_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -42020,6 +42737,19 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SkillsClassPublicStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"sasUri": "[parameters('SkillsClassPublicStorage_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SlaughterNationalImport')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -42060,6 +42790,38 @@
 				"type": "SqlServer",
 				"typeProperties": {
 					"connectionString": "[parameters('TestTriggerConnection_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ToDataBricks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-985225828095386.6.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('ToDataBricks_accessToken')]"
+					},
+					"existingClusterId": "[parameters('ToDataBricks_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Tokens')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "token to databricks",
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('Tokens_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []
@@ -42521,47 +43283,17 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AMS trigger')]",
+			"name": "[concat(parameters('factoryName'), '/trade trigger')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "triggers every Friday ",
+				"description": "pulls trade data , runs python in databricks and transfers to BI",
 				"annotations": [],
 				"runtimeState": "Started",
 				"pipelines": [
 					{
 						"pipelineReference": {
-							"referenceName": "AMS Pipeline All Data",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 7,
-						"startTime": "2022-01-21T12:00:00",
-						"timeZone": "Mountain Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/AMS Pipeline All Data')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Daily Trigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Daily Pipeline",
+							"referenceName": "TradeDataCurrent",
 							"type": "PipelineReference"
 						},
 						"parameters": {}
@@ -42572,567 +43304,15 @@
 					"recurrence": {
 						"frequency": "Day",
 						"interval": 1,
-						"startTime": "2021-06-23T13:30:00",
-						"timeZone": "Mountain Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Daily Pipeline')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DateTableUpdate')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "daily",
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Date Table Update",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2021-09-29T01:00:00",
-						"timeZone": "Mountain Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Date Table Update')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/EUGlobalDataTrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "triggered by blob change",
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Global Euro Pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/trade-data-container/blobs/",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Global Euro Pipeline')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/EuroMilkPriceTrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Monthly pull of europpen milk prices ",
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Euro Milk Prices",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Month",
-						"interval": 1,
-						"startTime": "2023-09-08T17:40:00",
+						"startTime": "2024-09-10T00:36:00",
 						"timeZone": "Mountain Standard Time",
-						"schedule": {
-							"minutes": [
-								0
-							],
-							"hours": [
-								10
-							],
-							"monthDays": [
-								5
-							]
-						}
+						"schedule": {}
 					}
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Euro Milk Prices')]"
+				"[concat(variables('factoryId'), '/pipelines/TradeDataCurrent')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FFMOStrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "FFMOS",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2024-02-20T19:32:00",
-						"timeZone": "Mountain Standard Time",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								13
-							],
-							"weekDays": [
-								"Wednesday",
-								"Thursday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/FFMOS')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/FuturesTrigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Triggers futures data",
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Futures Pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2022-11-14T23:19:00",
-						"timeZone": "Mountain Standard Time",
-						"schedule": {
-							"minutes": [
-								1
-							],
-							"hours": [
-								7
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Futures Pipeline')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/MilkProductionInventory')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Milk Production, Inventory Cows, Production per cow",
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "MilkProductionCowInventory",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2021-06-03T13:00:00",
-						"endTime": "2021-06-03T18:09:00",
-						"timeZone": "Mountain Standard Time",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								13
-							],
-							"weekDays": [
-								"Thursday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/MilkProductionCowInventory')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Weekly Slaughter')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Slaughter Pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2021-06-21T13:40:00",
-						"timeZone": "Mountain Standard Time",
-						"schedule": {
-							"minutes": [
-								40
-							],
-							"hours": [
-								13
-							],
-							"weekDays": [
-								"Monday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Slaughter Pipeline')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/XRate Ttigger')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Transfers Xrates weekly from excel file ",
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Xchange Pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 7,
-						"startTime": "2022-04-08T11:45:00",
-						"timeZone": "Mountain Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Xchange Pipeline')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/cold storage')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Cold Storage Pipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 1,
-						"startTime": "2021-06-22T12:30:00",
-						"endTime": "2021-06-22T14:01:00",
-						"timeZone": "Mountain Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Cold Storage Pipeline')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/just once')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "USDA DAIRY PIPELINE",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2021-06-22T13:30:00",
-						"endTime": "2021-06-23T17:21:00",
-						"timeZone": "Mountain Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/USDA DAIRY PIPELINE')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/milk prod trigger twice')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "MilkProductionCowInventory",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2021-06-15T13:17:00",
-						"timeZone": "Mountain Standard Time"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/MilkProductionCowInventory')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/australia')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "AusSlaughter",
-								"type": "DatasetReference"
-							},
-							"name": "source1"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "AustSync",
-								"type": "DatasetReference"
-							},
-							"name": "sink1"
-						}
-					],
-					"transformations": [
-						{
-							"name": "derivedColumn1"
-						}
-					],
-					"scriptLines": [
-						"source(output(",
-						"          Date as string,",
-						"          {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;} as string",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     inferDriftedColumnTypes: true,",
-						"     ignoreNoFilesFound: false) ~> source1",
-						"source1 derive(Date = Date,",
-						"          {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;} = {Number Slaughtered ;  COWS AND HEIFERS ;  Total (State) ;},",
-						"          column1 = toString(byPosition(1)),",
-						"          column2 = toString(byPosition(2))) ~> derivedColumn1",
-						"derivedColumn1 sink(allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     input(",
-						"          DateString as string,",
-						"          ValueString as string",
-						"     ),",
-						"     deletable:false,",
-						"     insertable:true,",
-						"     updateable:false,",
-						"     upsertable:false,",
-						"     format: 'table',",
-						"     postSQLs:['Delete From Globl.austimp where  datestring is null\\nDelete from Globl.austimp where Datestring = \\'Date\\''],",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError',",
-						"     mapColumn(",
-						"          DateString = column1,",
-						"          ValueString = column2",
-						"     )) ~> sink1"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
-				"[concat(variables('factoryId'), '/datasets/AustSync')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
-			"type": "Microsoft.DataFactory/factories/dataflows",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"type": "MappingDataFlow",
-				"typeProperties": {
-					"sources": [
-						{
-							"dataset": {
-								"referenceName": "AusSlaughter",
-								"type": "DatasetReference"
-							},
-							"name": "Australia"
-						}
-					],
-					"sinks": [
-						{
-							"dataset": {
-								"referenceName": "EUGobalImport",
-								"type": "DatasetReference"
-							},
-							"name": "australiasink"
-						}
-					],
-					"transformations": [
-						{
-							"name": "derivedColumn1"
-						},
-						{
-							"name": "alterRow1"
-						}
-					],
-					"scriptLines": [
-						"source(output(",
-						"          Column_1 as string,",
-						"          Column_2 as string",
-						"     ),",
-						"     allowSchemaDrift: true,",
-						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> Australia",
-						"alterRow1 derive(Column_1 = Column_1,",
-						"          Column_2 = Column_2) ~> derivedColumn1",
-						"Australia alterRow(deleteIf(isMatch(1))) ~> alterRow1",
-						"derivedColumn1 sink(allowSchemaDrift: true,",
-						"     validateSchema: true,",
-						"     input(",
-						"          EUID as integer,",
-						"          Date as date,",
-						"          DateString as string,",
-						"          YearString as string,",
-						"          Year as integer,",
-						"          MonthString as string,",
-						"          Month as integer,",
-						"          ItemID as string,",
-						"          ValueString as string,",
-						"          Value as decimal(18,2)",
-						"     ),",
-						"     deletable:false,",
-						"     insertable:true,",
-						"     updateable:false,",
-						"     upsertable:false,",
-						"     format: 'table',",
-						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true,",
-						"     errorHandlingOption: 'stopOnFirstError',",
-						"     mapColumn(",
-						"          DateString = Column_1,",
-						"          ValueString = Column_2",
-						"     )) ~> australiasink"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
-				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DataLakesTest')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('DataLakesTest_properties_typeProperties_url')]"
-				}
-			},
-			"dependsOn": []
 		}
 	]
 }

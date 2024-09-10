@@ -13,6 +13,118 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/3358_1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3358_1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3461AvgDaily')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3461AvgDaily",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3461Producers')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3461PRODUCERS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3461Receipts')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3461receipts",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3462Butterfat')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3462Butterfat",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3462NFS')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3462NFS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/3462Protein')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "3462Protein",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/3462Receipts')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -535,330 +647,6 @@
 						"type": "String"
 					}
 				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ArgentinaProtein')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Protein",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AR Milk Dataset.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Año",
-						"type": "String"
-					},
-					{
-						"name": "NACIONAL",
-						"type": "String"
-					},
-					{
-						"name": "BUENOS AIRES",
-						"type": "String"
-					},
-					{
-						"name": "CÓRDOBA",
-						"type": "String"
-					},
-					{
-						"name": "ENTRE RÍOS",
-						"type": "String"
-					},
-					{
-						"name": " LA PAMPA",
-						"type": "String"
-					},
-					{
-						"name": "SANTA FE",
-						"type": "String"
-					},
-					{
-						"name": "SANTIAGO DEL ESTERO",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AusDairyLast')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Previous Season",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Dairy Product Production.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Month",
-						"type": "String"
-					},
-					{
-						"name": "Production",
-						"type": "String"
-					},
-					{
-						"name": "Product",
-						"type": "String"
-					},
-					{
-						"name": "Season",
-						"type": "String"
-					},
-					{
-						"name": "Year",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AusFat')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AU Milkfat",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Milk Production and Components.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Column2",
-						"type": "String"
-					},
-					{
-						"name": "NSW",
-						"type": "String"
-					},
-					{
-						"name": "VIC",
-						"type": "String"
-					},
-					{
-						"name": "QLD",
-						"type": "String"
-					},
-					{
-						"name": "SA",
-						"type": "String"
-					},
-					{
-						"name": "WA",
-						"type": "String"
-					},
-					{
-						"name": "TAS",
-						"type": "String"
-					},
-					{
-						"name": "AUSTRALIA",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AusGlobalMilk')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "Date",
-						"type": "date"
-					},
-					{
-						"name": "DateString",
-						"type": "varchar"
-					},
-					{
-						"name": "MonthString",
-						"type": "varchar"
-					},
-					{
-						"name": "itemid",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "UnitID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "ValueLbs",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					}
-				],
-				"typeProperties": {
-					"schema": "GLOBL",
-					"table": "AUSGlobalMilk"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AusProtein')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AU Protein",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Milk Production and Components.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Column2",
-						"type": "String"
-					},
-					{
-						"name": "NSW",
-						"type": "String"
-					},
-					{
-						"name": "VIC",
-						"type": "String"
-					},
-					{
-						"name": "QLD",
-						"type": "String"
-					},
-					{
-						"name": "SA",
-						"type": "String"
-					},
-					{
-						"name": "WA",
-						"type": "String"
-					},
-					{
-						"name": "TAS",
-						"type": "String"
-					},
-					{
-						"name": "AUSTRALIA",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AusSlaughter')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "Sheet2",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Dairy Cow Slaughter.xlsx",
-						"container": "trade-data-container"
-					},
-					"range": "",
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"type": "String"
-					},
-					{
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AustSync')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "Sara Database",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "DateString",
-						"type": "varchar"
-					},
-					{
-						"name": "ValueString",
-						"type": "varchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "GLOBL",
-					"table": "Austemp"
-				}
 			},
 			"dependsOn": []
 		}

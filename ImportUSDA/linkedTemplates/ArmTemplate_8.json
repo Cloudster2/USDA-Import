@@ -6,12 +6,272 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "ImportUSDA"
+		},
+		"world4_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World4"
+		},
+		"world5_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World5"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/world4')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('world4_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/world5')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('world5_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Date Table Update')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Update Date Table",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[USDA].[UpdateDateTable]"
+						},
+						"linkedServiceName": {
+							"referenceName": "SaraDB connection",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tempwork')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "FirstTest",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/claudia@ceresdrm.com/ADF to DataBricks NB",
+							"baseParameters": {
+								"TradeFile": "ItemTable"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "ToDataBricks",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/10YearDairyProd')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "10YearDairyProd",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/10YearStocks')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "10YearDairyStocks",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/2989')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "WeekEnding",
+						"type": "date"
+					},
+					{
+						"name": "BaseClass1Price",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "BaseSkimClass1",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "AdvSkimClass3Factor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "AdvSkimClass4Factor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "AdvButterFatFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SkimClass2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "NonFatSolidsClass2",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Butter2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "NFDM2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Cheese2WeekAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Cheese2Week40pAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Cheese2Week500pAvg",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "Whey2WeekPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "DieselPrice",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "MieageRateFactor",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 4
+					},
+					{
+						"name": "SlugID",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "PRICING",
+					"table": "Imp2989"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/3345Skim')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -211,118 +471,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "3348Milk",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3348OtherSolids')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3348OtherSolids",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3348Protein')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3348Protein",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3348Utilization')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3348Utilization",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3349Butterfat')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3349Butterfat",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3349Milk')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3349Milk",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3349NFS')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3349NFS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3349Utilization')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3349Utilization",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
