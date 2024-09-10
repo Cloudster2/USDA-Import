@@ -19,7 +19,7 @@
 			"properties": {
 				"description": "pulls trade data , runs python in databricks and transfers to BI",
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
