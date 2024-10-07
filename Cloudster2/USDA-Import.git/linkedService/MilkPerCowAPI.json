@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY",
+			"url": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2019&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
