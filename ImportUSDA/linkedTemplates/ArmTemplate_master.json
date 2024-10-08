@@ -135,17 +135,13 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
 		},
-		"EUGlobalDataTrigger_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
-		},
 		"10YearDairyProd_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2010"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2019"
 		},
 		"10YearDairyStocks_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2010&freq_desc=POINT IN TIME"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2019&freq_desc=POINT IN TIME"
 		},
 		"3345Skim_properties_typeProperties_url": {
 			"type": "string",
@@ -557,7 +553,7 @@
 		},
 		"MilkPerCowAPI_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2010&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=PRODUCTION&Unit_desc=LB / HEAD&year__GE=2019&agg_level_desc=NATIONAL&agg_level_desc=STATE&freq_desc=MONTHLY"
 		},
 		"NumberOfCowsAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -681,7 +677,7 @@
 		},
 		"SlaughterNationalImport_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2019&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE&agg_level_desc=NATIONAL"
 		},
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -811,6 +807,10 @@
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World5"
 		},
+		"EUGlobalDataTrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -827,7 +827,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_0",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -894,6 +894,9 @@
 					},
 					"3349Butterfat_properties_typeProperties_url": {
 						"value": "[parameters('3349Butterfat_properties_typeProperties_url')]"
+					},
+					"3349Milk_properties_typeProperties_url": {
+						"value": "[parameters('3349Milk_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -902,7 +905,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_1",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -912,9 +915,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"3349Milk_properties_typeProperties_url": {
-						"value": "[parameters('3349Milk_properties_typeProperties_url')]"
 					},
 					"3349NFS_properties_typeProperties_url": {
 						"value": "[parameters('3349NFS_properties_typeProperties_url')]"
@@ -972,6 +972,9 @@
 					},
 					"3461PRODUCERS_properties_typeProperties_url": {
 						"value": "[parameters('3461PRODUCERS_properties_typeProperties_url')]"
+					},
+					"3461receipts_properties_typeProperties_url": {
+						"value": "[parameters('3461receipts_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -982,7 +985,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_2",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1004,9 +1007,6 @@
 					},
 					"BlueRockDB_connectionString": {
 						"value": "[parameters('BlueRockDB_connectionString')]"
-					},
-					"3461receipts_properties_typeProperties_url": {
-						"value": "[parameters('3461receipts_properties_typeProperties_url')]"
 					},
 					"3462Butterfat_properties_typeProperties_url": {
 						"value": "[parameters('3462Butterfat_properties_typeProperties_url')]"
@@ -1058,6 +1058,9 @@
 					},
 					"CowInventoryRest_properties_typeProperties_url": {
 						"value": "[parameters('CowInventoryRest_properties_typeProperties_url')]"
+					},
+					"Current ALL NOMXBY_properties_typeProperties_url": {
+						"value": "[parameters('Current ALL NOMXBY_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1068,7 +1071,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_3",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1084,9 +1087,6 @@
 					},
 					"EuroStatsImport_connectionString": {
 						"value": "[parameters('EuroStatsImport_connectionString')]"
-					},
-					"Current ALL NOMXBY_properties_typeProperties_url": {
-						"value": "[parameters('Current ALL NOMXBY_properties_typeProperties_url')]"
 					},
 					"DataLakesTest_properties_typeProperties_url": {
 						"value": "[parameters('DataLakesTest_properties_typeProperties_url')]"
@@ -1138,6 +1138,9 @@
 					},
 					"GTT040690_properties_typeProperties_url": {
 						"value": "[parameters('GTT040690_properties_typeProperties_url')]"
+					},
+					"GTT040690B_properties_typeProperties_url": {
+						"value": "[parameters('GTT040690B_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1148,7 +1151,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_4",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1158,9 +1161,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"GTT040690B_properties_typeProperties_url": {
-						"value": "[parameters('GTT040690B_properties_typeProperties_url')]"
 					},
 					"GTT040690C_properties_typeProperties_url": {
 						"value": "[parameters('GTT040690C_properties_typeProperties_url')]"
@@ -1218,6 +1218,9 @@
 					},
 					"GatsAPI_properties_typeProperties_url": {
 						"value": "[parameters('GatsAPI_properties_typeProperties_url')]"
+					},
+					"HttpServer1_properties_typeProperties_url": {
+						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1228,7 +1231,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_5",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1281,8 +1284,8 @@
 					"Report1101_password": {
 						"value": "[parameters('Report1101_password')]"
 					},
-					"HttpServer1_properties_typeProperties_url": {
-						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
+					"Report1102_password": {
+						"value": "[parameters('Report1102_password')]"
 					},
 					"ICECREAMAPI_properties_typeProperties_url": {
 						"value": "[parameters('ICECREAMAPI_properties_typeProperties_url')]"
@@ -1376,6 +1379,12 @@
 					},
 					"Report1101_properties_typeProperties_userName": {
 						"value": "[parameters('Report1101_properties_typeProperties_userName')]"
+					},
+					"Report1102_properties_typeProperties_url": {
+						"value": "[parameters('Report1102_properties_typeProperties_url')]"
+					},
+					"Report1102_properties_typeProperties_userName": {
+						"value": "[parameters('Report1102_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -1386,7 +1395,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_6",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1396,9 +1405,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"Report1102_password": {
-						"value": "[parameters('Report1102_password')]"
 					},
 					"SQLEuroSlaughterCows_connectionString": {
 						"value": "[parameters('SQLEuroSlaughterCows_connectionString')]"
@@ -1417,12 +1423,6 @@
 					},
 					"WorkDairy_connectionString": {
 						"value": "[parameters('WorkDairy_connectionString')]"
-					},
-					"Report1102_properties_typeProperties_url": {
-						"value": "[parameters('Report1102_properties_typeProperties_url')]"
-					},
-					"Report1102_properties_typeProperties_userName": {
-						"value": "[parameters('Report1102_properties_typeProperties_userName')]"
 					},
 					"RestDairyProduction_properties_typeProperties_url": {
 						"value": "[parameters('RestDairyProduction_properties_typeProperties_url')]"
@@ -1465,6 +1465,9 @@
 					},
 					"gtt04021_properties_typeProperties_url": {
 						"value": "[parameters('gtt04021_properties_typeProperties_url')]"
+					},
+					"gtt04041_properties_typeProperties_url": {
+						"value": "[parameters('gtt04041_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1475,7 +1478,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_7",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1497,9 +1500,6 @@
 					},
 					"usdadata_connectionString": {
 						"value": "[parameters('usdadata_connectionString')]"
-					},
-					"gtt04041_properties_typeProperties_url": {
-						"value": "[parameters('gtt04041_properties_typeProperties_url')]"
 					},
 					"gtt0405_properties_typeProperties_url": {
 						"value": "[parameters('gtt0405_properties_typeProperties_url')]"
@@ -1557,6 +1557,9 @@
 					},
 					"world3_properties_typeProperties_url": {
 						"value": "[parameters('world3_properties_typeProperties_url')]"
+					},
+					"world4_properties_typeProperties_url": {
+						"value": "[parameters('world4_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1567,7 +1570,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_8",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1577,9 +1580,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"world4_properties_typeProperties_url": {
-						"value": "[parameters('world4_properties_typeProperties_url')]"
 					},
 					"world5_properties_typeProperties_url": {
 						"value": "[parameters('world5_properties_typeProperties_url')]"
@@ -1593,7 +1593,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_9",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1613,7 +1613,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_10",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1633,7 +1633,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_11",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1653,7 +1653,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_12",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1673,7 +1673,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_13",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1693,7 +1693,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_14",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1713,7 +1713,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_15",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1733,7 +1733,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_16",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1753,7 +1753,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_17",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1773,7 +1773,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_18",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1805,7 +1805,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_19",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1825,7 +1825,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_20",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
@@ -1848,7 +1848,7 @@
 		{
 			"name": "ImportUSDA_ArmTemplate_21",
 			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
+			"apiVersion": "2024-03-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {

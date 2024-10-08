@@ -35,8 +35,7 @@
 						"frequency": "Day",
 						"interval": 1,
 						"startTime": "2024-09-10T00:36:00",
-						"timeZone": "Mountain Standard Time",
-						"schedule": {}
+						"timeZone": "Mountain Standard Time"
 					}
 				}
 			},

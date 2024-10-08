@@ -7,10 +7,6 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ImportUSDA"
 		},
-		"GTT040690B_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069019,04069020,04069021,04069023,04069025,04069027,04069029,04069031&reporter=all&partner=all&latestmonths=&from=2021-01"
-		},
 		"GTT040690C_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069032,04069033,04069035,04069037,04069039,04069050,04069061,04069063&reporter=all&partner=all&latestmonths=&from=2021-01"
@@ -86,27 +82,16 @@
 		"GatsAPI_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://apps.fas.usda.gov/OpenData/api/gats/commodities"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "http://ec.europa.eu/eurostat/wdds/rest/data/v2.1/json/en/apro_mt_pwgtm?precision=1&unit=THS_HD&meat=B1240&shortLabel=1&time=2021M01&time=2021M02&time=2021M03&time=2021M04"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/GTT040690B')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('GTT040690B_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/GTT040690C')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -396,6 +381,21 @@
 							"value": "**********"
 						}
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/HttpServer1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('HttpServer1_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
 				}
 			},
 			"dependsOn": []
