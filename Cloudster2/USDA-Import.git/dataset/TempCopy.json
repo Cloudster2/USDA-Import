@@ -1,0 +1,16 @@
+{
+	"name": "TempCopy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Ceres",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "LookupLists"
+		}
+	}
+}
