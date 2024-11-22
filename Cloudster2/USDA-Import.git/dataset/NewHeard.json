@@ -1,0 +1,16 @@
+{
+	"name": "NewHeard",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "GLOBL",
+			"table": "NewHeardData"
+		}
+	}
+}
