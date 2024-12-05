@@ -1,0 +1,24 @@
+{
+	"name": "AssetUpdateTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "BRock Update",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 12,
+				"startTime": "2024-12-04T18:00:00",
+				"timeZone": "Mountain Standard Time"
+			}
+		}
+	}
+}
