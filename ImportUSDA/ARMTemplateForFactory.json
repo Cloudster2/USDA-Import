@@ -27,6 +27,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'BlueRockDB'"
 		},
+		"Ceres_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Ceres'"
+		},
 		"EuroSlaughterCowsSQL_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'EuroSlaughterCowsSQL'"
@@ -354,6 +358,18 @@
 		"BatchPyth_properties_typeProperties_accountName": {
 			"type": "string",
 			"defaultValue": "ceresbatch"
+		},
+		"Ceres_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ceres.database.windows.net"
+		},
+		"Ceres_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "CeresDB"
+		},
+		"Ceres_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "claudiastern"
 		},
 		"ColdStorageAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -4629,6 +4645,42 @@
 				"[concat(variables('factoryId'), '/datasets/BRTest')]",
 				"[concat(variables('factoryId'), '/datasets/BRtesting')]",
 				"[concat(variables('factoryId'), '/datasets/TESTImport')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/BRock Update')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Asset List Update",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[AssetListUpdate]"
+						},
+						"linkedServiceName": {
+							"referenceName": "BlueRockDB",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/BlueRockDB')]"
 			]
 		},
 		{
@@ -20751,7 +20803,9 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table Globl.EUGlobalImp",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -20835,7 +20889,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "EUGobalImport",
+								"referenceName": "NewEuroData",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -20870,7 +20924,12 @@
 								}
 							},
 							"sink": {
-								"type": "AzureSqlSink"
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table globl.neweuroformat",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
 							"translator": {
@@ -20953,7 +21012,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "EUGobalImport",
+								"referenceName": "NewEuroData",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -20988,7 +21047,11 @@
 								}
 							},
 							"sink": {
-								"type": "AzureSqlSink"
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
 							"translator": {
@@ -21071,7 +21134,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "EUGobalImport",
+								"referenceName": "NewHeard",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -21097,7 +21160,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[GLOBL].[GlobaLEUPrep]"
+							"storedProcedureName": "[[GLOBL].[GlobalEUNewPrep]"
 						},
 						"linkedServiceName": {
 							"referenceName": "Sara Database",
@@ -21151,13 +21214,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"storedProcedureName": "[[GLOBL].[GlobalBITransfer]",
-							"storedProcedureParameters": {
-								"Var": {
-									"value": "EU27",
-									"type": "String"
-								}
-							}
+							"storedProcedureName": "[[GLOBL].[GlobalEUBITransfer]"
 						},
 						"linkedServiceName": {
 							"referenceName": "Sara Database",
@@ -21172,9 +21229,10 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/EUDairy')]",
-				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]",
+				"[concat(variables('factoryId'), '/datasets/NewEuroData')]",
 				"[concat(variables('factoryId'), '/datasets/EUSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUCowsNum')]",
+				"[concat(variables('factoryId'), '/datasets/NewHeard')]",
 				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
@@ -34602,6 +34660,27 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/EUData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "globl",
+					"table": "NewDataFormat"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/EUGobalImport')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -34986,6 +35065,27 @@
 				"typeProperties": {
 					"schema": "dbo",
 					"table": "EuroMilkPrices_BI"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EuroSlaughter')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "GLOBL",
+					"table": "NewEuroSlaughter"
 				}
 			},
 			"dependsOn": [
@@ -36798,6 +36898,48 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/NewEuroData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "GLOBL",
+					"table": "NewEuroFormat"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/NewHeard')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "GLOBL",
+					"table": "NewHeardData"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/NumCowsAPI')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -38044,6 +38186,27 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/tradeDB')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TempCopy')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Ceres",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "LookupLists"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Ceres')]"
 			]
 		},
 		{
@@ -40996,6 +41159,28 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Ceres')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('Ceres_properties_typeProperties_server')]",
+					"database": "[parameters('Ceres_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('Ceres_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Ceres_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ColdStorageAPI')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -42700,6 +42885,36 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/AMS Pipeline All Data')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AssetUpdateTrigger')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "BRock Update",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 12,
+						"startTime": "2024-12-04T18:00:00",
+						"timeZone": "Mountain Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/BRock Update')]"
 			]
 		},
 		{
