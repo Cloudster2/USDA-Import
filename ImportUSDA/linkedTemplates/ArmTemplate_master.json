@@ -1863,9 +1863,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"EUGlobalDataTrigger_properties_typeProperties_scope": {
-						"value": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -1886,6 +1883,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"EUGlobalDataTrigger_properties_typeProperties_scope": {
+						"value": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
