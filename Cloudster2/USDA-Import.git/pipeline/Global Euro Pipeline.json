@@ -25,6 +25,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table globl.neweuroformat",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -430,7 +431,13 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"storedProcedureName": "[GLOBL].[GlobalEUBITransfer]"
+					"storedProcedureName": "[GLOBL].[GlobalEUBITransfer]",
+					"storedProcedureParameters": {
+						"Var": {
+							"value": null,
+							"type": "String"
+						}
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "Sara Database",
