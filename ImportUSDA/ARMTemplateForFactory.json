@@ -701,7 +701,7 @@
 		},
 		"ToDataBricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "0906-223609-hx2lmgj8"
+			"defaultValue": "0106-222227-w1evx903"
 		},
 		"Tokens_properties_typeProperties_baseUrl": {
 			"type": "string",
@@ -43755,6 +43755,18 @@
 				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
 		}
 	]
 }

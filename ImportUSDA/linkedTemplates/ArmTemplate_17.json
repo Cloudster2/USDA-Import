@@ -13,6 +13,50 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/UKGlobalImport')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "DateString",
+						"type": "varbinary"
+					},
+					{
+						"name": "Milk",
+						"type": "varchar"
+					},
+					{
+						"name": "DrinkingMilk",
+						"type": "varchar"
+					},
+					{
+						"name": "Cheese",
+						"type": "varchar"
+					},
+					{
+						"name": "Butter",
+						"type": "varchar"
+					},
+					{
+						"name": "SMP",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "GLOBL",
+					"table": "UKDairyImport"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/UKSlaughter')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1345,22 +1389,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "GTT0404",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/gtt04041')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "gtt04041",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
