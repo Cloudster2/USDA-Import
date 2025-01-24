@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
 		},
+		"gtt04021_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=040210,040221,04022100,040590&reporter=all&partner=all&latestmonths=&from=2022-01"
+		},
 		"gtt04041_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=0404100500,0404100850,040490,040410&reporter=all&partner=all&latestmonths=&from=2021-01"
@@ -98,16 +102,27 @@
 		"test_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3351/milk"
-		},
-		"world3_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World3"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt04021')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('gtt04021_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/gtt04041')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -396,21 +411,6 @@
 				"type": "SqlServer",
 				"typeProperties": {
 					"connectionString": "[parameters('usdadata_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/world3')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('world3_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
 				}
 			},
 			"dependsOn": []

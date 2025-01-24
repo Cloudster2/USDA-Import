@@ -29,6 +29,9 @@
 		"EuroStatsImport_connectionString": {
 			"value": ""
 		},
+		"FileServer1_password": {
+			"value": ""
+		},
 		"LocalFile_password": {
 			"value": ""
 		},
@@ -328,6 +331,12 @@
 		},
 		"FMMOSreports_properties_typeProperties_url": {
 			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/. "
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"value": "\"C:\\Users\\cloud\\OneDrive\\Desktop\\"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"value": "Me"
 		},
 		"GTT API_properties_typeProperties_url": {
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&reporter=NoMXBY,MX,BY&hscode=MXBYIncl&partner=ZZ&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&accumulatepartnergroups=true&from=2016-01&to="

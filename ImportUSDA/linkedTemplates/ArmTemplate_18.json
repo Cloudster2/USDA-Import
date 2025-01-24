@@ -6,28 +6,28 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "ImportUSDA"
-		},
-		"BatchPyth_accessKey": {
-			"type": "secureString",
-			"metadata": "Secure string for 'accessKey' of 'BatchPyth'"
-		},
-		"BatchPyth_properties_typeProperties_batchUri": {
-			"type": "string",
-			"defaultValue": "https://ceresbatch.westus.batch.azure.com"
-		},
-		"BatchPyth_properties_typeProperties_poolName": {
-			"type": "string",
-			"defaultValue": "cerespool"
-		},
-		"BatchPyth_properties_typeProperties_accountName": {
-			"type": "string",
-			"defaultValue": "ceresbatch"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/gtt0404')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GTT0404",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/gtt04041')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
@@ -543,29 +543,6 @@
 				"typeProperties": {
 					"schema": "USDA",
 					"table": "TriggerTestingTable"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/BatchPyth')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBatch",
-				"typeProperties": {
-					"batchUri": "[parameters('BatchPyth_properties_typeProperties_batchUri')]",
-					"poolName": "[parameters('BatchPyth_properties_typeProperties_poolName')]",
-					"accountName": "[parameters('BatchPyth_properties_typeProperties_accountName')]",
-					"linkedServiceName": {
-						"referenceName": "AzureBlobStorage",
-						"type": "LinkedServiceReference"
-					},
-					"accessKey": {
-						"type": "SecureString",
-						"value": "[parameters('BatchPyth_accessKey')]"
-					}
 				}
 			},
 			"dependsOn": []

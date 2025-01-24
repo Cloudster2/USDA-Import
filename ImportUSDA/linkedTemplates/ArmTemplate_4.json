@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "ImportUSDA"
 		},
+		"GTT040690_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069000,04069001,04069004,04069010,04069013,04069015,04069017,04069018&reporter=all&partner=all&latestmonths=&from=2021-01"
+		},
 		"GTT040690B_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=04069019,04069020,04069021,04069023,04069025,04069027,04069029,04069031&reporter=all&partner=all&latestmonths=&from=2021-01"
@@ -82,16 +86,27 @@
 		"GTTWorldMXBY20102016_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&from=2010-01&to=2016-01&reporter=NoMXBY,MX,BY&hscode=MXBYIncl&partner=ZZ&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&accumulatepartnergroups=true"
-		},
-		"GatsAPI_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://apps.fas.usda.gov/OpenData/api/gats/commodities"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/GTT040690')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('GTT040690_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/GTT040690B')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -375,27 +390,6 @@
 					"url": "[parameters('GTTWorldMXBY20102016_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GatsAPI')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('GatsAPI_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous",
-					"authHeaders": {
-						"X-API-Key": {
-							"type": "SecureString",
-							"value": "**********"
-						}
-					}
 				}
 			},
 			"dependsOn": []

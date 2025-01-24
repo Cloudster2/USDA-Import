@@ -39,6 +39,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'EuroStatsImport'"
 		},
+		"FileServer1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer1'"
+		},
 		"LocalFile_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LocalFile'"
@@ -438,6 +442,14 @@
 		"FMMOSreports_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/. "
+		},
+		"FileServer1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "\"C:\\Users\\cloud\\OneDrive\\Desktop\\"
+		},
+		"FileServer1_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "Me"
 		},
 		"GTT API_properties_typeProperties_url": {
 			"type": "string",
@@ -1113,6 +1125,9 @@
 					"EuroStatsImport_connectionString": {
 						"value": "[parameters('EuroStatsImport_connectionString')]"
 					},
+					"FileServer1_password": {
+						"value": "[parameters('FileServer1_password')]"
+					},
 					"Current ALL NOMXBY_properties_typeProperties_url": {
 						"value": "[parameters('Current ALL NOMXBY_properties_typeProperties_url')]"
 					},
@@ -1149,6 +1164,12 @@
 					"FMMOSreports_properties_typeProperties_url": {
 						"value": "[parameters('FMMOSreports_properties_typeProperties_url')]"
 					},
+					"FileServer1_properties_typeProperties_host": {
+						"value": "[parameters('FileServer1_properties_typeProperties_host')]"
+					},
+					"FileServer1_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer1_properties_typeProperties_userId')]"
+					},
 					"GTT API_properties_typeProperties_url": {
 						"value": "[parameters('GTT API_properties_typeProperties_url')]"
 					},
@@ -1163,9 +1184,6 @@
 					},
 					"GTT0406_properties_typeProperties_url": {
 						"value": "[parameters('GTT0406_properties_typeProperties_url')]"
-					},
-					"GTT040690_properties_typeProperties_url": {
-						"value": "[parameters('GTT040690_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1186,6 +1204,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"GTT040690_properties_typeProperties_url": {
+						"value": "[parameters('GTT040690_properties_typeProperties_url')]"
 					},
 					"GTT040690B_properties_typeProperties_url": {
 						"value": "[parameters('GTT040690B_properties_typeProperties_url')]"
@@ -1243,9 +1264,6 @@
 					},
 					"GTTWorldMXBY20102016_properties_typeProperties_url": {
 						"value": "[parameters('GTTWorldMXBY20102016_properties_typeProperties_url')]"
-					},
-					"GatsAPI_properties_typeProperties_url": {
-						"value": "[parameters('GatsAPI_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1306,8 +1324,8 @@
 					"Report1100_password": {
 						"value": "[parameters('Report1100_password')]"
 					},
-					"Report1101_password": {
-						"value": "[parameters('Report1101_password')]"
+					"GatsAPI_properties_typeProperties_url": {
+						"value": "[parameters('GatsAPI_properties_typeProperties_url')]"
 					},
 					"HttpServer1_properties_typeProperties_url": {
 						"value": "[parameters('HttpServer1_properties_typeProperties_url')]"
@@ -1398,12 +1416,6 @@
 					},
 					"Report1100_properties_typeProperties_userName": {
 						"value": "[parameters('Report1100_properties_typeProperties_userName')]"
-					},
-					"Report1101_properties_typeProperties_url": {
-						"value": "[parameters('Report1101_properties_typeProperties_url')]"
-					},
-					"Report1101_properties_typeProperties_userName": {
-						"value": "[parameters('Report1101_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -1425,6 +1437,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"Report1101_password": {
+						"value": "[parameters('Report1101_password')]"
+					},
 					"Report1102_password": {
 						"value": "[parameters('Report1102_password')]"
 					},
@@ -1445,6 +1460,12 @@
 					},
 					"WorkDairy_connectionString": {
 						"value": "[parameters('WorkDairy_connectionString')]"
+					},
+					"Report1101_properties_typeProperties_url": {
+						"value": "[parameters('Report1101_properties_typeProperties_url')]"
+					},
+					"Report1101_properties_typeProperties_userName": {
+						"value": "[parameters('Report1101_properties_typeProperties_userName')]"
 					},
 					"Report1102_properties_typeProperties_url": {
 						"value": "[parameters('Report1102_properties_typeProperties_url')]"
@@ -1490,9 +1511,6 @@
 					},
 					"eurotrade_properties_typeProperties_url": {
 						"value": "[parameters('eurotrade_properties_typeProperties_url')]"
-					},
-					"gtt04021_properties_typeProperties_url": {
-						"value": "[parameters('gtt04021_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1525,6 +1543,9 @@
 					},
 					"usdadata_connectionString": {
 						"value": "[parameters('usdadata_connectionString')]"
+					},
+					"gtt04021_properties_typeProperties_url": {
+						"value": "[parameters('gtt04021_properties_typeProperties_url')]"
 					},
 					"gtt04041_properties_typeProperties_url": {
 						"value": "[parameters('gtt04041_properties_typeProperties_url')]"
@@ -1582,9 +1603,6 @@
 					},
 					"test_properties_typeProperties_url": {
 						"value": "[parameters('test_properties_typeProperties_url')]"
-					},
-					"world3_properties_typeProperties_url": {
-						"value": "[parameters('world3_properties_typeProperties_url')]"
 					}
 				}
 			},
@@ -1605,6 +1623,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"world3_properties_typeProperties_url": {
+						"value": "[parameters('world3_properties_typeProperties_url')]"
 					},
 					"world4_properties_typeProperties_url": {
 						"value": "[parameters('world4_properties_typeProperties_url')]"
@@ -1811,18 +1832,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"BatchPyth_accessKey": {
-						"value": "[parameters('BatchPyth_accessKey')]"
-					},
-					"BatchPyth_properties_typeProperties_batchUri": {
-						"value": "[parameters('BatchPyth_properties_typeProperties_batchUri')]"
-					},
-					"BatchPyth_properties_typeProperties_poolName": {
-						"value": "[parameters('BatchPyth_properties_typeProperties_poolName')]"
-					},
-					"BatchPyth_properties_typeProperties_accountName": {
-						"value": "[parameters('BatchPyth_properties_typeProperties_accountName')]"
 					}
 				}
 			},
@@ -1843,6 +1852,18 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"BatchPyth_accessKey": {
+						"value": "[parameters('BatchPyth_accessKey')]"
+					},
+					"BatchPyth_properties_typeProperties_batchUri": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_batchUri')]"
+					},
+					"BatchPyth_properties_typeProperties_poolName": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_poolName')]"
+					},
+					"BatchPyth_properties_typeProperties_accountName": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_accountName')]"
 					}
 				}
 			},

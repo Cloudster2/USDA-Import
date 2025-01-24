@@ -13,6 +13,22 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/Report1049')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Report1049",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Report1050')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1009,60 +1025,6 @@
 					"schema": "TRADE",
 					"table": "TradeData"
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/UKDairyProd')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "UK_Monthly",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "UK Dataset Milk and Dairy Production.xlsx",
-						"container": "trade-data-container"
-					},
-					"range": "",
-					"firstRowAsHeader": false
-				},
-				"schema": [
-					{
-						"name": "Country",
-						"type": "String"
-					},
-					{
-						"name": "Date",
-						"type": "String"
-					},
-					{
-						"name": "Milk available to Processors (Million liters)",
-						"type": "String"
-					},
-					{
-						"name": "Liquid Milk Production (million liters)",
-						"type": "String"
-					},
-					{
-						"name": "Cheese Production ('000 tonnes)",
-						"type": "String"
-					},
-					{
-						"name": "Butter Production ('000 tonnes)",
-						"type": "String"
-					},
-					{
-						"name": "Milk Powder Production ('000 tonnes)",
-						"type": "String"
-					}
-				]
 			},
 			"dependsOn": []
 		}
