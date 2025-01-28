@@ -1,0 +1,42 @@
+{
+	"name": "FMMOFile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "FMMO30_Other Values",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "FMMO30.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "FMMO",
+				"type": "String"
+			},
+			{
+				"name": "Adj Description",
+				"type": "String"
+			},
+			{
+				"name": "Rate.1",
+				"type": "String"
+			},
+			{
+				"name": "Extended Value",
+				"type": "String"
+			}
+		]
+	}
+}
