@@ -8,7 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "FMMO30_Other Values",
+			"sheetName": "FMMO30_Components",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "FMMO30.xlsx",
