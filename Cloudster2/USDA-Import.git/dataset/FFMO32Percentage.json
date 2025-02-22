@@ -1,0 +1,16 @@
+{
+	"name": "FFMO32Percentage",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "FFMO32Percentage"
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"name": "FMMO32Utilization",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "FMMO 32_UtilizationinLBS",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "FMMO32.xlsx",
+				"container": "trade-data-container"
+			},
+			"range": "A2:C400",
+			"firstRowAsHeader": false
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	}
+}
