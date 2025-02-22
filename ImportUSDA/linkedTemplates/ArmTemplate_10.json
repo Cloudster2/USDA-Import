@@ -13,6 +13,78 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/3352_3353')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "SlugID",
+						"type": "varchar"
+					},
+					{
+						"name": "Section",
+						"type": "varchar"
+					},
+					{
+						"name": "POName",
+						"type": "varchar"
+					},
+					{
+						"name": "PONumber",
+						"type": "varchar"
+					},
+					{
+						"name": "Year",
+						"type": "varchar"
+					},
+					{
+						"name": "Month",
+						"type": "varchar"
+					},
+					{
+						"name": "Class1Ut",
+						"type": "varchar"
+					},
+					{
+						"name": "Class1UtPerc",
+						"type": "varchar"
+					},
+					{
+						"name": "Class1UtDiff",
+						"type": "varchar"
+					},
+					{
+						"name": "Class2UtPerc",
+						"type": "varchar"
+					},
+					{
+						"name": "Class3UtPerc",
+						"type": "varchar"
+					},
+					{
+						"name": "Class4UtPerc",
+						"type": "varchar"
+					},
+					{
+						"name": "UniformPrice",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "PRICING",
+					"table": "Imp3352_3353"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/3353')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -435,63 +507,6 @@
 					},
 					{
 						"name": "Year",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AUSMilk')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "Excel",
-				"typeProperties": {
-					"sheetName": "AU Milk Production HIstory",
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "AU Dataset Milk Production and Components.xlsx",
-						"container": "trade-data-container"
-					},
-					"firstRowAsHeader": true
-				},
-				"schema": [
-					{
-						"name": "Period",
-						"type": "String"
-					},
-					{
-						"name": "NSW",
-						"type": "String"
-					},
-					{
-						"name": "VIC",
-						"type": "String"
-					},
-					{
-						"name": "QLD",
-						"type": "String"
-					},
-					{
-						"name": "SA",
-						"type": "String"
-					},
-					{
-						"name": "WA",
-						"type": "String"
-					},
-					{
-						"name": "TAS",
-						"type": "String"
-					},
-					{
-						"name": "AUSTRALIA",
 						"type": "String"
 					}
 				]
