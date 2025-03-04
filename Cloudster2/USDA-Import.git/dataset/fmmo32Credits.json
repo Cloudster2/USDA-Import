@@ -1,0 +1,36 @@
+{
+	"name": "fmmo32Credits",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "FMMO 32_Adjustments",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "FMMO32.xlsx",
+				"container": "trade-data-container"
+			}
+		},
+		"schema": [
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			},
+			{
+				"type": "String"
+			}
+		]
+	}
+}
