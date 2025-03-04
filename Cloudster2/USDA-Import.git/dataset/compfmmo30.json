@@ -1,5 +1,5 @@
 {
-	"name": "FMMO32Utilization",
+	"name": "compfmmo30",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureBlobStorage",
@@ -8,14 +8,12 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "FMMO 32_UtilizationinLBS",
+			"sheetName": "FMMO30_Components",
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "FMMO32.xlsx",
+				"fileName": "FMMO30.xlsx",
 				"container": "trade-data-container"
-			},
-			"range": "",
-			"firstRowAsHeader": false
+			}
 		},
 		"schema": [
 			{

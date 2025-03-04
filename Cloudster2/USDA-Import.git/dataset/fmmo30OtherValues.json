@@ -1,0 +1,21 @@
+{
+	"name": "fmmo30OtherValues",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "FMMO30_Other Values",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "FMMO30.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": []
+	}
+}

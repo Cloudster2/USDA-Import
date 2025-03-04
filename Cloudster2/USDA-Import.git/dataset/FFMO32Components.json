@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "FFMO32Components"
+			"table": "FMMO32Comps"
 		}
 	}
 }
