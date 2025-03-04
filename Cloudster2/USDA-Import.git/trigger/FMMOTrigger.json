@@ -1,0 +1,32 @@
+{
+	"name": "FMMOTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "FMMO30 Data Transfer",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2025-03-04T05:15:00",
+				"timeZone": "Mountain Standard Time",
+				"schedule": {
+					"minutes": [
+						29
+					],
+					"hours": [
+						14
+					]
+				}
+			}
+		}
+	}
+}

@@ -1141,7 +1141,14 @@
 			{
 				"name": "FMMO32OtherValues",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "WebHookFMMO",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -1276,6 +1283,28 @@
 				"linkedServiceName": {
 					"referenceName": "SaraDB connection",
 					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "WebHookFMMO",
+				"type": "WebHook",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-91.westus.logic.azure.com:443/workflows/6dde6881a9044a61b36329d69e50a3fd/triggers/When_a_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=U6NT1_FWCJp4C4PlYmhuBmLuK2iQiqmq1O9y_bb-Xrc",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"DataFactoryName": "@{pipeline().DataFactory}",
+						"PipelineName": "@{pipeline().Pipeline}"
+					},
+					"timeout": "00:10:00"
 				}
 			}
 		],
