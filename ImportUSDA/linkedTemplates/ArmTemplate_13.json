@@ -67,6 +67,172 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/FFMO32Components')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "FMMO32Comps"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FFMO32Percentage')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "FFMO32Percentage"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FFMO32Utilization')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "FMMO32Utilization"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FMMO32')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "FMMO 32_Components",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "FMMO32.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FMMO32Percentage')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "FMMO 32_ComponentsPerc",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "FMMO32.xlsx",
+						"container": "trade-data-container"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/FMMO32Utilization')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "FMMO 32_UtilizationinLBS",
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "FMMO32.xlsx",
+						"container": "trade-data-container"
+					},
+					"range": "",
+					"firstRowAsHeader": false
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/FMMOAdjust')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -135,7 +301,7 @@
 				"annotations": [],
 				"type": "Excel",
 				"typeProperties": {
-					"sheetName": "FMMO30_Components",
+					"sheetName": "FMMO30_ComponentsPerc",
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "FMMO30.xlsx",
@@ -322,242 +488,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "GTT040690D",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GTT040690E')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "GTT040690E",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GTT3502')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "GTT3502",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GTTAPI')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "GTT API",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GTTCountriesToCountries')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "tradeDB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "TradeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "tradeFlow",
-						"type": "nvarchar"
-					},
-					{
-						"name": "year",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "month",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "date",
-						"type": "date"
-					},
-					{
-						"name": "reporterCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "reporterName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "partnerCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "partnerName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "hsCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "commodityDescriptionOriginal",
-						"type": "nvarchar"
-					},
-					{
-						"name": "currency",
-						"type": "nvarchar"
-					},
-					{
-						"name": "value",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "unit1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "quantity1",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "GTTCountriesToCountries"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GTTCountriesToWorld')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "tradeDB",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "TradeID",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "tradeFlow",
-						"type": "nvarchar"
-					},
-					{
-						"name": "year",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "month",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "date",
-						"type": "date"
-					},
-					{
-						"name": "reporterCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "reporterName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "partnerCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "partnerName",
-						"type": "nvarchar"
-					},
-					{
-						"name": "hsCode",
-						"type": "nvarchar"
-					},
-					{
-						"name": "commodityDescriptionOriginal",
-						"type": "nvarchar"
-					},
-					{
-						"name": "currency",
-						"type": "nvarchar"
-					},
-					{
-						"name": "value",
-						"type": "float",
-						"precision": 15
-					},
-					{
-						"name": "unit1",
-						"type": "nvarchar"
-					},
-					{
-						"name": "quantity1",
-						"type": "decimal",
-						"precision": 18,
-						"scale": 5
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "GTTCountriesToWorld"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/GTTCurrent')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "GTTCurrent",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],
