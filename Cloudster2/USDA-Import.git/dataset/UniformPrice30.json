@@ -1,0 +1,38 @@
+{
+	"name": "UniformPrice30",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "FMMO30_UniformPrep",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "FMMO30.xlsx",
+				"container": "trade-data-container"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "FMMO",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "Price",
+				"type": "String"
+			}
+		]
+	}
+}
