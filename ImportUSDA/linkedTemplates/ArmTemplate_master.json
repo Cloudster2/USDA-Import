@@ -1852,18 +1852,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"BatchPyth_accessKey": {
-						"value": "[parameters('BatchPyth_accessKey')]"
-					},
-					"BatchPyth_properties_typeProperties_batchUri": {
-						"value": "[parameters('BatchPyth_properties_typeProperties_batchUri')]"
-					},
-					"BatchPyth_properties_typeProperties_poolName": {
-						"value": "[parameters('BatchPyth_properties_typeProperties_poolName')]"
-					},
-					"BatchPyth_properties_typeProperties_accountName": {
-						"value": "[parameters('BatchPyth_properties_typeProperties_accountName')]"
 					}
 				}
 			},
@@ -1884,6 +1872,18 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"BatchPyth_accessKey": {
+						"value": "[parameters('BatchPyth_accessKey')]"
+					},
+					"BatchPyth_properties_typeProperties_batchUri": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_batchUri')]"
+					},
+					"BatchPyth_properties_typeProperties_poolName": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_poolName')]"
+					},
+					"BatchPyth_properties_typeProperties_accountName": {
+						"value": "[parameters('BatchPyth_properties_typeProperties_accountName')]"
 					}
 				}
 			},
@@ -1932,6 +1932,26 @@
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', 'ImportUSDA_ArmTemplate_21')]"
+			]
+		},
+		{
+			"name": "ImportUSDA_ArmTemplate_23",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_23.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'ImportUSDA_ArmTemplate_22')]"
 			]
 		}
 	]
