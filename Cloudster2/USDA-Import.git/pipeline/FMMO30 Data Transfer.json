@@ -523,7 +523,7 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "4",
+									"name": "Date",
 									"type": "String",
 									"physicalType": "String"
 								},
