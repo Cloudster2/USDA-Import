@@ -22892,7 +22892,6 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table globl.neweuroformat",
 								"writeBehavior": "insert",
 								"sqlWriterUseTableLock": false,
 								"tableOption": "autoCreate",
@@ -23016,9 +23015,7 @@
 							"sink": {
 								"type": "AzureSqlSink",
 								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
+								"sqlWriterUseTableLock": false
 							},
 							"enableStaging": false,
 							"translator": {
@@ -23101,7 +23098,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "NewHeard",
+								"referenceName": "NewEuroData",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
@@ -23205,7 +23202,6 @@
 				"[concat(variables('factoryId'), '/datasets/NewEuroData')]",
 				"[concat(variables('factoryId'), '/datasets/EUSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUCowsNum')]",
-				"[concat(variables('factoryId'), '/datasets/NewHeard')]",
 				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
 			]
 		},
