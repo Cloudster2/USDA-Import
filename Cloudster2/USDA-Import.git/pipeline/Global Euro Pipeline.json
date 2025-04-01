@@ -146,7 +146,6 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table globl.neweuroformat",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -268,9 +267,7 @@
 					"sink": {
 						"type": "AzureSqlSink",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false,
-						"tableOption": "autoCreate",
-						"disableMetricsCollection": false
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -352,7 +349,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "NewHeard",
+						"referenceName": "NewEuroData",
 						"type": "DatasetReference"
 					}
 				]
