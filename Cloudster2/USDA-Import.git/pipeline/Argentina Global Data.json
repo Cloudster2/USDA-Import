@@ -263,7 +263,7 @@
 				"typeProperties": {
 					"storedProcedureName": "[GLOBL].[GlobalLatPrep]",
 					"storedProcedureParameters": {
-						"Var": {
+						"Country": {
 							"value": "AR",
 							"type": "String"
 						}
