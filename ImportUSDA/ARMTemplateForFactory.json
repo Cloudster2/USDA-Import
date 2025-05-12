@@ -838,6 +838,10 @@
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
+		},
+		"TempStocks_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2019&freq_desc=MONTHLY"
 		}
 	},
 	"variables": {
@@ -32115,7 +32119,14 @@
 					{
 						"name": "CopyDairyStocks",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "CopyDairyStocks_copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -32138,8 +32149,9 @@
 							},
 							"sink": {
 								"type": "SqlServerSink",
-								"preCopyScript": "truncate table USDA.USDADataFactory\n",
-								"writeBehavior": "insert"
+								"preCopyScript": "update USDA.USDADataFactory set period = concat('END OF ',Period),\nFrequency = 'POINT IN TIME',\t\t\t\tWeekEndingString = Null\n",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": true
 							},
 							"enableStaging": false,
 							"translator": {
@@ -33181,6 +33193,220 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "CopyDairyStocks_copy1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Destination",
+								"value": "USDA.USDADataFactory"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:04:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET"
+							},
+							"sink": {
+								"type": "SqlServerSink",
+								"preCopyScript": "truncate table USDA.USDADataFactory\n",
+								"writeBehavior": "insert"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['week_ending']"
+										},
+										"sink": {
+											"name": "WeekEndingString",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['year']"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['util_practice_desc']"
+										},
+										"sink": {
+											"name": "UtilPract",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['class_desc']"
+										},
+										"sink": {
+											"name": "Class",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['group_desc']"
+										},
+										"sink": {
+											"name": "GRP",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['short_desc']"
+										},
+										"sink": {
+											"name": "ItemConcat",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['statisticcat_desc']"
+										},
+										"sink": {
+											"name": "Category",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reference_period_desc']"
+										},
+										"sink": {
+											"name": "Period",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Value']"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['state_name']"
+										},
+										"sink": {
+											"name": "State",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['freq_desc']"
+										},
+										"sink": {
+											"name": "Frequency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['domain_desc']"
+										},
+										"sink": {
+											"name": "Domain",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['state_ansi']"
+										},
+										"sink": {
+											"name": "StateAnsi",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['commodity_desc']"
+										},
+										"sink": {
+											"name": "Commodity",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['prodn_practice_desc']"
+										},
+										"sink": {
+											"name": "ProdPract",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['domaincat_desc']"
+										},
+										"sink": {
+											"name": "DomainCat",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['unit_desc']"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['region_desc']"
+										},
+										"sink": {
+											"name": "Region",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['data']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "TempStocks",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DataFactoryTable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -33195,7 +33421,8 @@
 				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]",
 				"[concat(variables('factoryId'), '/datasets/USDAData')]",
 				"[concat(variables('factoryId'), '/datasets/WorkDairyProd')]",
-				"[concat(variables('factoryId'), '/datasets/USDADataFactory')]"
+				"[concat(variables('factoryId'), '/datasets/USDADataFactory')]",
+				"[concat(variables('factoryId'), '/datasets/TempStocks')]"
 			]
 		},
 		{
@@ -46418,6 +46645,40 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TempStocks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Untill USDA fixes period naming issue",
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('TempStocks_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TempStocks')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "TempStocks",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/TempStocks')]"
 			]
 		}
 	]

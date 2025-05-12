@@ -13,6 +13,909 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/FMMOS Milk Pricing')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "3351Milk",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['report_month']"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_year']"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Pool_order_No']"
+										},
+										"sink": {
+											"name": "PONumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jan']"
+										},
+										"sink": {
+											"name": "Jan",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['feb']"
+										},
+										"sink": {
+											"name": "Feb",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mar']"
+										},
+										"sink": {
+											"name": "Mar",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['apr']"
+										},
+										"sink": {
+											"name": "Apr",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['may']"
+										},
+										"sink": {
+											"name": "May",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jun']"
+										},
+										"sink": {
+											"name": "Jun",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jul']"
+										},
+										"sink": {
+											"name": "Jul",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['aug']"
+										},
+										"sink": {
+											"name": "Aug",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['sep']"
+										},
+										"sink": {
+											"name": "Sep",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['oct']"
+										},
+										"sink": {
+											"name": "Oct",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nov']"
+										},
+										"sink": {
+											"name": "Nov",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['dec']"
+										},
+										"sink": {
+											"name": "Dec",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['total']"
+										},
+										"sink": {
+											"name": "Total",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "$['reportSection']"
+										},
+										"sink": {
+											"name": "Section",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "3351Milk",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "3351",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "3351PPD",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "3351Milk",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink"
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['report_month']"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_year']"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Pool_order_No']"
+										},
+										"sink": {
+											"name": "PONumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jan']"
+										},
+										"sink": {
+											"name": "Jan",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['feb']"
+										},
+										"sink": {
+											"name": "Feb",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['mar']"
+										},
+										"sink": {
+											"name": "Mar",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['apr']"
+										},
+										"sink": {
+											"name": "Apr",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['may']"
+										},
+										"sink": {
+											"name": "May",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jun']"
+										},
+										"sink": {
+											"name": "Jun",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['jul']"
+										},
+										"sink": {
+											"name": "Jul",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['aug']"
+										},
+										"sink": {
+											"name": "Aug",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['sep']"
+										},
+										"sink": {
+											"name": "Sep",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['oct']"
+										},
+										"sink": {
+											"name": "Oct",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['nov']"
+										},
+										"sink": {
+											"name": "Nov",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['dec']"
+										},
+										"sink": {
+											"name": "Dec",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['total']"
+										},
+										"sink": {
+											"name": "Total",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"path": "$['reportSection']"
+										},
+										"sink": {
+											"name": "Section",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "3351PPD",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "3351",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "3354",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "3351PPD",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table pricing.imp3354",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['reportSection']"
+										},
+										"sink": {
+											"name": "Section",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_month']"
+										},
+										"sink": {
+											"name": "Month",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_year']"
+										},
+										"sink": {
+											"name": "Year",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['order_no']"
+										},
+										"sink": {
+											"name": "PONumber",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Price_Whole']"
+										},
+										"sink": {
+											"name": "Whole",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Price_Skim']"
+										},
+										"sink": {
+											"name": "Skim",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Price_Butterfat']"
+										},
+										"sink": {
+											"name": "Butterfat",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['results'][0]['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "String"
+										}
+									}
+								],
+								"collectionReference": "$['results']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "3354",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "imp3354",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Futures Pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "datecheck",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderStoredProcedureName": "[[dbo].[FuturesYesNo]",
+								"storedProcedureParameters": {
+									"YesNo": {
+										"type": "String",
+										"value": "no"
+									}
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "checkdate",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "datecheckvar",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "datecheck",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "DateCheckVar",
+							"value": {
+								"value": "@activity('datecheck').output.firstRow.answer",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "If Condition1",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "datecheckvar",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(variables('DateCheckVar'),'Yes')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "FuturesBlob_copy1",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "Futures LogicApp WebHook_copy1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "ExcelSource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": true,
+												"enablePartitionDiscovery": false
+											}
+										},
+										"sink": {
+											"type": "AzureSqlSink",
+											"preCopyScript": "truncate table futuresimp\n",
+											"writeBehavior": "insert",
+											"sqlWriterUseTableLock": false,
+											"tableOption": "autoCreate",
+											"disableMetricsCollection": false
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"mappings": [
+												{
+													"source": {
+														"name": "Contract",
+														"type": "String",
+														"physicalType": "String"
+													},
+													"sink": {
+														"name": "Contract",
+														"type": "String",
+														"physicalType": "nvarchar"
+													}
+												},
+												{
+													"source": {
+														"name": "Description",
+														"type": "String",
+														"physicalType": "String"
+													},
+													"sink": {
+														"name": "Description",
+														"type": "String",
+														"physicalType": "nvarchar"
+													}
+												},
+												{
+													"source": {
+														"name": "Source",
+														"type": "String",
+														"physicalType": "String"
+													},
+													"sink": {
+														"name": "Source",
+														"type": "String",
+														"physicalType": "nvarchar"
+													}
+												},
+												{
+													"source": {
+														"name": "Month",
+														"type": "String",
+														"physicalType": "String"
+													},
+													"sink": {
+														"name": "Month",
+														"type": "String",
+														"physicalType": "nvarchar"
+													}
+												},
+												{
+													"source": {
+														"name": "Year",
+														"type": "String",
+														"physicalType": "String"
+													},
+													"sink": {
+														"name": "Year",
+														"type": "Int32",
+														"physicalType": "int"
+													}
+												},
+												{
+													"source": {
+														"name": "Price",
+														"type": "String",
+														"physicalType": "String"
+													},
+													"sink": {
+														"name": "Price",
+														"type": "Decimal",
+														"physicalType": "decimal",
+														"scale": 2,
+														"precision": 18
+													}
+												},
+												{
+													"source": {
+														"name": "Price_Lb",
+														"type": "String",
+														"physicalType": "String"
+													},
+													"sink": {
+														"name": "PriceLb",
+														"type": "Decimal",
+														"physicalType": "decimal",
+														"scale": 5,
+														"precision": 18
+													}
+												}
+											],
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "FuturesBlob",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "FuturesImp",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								},
+								{
+									"name": "Futures LogicApp WebHook_copy1",
+									"type": "WebHook",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"url": "https://prod-15.westus.logic.azure.com:443/workflows/dbe0895afdca41918cc5a002c1a2c138/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vJPcVEvH6olmcdFW8O9tCBccc2i0JpNAom4qYNzEpBw",
+										"method": "POST",
+										"headers": {
+											"Content-Type": "application/json"
+										},
+										"body": {
+											"DataFactoryName": "@{pipeline().DataFactory}",
+											"PipelineName": "@{pipeline().Pipeline}"
+										},
+										"timeout": "00:10:00"
+									}
+								},
+								{
+									"name": "FuturesCalcs",
+									"type": "SqlServerStoredProcedure",
+									"dependsOn": [
+										{
+											"activity": "FuturesBlob_copy1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"storedProcedureName": "[[dbo].[FuturesProcedure]"
+									},
+									"linkedServiceName": {
+										"referenceName": "Sara Database",
+										"type": "LinkedServiceReference"
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"variables": {
+					"TimeSTamp": {
+						"type": "String"
+					},
+					"DateCheckVar": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/GTT Trade 2')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -16165,7 +17068,14 @@
 					{
 						"name": "CopyDairyStocks",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "CopyDairyStocks_copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -16188,8 +17098,9 @@
 							},
 							"sink": {
 								"type": "SqlServerSink",
-								"preCopyScript": "truncate table USDA.USDADataFactory\n",
-								"writeBehavior": "insert"
+								"preCopyScript": "update USDA.USDADataFactory set period = concat('END OF ',Period),\nFrequency = 'POINT IN TIME',\t\t\t\tWeekEndingString = Null\n",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": true
 							},
 							"enableStaging": false,
 							"translator": {
@@ -17231,24 +18142,10 @@
 								"parameters": {}
 							}
 						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Xchange Pipeline')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
+					},
 					{
-						"name": "trigger logic",
-						"type": "WebActivity",
+						"name": "CopyDairyStocks_copy1",
+						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -17257,48 +18154,23 @@
 							"secureOutput": false,
 							"secureInput": false
 						},
-						"userProperties": [],
-						"typeProperties": {
-							"method": "GET",
-							"headers": {},
-							"url": "https://prod-81.westus.logic.azure.com:443/workflows/698a50a012c24d82ac7eb1e0f3bf17bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uGL7WkC3-T_TZU54M9xXBILgT6GQp2d-GAltobux_3I",
-							"body": "https://prod-81.westus.logic.azure.com:443/workflows/698a50a012c24d82ac7eb1e0f3bf17bb/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=uGL7WkC3-T_TZU54M9xXBILgT6GQp2d-GAltobux_3I"
-						}
-					},
-					{
-						"name": "Xrate Blob Transfer",
-						"type": "Copy",
-						"dependsOn": [
+						"userProperties": [
 							{
-								"activity": "trigger logic",
-								"dependencyConditions": [
-									"Succeeded"
-								]
+								"name": "Destination",
+								"value": "USDA.USDADataFactory"
 							}
 						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
 						"typeProperties": {
 							"source": {
-								"type": "ExcelSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								}
+								"type": "RestSource",
+								"httpRequestTimeout": "00:04:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET"
 							},
 							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table xrateimport",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"disableMetricsCollection": false
+								"type": "SqlServerSink",
+								"preCopyScript": "truncate table USDA.USDADataFactory\n",
+								"writeBehavior": "insert"
 							},
 							"enableStaging": false,
 							"translator": {
@@ -17306,323 +18178,184 @@
 								"mappings": [
 									{
 										"source": {
-											"name": "Date",
-											"type": "String",
-											"physicalType": "String"
+											"path": "[['week_ending']"
 										},
 										"sink": {
-											"name": "Date",
-											"type": "DateTime",
-											"physicalType": "date"
+											"name": "WeekEndingString",
+											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "Euro   (EUR)                     ",
-											"type": "String",
-											"physicalType": "String"
+											"path": "[['year']"
 										},
 										"sink": {
-											"name": "Euro_USD",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 6,
-											"precision": 18
+											"name": "Year",
+											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "Polish Zloty (PLN)",
-											"type": "String",
-											"physicalType": "String"
+											"path": "[['util_practice_desc']"
 										},
 										"sink": {
-											"name": "PLN_USD",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 6,
-											"precision": 18
+											"name": "UtilPract",
+											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "New Zealand dollar   (NZD)                     ",
-											"type": "String",
-											"physicalType": "String"
+											"path": "[['class_desc']"
 										},
 										"sink": {
-											"name": "NZD_USD",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 6,
-											"precision": 18
+											"name": "Class",
+											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "Australian dollar   (AUD)                     ",
-											"type": "String",
-											"physicalType": "String"
+											"path": "[['group_desc']"
 										},
 										"sink": {
-											"name": "AUD_USD",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 6,
-											"precision": 18
+											"name": "GRP",
+											"type": "String"
 										}
 									},
 									{
 										"source": {
-											"name": "Mexican peso   (MXN)                     ",
-											"type": "String",
-											"physicalType": "String"
+											"path": "[['short_desc']"
 										},
 										"sink": {
-											"name": "MXN_USD",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 6,
-											"precision": 18
+											"name": "ItemConcat",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['statisticcat_desc']"
+										},
+										"sink": {
+											"name": "Category",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['reference_period_desc']"
+										},
+										"sink": {
+											"name": "Period",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Value']"
+										},
+										"sink": {
+											"name": "Value",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['state_name']"
+										},
+										"sink": {
+											"name": "State",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['freq_desc']"
+										},
+										"sink": {
+											"name": "Frequency",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['domain_desc']"
+										},
+										"sink": {
+											"name": "Domain",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['state_ansi']"
+										},
+										"sink": {
+											"name": "StateAnsi",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['commodity_desc']"
+										},
+										"sink": {
+											"name": "Commodity",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['prodn_practice_desc']"
+										},
+										"sink": {
+											"name": "ProdPract",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['domaincat_desc']"
+										},
+										"sink": {
+											"name": "DomainCat",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['unit_desc']"
+										},
+										"sink": {
+											"name": "Unit",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['region_desc']"
+										},
+										"sink": {
+											"name": "Region",
+											"type": "String"
 										}
 									}
 								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
+								"collectionReference": "$['data']"
 							}
 						},
 						"inputs": [
 							{
-								"referenceName": "Xrate",
+								"referenceName": "TempStocks",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "XrateImport",
+								"referenceName": "DataFactoryTable",
 								"type": "DatasetReference",
 								"parameters": {}
 							}
 						]
-					},
-					{
-						"name": "import rates",
-						"description": "enters imported rates into proper table",
-						"type": "SqlServerStoredProcedure",
-						"dependsOn": [
-							{
-								"activity": "Xrate Blob Transfer",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"storedProcedureName": "[[dbo].[ImportRates]"
-						},
-						"linkedServiceName": {
-							"referenceName": "Sara Database",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "FuturesBlob_copy1",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Futures LogicApp WebHook_copy1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "ExcelSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								}
-							},
-							"sink": {
-								"type": "AzureSqlSink",
-								"preCopyScript": "truncate table futuresimp\n",
-								"writeBehavior": "insert",
-								"sqlWriterUseTableLock": false,
-								"tableOption": "autoCreate",
-								"disableMetricsCollection": false
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"name": "Contract",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Contract",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Description",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Source",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Source",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Month",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Month",
-											"type": "String",
-											"physicalType": "nvarchar"
-										}
-									},
-									{
-										"source": {
-											"name": "Year",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Year",
-											"type": "Int32",
-											"physicalType": "int"
-										}
-									},
-									{
-										"source": {
-											"name": "Price",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "Price",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 2,
-											"precision": 18
-										}
-									},
-									{
-										"source": {
-											"name": "Price_Lb",
-											"type": "String",
-											"physicalType": "String"
-										},
-										"sink": {
-											"name": "PriceLb",
-											"type": "Decimal",
-											"physicalType": "decimal",
-											"scale": 5,
-											"precision": 18
-										}
-									}
-								],
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "FuturesBlob",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "FuturesImp",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Futures LogicApp WebHook_copy1",
-						"type": "WebHook",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://prod-15.westus.logic.azure.com:443/workflows/dbe0895afdca41918cc5a002c1a2c138/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vJPcVEvH6olmcdFW8O9tCBccc2i0JpNAom4qYNzEpBw",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/json"
-							},
-							"body": {
-								"DataFactoryName": "@{pipeline().DataFactory}",
-								"PipelineName": "@{pipeline().Pipeline}"
-							},
-							"timeout": "00:10:00"
-						}
 					}
 				],
 				"policy": {
