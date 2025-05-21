@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3357",
+			"url": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3357/MailBox%20Milk%20Prices",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
