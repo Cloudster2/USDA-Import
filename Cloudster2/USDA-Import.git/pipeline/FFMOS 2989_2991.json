@@ -5,7 +5,14 @@
 			{
 				"name": "imp2991",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "imp2989",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -254,14 +261,7 @@
 			{
 				"name": "imp2989",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "imp2991",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -282,9 +282,9 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "truncate table pricing.imp2989",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -293,154 +293,145 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['week_ending_date']"
+									"path": "['report_month']"
 								},
 								"sink": {
-									"name": "WeekEnding",
-									"type": "DateTime"
+									"name": "1",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['base_class_1_Price']"
+									"path": "['report_year']"
 								},
 								"sink": {
-									"name": "BaseClass1Price",
-									"type": "Decimal"
+									"name": "2",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['base_skim_milk_class_1_Price']"
+									"path": "['Reporting_Area']"
 								},
 								"sink": {
-									"name": "BaseSkimClass1",
-									"type": "Decimal"
+									"name": "4",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['advanced_skim_milk_class_3_Factor']"
+									"path": "['Jan']"
 								},
 								"sink": {
-									"name": "AdvSkimClass3Factor",
-									"type": "Decimal"
+									"name": "5",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['advanced_skim_milk_class_4_Factor']"
+									"path": "['Feb']"
 								},
 								"sink": {
-									"name": "AdvSkimClass4Factor",
-									"type": "Decimal"
+									"name": "6",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['advanced_butterfat_factor']"
+									"path": "['Mar']"
 								},
 								"sink": {
-									"name": "AdvButterFatFactor",
-									"type": "Decimal"
+									"name": "7",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['skim_milk_class_2_Price']"
+									"path": "['Apr']"
 								},
 								"sink": {
-									"name": "SkimClass2",
-									"type": "Decimal"
+									"name": "8",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['nonfat_solids_class_2_Price']"
+									"path": "['May']"
 								},
 								"sink": {
-									"name": "NonFatSolidsClass2",
-									"type": "Decimal"
+									"name": "9",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['butter_two_week_avg_Price']"
+									"path": "['Jun']"
 								},
 								"sink": {
-									"name": "Butter2WeekAvg",
-									"type": "Decimal"
+									"name": "10",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['nfdm_two_week_avg_Price']"
+									"path": "['Jul']"
 								},
 								"sink": {
-									"name": "NFDM2WeekAvg",
-									"type": "Decimal"
+									"name": "11",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['cheese_two_week_avg_Price']"
+									"path": "['Aug']"
 								},
 								"sink": {
-									"name": "Cheese2WeekAvg",
-									"type": "Decimal"
+									"name": "12",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['cheese_two_week_40p_Price']"
+									"path": "['Sep']"
 								},
 								"sink": {
-									"name": "Cheese2Week40pAvg",
-									"type": "Decimal"
+									"name": "13",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['cheese_two_week_500p_Price']"
+									"path": "['Oct']"
 								},
 								"sink": {
-									"name": "Cheese2Week500pAvg",
-									"type": "Decimal"
+									"name": "14",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['whey_two_week_Price']"
+									"path": "['Nov']"
 								},
 								"sink": {
-									"name": "Whey2WeekPrice",
-									"type": "Decimal"
+									"name": "15",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['diesel_fuel_Price']"
+									"path": "['Dec']"
 								},
 								"sink": {
-									"name": "DieselPrice",
-									"type": "Decimal"
+									"name": "16",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['mileage_rate_factor']"
+									"path": "['Avg']"
 								},
 								"sink": {
-									"name": "MieageRateFactor",
-									"type": "Decimal"
-								}
-							},
-							{
-								"source": {
-									"path": "['report_title']"
-								},
-								"sink": {
-									"name": "ReportTitle",
+									"name": "17",
 									"type": "String"
 								}
 							},
@@ -449,8 +440,8 @@
 									"path": "['slug_id']"
 								},
 								"sink": {
-									"name": "SlugID",
-									"type": "Int32"
+									"name": "18",
+									"type": "String"
 								}
 							},
 							{
@@ -458,8 +449,8 @@
 									"path": "['published_date']"
 								},
 								"sink": {
-									"name": "PublishDate",
-									"type": "DateTime"
+									"name": "21",
+									"type": "String"
 								}
 							}
 						],
@@ -475,7 +466,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "2989",
+						"referenceName": "Slug3357",
 						"type": "DatasetReference"
 					}
 				]
