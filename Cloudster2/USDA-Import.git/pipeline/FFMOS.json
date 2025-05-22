@@ -6,6 +6,9 @@
 				"name": "Execute FFMOS utilization",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -26,6 +29,9 @@
 						]
 					}
 				],
+				"policy": {
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -46,6 +52,9 @@
 						]
 					}
 				],
+				"policy": {
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -66,6 +75,9 @@
 						]
 					}
 				],
+				"policy": {
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
 					"pipeline": {
@@ -80,7 +92,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Execute FFMOS 2989_2991",
+						"activity": "imp3357",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -101,6 +113,227 @@
 					"referenceName": "Sara Database",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "imp3357",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Execute FFMOS 2989_2991",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table pricing.tempimp3357",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['report_month']"
+								},
+								"sink": {
+									"name": "ReportMonth",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_year']"
+								},
+								"sink": {
+									"name": "ReportYear",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Reporting_Area']"
+								},
+								"sink": {
+									"name": "ReportingArea",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['Jan']"
+								},
+								"sink": {
+									"name": "Jan",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Feb']"
+								},
+								"sink": {
+									"name": "Feb",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Mar']"
+								},
+								"sink": {
+									"name": "Mar",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Apr']"
+								},
+								"sink": {
+									"name": "Apr",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['May']"
+								},
+								"sink": {
+									"name": "May",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Jun']"
+								},
+								"sink": {
+									"name": "Jun",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Jul']"
+								},
+								"sink": {
+									"name": "Jul",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Aug']"
+								},
+								"sink": {
+									"name": "Aug",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Sep']"
+								},
+								"sink": {
+									"name": "Sep",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Oct']"
+								},
+								"sink": {
+									"name": "Oct",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Nov']"
+								},
+								"sink": {
+									"name": "Nov",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Dec']"
+								},
+								"sink": {
+									"name": "Dec",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['Avg']"
+								},
+								"sink": {
+									"name": "Avg",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['slug_id']"
+								},
+								"sink": {
+									"name": "SlugID",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['published_date']"
+								},
+								"sink": {
+									"name": "PublishDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "$['results']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Imp3357",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Slug3357",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
