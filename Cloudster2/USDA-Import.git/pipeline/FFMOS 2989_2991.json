@@ -259,7 +259,7 @@
 				]
 			},
 			{
-				"name": "imp2989",
+				"name": "imp3357",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -282,6 +282,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table pricing.tempimp3357",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": false,
 						"tableOption": "autoCreate",
@@ -296,7 +297,7 @@
 									"path": "['report_month']"
 								},
 								"sink": {
-									"name": "1",
+									"name": "ReportMonth",
 									"type": "String"
 								}
 							},
@@ -305,7 +306,7 @@
 									"path": "['report_year']"
 								},
 								"sink": {
-									"name": "2",
+									"name": "ReportYear",
 									"type": "String"
 								}
 							},
@@ -314,7 +315,7 @@
 									"path": "['Reporting_Area']"
 								},
 								"sink": {
-									"name": "4",
+									"name": "ReportingArea",
 									"type": "String"
 								}
 							},
@@ -323,8 +324,8 @@
 									"path": "['Jan']"
 								},
 								"sink": {
-									"name": "5",
-									"type": "String"
+									"name": "Jan",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -332,8 +333,8 @@
 									"path": "['Feb']"
 								},
 								"sink": {
-									"name": "6",
-									"type": "String"
+									"name": "Feb",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -341,8 +342,8 @@
 									"path": "['Mar']"
 								},
 								"sink": {
-									"name": "7",
-									"type": "String"
+									"name": "Mar",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -350,8 +351,8 @@
 									"path": "['Apr']"
 								},
 								"sink": {
-									"name": "8",
-									"type": "String"
+									"name": "Apr",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -359,8 +360,8 @@
 									"path": "['May']"
 								},
 								"sink": {
-									"name": "9",
-									"type": "String"
+									"name": "May",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -368,8 +369,8 @@
 									"path": "['Jun']"
 								},
 								"sink": {
-									"name": "10",
-									"type": "String"
+									"name": "Jun",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -377,8 +378,8 @@
 									"path": "['Jul']"
 								},
 								"sink": {
-									"name": "11",
-									"type": "String"
+									"name": "Jul",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -386,8 +387,8 @@
 									"path": "['Aug']"
 								},
 								"sink": {
-									"name": "12",
-									"type": "String"
+									"name": "Aug",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -395,8 +396,8 @@
 									"path": "['Sep']"
 								},
 								"sink": {
-									"name": "13",
-									"type": "String"
+									"name": "Sep",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -404,8 +405,8 @@
 									"path": "['Oct']"
 								},
 								"sink": {
-									"name": "14",
-									"type": "String"
+									"name": "Oct",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -413,8 +414,8 @@
 									"path": "['Nov']"
 								},
 								"sink": {
-									"name": "15",
-									"type": "String"
+									"name": "Nov",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -422,8 +423,8 @@
 									"path": "['Dec']"
 								},
 								"sink": {
-									"name": "16",
-									"type": "String"
+									"name": "Dec",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -431,8 +432,8 @@
 									"path": "['Avg']"
 								},
 								"sink": {
-									"name": "17",
-									"type": "String"
+									"name": "Avg",
+									"type": "Decimal"
 								}
 							},
 							{
@@ -440,7 +441,7 @@
 									"path": "['slug_id']"
 								},
 								"sink": {
-									"name": "18",
+									"name": "SlugID",
 									"type": "String"
 								}
 							},
@@ -449,8 +450,255 @@
 									"path": "['published_date']"
 								},
 								"sink": {
-									"name": "21",
+									"name": "PublishDate",
+									"type": "DateTime"
+								}
+							}
+						],
+						"collectionReference": "$['results']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Imp3357",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Slug3357",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "imp2989",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "imp3357",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table pricing.imp2989",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['week_ending_date']"
+								},
+								"sink": {
+									"name": "WeekEnding",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['created_date']"
+								},
+								"sink": {
+									"name": "ReportDate",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"path": "['base_class_1_Price']"
+								},
+								"sink": {
+									"name": "BaseClass1Price",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['base_skim_milk_class_1_Price']"
+								},
+								"sink": {
+									"name": "BaseSkimClass1",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['class_1_esl_adjustment']"
+								},
+								"sink": {
+									"name": "Class1ESLAdjustment",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['advanced_skim_milk_class_3_Factor']"
+								},
+								"sink": {
+									"name": "AdvSkimClass3Factor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['advanced_skim_milk_class_4_Factor']"
+								},
+								"sink": {
+									"name": "AdvSkimClass4Factor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['advanced_butterfat_factor']"
+								},
+								"sink": {
+									"name": "AdvButterFatFactor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['skim_milk_class_2_Price']"
+								},
+								"sink": {
+									"name": "SkimClass2",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['nonfat_solids_class_2_Price']"
+								},
+								"sink": {
+									"name": "NonFatSolidsClass2",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['butter_two_week_avg_Price']"
+								},
+								"sink": {
+									"name": "Butter2WeekAvg",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['nfdm_two_week_avg_Price']"
+								},
+								"sink": {
+									"name": "NFDM2WeekAvg",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['cheese_two_week_avg_Price']"
+								},
+								"sink": {
+									"name": "Cheese2WeekAvg",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['cheese_two_week_40p_Price']"
+								},
+								"sink": {
+									"name": "Cheese2Week40pAvg",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['cheese_two_week_500p_Price']"
+								},
+								"sink": {
+									"name": "Cheese2Week500pAvg",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['whey_two_week_Price']"
+								},
+								"sink": {
+									"name": "Whey2WeekPrice",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['diesel_fuel_Price']"
+								},
+								"sink": {
+									"name": "DieselPrice",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['mileage_rate_factor']"
+								},
+								"sink": {
+									"name": "MieageRateFactor",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['report_title']"
+								},
+								"sink": {
+									"name": "ReportTitle",
 									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['slug_id']"
+								},
+								"sink": {
+									"name": "SlugID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
+									"path": "['published_date']"
+								},
+								"sink": {
+									"name": "PublishDate",
+									"type": "DateTime"
 								}
 							}
 						],
@@ -466,7 +714,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Slug3357",
+						"referenceName": "2989",
 						"type": "DatasetReference"
 					}
 				]

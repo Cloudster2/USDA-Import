@@ -1,0 +1,12 @@
+{
+	"name": "Imp3357",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FFMOS3357",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
