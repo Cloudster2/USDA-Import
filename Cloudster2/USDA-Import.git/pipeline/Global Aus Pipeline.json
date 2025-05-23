@@ -370,6 +370,29 @@
 					"referenceName": "Sara Database",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Global Aus Milk",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "BI Transfer",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Global AUS Milk",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
 			}
 		],
 		"annotations": []
