@@ -55,9 +55,9 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'Report1053'"
 		},
-		"Report1100_password": {
-			"type": "secureString",
-			"metadata": "Secure string for 'password' of 'Report1100'"
+		"GTTWorldMXBY20102016_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=D6D61C6154D44C86FC10F410E47816D5&impexp=IE&from=2010-01&to=2016-01&reporter=NoMXBY,MX,BY&hscode=MXBYIncl&partner=ZZ&periodtype=M&currency=USD&unit=MT&decimalscale=2&layout=brief&accumulatepartnergroups=true"
 		},
 		"GatsAPI_properties_typeProperties_url": {
 			"type": "string",
@@ -174,20 +174,28 @@
 		"Report1053_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
-		},
-		"Report1100_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://marsapi.ams.usda.gov/services/v1.2/reports/1100/Details?lastDays=7"
-		},
-		"Report1100_properties_typeProperties_userName": {
-			"type": "string",
-			"defaultValue": "tznXqccwuxttXl8CEGmjFNjDEo3Xm2on"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/GTTWorldMXBY20102016')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "world all codes  MX and BY",
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('GTTWorldMXBY20102016_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/GatsAPI')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -526,26 +534,6 @@
 					"password": {
 						"type": "SecureString",
 						"value": "[parameters('Report1053_password')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Report1100')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('Report1100_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Basic",
-					"userName": "[parameters('Report1100_properties_typeProperties_userName')]",
-					"password": {
-						"type": "SecureString",
-						"value": "[parameters('Report1100_password')]"
 					}
 				}
 			},

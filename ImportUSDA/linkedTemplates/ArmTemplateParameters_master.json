@@ -326,6 +326,9 @@
 		"ExchangeRates_properties_typeProperties_url": {
 			"value": "http://dataservices.imf.org/REST/SDMX_JSON.svc/Dataflow"
 		},
+		"FFMOS3357_properties_typeProperties_url": {
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3357/MailBox%20Milk%20Prices"
+		},
 		"FFMPS3358_properties_typeProperties_url": {
 			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3358/Total Package Sales of Fluid Milk Products"
 		},
@@ -533,6 +536,9 @@
 		"SlaughterRegionalAPI_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE"
 		},
+		"TempStocks_properties_typeProperties_url": {
+			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2019&freq_desc=MONTHLY"
+		},
 		"ToDataBricks_properties_typeProperties_existingClusterId": {
 			"value": "0418-005616-aexmqt2d"
 		},
@@ -588,7 +594,7 @@
 			"value": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=35040010,3504001210,3504001290,35040011,3504001200&reporter= ReportersAll&partner=all&latestmonths=&from=2022-01"
 		},
 		"imp2989_properties_typeProperties_url": {
-			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2989/detail"
+			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2989/Detail"
 		},
 		"imp2991_properties_typeProperties_url": {
 			"value": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2991/detail"
@@ -628,9 +634,6 @@
 		},
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"value": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
-		},
-		"TempStocks_properties_typeProperties_url": {
-			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2019&freq_desc=MONTHLY"
 		},
 		"containerUri": {
 			"value": ""

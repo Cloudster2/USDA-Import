@@ -435,6 +435,10 @@
 			"type": "string",
 			"defaultValue": "http://dataservices.imf.org/REST/SDMX_JSON.svc/Dataflow"
 		},
+		"FFMOS3357_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3357/MailBox%20Milk%20Prices"
+		},
 		"FFMPS3358_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3358/Total Package Sales of Fluid Milk Products"
@@ -711,6 +715,10 @@
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=CATTLE&class_desc=COWS, MILK&statisticalcat_desc=SLAUGHTERED&year__GE=2010&freq_desc=WEEKLY&freq_desc=MONTHLY &agg_level_desc=REGION : MULTI-STATE"
 		},
+		"TempStocks_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2019&freq_desc=MONTHLY"
+		},
 		"ToDataBricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0418-005616-aexmqt2d"
@@ -785,7 +793,7 @@
 		},
 		"imp2989_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2989/detail"
+			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/2989/Detail"
 		},
 		"imp2991_properties_typeProperties_url": {
 			"type": "string",
@@ -838,10 +846,6 @@
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
-		},
-		"TempStocks_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2019&freq_desc=MONTHLY"
 		}
 	},
 	"variables": {
@@ -7302,7 +7306,14 @@
 					{
 						"name": "imp2991",
 						"type": "Copy",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "imp2989",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -7553,14 +7564,7 @@
 					{
 						"name": "imp2989",
 						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "imp2991",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
+						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
 							"retry": 0,
@@ -7601,6 +7605,15 @@
 									},
 									{
 										"source": {
+											"path": "[['created_date']"
+										},
+										"sink": {
+											"name": "ReportDate",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
 											"path": "[['base_class_1_Price']"
 										},
 										"sink": {
@@ -7614,6 +7627,15 @@
 										},
 										"sink": {
 											"name": "BaseSkimClass1",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['class_1_esl_adjustment']"
+										},
+										"sink": {
+											"name": "Class1ESLAdjustment",
 											"type": "Decimal"
 										}
 									},
@@ -13181,7 +13203,7 @@
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{
-								"activity": "Execute FFMOS 2989_2991",
+								"activity": "imp3357",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -13202,6 +13224,229 @@
 							"referenceName": "Sara Database",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "imp3357",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Execute FFMOS 2989_2991",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table pricing.tempimp3357",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['report_month']"
+										},
+										"sink": {
+											"name": "ReportMonth",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['report_year']"
+										},
+										"sink": {
+											"name": "ReportYear",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Reporting_Area']"
+										},
+										"sink": {
+											"name": "ReportingArea",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Jan']"
+										},
+										"sink": {
+											"name": "Jan",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Feb']"
+										},
+										"sink": {
+											"name": "Feb",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Mar']"
+										},
+										"sink": {
+											"name": "Mar",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Apr']"
+										},
+										"sink": {
+											"name": "Apr",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['May']"
+										},
+										"sink": {
+											"name": "May",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Jun']"
+										},
+										"sink": {
+											"name": "Jun",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Jul']"
+										},
+										"sink": {
+											"name": "Jul",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Aug']"
+										},
+										"sink": {
+											"name": "Aug",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Sep']"
+										},
+										"sink": {
+											"name": "Sep",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Oct']"
+										},
+										"sink": {
+											"name": "Oct",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Nov']"
+										},
+										"sink": {
+											"name": "Nov",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Dec']"
+										},
+										"sink": {
+											"name": "Dec",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['Avg']"
+										},
+										"sink": {
+											"name": "Avg",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"path": "[['slug_id']"
+										},
+										"sink": {
+											"name": "SlugID",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "[['published_date']"
+										},
+										"sink": {
+											"name": "PublishDate",
+											"type": "DateTime"
+										}
+									}
+								],
+								"collectionReference": "$['results']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Imp3357",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Slug3357",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -13214,7 +13459,9 @@
 				"[concat(variables('factoryId'), '/pipelines/FMMOS Milk Pricing')]",
 				"[concat(variables('factoryId'), '/pipelines/FFMOS Estimated Sales')]",
 				"[concat(variables('factoryId'), '/pipelines/FFMOS 2989_2991')]",
-				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]",
+				"[concat(variables('factoryId'), '/datasets/Imp3357')]",
+				"[concat(variables('factoryId'), '/datasets/Slug3357')]"
 			]
 		},
 		{
@@ -22508,6 +22755,30 @@
 							"referenceName": "Sara Database",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "Global Aus Milk",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "BI Transfer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Global AUS Milk",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
 					}
 				],
 				"policy": {
@@ -22520,7 +22791,8 @@
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]",
 				"[concat(variables('factoryId'), '/datasets/AusDairyLast')]",
 				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
-				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]",
+				"[concat(variables('factoryId'), '/pipelines/Global AUS Milk')]"
 			]
 		},
 		{
@@ -38432,6 +38704,24 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Imp3357')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "FFMOS3357",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/FFMOS3357')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ImportTable')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -40206,6 +40496,27 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Slug3357')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sara Database",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "pricing",
+					"table": "TempImp3357"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sara Database')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/SourceDataset_jok')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -40702,6 +41013,24 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/Ceres')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TempStocks')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "TempStocks",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/TempStocks')]"
 			]
 		},
 		{
@@ -44235,6 +44564,21 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/FFMOS3357')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('FFMOS3357_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/FFMPS3358')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -45170,6 +45514,22 @@
 				"type": "RestService",
 				"typeProperties": {
 					"url": "[parameters('SlaughterRegionalAPI_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TempStocks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Untill USDA fixes period naming issue",
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('TempStocks_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}
@@ -46424,40 +46784,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/TempStocks')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Untill USDA fixes period naming issue",
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('TempStocks_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/TempStocks')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "TempStocks",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/TempStocks')]"
 			]
 		}
 	]
