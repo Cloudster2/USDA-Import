@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "FirstTest",
-				"type": "DatabricksNotebook",
+				"name": "Copy data1",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,15 +15,46 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/claudia@ceresdrm.com/ADF to DataBricks NB",
-					"baseParameters": {
-						"TradeFile": "ItemTable"
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
 				},
-				"linkedServiceName": {
-					"referenceName": "ToDataBricks",
-					"type": "LinkedServiceReference"
-				}
+				"inputs": [
+					{
+						"referenceName": "SupplyData",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SupplyTable",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
