@@ -1,9 +1,9 @@
 {
-	"name": "tempwork",
+	"name": "Supply Data Pipeline",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Supply Data",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -55,6 +55,33 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Supply Data Procedure",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Supply Data",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[SupplyDairyReport]"
+				},
+				"linkedServiceName": {
+					"referenceName": "SaraDB connection",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []
