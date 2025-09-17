@@ -1,0 +1,12 @@
+{
+	"name": "USDA",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=FAT TEST&statisticcat_desc=PRICE RECEIVED&unit_desc= PCT &unit_desc= $/CWT&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2015",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
