@@ -1,0 +1,12 @@
+{
+	"name": "USDAextra",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "USDA",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
