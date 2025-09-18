@@ -545,6 +545,9 @@
 		"Tokens_properties_typeProperties_baseUrl": {
 			"value": "https://CeresVault.vault.azure.net/"
 		},
+		"USDA_properties_typeProperties_url": {
+			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=MILK&statisticcat_desc=FAT TEST&statisticcat_desc=PRICE RECEIVED& agg_level_desc=STATE&year__GE=2015"
+		},
 		"USDAStocks_properties_typeProperties_url": {
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2016&freq_desc=POINT IN TIME"
 		},

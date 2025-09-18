@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'report1603'"
 		},
+		"WorldA_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&impexp=IE&from=2010-01&reporter=EU27ExUK&source=EUROSTAT&partner=ReportersAll&periodtype=M&onlycompleteperiods=true&accumulatereportergroups=true&currency=USD&decimalscale=2&layout=brief&unit=MT&hscode=CurrentList"
+		},
 		"WorldMXBY_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=CEBFBA62A15113125D00C50C4193F7A4&from=2017-01&currency=USD&unit=MT&decimalscale=2&impexp=IE&reporter=MX,BY&hscode=MyCodesMXBY&partner=zz&periodtype=M&accumulatepartnergroups=true&layout=brief"
@@ -98,16 +102,27 @@
 		"temp_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?token=E3A720ABF1B82CB5D67831FFCF2CF995&reporter=all&hscode=19011010,04041004,040690100&periodtype=M&requirealldatareported=false&currency=USD&unit=MT&decimalscale=2&layout=brief&partner=PartnersNonEuro&impexp=IE&latestmonths=3&source=NATIONAL"
-		},
-		"test_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3351/milk"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/WorldA')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('WorldA_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/WorldMXBY')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -397,21 +412,6 @@
 				"type": "RestService",
 				"typeProperties": {
 					"url": "[parameters('temp_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/test')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('test_properties_typeProperties_url')]",
 					"enableServerCertificateValidation": true,
 					"authenticationType": "Anonymous"
 				}
