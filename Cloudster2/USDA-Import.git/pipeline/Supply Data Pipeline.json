@@ -3,11 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Supply Data",
+				"name": "Supply Dairy",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Supply logic",
+						"activity": "Supply Milk",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -68,7 +68,7 @@
 				"type": "SqlServerStoredProcedure",
 				"dependsOn": [
 					{
-						"activity": "Supply Data",
+						"activity": "Supply Dairy",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -111,6 +111,68 @@
 					},
 					"timeout": "00:10:00"
 				}
+			},
+			{
+				"name": "Supply Milk",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Supply logic",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table supplydairy",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"tableOption": "autoCreate",
+						"disableMetricsCollection": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SupplyMilk",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SupplyTable",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
 		"annotations": []
