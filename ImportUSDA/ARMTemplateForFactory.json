@@ -28935,11 +28935,11 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Supply Data",
+						"name": "Supply Dairy",
 						"type": "Copy",
 						"dependsOn": [
 							{
-								"activity": "Supply logic",
+								"activity": "Supply Milk",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -29002,7 +29002,7 @@
 						"type": "SqlServerStoredProcedure",
 						"dependsOn": [
 							{
-								"activity": "Supply Data",
+								"activity": "Supply Dairy",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -29045,6 +29045,70 @@
 							},
 							"timeout": "00:10:00"
 						}
+					},
+					{
+						"name": "Supply Milk",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Supply logic",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"preCopyScript": "truncate table supplydairy",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SupplyMilk",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SupplyTable",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
 					}
 				],
 				"policy": {
@@ -29055,7 +29119,8 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SupplyData')]",
 				"[concat(variables('factoryId'), '/datasets/SupplyTable')]",
-				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]"
+				"[concat(variables('factoryId'), '/linkedServices/SaraDB connection')]",
+				"[concat(variables('factoryId'), '/datasets/SupplyMilk')]"
 			]
 		},
 		{
@@ -48064,6 +48129,71 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SupplyMilk')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "supply-use-allmilk-products.csv",
+						"container": "trade-data-container"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Table",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "Period",
+						"type": "String"
+					},
+					{
+						"name": "Timeperiod_id",
+						"type": "String"
+					},
+					{
+						"name": "Frequency",
+						"type": "String"
+					},
+					{
+						"name": "Category",
+						"type": "String"
+					},
+					{
+						"name": "Data_item",
+						"type": "String"
+					},
+					{
+						"name": "Quantity",
+						"type": "String"
+					},
+					{
+						"name": "Units",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage')]"
 			]
 		}
 	]
