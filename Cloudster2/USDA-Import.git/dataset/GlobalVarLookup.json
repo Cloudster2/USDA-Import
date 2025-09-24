@@ -1,0 +1,27 @@
+{
+	"name": "GlobalVarLookup",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "GlobVarLook",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "value",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "GlobalVarTable"
+		}
+	}
+}
