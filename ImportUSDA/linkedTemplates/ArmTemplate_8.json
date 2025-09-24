@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
 		},
+		"GlobVarLook_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'GlobVarLook'"
+		},
 		"test_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://mpr.datamart.ams.usda.gov/services/v1.1/reports/3351/milk"
@@ -30,6 +34,18 @@
 		"world5_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://www.globaltradetracker.com:443/api/rest/getreport?source=DEFAULT&token=E3A720ABF1B82CB5D67831FFCF2CF995&periodtype=M&currency=USD&decimalscale=2&layout=brief&unit=MT&latestmonths=&impexp=IE&accumulatepartnergroups=true&from=2010-01&partner=ZZ&reporter=all&hscode=World5"
+		},
+		"GlobVarLook_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ceres.database.windows.net"
+		},
+		"GlobVarLook_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SaraDB"
+		},
+		"GlobVarLook_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "claudiastern"
 		}
 	},
 	"variables": {
@@ -130,6 +146,28 @@
 			"properties": {
 				"type": "SelfHosted",
 				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GlobVarLook')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('GlobVarLook_properties_typeProperties_server')]",
+					"database": "[parameters('GlobVarLook_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('GlobVarLook_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('GlobVarLook_password')]"
+					}
+				}
 			},
 			"dependsOn": []
 		},
@@ -473,22 +511,6 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "3346NFS",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {},
-				"schema": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/3346Utilization')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "3346Utilization",
 					"type": "LinkedServiceReference"
 				},
 				"annotations": [],

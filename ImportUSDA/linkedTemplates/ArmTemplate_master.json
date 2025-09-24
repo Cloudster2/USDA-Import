@@ -143,6 +143,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
 		},
+		"GlobVarLook_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'GlobVarLook'"
+		},
 		"10YearDairyProd_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2019"
@@ -850,6 +854,18 @@
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
+		},
+		"GlobVarLook_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ceres.database.windows.net"
+		},
+		"GlobVarLook_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SaraDB"
+		},
+		"GlobVarLook_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "claudiastern"
 		},
 		"containerUri": {
 			"type": "string",
@@ -1642,6 +1658,9 @@
 					"usdadata_connectionString": {
 						"value": "[parameters('usdadata_connectionString')]"
 					},
+					"GlobVarLook_password": {
+						"value": "[parameters('GlobVarLook_password')]"
+					},
 					"test_properties_typeProperties_url": {
 						"value": "[parameters('test_properties_typeProperties_url')]"
 					},
@@ -1653,6 +1672,15 @@
 					},
 					"world5_properties_typeProperties_url": {
 						"value": "[parameters('world5_properties_typeProperties_url')]"
+					},
+					"GlobVarLook_properties_typeProperties_server": {
+						"value": "[parameters('GlobVarLook_properties_typeProperties_server')]"
+					},
+					"GlobVarLook_properties_typeProperties_database": {
+						"value": "[parameters('GlobVarLook_properties_typeProperties_database')]"
+					},
+					"GlobVarLook_properties_typeProperties_userName": {
+						"value": "[parameters('GlobVarLook_properties_typeProperties_userName')]"
 					}
 				}
 			},
@@ -1945,9 +1973,6 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
-					},
-					"EUGlobalDataTrigger_properties_typeProperties_scope": {
-						"value": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -1968,6 +1993,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"EUGlobalDataTrigger_properties_typeProperties_scope": {
+						"value": "[parameters('EUGlobalDataTrigger_properties_typeProperties_scope')]"
 					}
 				}
 			},

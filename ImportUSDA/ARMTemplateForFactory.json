@@ -143,6 +143,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'usdadata'"
 		},
+		"GlobVarLook_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'GlobVarLook'"
+		},
 		"10YearDairyProd_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=CREAM&commodity_desc=DAIRY PRODUCT OTHER&commodity_desc=ICE CREAM&commodity_desc=MILK&commodity_desc=WHEY&commodity_desc=YOGURT&statisticcat_desc=PRODUCTION&unit_desc=LB&unit_desc=Gallons&agg_level_desc=STATE&agg_level_desc=NATIONAL &year__GE=2019"
@@ -850,6 +854,18 @@
 		"EUGlobalDataTrigger_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/0fc35f87-20bc-4c8a-ad2a-fc01eddd2349/resourceGroups/CeresBlob/providers/Microsoft.Storage/storageAccounts/cerestradedata"
+		},
+		"GlobVarLook_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ceres.database.windows.net"
+		},
+		"GlobVarLook_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "SaraDB"
+		},
+		"GlobVarLook_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "claudiastern"
 		}
 	},
 	"variables": {
@@ -24785,11 +24801,18 @@
 					{
 						"name": "Global Switch",
 						"type": "Switch",
-						"dependsOn": [],
+						"dependsOn": [
+							{
+								"activity": "Set global var",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
 						"userProperties": [],
 						"typeProperties": {
 							"on": {
-								"value": "@string(pipeline().parameters.GlobalValue)",
+								"value": "@string(variables('GlobalValue'))\n",
 								"type": "Expression"
 							},
 							"cases": [
@@ -24971,21 +24994,71 @@
 								}
 							]
 						}
+					},
+					{
+						"name": "Lookup Var",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select value from globalvartable",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "GlobalVarLookup",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "Set global var",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Lookup Var",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "GlobalValue",
+							"value": {
+								"value": "@activity('Lookup Var').output.firstRow.value",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"concurrency": 1,
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"parameters": {
+				"variables": {
 					"GlobalValue": {
-						"type": "int",
-						"defaultValue": 1
+						"type": "Integer"
 					}
 				},
 				"annotations": []
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/GlobalVarLookup')]",
 				"[concat(variables('factoryId'), '/pipelines/Global Euro Pipeline')]",
 				"[concat(variables('factoryId'), '/pipelines/Global NZ Pipeline')]",
 				"[concat(variables('factoryId'), '/pipelines/China Global Import')]",
@@ -48413,6 +48486,60 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AusSlaughter')]",
 				"[concat(variables('factoryId'), '/datasets/EUGobalImport')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GlobVarLook')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('GlobVarLook_properties_typeProperties_server')]",
+					"database": "[parameters('GlobVarLook_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('GlobVarLook_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('GlobVarLook_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GlobalVarLookup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "GlobVarLook",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "ID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "value",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "GlobalVarTable"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/GlobVarLook')]"
 			]
 		}
 	]
