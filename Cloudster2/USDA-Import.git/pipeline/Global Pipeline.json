@@ -7,7 +7,7 @@
 				"type": "Switch",
 				"dependsOn": [
 					{
-						"activity": "Set global var",
+						"activity": "Script1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -206,14 +206,15 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select value from globalvartable",
+						"sqlReaderQuery": "select value from globalvartable\n",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
 						"referenceName": "GlobalVarLookup",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": true
 				}
 			},
 			{
@@ -239,11 +240,114 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set global id",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup Var ID",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "GlobalID",
+					"value": {
+						"value": "@activity('Lookup Var ID').output.firstRow.ID",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Script1",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Set global id",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "SaraDB connection",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"parameters": [
+								{
+									"name": "RowID",
+									"type": "Int16",
+									"value": {
+										"value": "@variables('GlobalID')",
+										"type": "Expression"
+									},
+									"direction": "Input"
+								}
+							],
+							"type": "Query",
+							"text": "delete from GlobalVarTable where ID = @RowID"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Lookup Var ID",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "Set global var",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select ID from globalvartable\n",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "GlobalVarLookup",
+						"type": "DatasetReference"
+					}
+				}
 			}
 		],
 		"concurrency": 1,
 		"variables": {
 			"GlobalValue": {
+				"type": "Integer"
+			},
+			"GlobalID": {
 				"type": "Integer"
 			}
 		},
