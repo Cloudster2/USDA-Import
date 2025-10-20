@@ -837,7 +837,7 @@
 					},
 					"sink": {
 						"type": "SqlServerSink",
-						"preCopyScript": " Delete \n    FROM USDA.USDADataFactory\n    WHERE USDAID NOT IN\n    (\n        SELECT MAX(USDAID)\n        FROM USDA.USDADataFactory\n        GROUP BY grp,commodity,category,itemconcat,stateansi,state,year,period\n    )\n\nupdate usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekending <> ''\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,0))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\ntruncate table usda.usdadata\n\n\n\n\n",
+						"preCopyScript": " Delete \n    FROM USDA.USDADataFactory\n    WHERE USDAID NOT IN\n    (\n        SELECT MAX(USDAID)\n        FROM USDA.USDADataFactory\n        GROUP BY grp,commodity,category,itemconcat,stateansi,state,year,period\n    )\n\nupdate usda.usdadatafactory set weekending = cast(weekendingstring as date)\n\twhere weekending <> ''\n\tupdate usda.usdadatafactory set value = replace(value,',','')\n\tupdate USDA.USDADataFactory set value = NULL where isnumeric(value) = 0\n\tupdate usda.usdadatafactory set valuedec = cast(value as decimal(18,2))\n\tupdate usda.usdadatafactory set stateansiint = cast(stateansi as int)\n\ntruncate table usda.usdadata\n\n\n\n\n",
 						"writeBehavior": "insert",
 						"sqlWriterUseTableLock": true
 					},
