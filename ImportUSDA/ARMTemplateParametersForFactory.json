@@ -552,7 +552,7 @@
 			"value": "https://quickstats.nass.usda.gov/api/api_GET/?key=D5ED7EBA-1BA4-3BA8-BE76-A097ABD12F78 &commodity_desc=BUTTER&commodity_desc=BUTTERMILK&commodity_desc=CHEESE&commodity_desc=MILK&commodity_desc=WHEY&statisticcat_desc=STOCKS&agg_level_desc=NATIONAL&year__GE=2019&freq_desc=MONTHLY"
 		},
 		"ToDataBricks_properties_typeProperties_existingClusterId": {
-			"value": "0418-005616-aexmqt2d"
+			"value": "1015-150441-3tc96737"
 		},
 		"Tokens_properties_typeProperties_baseUrl": {
 			"value": "https://CeresVault.vault.azure.net/"

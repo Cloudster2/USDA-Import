@@ -105,7 +105,7 @@
 		},
 		"ToDataBricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "0418-005616-aexmqt2d"
+			"defaultValue": "1015-150441-3tc96737"
 		},
 		"Tokens_properties_typeProperties_baseUrl": {
 			"type": "string",
