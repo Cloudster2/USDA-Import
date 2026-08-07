@@ -8,7 +8,7 @@
 		"annotations": [],
 		"type": "Excel",
 		"typeProperties": {
-			"sheetName": "Current Season",
+			"sheetName": "Production Summary",
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "AU Dataset Dairy Product Production.xlsx",
