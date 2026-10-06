@@ -1,0 +1,89 @@
+{
+	"name": "stocktestdata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sara Database",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "WeekEndingString",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Year",
+				"type": "nvarchar"
+			},
+			{
+				"name": "UtilPract",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Class",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GRP",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ItemConcat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Category",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Value",
+				"type": "nvarchar"
+			},
+			{
+				"name": "State",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Frequency",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Domain",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StateAnsi",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Commodity",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProdPract",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DomainCat",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Unit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Region",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "StockData"
+		}
+	}
+}
