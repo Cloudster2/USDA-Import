@@ -383,7 +383,14 @@
 			{
 				"name": "AMS 1045",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "AMS procedure",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,
@@ -2258,14 +2265,7 @@
 			{
 				"name": "AMS 1101",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "AMS 1102",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
 					"retry": 0,

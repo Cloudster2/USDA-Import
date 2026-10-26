@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyDairyStocks",
+				"name": "AMS 1101",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -13,18 +13,16 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [
-					{
-						"name": "Destination",
-						"value": "USDA.USDADataFactory"
-					}
-				],
+				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "RestSource",
-						"httpRequestTimeout": "00:04:40",
+						"httpRequestTimeout": "00:01:40",
 						"requestInterval": "00.00:00:00.010",
-						"requestMethod": "GET"
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
 					},
 					"sink": {
 						"type": "AzureSqlSink",
@@ -39,61 +37,61 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "['week_ending']"
+									"path": "['published_date']"
 								},
 								"sink": {
-									"name": "WeekEndingString",
+									"name": "PublishDate",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['year']"
+									"path": "['report_begin_date']"
 								},
 								"sink": {
-									"name": "Year",
+									"name": "BeginDate",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['util_practice_desc']"
+									"path": "['report_end_date']"
 								},
 								"sink": {
-									"name": "UtilPract",
+									"name": "EndDate",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['class_desc']"
+									"path": "['market_type']"
 								},
 								"sink": {
-									"name": "Class",
+									"name": "MarketType",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['group_desc']"
+									"path": "['slug_id']"
 								},
 								"sink": {
-									"name": "GRP",
+									"name": "SlugID",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['short_desc']"
+									"path": "['community']"
 								},
 								"sink": {
-									"name": "ItemConcat",
+									"name": "Community",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['statisticcat_desc']"
+									"path": "['category']"
 								},
 								"sink": {
 									"name": "Category",
@@ -102,61 +100,7 @@
 							},
 							{
 								"source": {
-									"path": "['reference_period_desc']"
-								},
-								"sink": {
-									"name": "Period",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['Value']"
-								},
-								"sink": {
-									"name": "Value",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['state_name']"
-								},
-								"sink": {
-									"name": "State",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['freq_desc']"
-								},
-								"sink": {
-									"name": "Frequency",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['domain_desc']"
-								},
-								"sink": {
-									"name": "Domain",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['state_ansi']"
-								},
-								"sink": {
-									"name": "StateAnsi",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['commodity_desc']"
+									"path": "['commodity']"
 								},
 								"sink": {
 									"name": "Commodity",
@@ -165,53 +109,80 @@
 							},
 							{
 								"source": {
-									"path": "['prodn_practice_desc']"
+									"path": "['group']"
 								},
 								"sink": {
-									"name": "ProdPract",
+									"name": "Grp",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['domaincat_desc']"
+									"path": "['price_Unit']"
 								},
 								"sink": {
-									"name": "DomainCat",
+									"name": "Grade",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['unit_desc']"
+									"path": "['package']"
 								},
 								"sink": {
-									"name": "Unit",
+									"name": "Package",
 									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "['region_desc']"
+									"path": "['price_min']"
 								},
 								"sink": {
-									"name": "Region",
-									"type": "String"
+									"name": "RangeLow",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['price_max']"
+								},
+								"sink": {
+									"name": "RangeHigh",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['mostly_low_price']"
+								},
+								"sink": {
+									"name": "MostlyLow",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"path": "['mostly_high_price']"
+								},
+								"sink": {
+									"name": "MostlyHigh",
+									"type": "Decimal"
 								}
 							}
 						],
-						"collectionReference": "$['data']"
+						"collectionReference": "$['results']"
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "10YearStocks",
+						"referenceName": "Report1101",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "stocktestdata",
+						"referenceName": "testconnection",
 						"type": "DatasetReference"
 					}
 				]
